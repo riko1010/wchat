@@ -1,0 +1,42 @@
+{
+    "name": "phug/component",
+    "type": "library",
+    "keywords": ["phug", "pug", "html", "component"],
+    "description": "Extension for pug-php and phug to use components in templates",
+    "license": "MIT",
+    "homepage": "http://phug-lang.com",
+    "authors": [
+        {
+            "name": "KyleKatarn",
+            "email": "jade-php@selfbuild.fr",
+            "homepage": "http://github.com/kylekatarnls"
+        }
+    ],
+    "support": {
+        "email": "support@phug-lang.com",
+        "issues": "https://github.com/phug-php/phug/issues",
+        "source": "https://github.com/phug-php/phug",
+        "docs": "http://phug-lang.com/docs"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.2",
+        "phug/phug": "^1.7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "pug-php/pug": "^3.3",
+        "machy8/xhtml-formatter": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phug\\Component\\": "./src/Phug/Component/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phug\\Test\\Component\\": "./tests/Phug/Component/"
+        }
+    }
+}

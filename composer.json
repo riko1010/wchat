@@ -1,0 +1,18 @@
+{
+    "require": {
+        "athlon1600/php-curl-file-downloader": "^1.0",
+        "greg0/lazer-database": "^2.0",
+        "softcreatr/php-mime-detector": "^3.2",
+        "samdark/sitemap": "^2.4",
+        "filp/whoops": "^2.15",
+        "phpmailer/phpmailer": "^6.8",
+        "fakerphp/faker": "^1.23",
+        "phug/phug": "^1.12",
+        "phug/component": "^1.1",
+        "php-curl-class/php-curl-class": "^9.17",
+        "wikimedia/relpath": "^4.0",
+        "league/csv": "^9.10",
+        "symfony/filesystem": "^6.3",
+        "bentools/iterable-functions": "^2.1"
+    }
+}
