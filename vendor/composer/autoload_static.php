@@ -40,7 +40,6 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
             'Phug\\Util\\' => 10,
             'Phug\\Component\\' => 15,
             'Phug\\' => 5,
-            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'L' => 
         array (
@@ -124,10 +123,6 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
             7 => __DIR__ . '/..' . '/phug/phug/src/Phug/Parser',
             8 => __DIR__ . '/..' . '/phug/phug/src/Phug/Reader',
             9 => __DIR__ . '/..' . '/phug/phug/src/Phug/Renderer',
-        ),
-        'PHPMailer\\PHPMailer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'League\\Csv\\' => 
         array (

@@ -10,8 +10,6 @@ use SoftCreatR\MimeDetector\MimeDetector;
 use SoftCreatR\MimeDetector\MimeDetectorException;
 use samdark\sitemap\Sitemap;
 use samdark\sitemap\Index;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use Curl\Curl;
 use Wikimedia\RelPath;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
@@ -88,7 +86,6 @@ public $sitemapcsv;
 public $archivedsitemap;
 public $PyArchiveURI;
 public $bdir;
-public $fs;
 
 public function get(){
 
@@ -242,9 +239,6 @@ $sitemap = new Sitemap($this->sitemapxml);
     ];
 }
 
-$plaintextmessage = '';
-$htmlmessage = '';
-$sitemaplinks = '';
 try {
 $subject = 'Archive links from '
 .Faker\Factory::create()->unique()->name()
@@ -257,26 +251,12 @@ $subject = 'Archive links from '.rand(1000000,9999999).' on '.date("r");
 $cfl_column_search = array_column($this->cfFiles->cfl, 'search');
 foreach ($cfl_column_search as $Links) {
 $Link = addurl($Links);
-$plaintextmessage .= $Link.PHP_EOL;
-$htmlmessage .= '<p><a href="'.$Link.'">'.$Link.'</a></p>';
 // add some URLs to sitemap
 try {
 $sitemap->addItem($Link, time()); 
 } catch (Exception $e) {
   //archive links error
 }
-}
-
-try {
-$mailstatus = sendmails(
-  $GLOBALS["sendermail"],
-  $GLOBALS["archiveMails"],
-  $subject, 
-  $plaintextmessage, 
-  $htmlmessage
-  );
-} catch (Exception $e){
-  //send mail error
 }
 
 try {
@@ -396,73 +376,6 @@ function ras($needle,$haystack) {
         }
     }
     return false;
-}
-
-function sendmails($sendermail, $recipients, $subject, $plaintextmessage, $htmlmessage){
-
-//Create a new PHPMailer instance
-$mail = new PHPMailer();
-//Set who the message is to be sent from
-$mail->isSMTP();
-
-//Set the hostname of the mail server
-$mail->Host = $GLOBALS["smtp"]["server"];
-//Set the SMTP port number - likely to be 25, 465 or 587
-$mail->Port = $GLOBALS["smtp"]["port"];
-//Whether to use SMTP authentication
-$mail->SMTPAuth = true;
-($GLOBALS["smtp"]["secure"] == '' ?: $mail->SMTPSecure = $GLOBALS["smtp"]["secure"] );
-//SMTP connection will not close after each email sent, reduces SMTP overhead
-$mail->SMTPKeepAlive = true; 
-//Username to use for SMTP authentication
-$mail->Username = $GLOBALS["smtp"]["username"];
-//Password to use for SMTP authentication
-$mail->Password = $GLOBALS["smtp"]["password"];
-//Set who the message is to be sent setFrom
-$mail->setFrom($sendermail);
-//Set the subject line
-$mail->Subject = $subject;
-$mail->isHTML(true);
-$mail->Body = $htmlmessage;
-$mail->Altbody = $plaintextmessage;
-//This should be the same as the domain of your From address
-$mail->DKIM_domain = $GLOBALS["smtp"]["server"];
-//See the DKIM_gen_keys.phps script for making a key pair -
-//here we assume you've already done that.
-//Path to your private key:
-$mail->DKIM_private = '/home/badlnykl/assets-intranet/dkimprivate.wchats.space.pem';
-//Set this to your own selector
-$mail->DKIM_selector = 'phpmailer';
-//Put your private key's passphrase in here if it has one
-$mail->DKIM_passphrase = '';
-//The identity you're signing as - usually your From address
-$mail->DKIM_identity = $GLOBALS["smtp"]["username"];
-//Suppress listing signed header fields in signature, defaults to true for debugging purpose
-$mail->DKIM_copyHeaderFields = false;
-//Optionally you can add extra headers for signing to meet special requirements
-//$mail->DKIM_extraHeaders = ['List-Unsubscribe', 'List-Help'];
-
-//Set who the message is to be sent to
-foreach ($recipients as $recipient) {
-
-try {
-$mail->addAddress($recipient);
-$mail->addBCC($GLOBALS["smtp"]["bcc"]);
-$mail->send();
-$mail->clearAllRecipients(); /* clear current recipient, phpmailer singleto for BCC like to, is deprecated */
-} catch(Exception $e) {
-  //send mail error , bad address or error sending
-  try {
-    $mail->getSMTPInstance()->reset();
-  } catch(Exception $e) {
-    //reset smtp instance error
-  }
-  continue; /* skip iteration */
-}
-
-}
-
-/* end sendmails */
 }
 
 function CFgetfolders($cfFolder) {

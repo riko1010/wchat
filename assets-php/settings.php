@@ -17,19 +17,6 @@ $archivedsitemap = 'archivedsitemap.txt';
 $cfFolder = "conversations"; 
 $generatesitemapfile = 'generate_sitemap';
 $extracted = true;
-$sendermail = 'archivelinks@wchat.space';
-$smtp = array(
-  'server' => 'wchat.space', 
-  'port' => '465',
-  'username' => 'archivelinks@wchat.space',
-  'password' => 'bx(3(tL!iG;Z',
-  'secure' => 'ssl',
-  'bcc' => 'archivelinks@wchat.space'
-  );
-$archiveMails = array(
-  'savepagenow@archive.org',
-  'spn@archive.org'
-  );
 /* video url as %s , replacement with sprintf */
 $videoPlayerURL = 'https://onelineplayer.com/player.html?autoplay=true&autopause=true&muted=true&loop=true&url='
 .'%s'.

@@ -19,7 +19,6 @@ return array(
     'Phug\\Util\\' => array($vendorDir . '/phug/phug/src/Phug/Util/Util'),
     'Phug\\Component\\' => array($vendorDir . '/phug/component/src/Phug/Component'),
     'Phug\\' => array($vendorDir . '/phug/phug/src/Phug/Ast', $vendorDir . '/phug/phug/src/Phug/Compiler', $vendorDir . '/phug/phug/src/Phug/DependencyInjection', $vendorDir . '/phug/phug/src/Phug/Event', $vendorDir . '/phug/phug/src/Phug/Formatter', $vendorDir . '/phug/phug/src/Phug/Invoker', $vendorDir . '/phug/phug/src/Phug/Lexer', $vendorDir . '/phug/phug/src/Phug/Parser', $vendorDir . '/phug/phug/src/Phug/Reader', $vendorDir . '/phug/phug/src/Phug/Renderer'),
-    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
     'Lazer\\Test\\' => array($vendorDir . '/greg0/lazer-database/tests/src'),
     'Lazer\\' => array($vendorDir . '/greg0/lazer-database/src'),

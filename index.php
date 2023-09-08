@@ -132,7 +132,7 @@ https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css
   
     <header class="brand">
       <!-- select -->
-<select style="" class="form-control searchselect">
+<select style="" class="form-select form-control searchselect">
   
 <?php 
 
