@@ -68,6 +68,14 @@ function docViewer($uri) {
   ); 
 }
 
+function addurl($path){
+  return (
+    $GLOBALS['SiteUrl']
+  .'/'
+  .Path::makeRelative($path, $GLOBALS['baseDir'])
+  );
+}
+
 class generateSiteMap {
 
 public $cfFiles;
@@ -75,8 +83,7 @@ public $generatesitemapfile;
 public $SiteUrl;
 public $cfFolder;
 public $robotstxt;
-public $sitemapxml; 
-public $sitemaptxt;
+public $sitemapxml;
 public $sitemapcsv;
 public $archivedsitemap;
 public $PyArchiveURI;
@@ -101,8 +108,7 @@ $files = $this->filesExists(
   $this->sitemapxml, 
   $this->archivedsitemap,
   $this->sitemapcsv,
-  $this->robotstxt, 
-  $this->sitemaptxt
+  $this->robotstxt
 );
 
 return (object) [
@@ -127,26 +133,23 @@ $data[] = [
 return $data;
 }
 
-public function addurl($path){
-  return $this->SiteUrl.'/'.$path;
-}
-
 public function mergedrop($old, $new){
-$old = is_array($old) ? $old : [];
-$sitemapcsvList = '"sync","mtime","url","archivedurl","filepath"'.PHP_EOL;
+
+$sitemapcsvList = '"sync","mtime","url","archivedurl","filepath","synctime"'.PHP_EOL;
 
 foreach ($new as $cl){
 $mtime = filemtime($cl['filepath']);
 $filepath = $cl['filepath'];
 clearstatcache();
-$url = $this->addurl($cl['search']);
+$url = addurl($cl['search']);
 $sync = 1;
 $archivedurl = '';
+$synctime = date('m.d.y g:i a');
 
 try {
 $unmodarray = ras($filepath, $old);
 if ($unmodarray){
-$unmodarray = $old[$oldarray];
+$unmodarray = $old[$unmodarray];
 if ($unmodarray['mtime'] == $mtime && 
 $unmodarray['url'] == $url ) {
 $archivedurl = $unmodarray['archivedurl']; 
@@ -158,10 +161,9 @@ $sync = $unmodarray['sync'];
 }
 
 $sitemapcsvList .= <<<CSVCONTENT
-$sync,"$mtime","$url","$archivedurl","$filepath"
+$sync,"$mtime","$url","$archivedurl","$filepath","$synctime"
 CSVCONTENT;
 $sitemapcsvList .= PHP_EOL;
-
 }
 
 return (object) [
@@ -174,7 +176,6 @@ return (object) [
 public function getcsv($sitemapcsv) {
 try {
   $reader = Reader::createFromPath($sitemapcsv, 'r');
-  $reader->setEnclosure("'");
   $reader->setHeaderOffset(0);
   $rows = $reader->getRecords();
   $rows = (iter_to_array($rows));
@@ -231,29 +232,6 @@ clearstatcache();
   }
 }
 
-if (file_exists($this->sitemaptxt)) {
-clearstatcache();  
-if (!rename($this->sitemaptxt, Path::join('autodelete', $this->sitemaptxt))) {
-  return (object) [
-    'status' => false,
-    'response' => $this->sitemaptxt.' rename error'
-    ];
-}
-}
-
-$sitemapcsv = $this->getcsv($this->sitemapcsv);
-
-if ($sitemapcsv->status == false) {
-  $csvoldarray = [];
-} else {
-  $csvoldarray = $sitemapcsv->response;
-}
-
-$sitemapcsv = $this->mergedrop(
-              $csvoldarray, 
-              $this->cfFiles->cfl
-              );
-
 try {
 // create Sitemap
 $sitemap = new Sitemap($this->sitemapxml);
@@ -264,25 +242,21 @@ $sitemap = new Sitemap($this->sitemapxml);
     ];
 }
 
-if(!$this->sitemaptxt = fopen($this->sitemaptxt, 'a')) { 
-  return (object) [
-    'status' => false,
-    'response' => $this->sitemaptxt.' open failed'
-    ];
-}
-
 $plaintextmessage = '';
 $htmlmessage = '';
 $sitemaplinks = '';
 try {
-$subject = 'Archive links from '.Faker\Factory::create()->unique()->name().' on '.date("r");
+$subject = 'Archive links from '
+.Faker\Factory::create()->unique()->name()
+.' on '
+.date("r");
 } catch (Exception $e) {
 /* faker error */
 $subject = 'Archive links from '.rand(1000000,9999999).' on '.date("r");
 }
-
-foreach (array_column($this->cfFiles->cfl, 'search') as $Links) {
-$Link = $this->SiteUrl.'/'.$Links;
+$cfl_column_search = array_column($this->cfFiles->cfl, 'search');
+foreach ($cfl_column_search as $Links) {
+$Link = addurl($Links);
 $plaintextmessage .= $Link.PHP_EOL;
 $htmlmessage .= '<p><a href="'.$Link.'">'.$Link.'</a></p>';
 // add some URLs to sitemap
@@ -306,7 +280,7 @@ $mailstatus = sendmails(
 }
 
 try {
-$sitemap->setStylesheet($this->SiteUrl.'/sitemap.xsl');
+$sitemap->setStylesheet(addurl('sitemap.xsl'));
 $sitemap->write();
 } catch(Exception $e){
   //sitemap.xml write error
@@ -316,34 +290,16 @@ $sitemap->write();
     ];
 }
 
-/*
-//firstline of sitemaptxt is written using filemtime from python on archivedsitemap generation 
-clearstatcache();
-$cfFolderHash = filemtime(Path::join($this->bdir, $this->cfFolder)) ?: '';
-*/
-$cfFolderHash = '000000000';
-$sitemaptxtContents = $cfFolderHash
-.PHP_EOL
-.$plaintextmessage;
-
-if (!fwrite($this->sitemaptxt, $sitemaptxtContents)) {
-  return (object) [
-    'status' => false,
-    'response' => $this->sitemaptxt.' write failed'
-    ];
-}
-
 try {
-fclose($this->sitemaptxt);
-} catch (Exception $e) {
-  //sitemap.txt close error 
-  return (object) [
-    'status' => false,
-    'response' => $this->sitemaptxt.' close handle failed'
-    ];
-}
+$sitemapcsv = $this->getcsv($this->sitemapcsv);
+$csvoldarray = $sitemapcsv->status ? $sitemapcsv->response : [];
+$sitemapcsv = $this->mergedrop(
+              $csvoldarray, 
+              $this->cfFiles->cfl
+              );
+if(!$sitemapcsv = $this->writecsv($sitemapcsv->response, $this->sitemapcsv) || !$sitemapcsv->status) throw Exception($this->sitemapcsv.' write failed');
 
-if(!$sitemapcsv = $this->writecsv($sitemapcsv->response, $this->sitemapcsv) || !$sitemapcsv->status) {
+} catch(\Exception|\Throwable) {
   return (object) [
     'status' => false,
     'response' => $this->sitemapcsv.' write failed'
@@ -435,7 +391,7 @@ function ras($needle,$haystack) {
          $value = array_map('strtolower', $value);
         } elseif(is_string($value)) { strtolower($value); 
         }
-        if(strtolower($needle)===$value OR (is_array($value) && ras($needle,$value) !== false)) {
+        if(strtolower($needle)==$value || (is_array($value) && ras($needle,$value) !== false)) {
             return $current_key;
         }
     }

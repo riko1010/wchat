@@ -2,6 +2,7 @@
 error_reporting(0);
 
 require 'vendor/autoload.php';
+require 'assets-php/settings.php'
 
 use Curl\Client;
 use CurlDownloader\CurlDownloader;
@@ -10,17 +11,7 @@ define('LAZER_DATA_PATH', realpath(__DIR__).'/data/');
 if (!is_dir('data')) mkdir('data');
 use Lazer\Classes\Database as Lazer;
 
-/* set path to unzip.pyunzip, cgi-bin allows running py in most shared hosts */
-$unzippyURI = 'https://trustedlinks.site/cgi-bin/unzip.py';
-/* 
-python script expects this folder structure
-whatsappchatfdir - base dir
-cgi-bin - python unzip file
-*/
-$dropboxfolderuriaszip = "https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?dl=1";
-
 $dlfilename = 'new-conversations';
-
 $dlfileext = '.zip';
 $dlfile = $dlfilename.$dlfileext;
 $download = false;
@@ -36,11 +27,10 @@ $wh = json_decode($json, true);
 
 
     if (count($wh["delta"]["users"]) == 1) {
-//Header URL of the file, dropbox
-$url = "https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?raw=1";
+
 
 // Use the get_headers() function to retrieve the headers of the file
-$headers = get_headers($url, 1);
+$headers = get_headers($dropboxfolderuriaszipheader, 1);
 
 // Check if the "Content-Length" header is present in the response
 if (isset($headers["Content-Length"])) {
@@ -126,7 +116,10 @@ if (is_dir('conversations')) {
 
 if (file_exists($dlfile)){
 /* unzip using py */
-include('dropboxunzip.php');
+/* extracts using pypython, call using http request, no output expected */
+// returns standardized Response object no matter what
+$unzip = $browser->get($unzippyURI);
+
 
 }
 

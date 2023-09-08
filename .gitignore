@@ -1,1 +1,4 @@
-.well-known/
+.well-known/*
+autodelete/*
+error_log
+data/*

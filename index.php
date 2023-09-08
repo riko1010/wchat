@@ -9,8 +9,6 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
-
-$baseDir = __DIR__;
 $currentURL = '';
 
 require 'assets-php/settings.php';
@@ -67,12 +65,11 @@ $sitemap->generatesitemapfile = $generatesitemapfile;
 $sitemap->SiteUrl = $SiteUrl; 
 $sitemap->cfFolder = $cfFolder;
 $sitemap->robotstxt = $robotstxt;
-$sitemap->sitemapxml = $sitemapxml; 
-$sitemap->sitemaptxt = $sitemaptxt;
+$sitemap->sitemapxml = $sitemapxml;
 $sitemap->sitemapcsv = $sitemapcsv;
 $sitemap->archivedsitemap = $archivedsitemap;
 $sitemap->PyArchiveURI = $PyArchiveURI;
-$sitemap->bdir = __DIR__;
+$sitemap->bdir = $baseDir;
 $sitemaps = $sitemap->get();
 /*
 return [
@@ -398,7 +395,7 @@ $counterfilearray++;
 <?php
 print "<nav hidden>";
 foreach ($chatLinks as $link) {
-print '<a href="'.$SiteUrl.'/'.$link.'">'.$SiteUrl.'/'.$link.'</a> <br />';
+print '<a href="'.addurl($link).'">'.addurl($link).'</a> <br />';
 }
 print "</nav>";
 ?>

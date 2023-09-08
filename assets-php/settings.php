@@ -1,10 +1,16 @@
 <?php
 
-$whatsappchatsURI = 'https://trustedlinks.site/whatsappchats';
+$whatsappchatsURI = 'https://wchat.space';
 /* urls can be same , url below uses this dir as base dir */
 $SiteUrl = 'https://wchat.space';
+/* set path to unzip.py unzip, .htaccess in $basedir/python folder to allow execution */
+$unzippyURI = 'https://wchat.space/python/rununzip.py';
+/* conversations folder zip - .zip/conversations/folders */
+$dropboxfolderuriaszip = "https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?dl=1";
+//Header URL of the file, dropbox
+$dropboxfolderuriaszipheader = "https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?raw=1";
 /* archived links with python script */
-$PyArchiveURI = 'https://trustedlinks.site/cgi-bin/runarchive.py';
+$PyArchiveURI = 'https://wchat.space/python/runarchive.py';
 /* archived links */
 $archivedsitemap = 'archivedsitemap.txt';
 /* folder with individual chat folders */
@@ -43,7 +49,9 @@ $UrlHighlight = 'a(href="%s")%s/';
 $cfFilespattern = '/WhatsApp Chat with\s(?P<name>.*?)((\.\d)?.txt)/i';
 /* sitemap */
 $sitemapxml = 'sitemap.xml';
-$sitemaptxt = 'sitemap.txt';
 $sitemapcsv = 'sitemap.csv';
 /* robots.txt */
 $robotstxt = 'robots.txt';
+/* paths - settings is in assets-php which is one level down from basedir . basedir is determined relative to settings
+dirname() of assets-php dir = basedir */
+$baseDir = dirname(__DIR__);
