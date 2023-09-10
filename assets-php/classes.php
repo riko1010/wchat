@@ -393,41 +393,60 @@ function CFgetfolders($cfFolder) {
 }
 
 function CFgetfiles($cfFolder, $cfFolders, $pattern) {
+$rbf = ((isset($_GET['backupfile']) && !empty($_GET['backupfile'])) ? $_GET['backupfile'] : false);
 $gbfc = 0;
 $cfl = [];
 if (count($cfFolders) < 1) return 'error: no folders in base dir';
 foreach ($cfFolders as $dir) {
-$readdir = dir($dir);  
-if (!$readdir) continue;
-$d = $dir;
+$readdir = glob($dir.'/'.'[wW][hatsapp]*[.txt]');
+if (!is_array($readdir)) continue;
+/* naming conflict resolution is filename.{int}.ext , 
+.ext, .1.ext = .1.ext,.ext
+natsort(.ext,.1.ext) = .ext, .1.ext
+*/
+natcasesort($readdir);
 $bfc = 0;
-while (false !== ($f = $readdir->read())) {
+foreach ($readdir as $f) {
  /* match file by pattern */
 /* list whatsapp chat backup files using regex */
 if (preg_match($pattern, $f, $matches)) {
+/* bfc is for aesthtics,not count or pointing */
 $bfc++;
-$gbfc++;
 
+$dirname = basename($dir);
+$filename = basename($f);
+//$f = '';
 $cfl[$gbfc]['bfc'] = $bfc;
 $cfl[$gbfc]['name']= trim($matches["name"]);
-$cfl[$gbfc]['filename'] = $f;
-$cfl[$gbfc]['filepath'] = $d.'/'.$f;
-$cfl[$gbfc]['dirpath'] = $d.'/';
-$cfl[$gbfc]['dirname'] = str_replace($cfFolder.'/', '', $d);
-$cfl[$gbfc]['search'] = str_replace('+', '', str_replace(' ', '', str_replace($cfFolder.'/', '', $d).'-'.$cfl[$gbfc]['name'])).(($bfc < 1) ?: $bfc);
+$cfl[$gbfc]['filename'] = $filename;
+$cfl[$gbfc]['filepath'] = $f;
+$cfl[$gbfc]['dirpath'] = $dir.'/';
+$cfl[$gbfc]['dirname'] = $dirname;
+$cfl[$gbfc]['search'] = str_replace('+', '', str_replace(' ', '', $dirname.'-'.$cfl[$gbfc]['name'])).(($bfc < 1) ?: $bfc);
 $cfl[$gbfc]['groupchat'] = (str_contains($matches['name'], 'group') ? true : false);
 /* list select options of folder and chat files - supports multiple chat files in one dir, media files hopefully wont conflict, idk the chances but... ??? */
 
-$cfl[$gbfc]['selected'] = ( isset($bf) ? '' :
-( (isset($_GET["backupfile"]) && !empty($_GET["backupfile"]) && ( trim($_GET["backupfile"]) == $gbfc || strtolower($_GET["backupfile"]) == strtolower($cfl[$gbfc]['search']) ) ) ? ( ($bf = $gbfc) ? 'selected':'') : '' ) );
+$cfl[$gbfc]['selected'] = !$rbf ?: ( isset($bf) ? '' :
+( (trim($rbf) == $gbfc || strtolower($rbf) == strtolower($cfl[$gbfc]['search']) ) ? ( ($bf = $gbfc) ? 'selected':'') : '' ) );
 
-
+$gbfc++;
 }
 /* end whatsapp backup files */
 }
+
 }
-if (!isset($bf)) $bf = 1;
-$readdir->close(); 
+
+if (!isset($bf)) {
+  $rbf = strtolower(str_replace('_', '', $rbf));
+  $cflcsearch = array_map(
+  function($x) {
+    return strtolower(
+      str_replace(' ', '', $x)
+      );
+  }, array_column($cfl, 'dirname'));
+  $ras = ras($rbf, $cflcsearch);
+  $bf = !empty($ras) ? ( ($cfl[$ras]['selected'] = 'selected') ? $ras : $ras ) : 0;
+}
 
 return (object) [
   'cfl' => $cfl, 
