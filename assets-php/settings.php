@@ -11,8 +11,6 @@ $dropboxfolderuriaszip = "https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7r
 $dropboxfolderuriaszipheader = "https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?raw=1";
 /* archived links with python script */
 $PyArchiveURI = 'https://wchat.space/python/runarchive.py';
-/* archived links */
-$archivedsitemap = 'archivedsitemap.txt';
 /* folder with individual chat folders */
 $cfFolder = "conversations"; 
 $generatesitemapfile = 'generate_sitemap';

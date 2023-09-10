@@ -15,7 +15,6 @@ cd = "../"
 cp = 'conversations'
 user_agent = "Mozilla/5.0 (Windows NT 5.1; rv:70.0) Gecko/20130101 Firefox/70.0"
 sitemapcsv = 'sitemap.csv'
-asitemap = 'archivedsitemap.txt'
 #terminate at end of iter count - debugging
 limit = 0
 
@@ -93,12 +92,4 @@ try:
 except:
   logging.info(f'cannot write to {sitemapcsv}')
   sys.exit(1)
-try:
-  g = open(ap(cd, asitemap), "w")
-  g.writelines([f'{x} \n' for x in archive.iterable['archivedurl']])
-except:
-  logging.exception(f'cannot write to {asitemap}')
-  sys.exit(1)
-else:
-  g.close
 logging.info('archiving done.')  

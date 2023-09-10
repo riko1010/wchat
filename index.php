@@ -67,7 +67,6 @@ $sitemap->cfFolder = $cfFolder;
 $sitemap->robotstxt = $robotstxt;
 $sitemap->sitemapxml = $sitemapxml;
 $sitemap->sitemapcsv = $sitemapcsv;
-$sitemap->archivedsitemap = $archivedsitemap;
 $sitemap->PyArchiveURI = $PyArchiveURI;
 $sitemap->bdir = $baseDir;
 $sitemaps = $sitemap->get();

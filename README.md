@@ -4,7 +4,7 @@
 -  multiple chat files in one folder (naming conflict resolution by filename.{int}.txt )
 -  attachment identifiers (images,doc,media)
 -  sitemap generation (xml) on conversations folder modification through dropbox webhook
--  archive through archive.org spn (pypi/waybackpy), sitemap generation trigges archive, links are from sitemap.csv(updated) and written to archivedsitemap.txt ( takes 6 mins each url when throttled ) - sitemap.csv maintains archived links to avoid duplication.
+-  archive through archive.org spn (pypi/waybackpy), sitemap generation trigges archive, links are from sitemap.csv(updated) ( takes 6 mins each url when throttled ) - sitemap.csv maintains archived links to avoid duplication.
 -  extensionless file fix (filename.) through unzip.py on webhook notice of folder change from dropbox, and, php, on requesting chatfile
 -  pyscripts in python , .htaccess enables cgiexec in python
   

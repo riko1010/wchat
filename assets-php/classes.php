@@ -83,7 +83,6 @@ public $cfFolder;
 public $robotstxt;
 public $sitemapxml;
 public $sitemapcsv;
-public $archivedsitemap;
 public $PyArchiveURI;
 public $bdir;
 
@@ -103,7 +102,6 @@ if (file_exists($this->generatesitemapfile)) {
 $files = $this->filesExists(
   $this->bdir,
   $this->sitemapxml, 
-  $this->archivedsitemap,
   $this->sitemapcsv,
   $this->robotstxt
 );
