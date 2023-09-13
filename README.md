@@ -1,7 +1,7 @@
-#Readme Guide
-0.0.1
+# Readme Guide
+0.0.3-0.0.1
 
-##Install
+## Install
 config in assets-php/settings.php
 conversations folder holds chat folders containing chat files and media
 dropbox can host conversations folder which is downloaded to local conversations folder on content change. You should create or configure a dropbox app with dropbox.php as the webhook url for changes in your Dropbox account. when the webhook is sent, a chrck for folder size change will occur at the provided dropbox folder zip download link {$dropboxfolderuriaszip}, if change in last fetched size stored using lazerdb(flat file db) a download will occur replacing conversations folder(assumption is dropbox folder is mirrored to local conversations folder).
@@ -19,7 +19,7 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 - python handles archiving with pypi/waybackpy
 - python handles screnshot of video loaded using a webvideo player then screenshot using a browserscreenshot service.
 
-##feature list
+## feature list
 -  \+,_ removal in international numbers or any url path
 -  multiple chat files in one folder (naming conflict resolution by filename.{int}.txt )
 -  attachment identifiers (images,doc,media)
@@ -28,7 +28,7 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 -  extensionless file fix (filename.) through unzip.py on webhook notice of folder change from dropbox, and, php, on requesting chatfile
 -  pyscripts in python , .htaccess enables cgiexec in python
   
-todo
+## todo
 -  unreachable python urls will fail silently
 -  context menu, floating menu, url, archive.org url, permanent shortlink
 -  permanent shortlink to archive.org spn (may use cors requests hack)
