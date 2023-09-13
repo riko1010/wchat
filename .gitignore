@@ -2,3 +2,5 @@
 autodelete/*
 error_log
 data/*
+conversations/*
+old-conversations/*
