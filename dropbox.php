@@ -2,7 +2,7 @@
 error_reporting(0);
 
 require 'vendor/autoload.php';
-require 'assets-php/settings.php'
+require 'assets-php/settings.php';
 
 use Curl\Client;
 use CurlDownloader\CurlDownloader;
