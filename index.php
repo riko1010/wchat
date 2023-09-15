@@ -321,7 +321,7 @@ $phug->share([
 
 $template .= '
 component attachment
- audio.whatsappaudio(id="audio{$counterfilearray}" controls preload="auto" playsinline)
+ audio.whatsappaudio(id="audio{$counterfilearray}" controls preload="auto" preload="none" playsinline)
   source(src="$filepath" type="$audiotype")
  ';
     
