@@ -15,6 +15,7 @@ for cd, _, files in os.walk( cp ):
       f = open(abs_path, "r")
       newlines=[]
       for fline in f.readlines():
+        fline = fline.strip()
         atmts = re.search(cfap, fline)
         try:
           if (atmts.group('f') == ''):

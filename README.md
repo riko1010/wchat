@@ -1,5 +1,5 @@
 # Readme Guide
-0.0.3-0.0.1
+0.0.3-0.0.2
 
 ## Install
 config in assets-php/settings.php
@@ -37,3 +37,5 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 -  python singleton ? maxtime exec independent of singleton
 -  external services removal for local rendering, google docs viewer, others
 -  centralize config btw php and python
+-  api for pagination
+-  map reference to files, hash for integrity of keys. direct references pose challenges when accidental file paths are passed outside internal processing (which can happen with api inclusion)
