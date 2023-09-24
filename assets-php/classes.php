@@ -278,7 +278,7 @@ $ras = ($ras == null ? ras($queryarg, array_column($this->ChatFilesData, 'id')) 
       $this->NoSelected = false AND 
       $this->Selected = $ras
         ) );
-var_dump($this->CheckLegacy);        
+var_dump('ras,:'.$this->CheckLegacy);        
 /* legacy url */
 (!$this->CheckLegacy ?: $this->CheckLegacyChatFileQuery($queryarg)); 
 } else {
@@ -307,6 +307,7 @@ public function CheckLegacyChatFileQuery($query){
         );
     }, array_column($this->ChatFilesData, 'dirname'));
     $ras = ras($query, $cflcsearch);
+    var_dump('check legacy:'.$ras);
     ($ras == null ? (
       $this->NoSelected = true AND 
       $this->Selected = 0
