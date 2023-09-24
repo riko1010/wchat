@@ -5,26 +5,52 @@ Initializations of classes, functions happen at the end of the functions and cla
 initializing the functions or classes before definitions is not feasible
 
 */
-require_once('vendor/autoload.php');
+require_once($baseDir.'/vendor/autoload.php');
 use SoftCreatR\MimeDetector\MimeDetector;
 use SoftCreatR\MimeDetector\MimeDetectorException;
 use samdark\sitemap\Sitemap;
 use samdark\sitemap\Index;
 use Curl\Curl;
-use Wikimedia\RelPath;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
-use League\Csv\Reader;
-use League\Csv\Writer;
 use function BenTools\IterableFunctions\iterable_to_array as iter_to_array;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\Sql\Sql;
+use Laminas\Db\Sql\Delete;
+use Laminas\Db\Sql\Select;
+use Laminas\Db\Sql\Update;
+use Laminas\Db\Sql\Insert;
 
 function ntfy($message){
   $curl = new Curl;
-  $curl->post('https://ntfy.sh/dhskdb', [
+  $curl->post('https://ntfy.sh/hsdicbr', [
     'message' => $message
     ]);
 }
+
+function pj($p1, $p2){
+  return Path::join($p1, $p2);
+}
+
+function RequestIssetNotNull(...$request) {
+  foreach ($request as $r) {
+    settype($r, 'string');
+   if (!isset($_REQUEST[$r])) return false;
+   if ($_REQUEST[$r] == '') return false; 
+  }
+  return true;
+}
+
+function SessionIssetNotNull(...$session) {
+  foreach ($session as $s) {
+    settype($s, 'string');
+   if (!isset($_SESSION[$s])) return false;
+   if ($_SESSION[$s] == '') return false; 
+  }
+  return true;
+}
+
 function mimedetector($filepath){
   $mimedetector = new MimeDetector;
   return $mimedetector->setFile($filepath)->getFileType();
@@ -74,248 +100,6 @@ function addurl($path){
   );
 }
 
-class generateSiteMap {
-
-public $cfFiles;
-public $generatesitemapfile;
-public $SiteUrl;
-public $cfFolder;
-public $robotstxt;
-public $sitemapxml;
-public $sitemapcsv;
-public $PyArchiveURI;
-public $bdir;
-
-public function get(){
-
-if (file_exists($this->generatesitemapfile)) {
-  clearstatcache();
-  $sitemap = $this->generate();  
-} else { 
-  /* sitemap generator file does not exist, assumption is sitemap does for now */
-  $sitemap = [ 
-    'status' => true,
-    'response' => 'Sitemap listed.'
-    ];
-}
-//objects 
-$files = $this->filesExists(
-  $this->bdir,
-  $this->sitemapxml, 
-  $this->sitemapcsv,
-  $this->robotstxt
-);
-
-return (object) [
-  'sitemap' => (object) $sitemap,
-  'files' => $files
-  ];
-}
-
-public function filesExists($sdir, ...$sfiles){
-$data = [];
-foreach ($sfiles as $sfile) {
-settype($sfile, 'string');
-clearstatcache();
-$abspath = $sfile;
-$data[] = [
-  'filename' => $sfile,
-  'rpath' => Path::makeRelative($abspath, $sdir),
-  'exists' => (($fe = file_exists($abspath)) ? true : false),
-  'stats' => ($fe ? stat($abspath) : false)
-  ];
-}
-return $data;
-}
-
-public function mergedrop($old, $new){
-
-$sitemapcsvList = '"sync","mtime","url","archivedurl","filepath","synctime"'.PHP_EOL;
-
-foreach ($new as $cl){
-$mtime = filemtime($cl['filepath']);
-$filepath = $cl['filepath'];
-clearstatcache();
-$url = addurl($cl['search']);
-$sync = 1;
-$archivedurl = '';
-$synctime = date('m.d.y g:i a');
-
-try {
-$unmodarray = ras($filepath, $old);
-if ($unmodarray){
-$unmodarray = $old[$unmodarray];
-if ($unmodarray['mtime'] == $mtime && 
-$unmodarray['url'] == $url ) {
-$archivedurl = $unmodarray['archivedurl']; 
-$sync = $unmodarray['sync']; 
-}
-}
-} catch (\Exception|\Throwable $e) {
-  
-}
-
-$sitemapcsvList .= <<<CSVCONTENT
-$sync,"$mtime","$url","$archivedurl","$filepath","$synctime"
-CSVCONTENT;
-$sitemapcsvList .= PHP_EOL;
-}
-
-return (object) [
-      'status' => true,
-      'response' => $sitemapcsvList
-      ]; 
-
-}
-
-public function getcsv($sitemapcsv) {
-try {
-  $reader = Reader::createFromPath($sitemapcsv, 'r');
-  $reader->setHeaderOffset(0);
-  $rows = $reader->getRecords();
-  $rows = (iter_to_array($rows));
-  if (count($rows) <= 0) throw new Exception ('no records in csv file');
-  return (object) [
-      'status' => true,
-      'response' => $rows
-      ];
-} catch (\Exception|\Throwable|SyntaxError $e) {
-  return (object) [
-      'status' => false,
-      'response' => 'cannot read csv file'.json_encode($e)
-      ];
-}
-}
-
-public function writecsv($records, $sitemapcsv){
-  $fs = new Filesystem;
- 
-try {
-  $fs->dumpFile($sitemapcsv, $records);
-} catch (IOExceptionInterface $exception) {
-    return [
-      'status' => false,
-      'response' => 'cannot create '. $sitemapcsv.$exception->getPath()
-      ];
-}
-
-return [
-      'status' => true,
-      'response' => $sitemapcsv.' file written'
-      ];
-
-}
-  
-public function generate(){
-
-if (!is_dir('autodelete')) {
-  if (!mkdir('autodelete')) {
-    return (object) [
-    'status' => false,
-    'response' => 'cannot create auto delete folder'
-    ];
-  }
-}
-
-if (file_exists($this->sitemapxml)) {
-clearstatcache();  
-  if (!rename($this->sitemapxml, Path::join('autodelete', $this->sitemapxml))) { 
-    return (object) [
-    'status' => false,
-    'response' => 'cannot move '.$this->sitemapxml.' to autodelete'
-    ];
-  }
-}
-
-try {
-// create Sitemap
-$sitemap = new Sitemap($this->sitemapxml);
-} catch(Exception $e) {
-  return [
-    'status' => false,
-    'response' => 'error: samdark/sitemap new Sitemap error'
-    ];
-}
-
-try {
-$subject = 'Archive links from '
-.Faker\Factory::create()->unique()->name()
-.' on '
-.date("r");
-} catch (Exception $e) {
-/* faker error */
-$subject = 'Archive links from '.rand(1000000,9999999).' on '.date("r");
-}
-$cfl_column_search = array_column($this->cfFiles->cfl, 'search');
-foreach ($cfl_column_search as $Links) {
-$Link = addurl($Links);
-// add some URLs to sitemap
-try {
-$sitemap->addItem($Link, time()); 
-} catch (Exception $e) {
-  //archive links error
-}
-}
-
-try {
-$sitemap->setStylesheet(addurl('sitemap.xsl'));
-$sitemap->write();
-} catch(Exception $e){
-  //sitemap.xml write error
-  return (object) [
-    'status' => false,
-    'response' => $this->sitemapxml.' - cant update(3)'
-    ];
-}
-
-try {
-$sitemapcsv = $this->getcsv($this->sitemapcsv);
-$csvoldarray = $sitemapcsv->status ? $sitemapcsv->response : [];
-$sitemapcsv = $this->mergedrop(
-              $csvoldarray, 
-              $this->cfFiles->cfl
-              );
-if(!$sitemapcsv = $this->writecsv($sitemapcsv->response, $this->sitemapcsv) || !$sitemapcsv->status) throw Exception($this->sitemapcsv.' write failed');
-
-} catch(\Exception|\Throwable) {
-  return (object) [
-    'status' => false,
-    'response' => $this->sitemapcsv.' write failed'
-    ];
-}
-
-if (file_exists($this->sitemapxml) && file_exists($this->generatesitemapfile)) {
-  clearstatcache();
-  rename($this->generatesitemapfile, Path::join('autodelete', $this->generatesitemapfile));
-} else {
-  /* failed to generate sitemap, restore old */
-  if (file_exists(Path::join('autodelete', $this->sitemapxml))) {
-    clearstatcache();
-    rename(Path::join('autodelete', $this->sitemapxml), $this->sitemapxml);
-  return (object) [
-    'status' => false,
-    'response' => 'sitemap generator failed - old sitemap restored'
-    ];
-  }
-}
-
-try {
-/* call py wayback executable */
-$curl = new Curl;
-$curl->post($this->PyArchiveURI);
-$curl->close();
-} catch(Exception $e) {
-//post to py, execution does not return output
-}
-
-return (object) [
-    'status' => true,
-    'response' => 'Sitemap generated.'
-    ];
-/* end sitemap generator function */
-}
-
-}
 
 function nonull($var) {
   return ((isset($var)) ? $var : false );
@@ -360,14 +144,14 @@ function getFilesize($filesize, $mode = '')
         return $filesize . " bytes";
     }
 }
-function ras($needle,$haystack) {
+function ras($needle, $haystack) {
   /* recursive array search */
   if (!is_array($haystack)) return false;
     foreach($haystack as $key=>$value) {
         $current_key=$key;
         if (is_array($value)) {
          $value = array_map('strtolower', $value);
-        } elseif(is_string($value)) { strtolower($value); 
+        } elseif(is_string($value)) { $value = strtolower($value); 
         }
         if(strtolower($needle)==$value || (is_array($value) && ras($needle,$value) !== false)) {
             return $current_key;
@@ -391,7 +175,7 @@ function CFgetfolders($cfFolder) {
 }
 
 function CFgetfiles($cfFolder, $cfFolders, $pattern) {
-$rbf = ((isset($_GET['backupfile']) && !empty($_GET['backupfile'])) ? $_GET['backupfile'] : false);
+
 $gbfc = 0;
 $cfl = [];
 if (count($cfFolders) < 1) return 'error: no folders in base dir';
@@ -424,9 +208,6 @@ $cfl[$gbfc]['search'] = str_replace('+', '', str_replace(' ', '', $dirname.'-'.$
 $cfl[$gbfc]['groupchat'] = (str_contains($matches['name'], 'group') ? true : false);
 /* list select options of folder and chat files - supports multiple chat files in one dir, media files hopefully wont conflict, idk the chances but... ??? */
 
-$cfl[$gbfc]['selected'] = !$rbf ?: ( isset($bf) ? '' :
-( (trim($rbf) == $gbfc || strtolower($rbf) == strtolower($cfl[$gbfc]['search']) ) ? ( ($bf = $gbfc) ? 'selected':'') : '' ) );
-
 $gbfc++;
 }
 /* end whatsapp backup files */
@@ -434,29 +215,17 @@ $gbfc++;
 
 }
 
-if (!isset($bf)) {
-  $rbf = strtolower(str_replace('_', '', $rbf));
-  $cflcsearch = array_map(
-  function($x) {
-    return strtolower(
-      str_replace(' ', '', $x)
-      );
-  }, array_column($cfl, 'dirname'));
-  $ras = ras($rbf, $cflcsearch);
-  $bf = !empty($ras) ? ( ($cfl[$ras]['selected'] = 'selected') ? $ras : $ras ) : 0;
-}
 
 return (object) [
   'cfl' => $cfl, 
-  'bf' => $bf,
   'gbfc' => $gbfc
   ];
 /* end CFgetfiles */
 }
 
-function replaceinFile($fromstring, $tostring, $file){
+function replaceinFile($fromstring, $tostring, $ChatFile){
 try {
-file_put_contents($file, str_replace($fromstring, $tostring, file_get_contents($file)));
+file_put_contents($ChatFile, str_replace($fromstring, $tostring, file_get_contents($ChatFile)));
 } catch(Exception $e)
 {
   /* error - modify chat file exception */
@@ -465,109 +234,339 @@ file_put_contents($file, str_replace($fromstring, $tostring, file_get_contents($
 return 'success';
 }
 
-function CFloadselectedfile($cfFiles, $recipient){
-   /* $filearray = file($cfFiles); - incase wish to load using file instead of fopen */
-$fd = fopen ($cfFiles, "r");
-if (!$fd) return 'error: could not open chat file';
-/* identities array, unique key of identity */
-$filearray = [];
-$identities = [];
-$recipient = trim(strtolower($recipient));
-$i=0;
-while (!feof ($fd)) 
-{
-   $buffer = fgets($fd, 4096);
-   if (!$buffer) { continue; /* could not read line */ }
-   /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
-set file array default key to null, regex if date string, although theres indication of a different datetime string, so maybe expand natch with wildcard to confirm if a chat but...solves newline, of chat continuation problem by appending unidentified lines to previous line */
+class App{
+  
+public $ChatFile; 
+public $DirPath;
+public $GroupChat;
+public $ChatFilesData;
+public $ChatFilesDataIdAsKeys;
+public $Selected;
+public $SelectedId;
+public $NoSelected = true;
+public $CheckLegacy = false;
+public $VerifiedRecipient;
+public $Name;
+public $baseDir;
+public $NPagination;
 
-   if(preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $buffer)) {
-   $filearray[] = $buffer;
-   } else { 
-   	$i--;
-   	/* append assumed chat continuation to previous array, \n or \r\n considered. */
-   $filearray[$i] = (!empty($filearray[$i]) ? "$filearray[$i]\n$buffer" : "$buffer");
-   }
-   
+public function __construct(
+  $ChatFilesData, 
+  $ChatFilesDataIdAsKeys,
+  $baseDir
+  ) {
+$this->ChatFilesData = $ChatFilesData;
+$this->ChatFilesDataIdAsKeys = $ChatFilesDataIdAsKeys;
+$this->baseDir = $baseDir;
+}
+
+public function SetChatFile(
+  $queryarg = null
+  ) {
+/* SetChatFile on index uses $_GET/backupfile , on api uses _request/queryarg - queryarg is RecordId, assets-php/sqlite uses queryarg to selectone/select, latter if $api, if not found, ChatFileDataNotEmpty = false , meaning empty  */
+
+if ($queryarg != null) {
+/* recursive array search case , ras for search field */
+$ras = ras($queryarg, array_column($this->ChatFilesData, 'search'));
+/* ras for id field if not found */
+$ras = ($ras == null ? ras($queryarg, array_column($this->ChatFilesData, 'id')) : $ras);
+    ($ras == null ? (
+      $this->CheckLegacy = true AND 
+      $this->NoSelected = true AND 
+      $this->Selected = 0
+      ) : ( 
+      $this->NoSelected = false AND 
+      $this->Selected = $ras
+        ) );
+var_dump($this->CheckLegacy);        
+/* legacy url */
+(!$this->CheckLegacy ?: $this->CheckLegacyChatFileQuery($queryarg)); 
+} else {
+/* ChatFilesData array index, default to first item in array, 0 */ 
+$this->Selected = 0;
+}
+
+var_dump($this->CheckLegacy);
+$SelectedChatFile = $this->ChatFilesData[$this->Selected];
+$this->SelectedId = $SelectedChatFile['id'];
+$this->ChatFile = Path::join(
+  $this->baseDir,
+  $SelectedChatFile['filepath']
+  );
+$this->Name = $SelectedChatFile['name'];
+$this->DirPath = $SelectedChatFile['dirpath'];
+$this->GroupChat = $SelectedChatFile['groupchat'];
+}
+
+public function CheckLegacyChatFileQuery($query){
+   $query = str_replace('_', '', $query);
+    $cflcsearch = array_map(
+    function($x) {
+      return strtolower(
+        str_replace(' ', '', $x)
+        );
+    }, array_column($this->ChatFilesData, 'dirname'));
+    $ras = ras($query, $cflcsearch);
+    ($ras == null ? (
+      $this->NoSelected = true AND 
+      $this->Selected = 0
+      ) : ( 
+      $this->NoSelected = false AND 
+      $this->Selected = $ras
+        ) );
+
+}
+
+public function SetVerifiedRecipient($recipient, $cfFiles = null){
+$cfFiles = ($cfFiles !== null ?: $this->ChatFile);
+$identities = [];   
+$i = 0;
+$recipient = trim(strtolower($recipient)); 
+$cfselectedfilegenerator = $this->ChatFileGeneratorRecipient('all');
+foreach ($cfselectedfilegenerator as $filearray) {
 $pattern = '/(?P<time>.*?,+.*?)-(?P<sender>.*?):(?P<message>.*)/is';
-if (preg_match($pattern, $filearray[$i], $matches)) {
+if (preg_match($pattern, $filearray, $matches)) {
   $sender = strtolower(trim($matches["sender"]));
-  if (!empty($sender)) {
-   $identities[$sender] = [
-     'id' => $i,
-     'sender' => $sender,
-     'levenshtein' => ''];
-  }
-}
-   
-$i++;  
-}
-/* set verified recipient */
-if (count($identities) > 0 ) {
-  if (isset($identities[$recipient]) && $identities[$recipient]) {
-    $vrecipient = $identities[$recipient]['sender'];
-    $identities[$recipient]['levenshtein'] = 0;
+  if ($sender != '') {
+   if ($sender == $recipient) {
+    $vrecipient = $sender;
+    break;
   } else {
     /* levenshtein based */
-    foreach($identities as $identity) {
-     $pperc = (isset($perc) ? $perc : 'notset');
-     $perc = levenshtein($recipient, $identity['sender']);
-     $identities[$identity['sender']]['levenshtein'] = $perc;
-     if ($pperc == 'notset') {
-     $vrecipient = $identity['sender'];
+     $plev = (isset($lev) ? $lev : 'notset');
+     $lev = levenshtein($recipient, $sender);
+
+     if ($plev == 'notset') {
+     $vrecipient = $sender;
      } else {
-     $vrecipient = ($pperc > $perc ? $identity['sender'] : $vrecipient);
+     $vrecipient = ($plev > $lev ? $sender : $vrecipient);
      }
-    }
     /* end levenshtein guess */
   }
-
   /* end $identities similarity check */
 }
+}
+$i++;
+}
 
-fclose ($fd);
+$this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 
-return (object) [
-  'filearray' => (isset($filearray) ? $filearray : []),
-  'vrecipient' => (isset($vrecipient) ? $vrecipient : false)
+}
+
+public function ChatFileGenerator($Paginations, $cfFiles = null){
+$cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
+$sfd = new SplFileObject($cfFiles);
+if (!$sfd) return 'error: could not open chat file';
+$Pagination = explode(',', $Paginations);
+$filearray = [];
+$holdbuffer = null;
+$from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
+$to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
+$i = $from;
+
+$sfd->seek($i);
+if ($sfd->eof() === true) {
+return $Paginations;
+}
+
+foreach ($sfd as $line)
+{
+  /* goto start line in pagination arg */
+ 
+  $buffer = $line;
+   
+   /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
+set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
+
+   if(preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $buffer)) {
+   $sfd->seek($i + 1);
+   if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
+   $holdbuffer = null;
+   yield $buffer;  
+   } else {
+   $holdbuffer .= $buffer;
+   }
+   /* return pointer to current iteration */
+   $sfd->seek($i);
+   /*
+   if match, check next, if match, yield
+   if not match, hold, continue?, if not match, bind prev, check next, if match, yield, else , hold, continue
+   */
+   } else { 
+   	/* append assumed chat continuation to previous array, \n or \r\n considered. */
+   $sfd->seek($i + 1);
+   if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
+   yield $i.'-'.($holdbuffer != null ? "$holdbuffer\n$buffer" : "$buffer");
+   $holdbuffer = null;
+   } else {
+   $holdbuffer .= $buffer;
+   }
+   
+   if (!$sfd->valid()) {
+     /* end of file, yield holdbuffer containing all unidentified buffer  */
+     if ($holdbuffer != null) {
+       yield $holdbuffer;
+     $holdbuffer = null;
+     }
+   }
+   
+   /* set point to current iteration */
+   $sfd->seek($i);
+   }
+
+$i++;  
+
+if ($i > $to && $holdbuffer == null && $Paginations != 'all') {
+  yield $holdbuffer; 
+  break;
+}
+
+} 
+
+$this->NPagination = $i.','.($i+$GLOBALS['recordsperpage']);
+return $this->NPagination;
+}
+
+public function ChatFileGeneratorRecipient($Paginations, $cfFiles = null){
+$cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
+$sfd = new SplFileObject($cfFiles);
+if (!$sfd) return 'error: could not open chat file';
+$Pagination = explode(',', $Paginations);
+$filearray = [];
+$holdbuffer = null;
+$from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
+$to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
+$i = $from;
+foreach ($sfd as $line)
+{
+  /* goto start line in pagination arg */
+  $sfd->seek($i);
+  $buffer = $sfd->current();
+   if (!$sfd->valid()) { continue; /* could not read line */ }
+   /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
+set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
+
+   if(preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $buffer)) {
+   $sfd->seek($i + 1);
+   if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
+   $holdbuffer = null;
+   yield $buffer;  
+   } else {
+   $holdbuffer .= $buffer;
+   }
+   /* return pointer to current iteration */
+   $sfd->seek($i);
+   /*
+   if match, check next, if match, yield
+   if not match, hold, continue?, if not match, bind prev, check next, if match, yield, else , hold, continue
+   */
+   } else { 
+   	/* append assumed chat continuation to previous array, \n or \r\n considered. */
+   $sfd->seek($i + 1);
+   if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
+   yield ($holdbuffer != null ? "$holdbuffer\n$buffer" : "$buffer");
+   $holdbuffer = null;
+   } else {
+   $holdbuffer .= $buffer;
+   }
+   
+   if (!$sfd->valid()) {
+     /* end of file, yield holbuffer containet all unidentified buffer  */
+     yield $holdbuffer;
+     $holdbuffer = null;
+   }
+   
+   /* set point to current iteration */
+   $sfd->seek($i);
+   }
+
+$i++;  
+
+  } 
+}
+
+public function PaginationViability($Paginations, $cfFiles = null){
+$cfFiles = ($cfFiles !== null ?: $this->ChatFile);
+
+$Pagination = explode(',', $Paginations);
+$from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : false );
+$to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : false );
+
+if ($from === false) {
+  return (object) [ 
+  'status' => false,
+  'response' => 'pagination string invalid' 
   ];
 }
 
-function CFgetattachments($message, $attachmentneedle, $file, $dirpath) {
-$attachments = (str_contains($message, $attachmentneedle) ? explode($attachmentneedle, $message) : false);
-if (!$attachments) return 'error: no files attached';
-
-$attachment = (isset($attachments[0]) ? trim($attachments[0]) : false );
-if (!$attachment) return 'error: no files attached';
-
-$ext = (isset($attachments[0]) ? trim(strtolower(pathinfo($attachments[0], PATHINFO_EXTENSION))) : '');
-$caption = (isset($attachments[1]) ? $attachments[1] : '' );
-$filepath = $dirpath.'/'.$attachment;
-$exists = (!empty($attachment) && file_exists($filepath) ? true : false);
-clearstatcache();
-if (!$exists) return 'error: attached file was not found';
-
-if (empty($ext)) {
-$extmime = mimedetector($filepath);
-$ext = (isset($extmime["ext"]) ? (trim($extmime["ext"])) : false);
-if (!$ext) return 'error: could not guess file extension';
-$newfilepath = $filepath.$ext;  
-if(!rename($filepath, $newfilepath)) return 'error: could not fix file extension';
-/* modify this chat file */
-if('success' !== replaceinFile($attachment, $attachment.$ext, $file)) return 'error: could not update chat file with fixed extensionless files'; 
-$filepath = $newfilepath;
-}
-return (object) [
-  "name" => $attachment,
-  "ext" => $ext,
-  "caption" => $caption,
-  "exists" => $exists,
-  "filepath" => $filepath
+$sfd = new SplFileObject($cfFiles);
+if (!$sfd) {
+  return (object) [ 
+  'status' => false,
+  'response' => 'error: could not open chat file' 
   ];
 }
+$sfd->seek($from);
+if ( !$sfd->valid() ) {
+return (object) [ 
+  'status' => false,
+  'response' => 'line not found' 
+  ];
+} else {
+return (object) [ 
+  'status' => true,
+  'response' => 'viable' 
+  ];
+  }
+}
 
+public function PageTitle(){
+return 'Whatsapp Chat '
+.(isset($this->NoSelected) ? '' : (isset($this->Name) && $this->Name != '' ? ('with '.$this->Name) : ''));  
+}
 
+public function Menu(){
+  /* build menu */
+$menu = '';
+$ChatFilesData = $this->ChatFilesData;
+foreach ($ChatFilesData as $SelectList){
+$selected = (isset($selected) && $selected == 'selected' ? '' : ( $SelectList['id'] == $this->SelectedId ? 'selected' : ''));
+$nextchatfilesList = (null !== ( $nextchatfilesList = next($ChatFilesData))) ? $nextchatfilesList : false;
+$menu .= ($SelectList['bfc'] == 1 ? ('<optgroup label="Chats with '.$SelectList['dirname'].'">') : '');
+$menu .= '
+    <option '.$selected.' value="'.$SelectList['search'].'">Chats with '.$SelectList['name'].' '.$SelectList['bfc'].'</option>
+  ';
+$menu .= ($nextchatfilesList !== false  ? (($SelectList['dirname'] === $nextchatfilesList['dirname']) ? '' : '</optgroup>') : '</optgroup>');
 
-/* initializations */
+}
+return $menu;
 
-/* instantiate class */
+}
+
+}
+
+class sqlitedb{
+  
+private $adapter;
+private $sql;
+
+function __construct($sqlitedb){
+  
+$this->adapter = new Laminas\Db\Adapter\Adapter([
+    'driver'   => 'Pdo_Sqlite',
+    'database' => $sqlitedb,
+]);
+$this->sql = new Sql($this->adapter);
+
+$this->Create();
+}
+
+public function Create(){
+$sql = "CREATE TABLE IF NOT EXISTS 'chatfiles' (
+  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+  'bfc' INTEGER NOT NULL,
+  'filename' TEXT NOT NULL, 
+  'dirpath' TEXT NOT NULL, 
+  'dirname' TEXT NOT NULL, 
+  'search' TEXT NOT NULL, 
+  'groupchat' BOOLE

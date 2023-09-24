@@ -1,8 +1,10 @@
 <?php
 
-$whatsappchatsURI = 'https://wchat.space';
+$whatsappchatsURI = 'https://dev.wchat.space';
 /* urls can be same , url below uses this dir as base dir */
-$SiteUrl = 'https://wchat.space';
+$SiteUrl = 'https://dev.wchat.space';
+/* record per page */
+$recordsperpage = 100;
 /* set path to unzip.py unzip, .htaccess in $basedir/python folder to allow execution */
 $unzippyURI = 'https://wchat.space/python/rununzip.py';
 /* conversations folder zip - .zip/conversations/folders */
@@ -34,9 +36,10 @@ $UrlHighlight = 'a(href="%s")%s/';
 $cfFilespattern = '/WhatsApp Chat with\s(?P<name>.*?)((\.\d)?.txt)/i';
 /* sitemap */
 $sitemapxml = 'sitemap.xml';
-$sitemapcsv = 'sitemap.csv';
 /* robots.txt */
 $robotstxt = 'robots.txt';
 /* paths - settings is in assets-php which is one level down from basedir . basedir is determined relative to settings
 dirname() of assets-php dir = basedir */
 $baseDir = dirname(__DIR__);
+/* sqlite */
+$sqlitedb = 'db.sqlite';

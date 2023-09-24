@@ -332,3 +332,7 @@ a {
   padding-top: 20px;
   padding-left: 10px;
 }
+.loader img {
+  height:20px!important;
+  margin-bottom:10px;
+}
