@@ -5,14 +5,13 @@ require_once 'vendor/autoload.php';
 use Elegant\Sanitizer\Sanitizer;
 
 
-/*
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
-*/
+
 
 /* Request Handler */
 
@@ -48,7 +47,10 @@ $app->SetChatFile($REQUEST->backupfile);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
 
-
+foreach ($app->ChatFileGenerator(0,100) as $line) {
+  print $line.PHP_EOL;
+}
+exit;
 
 if ($ChatFilesDataNotEmpty) {
 $sitemap = new generateSiteMap;
