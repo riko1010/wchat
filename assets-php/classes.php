@@ -236,6 +236,7 @@ $dirname = basename($dir);
 $filename = basename($f);
 //$f = '';
 $cfl[$gbfc]['bfc'] = $bfc;
+$cfl[$gbfc]['vrecipient'] = $this->VerifiedRecipient;
 $cfl[$gbfc]['name']= trim($matches["name"]);
 $cfl[$gbfc]['filename'] = $filename;
 $cfl[$gbfc]['filepath'] = $f;
@@ -1055,7 +1056,7 @@ return (object) [
       ];   
 }
 
-$cfFiles = $app->CFgetfiles(
+$cfFiles = $this->app->CFgetfiles(
   $cfFolders->chatFolder, 
   $cfFolders->chatFolders, 
   $this->cfFilespattern
