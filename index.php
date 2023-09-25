@@ -51,9 +51,6 @@ foreach ($app->ChatFileGenerator() as $line) {
   print $line.'<hr/>';
 }
 
-var_dump($ChatFilesData);
-exit;
-
 if ($ChatFilesDataNotEmpty) {
 $sitemap = new generateSiteMap;
 $sitemap->cfFilespattern = $cfFilespattern;
