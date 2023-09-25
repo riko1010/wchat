@@ -399,7 +399,8 @@ print 'iter';
    $holdbuffer = null;
    
    } else {
-   $holdbuffer .= $buffer.'held, next not match';
+   $holdbuffer .= ($holdbuffer != null ?
+   '\n'.$buffer : $buffer).'held, next not match';
    }
    /* return pointer to current iteration */
    $sfd->seek($i);
