@@ -50,7 +50,7 @@ $app->SetVerifiedRecipient( $app->Name );
 foreach ($app->ChatFileGenerator() as $line) {
   print $line.'<hr/>';
 }
-
+exit;
 if ($ChatFilesDataNotEmpty) {
 $sitemap = new generateSiteMap;
 $sitemap->cfFilespattern = $cfFilespattern;
