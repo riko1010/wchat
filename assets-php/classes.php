@@ -395,9 +395,9 @@ set file array default key to null, regex if date string.solves newline, of chat
    if(preg_match($pattern, $buffer, $matches)) {
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
-   yield $buffer.'match';  
+   yield $buffer;  
    } else {
-   $holdbuffer .= $buffer.'held, next notmatch';
+   $holdbuffer .= $buffer;
    }
    /* return pointer to current iteration */
    $sfd->seek($i);
@@ -409,17 +409,17 @@ set file array default key to null, regex if date string.solves newline, of chat
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
-   $holdbuffer .= $buffer.'notmatch, yield bcos next match';
+   $holdbuffer .= $buffer;
    yield $holdbuffer;
    $holdbuffer = null;
    } else {
-   $holdbuffer .= $buffer.'held, bcos next not match';
+   $holdbuffer .= $buffer;
    }
    
    if (!$sfd->valid()) {
      /* end of file, yield holdbuffer containing all unidentified buffer  */
      if ($holdbuffer != null) {
-       yield $holdbuffer.'special t. eol';
+       yield $holdbuffer;
      $holdbuffer = null;
      }
    }
@@ -431,7 +431,7 @@ set file array default key to null, regex if date string.solves newline, of chat
 $i++;  
 
 if ($i > $to && $holdbuffer == null && $Paginations != 'all') {
-  yield $holdbuffer.'yield pagination'; 
+  yield $holdbuffer; 
   break;
 }
 
