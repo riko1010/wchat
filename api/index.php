@@ -83,12 +83,6 @@ if ($app->NoSelected === true) {
 
 $app->SetVerifiedRecipient( $app->Name );
 
-foreach ($app->ChatFileGenerator($REQUEST->pagination) as $line) {
-  print 'line'.$line.'<hr/>';
-}
-exit;
-
-
 $PaginationViability = $app->PaginationViability(
   $REQUEST->pagination
   );

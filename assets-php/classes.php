@@ -410,7 +410,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    $sfd->seek($i + 1);
    if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
-   yield $i.'-'.($holdbuffer != null ? "$holdbuffer\n$buffer" : "$buffer");
+   yield ($holdbuffer != null ? "$holdbuffer\n$buffer" : "$buffer");
    $holdbuffer = null;
    } else {
    $holdbuffer .= $buffer;
