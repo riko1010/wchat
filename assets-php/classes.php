@@ -1151,7 +1151,7 @@ $OldRecord = $this->db->SelectOne(
   $archivedurl = $OldRecord['archivedurl']; 
   $sync = $OldRecord['sync']; 
   $archivedurl = $OldRecord['archivedurl'];
-  $archivedurl = $OldRecord['vrecipient'];
+  $vrecipient = $OldRecord['vrecipient'];
   }
 
 } catch (\Exception|\Throwable $e) {
