@@ -392,9 +392,9 @@ while (!$sfd->eof())
    /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
 set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
 
-   if(preg_match($pattern, $buffer)) {
+   if(preg_match($pattern, $buffer, $matches)) {
    $sfd->seek($i + 1);
-   if (preg_match($pattern, $sfd->current())) {
+   if (preg_match($pattern, $sfd->current(), $matches)) {
    $holdbuffer = null;
    yield $buffer;  
    } else {
