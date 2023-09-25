@@ -409,14 +409,13 @@ set file array default key to null, regex if date string.solves newline, of chat
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
-   $holdbuffer .= $buffer;
-   yield ($holdbuffer != null ?
-   $holdbuffer.'\n'.$buffer 
-   :
-   $buffer).'next match, yield, next match';  
+   $holdbuffer .= ($holdbuffer != null ?
+   '\n'.$buffer : $buffer);
+   yield $holdbuffer.'next match, yield, next match';  
    $holdbuffer = null;
    } else {
-   $holdbuffer .= $buffer.'not match, held, next not match';
+   $holdbuffer .= ($holdbuffer != null ?
+   '\n'.$buffer : $buffer).'not match, held, next not match';
    }
    
    if (!$sfd->valid()) {
@@ -464,13 +463,10 @@ foreach ($sfd as $line)
    /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
 set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
 
-   if(preg_match($pattern, $buffer, $matches)) {
+  if(preg_match($pattern, $buffer, $matches)) {
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
-   yield ($holdbuffer != null ? $holdbuffer.'\n'.$buffer 
-   :
-     $buffer);  
-   $holdbuffer = null;
+   yield $buffer;  
    } else {
    $holdbuffer .= $buffer;
    }
@@ -484,18 +480,21 @@ set file array default key to null, regex if date string.solves newline, of chat
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
-   yield ($holdbuffer != null ? $holdbuffer.'\n'.$buffer 
-   :
-     $buffer);  
+   $holdbuffer .= ($holdbuffer != null ?
+   '\n'.$buffer : $buffer);
+   yield $holdbuffer;  
    $holdbuffer = null;
    } else {
-   $holdbuffer .= $buffer;
+   $holdbuffer .= ($holdbuffer != null ?
+   '\n'.$buffer : $buffer);
    }
    
    if (!$sfd->valid()) {
-     /* end of file, yield holbuffer containet all unidentified buffer  */
-     yield $holdbuffer;
+     /* end of file, yield holdbuffer containing all unidentified buffer  */
+     if ($holdbuffer != null) {
+       yield $holdbuffer;
      $holdbuffer = null;
+     }
    }
    
    /* set point to current iteration */
