@@ -66,7 +66,8 @@ $sitemap->bdir = $baseDir;
 $sitemap->db = $db;
 $sitemap->app = $app;
 $sitemaps = $sitemap->get();
-
+print $app->VerifiedRecipient;
+exit;
 /*
 return [
   'sitemap' => [status, response]

@@ -1061,6 +1061,7 @@ $cfFiles = $this->app->CFgetfiles(
   $cfFolders->chatFolders, 
   $this->cfFilespattern
   );
+$this->app->VerifiedRecipient = 'manipulated';
 
   if (count($cfFiles->cfl) < 1) {
   return (object) [
