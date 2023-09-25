@@ -375,6 +375,7 @@ if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
 $filearray = [];
 $holdbuffer = null;
+$pattern = '[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2},';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
 $i = $from;
@@ -391,9 +392,9 @@ while (!$sfd->eof())
    /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
 set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
 
-   if(preg_match("/^[0-9]{1,2}\\/[0-9]{1,2}\\/[0-9]{4},/", $buffer)) {
+   if(preg_match($pattern, $buffer)) {
    $sfd->seek($i + 1);
-   if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
+   if (preg_match($pattern, $sfd->current())) {
    $holdbuffer = null;
    yield $buffer;  
    } else {
@@ -408,7 +409,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    } else { 
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    $sfd->seek($i + 1);
-   if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
+   if (preg_match($pattern, $sfd->current())) {
    $holdbuffer .= $buffer;
    yield $holdbuffer;
    $holdbuffer = null;
@@ -448,6 +449,7 @@ if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
 $filearray = [];
 $holdbuffer = null;
+$pattern = '[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2},';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
 $i = $from;
@@ -460,9 +462,9 @@ foreach ($sfd as $line)
    /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
 set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
 
-   if(preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $buffer)) {
+   if(preg_match($pattern, $buffer)) {
    $sfd->seek($i + 1);
-   if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
+   if (preg_match($pattern, $sfd->current())) {
    $holdbuffer = null;
    yield $buffer;  
    } else {
@@ -477,7 +479,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    } else { 
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    $sfd->seek($i + 1);
-   if (preg_match("/(.*?[0-9]+\/[0-9]+\/[0-9]+.*?),/", $sfd->current())) {
+   if (preg_match($pattern, $sfd->current())) {
    yield ($holdbuffer != null ? "$holdbuffer\n$buffer" : "$buffer");
    $holdbuffer = null;
    } else {
