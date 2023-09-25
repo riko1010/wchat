@@ -396,7 +396,8 @@ set file array default key to null, regex if date string.solves newline, of chat
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
    yield $buffer.'match, next match, yield';  
-   print $buffer;
+   $holdbuffer = null;
+   print 'buffer'.$buffer;
    } else {
    $holdbuffer .= $buffer.'held, next not match';
    }
