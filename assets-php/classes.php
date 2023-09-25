@@ -395,12 +395,12 @@ print 'iter';
    if(preg_match($pattern, $buffer, $matches)) {
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
-   yield $buffer.'match, next match, yield';  
+   yield $buffer.'match, next match, yield'.'"'.$sfd->current().'"';  
    $holdbuffer = null;
    
    } else {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer).'held, next not match';
+   '\n'.$buffer : $buffer).'match, held, next not match';
    }
    /* return pointer to current iteration */
    $sfd->seek($i);
