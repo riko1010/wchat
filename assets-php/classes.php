@@ -386,8 +386,6 @@ return $Paginations;
 
 while (!$sfd->eof())
 {
-  /* goto start line in pagination arg */
- print $sfd->key().'-'.$sfd->current();
   $buffer = $sfd->current();
    
    /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
