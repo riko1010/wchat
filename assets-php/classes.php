@@ -367,7 +367,7 @@ $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 
 }
 
-public function ChatFileGenerator($Paginations, $cfFiles = null){
+public function ChatFileGenerator($Paginations = null, $cfFiles = null){
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
 $sfd = new SplFileObject($cfFiles);
 if (!$sfd) return 'error: could not open chat file';

@@ -47,10 +47,10 @@ $app->SetChatFile($REQUEST->backupfile);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
 
-foreach ($app->ChatFileGenerator(0,100) as $line) {
-  print $line.PHP_EOL;
+foreach ($app->ChatFileGenerator() as $line) {
+  print $line.'<hr/>';
 }
-exit;
+
 
 if ($ChatFilesDataNotEmpty) {
 $sitemap = new generateSiteMap;
