@@ -269,16 +269,24 @@ if ($queryarg != null) {
 /* recursive array search case , ras for search field */
 $ras = ras($queryarg, array_column($this->ChatFilesData, 'search'));
 /* ras for id field if not found */
-$ras = ($ras == null ? ras($queryarg, array_column($this->ChatFilesData, 'id')) : $ras);
-    ($ras == null ? (
-      $this->CheckLegacy = true AND 
-      $this->NoSelected = true AND 
-      $this->Selected = 0
-      ) : ( 
-      $this->NoSelected = false AND 
-      $this->Selected = $ras
-        ) );
-var_dump('ras,:'.$this->CheckLegacy);        
+$ras = ($ras == null ? 
+ras($queryarg, array_column($this->ChatFilesData, 'id')) : $ras );
+  (($ras === false) ? ([
+    $this->CheckLegacy, 
+    $this->NoSelected, 
+    $this->Selected
+    ] = [
+    true, 
+    true, 
+    0
+    ]) : ([
+    $this->NoSelected, 
+    $this->Selected
+    ] = [
+    false, 
+    $ras
+    ]) );
+
 /* legacy url */
 (!$this->CheckLegacy ?: $this->CheckLegacyChatFileQuery($queryarg)); 
 } else {
@@ -286,7 +294,6 @@ var_dump('ras,:'.$this->CheckLegacy);
 $this->Selected = 0;
 }
 
-var_dump($this->CheckLegacy);
 $SelectedChatFile = $this->ChatFilesData[$this->Selected];
 $this->SelectedId = $SelectedChatFile['id'];
 $this->ChatFile = Path::join(
@@ -307,14 +314,20 @@ public function CheckLegacyChatFileQuery($query){
         );
     }, array_column($this->ChatFilesData, 'dirname'));
     $ras = ras($query, $cflcsearch);
-    var_dump('check legacy:'.$ras);
-    ($ras == null ? (
-      $this->NoSelected = true AND 
-      $this->Selected = 0
-      ) : ( 
-      $this->NoSelected = false AND 
-      $this->Selected = $ras
-        ) );
+    
+    (($ras === false) ? ([
+    $this->NoSelected, 
+    $this->Selected
+    ] = [
+    true, 
+    0
+    ]) : ([
+    $this->NoSelected, 
+    $this->Selected
+    ] = [
+    false, 
+    $ras
+    ]) );
 
 }
 
@@ -366,15 +379,15 @@ $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Paginat
 $i = $from;
 
 $sfd->seek($i);
-if ($sfd->eof() === true) {
+if ($sfd->eof()) {
 return $Paginations;
 }
 
-foreach ($sfd as $line)
+while (!$sfd->eof())
 {
   /* goto start line in pagination arg */
  
-  $buffer = $line;
+  $buffer = $sfd->current();
    
    /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
 set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */

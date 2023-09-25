@@ -77,8 +77,6 @@ $app->SetChatFile($queryarg);
 if ($app->NoSelected === true) {
  $ApiResponse->status = 'filenotfound';
  $ApiResponse->status = 'no valid queryarg';
- var_dump($app->NoSelected);
- var_dump($ChatFilesData);
  print json_encode($ApiResponse);
  exit; 
 }
