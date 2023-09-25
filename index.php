@@ -64,7 +64,7 @@ $sitemap->sitemapxml = $sitemapxml;
 $sitemap->PyArchiveURI = $PyArchiveURI;
 $sitemap->bdir = $baseDir;
 $sitemap->db = $db;
-$sitemap->app = $app;
+$sitemap->app = $app->CFgetfiles(...);
 $sitemaps = $sitemap->get();
 
 /*

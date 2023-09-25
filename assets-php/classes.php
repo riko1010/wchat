@@ -1066,7 +1066,7 @@ return (object) [
       ];   
 }
 
-$cfFiles = $this->app->CFgetfiles(
+$cfFiles = $this->app(
   $cfFolders->chatFolder, 
   $cfFolders->chatFolders, 
   $this->cfFilespattern
