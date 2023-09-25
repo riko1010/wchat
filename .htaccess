@@ -4,8 +4,7 @@ RewriteOptions inherit
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*?)$ index.php?backupfile=$1 [QSA]
-#RewriteRule ^([A-Za-z0-9])$ index.php?backupfile=$1 [QSA]
+RewriteRule ^(.*?)$ index.php?queryarg=$1 [QSA]
 AuthType Basic
 AuthName "Access to the dev site"
 AuthUserFile .htpasswd
