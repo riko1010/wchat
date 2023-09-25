@@ -400,7 +400,7 @@ print 'iter';
    
    } else {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer).'match, held, next not match';
+   '\n'.$buffer : $buffer).'match, held, next not match'.'"'.$sfd->current().'"';
    }
    /* return pointer to current iteration */
    $sfd->seek($i);
@@ -414,11 +414,11 @@ print 'iter';
    if (preg_match($pattern, $sfd->current(), $matches)) {
    $holdbuffer .= ($holdbuffer != null ?
    '\n'.$buffer : $buffer);
-   yield $holdbuffer.'not match, next match, yield, next match';  
+   yield $holdbuffer.'not match, next match, yield, next match'.'"'.$sfd->current().'"';  
    $holdbuffer = null;
    } else {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer).'not match, held, next not match';
+   '\n'.$buffer : $buffer).'not match, held, next not match'.'"'.$sfd->current().'"';
    }
    
    if (!$sfd->valid()) {
