@@ -414,7 +414,7 @@ print 'iter'.$i.$buffer.'-----<hr/>';
    if (preg_match($pattern, $sfd->current(), $matches)) {
    $holdbuffer .= ($holdbuffer != null ?
    '\n'.$buffer : $buffer);
-   yield json_encode($matches).$holdbuffer.'not match, next match, yield, next match'.'"'.$sfd->current().'"';  
+   yield 'matches:'.json_encode($matches).$holdbuffer.'..not match, next match, yield, next match'.'"'.$sfd->current().'"';  
    $holdbuffer = null;
    } else {
    $holdbuffer .= ($holdbuffer != null ?
