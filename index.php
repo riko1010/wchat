@@ -64,10 +64,9 @@ $sitemap->sitemapxml = $sitemapxml;
 $sitemap->PyArchiveURI = $PyArchiveURI;
 $sitemap->bdir = $baseDir;
 $sitemap->db = $db;
-$sitemap->app = $app;
+$sitemap->App = $app;
 $sitemaps = $sitemap->get();
-print $app->VerifiedRecipient;
-exit;
+
 /*
 return [
   'sitemap' => [status, response]
