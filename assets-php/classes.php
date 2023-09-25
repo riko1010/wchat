@@ -385,7 +385,7 @@ if ($sfd->eof()) {
 return $Paginations;
 }
 
-while (!$sfd->eof())
+while ($sfd->valid())
 {
   $buffer = $sfd->current();
    
