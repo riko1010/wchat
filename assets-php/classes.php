@@ -437,7 +437,7 @@ if ($i > $to && $holdbuffer == null && $Paginations != 'all') {
 }
 
 } 
-exit;
+
 $this->NPagination = $i.','.($i+$GLOBALS['recordsperpage']);
 return $this->NPagination;
 }
