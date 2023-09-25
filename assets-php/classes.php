@@ -391,13 +391,13 @@ while (!$sfd->eof())
    
    /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
 set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
-
+print 'iter';
    if(preg_match($pattern, $buffer, $matches)) {
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
    yield $buffer.'match, next match, yield';  
    $holdbuffer = null;
-   print 'buffer'.$buffer;
+   
    } else {
    $holdbuffer .= $buffer.'held, next not match';
    }
@@ -407,7 +407,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    if match, check next, if match, yield
    if not match, hold, continue?, if not match, bind prev, check next, if match, yield, else , hold, continue
    */
-   } else { 
+   } else {
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
@@ -423,7 +423,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    if (!$sfd->valid()) {
      /* end of file, yield holdbuffer containing all unidentified buffer  */
      if ($holdbuffer != null) {
-       yield $holdbuffer.'sepcial t. eof';
+       yield $holdbuffer.'special t. eof';
      $holdbuffer = null;
      }
    }
