@@ -94,6 +94,10 @@ if ($PaginationViability->status === false) {
   exit;
 }
 
+foreach ($app->ChatFileGenerator() as $line) {
+  print $line.PHP_EOL;
+}
+
 $processlines = new processLines;
 $processlines->vrecipient = $app->VerifiedRecipient;
 $processlines->groupchat = $app->GroupChat;

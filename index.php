@@ -49,6 +49,7 @@ $app->SetChatFile($REQUEST->backupfile);
 $app->SetVerifiedRecipient( $app->Name );
 
 
+
 if ($ChatFilesDataNotEmpty) {
 $sitemap = new generateSiteMap;
 $sitemap->cfFilespattern = $cfFilespattern;
