@@ -174,7 +174,44 @@ function CFgetfolders($cfFolder) {
 /* end CFgetfolders */
 }
 
-function CFgetfiles($cfFolder, $cfFolders, $pattern) {
+function replaceinFile($fromstring, $tostring, $ChatFile){
+try {
+file_put_contents($ChatFile, str_replace($fromstring, $tostring, file_get_contents($ChatFile)));
+} catch(Exception $e)
+{
+  /* error - modify chat file exception */
+  return 'error: could not fix path to renamed extensionless file';
+}
+return 'success';
+}
+
+class App{
+  
+public $ChatFile; 
+public $DirPath;
+public $GroupChat;
+public $ChatFilesData;
+public $ChatFilesDataIdAsKeys;
+public $Selected;
+public $SelectedId;
+public $NoSelected = true;
+public $CheckLegacy = false;
+public $VerifiedRecipient;
+public $Name;
+public $baseDir;
+public $NPagination;
+
+public function __construct(
+  $ChatFilesData, 
+  $ChatFilesDataIdAsKeys,
+  $baseDir
+  ) {
+$this->ChatFilesData = $ChatFilesData;
+$this->ChatFilesDataIdAsKeys = $ChatFilesDataIdAsKeys;
+$this->baseDir = $baseDir;
+}
+
+public function CFgetfiles($cfFolder, $cfFolders, $pattern) {
 
 $gbfc = 0;
 $cfl = [];
@@ -221,43 +258,6 @@ return (object) [
   'gbfc' => $gbfc
   ];
 /* end CFgetfiles */
-}
-
-function replaceinFile($fromstring, $tostring, $ChatFile){
-try {
-file_put_contents($ChatFile, str_replace($fromstring, $tostring, file_get_contents($ChatFile)));
-} catch(Exception $e)
-{
-  /* error - modify chat file exception */
-  return 'error: could not fix path to renamed extensionless file';
-}
-return 'success';
-}
-
-class App{
-  
-public $ChatFile; 
-public $DirPath;
-public $GroupChat;
-public $ChatFilesData;
-public $ChatFilesDataIdAsKeys;
-public $Selected;
-public $SelectedId;
-public $NoSelected = true;
-public $CheckLegacy = false;
-public $VerifiedRecipient;
-public $Name;
-public $baseDir;
-public $NPagination;
-
-public function __construct(
-  $ChatFilesData, 
-  $ChatFilesDataIdAsKeys,
-  $baseDir
-  ) {
-$this->ChatFilesData = $ChatFilesData;
-$this->ChatFilesDataIdAsKeys = $ChatFilesDataIdAsKeys;
-$this->baseDir = $baseDir;
 }
 
 public function SetChatFile(
@@ -1014,6 +1014,7 @@ public $sitemapxml;
 public $PyArchiveURI;
 public $bdir;
 public $db;
+public $app;
 
 public function get(){
 
@@ -1054,7 +1055,7 @@ return (object) [
       ];   
 }
 
-$cfFiles = CFgetfiles(
+$cfFiles = $app->CFgetfiles(
   $cfFolders->chatFolder, 
   $cfFolders->chatFolders, 
   $this->cfFilespattern
