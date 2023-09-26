@@ -365,7 +365,6 @@ $i++;
 }
 
 $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
-
 }
 
 public function ChatFileGenerator($Paginations = null, $cfFiles = null){
@@ -379,71 +378,53 @@ $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
 $i = $from;
-
 $sfd->seek($i);
 if ($sfd->eof()) {
 return $Paginations;
 }
-
-//yield print_r(iter_to_array($sfd));
-
-while ($sfd->valid())
-{
+do {
   $buffer = $sfd->current();
-   
    /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
 set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
-print 'iter-i:'.$i.'-k:'.$sfd->key().'-b:'.$buffer.'-----<hr/>';
+  $sfd->next();
    if(preg_match($pattern, $buffer, $matches)) {
-   $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
-   yield $buffer.'match, next match, yield'.'"'.$sfd->current().'"';  
+   yield $buffer;  
    $holdbuffer = null;
-   
    } else {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer).'match, held, next not match'.'"'.$sfd->current().'"';
+   '\n'.$buffer : $buffer);
    }
-   /* return pointer to current iteration */
-   $sfd->seek($i);
    /*
    if match, check next, if match, yield
    if not match, hold, continue?, if not match, bind prev, check next, if match, yield, else , hold, continue
    */
    } else {
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
-   $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
    $holdbuffer .= ($holdbuffer != null ?
    '\n'.$buffer : $buffer);
-   yield 'matches:'.json_encode($matches).$holdbuffer.'..not match, next match, yield, next match'.'"'.$sfd->current().'"';  
+   yield $holdbuffer;  
    $holdbuffer = null;
    } else {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer).'not match, held, next not match'.'"'.$sfd->current().'"';
-   }
-   
-   if (!$sfd->valid()) {
-     /* end of file, yield holdbuffer containing all unidentified buffer  */
-     if ($holdbuffer != null) {
-       yield $holdbuffer.'special t. eof';
-     $holdbuffer = null;
+   '\n'.$buffer : $buffer);
      }
    }
-   
-   /* set point to current iteration */
-   $sfd->seek($i);
+  if ($sfd->eof()) {
+     /* end of file, yield holdbuffer containing all unidentified buffer  */
+     if ($holdbuffer != null) {
+       yield $holdbuffer;
+     $holdbuffer = null;
+     break;
+     }
    }
-
-$i++;  
-
-if ($i > $to && $holdbuffer == null && $Paginations != 'all') {
-  yield $holdbuffer.'special t. pagination'; 
-  break;
+if ($holdbuffer != null) {
+/* tolerant termination to next match */
+$to++;
 }
-
-} 
-
+$i++;
+} while ($i < $to);
 $this->NPagination = $i.','.($i+$GLOBALS['recordsperpage']);
 return $this->NPagination;
 }

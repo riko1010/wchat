@@ -47,10 +47,6 @@ $app->SetChatFile($REQUEST->backupfile);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
 
-foreach ($app->ChatFileGenerator() as $line) {
-  print $line.'<hr/>';
-}
-
 if ($ChatFilesDataNotEmpty) {
 $sitemap = new generateSiteMap;
 $sitemap->cfFilespattern = $cfFilespattern;
