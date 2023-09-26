@@ -409,7 +409,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    $holdbuffer = null;
    } else {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer);
+   $NewLine.$buffer : $buffer);
      }
    }
   if ($sfd->eof()) {
