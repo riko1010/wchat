@@ -1008,6 +1008,9 @@ public $bdir;
 public $db;
 public object $CallFunc;
 
+public function __construct(){
+$this->CallFunc = new stdClass;  
+}
 public function get(){
 
 if (file_exists($this->generatesitemapfile)) {

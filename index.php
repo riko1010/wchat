@@ -70,7 +70,6 @@ return [
   ];
 */
 
-
 $processlines = new processLines;
 $processlines->vrecipient = $app->VerifiedRecipient;
 $processlines->groupchat = $app->GroupChat;
