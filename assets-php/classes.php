@@ -374,6 +374,7 @@ if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
 $filearray = [];
 $holdbuffer = null;
+$NewLine = '<br/>';
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
@@ -393,7 +394,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    $holdbuffer = null;
    } else {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer);
+   $NewLine.$buffer : $buffer);
    }
    /*
    if match, check next, if match, yield
@@ -403,7 +404,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    if (preg_match($pattern, $sfd->current(), $matches)) {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer);
+   $NewLine.$buffer : $buffer);
    yield $holdbuffer;  
    $holdbuffer = null;
    } else {
@@ -437,6 +438,7 @@ if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
 $filearray = [];
 $holdbuffer = null;
+$NewLine = '<br/>';
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
@@ -468,12 +470,12 @@ set file array default key to null, regex if date string.solves newline, of chat
    $sfd->seek($i + 1);
    if (preg_match($pattern, $sfd->current(), $matches)) {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer);
+   $NewLine.$buffer : $buffer);
    yield $holdbuffer;  
    $holdbuffer = null;
    } else {
    $holdbuffer .= ($holdbuffer != null ?
-   '\n'.$buffer : $buffer);
+   $NewLine.$buffer : $buffer);
    }
    
    if (!$sfd->valid()) {
