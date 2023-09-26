@@ -1025,7 +1025,7 @@ public $sitemapxml;
 public $PyArchiveURI;
 public $bdir;
 public $db;
-public $app = new stdClass;
+public object $CallFunc;
 
 public function get(){
 
