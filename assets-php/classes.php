@@ -425,7 +425,7 @@ $to++;
 }
 $i++;
 } while ($i < $to);
-$this->NPagination = $i.','.($i+$GLOBALS['recordsperpage']);
+$this->NPagination = "{$i},{$i+$GLOBALS['recordsperpage']}";
 return $this->NPagination;
 }
 
