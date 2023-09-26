@@ -427,8 +427,6 @@ $i++;
 } while ($i < $to);
 $NextTo = $to + $GLOBALS['recordsperpage'];
 $this->NPagination = "{$to},{$NextTo}";
-print $this->NPagination;
-exit;
 return $this->NPagination;
 }
 
