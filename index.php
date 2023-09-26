@@ -261,7 +261,7 @@ if ($sitemap['exists'] == false) continue;
 </div>
 
     <footer>
-      <?=(!$app->NPpagination == null) ?: $app->NPpagination;?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
+      <?=(!$app->NPagination == null) ?: $app->NPagination;?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
     </footer>
 <script src="assets-js/classes.js" referrerpolicy="no-referrer"></script>    
 <script>
