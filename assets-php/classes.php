@@ -374,7 +374,7 @@ if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
 $filearray = [];
 $holdbuffer = null;
-$NewLine = '<br/>';
+$NewLine = '\n';
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
