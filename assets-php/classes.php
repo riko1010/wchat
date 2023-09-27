@@ -1063,7 +1063,7 @@ public function CheckFileSystemModification($cfFolder){
   clearstatcache();
   $CurrentMTime = filemtime($cfFolder);
   $PrevMTime = $this->Appdata->mtimeorhash ?? false ?? $this->Appdata->mtimeorhash;
-  var_dump($CurrentMTime.'-'.$PrevMTime);
+  var_dump($PrevMTime);
   return ( 
     $CurrentMTime !== $PrevMTime ? 
     true : false 
