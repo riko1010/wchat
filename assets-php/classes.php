@@ -186,95 +186,93 @@ return 'success';
 }
 
 class Init {
-  public $InitType;
-  public $baseDir;
-  public $queryarg;
-  public $sqlitedb;
   
+public $InitType;
+public $baseDir;
+public $queryarg;
+public $db;
+
   public function Index() {
   
-  
-$ChatFilesDataExecute = $db->SelectOne(
+  $ChatFilesDataExecute = $db->SelectOne(
   'chatfiles',
-  [
-  'id' => $queryarg
-  ]);
-$ChatFilesDataSelectType = 'one';
-$ChatFilesData = $ChatFilesDataExecute->status ? 
-iter_to_array($ChatFilesDataExecute->response) 
-: 
-[];
-$ChatFilesDataNotEmpty = (count($ChatFilesData) > 0 ? 
-  true 
+  ['id' => $queryarg]);
+  $ChatFilesDataSelectType = 'one';
+  $ChatFilesData = $ChatFilesDataExecute->status ? 
+  iter_to_array($ChatFilesDataExecute->response) 
   : 
-  false
+  [];
+  $ChatFilesDataNotEmpty = (count($ChatFilesData) > 0 ? 
+  true : false
   );  
-
-$ChatFilesDataKeys = array_column(
-  $ChatFilesData, 
-  'id'
-  );
-$ChatFilesDataIdAsKeys = array_combine(
-                        $ChatFilesDataKeys, 
-                        $ChatFilesData
+  
+  $ChatFilesDataKeys = array_column(
+                        $ChatFilesData, 
+                        'id'
                         );
+  $ChatFilesDataIdAsKeys = array_combine(
+                  $ChatFilesDataKeys, 
+                  $ChatFilesData
+                  );
   
   return (object) [
-    'Data' => ,
-    'DataIdAsKeys' => 
-    'Count' => ''
-    ];    
+  'Data' => ,
+  'DataIdAsKeys' => 
+  'Count' => ''
+  ];    
   }
   
   public function API(){
   
-$ChatFilesDataExecute = $db->Select('chatfiles');
-$ChatFilesDataSelectType = 'all';
-$ChatFilesData = $ChatFilesDataExecute->status ?
-iter_to_array($ChatFilesDataExecute->response)
-:
-[];
-$ChatFilesDataNotEmpty = (count($ChatFilesData) > 0 ? 
-                    true 
-                    : 
-                    false
-                    );
-$ChatFilesDataKeys = array_column(
-  $ChatFilesData, 
-  'id'
+  $ChatFilesDataExecute = $db->Select('chatfiles');
+  $ChatFilesDataSelectType = 'all';
+  $ChatFilesData = $ChatFilesDataExecute->status ?
+  iter_to_array($ChatFilesDataExecute->response)
+  :
+  [];
+  $ChatFilesDataNotEmpty = (count($ChatFilesData) > 0 ? 
+  true : false
   );
-$ChatFilesDataIdAsKeys = array_combine(
-                        $ChatFilesDataKeys, 
-                        $ChatFilesData
-                        );  
+  $ChatFilesDataKeys = array_column(
+                      $ChatFilesData, 
+                      'id'
+                      );
+  $ChatFilesDataIdAsKeys = array_combine(
+            $ChatFilesDataKeys, 
+            $ChatFilesData
+            );  
   
   return (object) [
-    'Data' => ,
-    'DataIdAsKeys' => 
-    'Count' => ''
-    ];                         
+  'Data' => ,
+  'DataIdAsKeys' => 
+  'Count' => ''
+  ];                         
   }
-  
+
   public function AppData {
-    
-/* load app data */
-$AppDataExecute = $db->SelectOne(
-  'AppData',
-  [
-  'id' => 1
-  ]);
-$AppData = (object) $AppDataExecute->status ?
-iter_to_array($AppDataExecute->response)
-:
-[];
-/*
-$AppDataNotEmpty = (count($AppData) > 0 ? 
-                    true 
-                    : 
-                    false
-                    );
-                    */
-/* load chat files if not loading through api */
+  
+  /* load app data */
+  $AppDataExecute = $db->SelectOne(
+                        'AppData',
+                        ['id' => 1]);
+  $AppData = (object) $AppDataExecute->status ?
+  iter_to_array($AppDataExecute->response)
+  :
+  [];
+  /*
+  $AppDataNotEmpty = (count($AppData) > 0 ? 
+  true 
+  : 
+  false
+  );
+  */
+  /* load chat files if not loading through api */
+  
+  return (object) [
+  'Data' => ,
+  'DataIdAsKeys' => 
+  'Count' => ''
+  ];   
   }
 }
 
