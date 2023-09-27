@@ -1103,12 +1103,11 @@ if (!$MergeDropAndUpateDb->status) {
       'response' => 'Cannot update DB from Filesystem'.$MergeDropAndUpateDb->response
       ]; 
 } 
-/* updae Appdata folder wih conversation hash */
-
+/* update Appdata folder with conversation hash */
 try {
 clearstatcache();
 $cfFoldermtimeorhash = filemtime($cfFolder);
-$UpdateAppData = ($this->CallFunc->{'$db\InsertOrUpdate'})(
+$UpdateAppData = $this->db->InsertOrUpdate(
     'AppData',
     [
     'mtimeorhash' => $cfFoldermtimeorhash
@@ -1116,8 +1115,8 @@ $UpdateAppData = ($this->CallFunc->{'$db\InsertOrUpdate'})(
     [ 'foldername' => $cfFolder ]
   );
   
-  if (!$InsertOrUpdate->status) {
-    Throw Exception ($InsertOrUpdate->response);
+  if (!$UpdateAppData->status) {
+    Throw Exception ($UpdateAppData->response);
   }
 } catch (\Exception|\Throwable $e) {
   return (object) [
@@ -1125,6 +1124,7 @@ $UpdateAppData = ($this->CallFunc->{'$db\InsertOrUpdate'})(
         'response' => 'Insert or Update failed:'.$e->getMessage()
         ]; 
   }
+  
 return (object) [
       'status' => true,
       'response' => 'DB updated from Filesystem'
