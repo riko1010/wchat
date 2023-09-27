@@ -286,7 +286,7 @@ $(".loader").removeClass("hidden");
 isr = new infinitescrollrequest();
 isr.url = 'api';
 isr.queryarg = '<?=$app->SelectedId;?>';
-isr.pagination = '<?=$app->NPpagination;?>';
+isr.pagination = '<?=$app->NPagination;?>';
 isr.recordsperpage = '<?=$recordsperpage;?>';
 isr.responsecontainer = '#whatsappimages';
 try {
