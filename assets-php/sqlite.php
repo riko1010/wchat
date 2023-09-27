@@ -6,14 +6,20 @@ use function BenTools\IterableFunctions\iterable_to_array as iter_to_array;
 $db = new sqlitedb(
   pj($baseDir, $sqlitedb)
   );
-$ConfigExecute = SelectOneConfig([
+/* load app data */
+$AppDataExecute = SelectOneConfig([
   'id' => 1
   ]);
-$ConfigData = $ConfigExecute->status ?
-iter_to_array($ConfigExecute->response)
+$AppData = $AppDataExecute->status ?
+iter_to_array($AppDataExecute->response)
 :
 [];
-/* load chat files is not loading through api */
+$AppDataNotEmpty = (count($AppData) > 0 ? 
+                    true 
+                    : 
+                    false
+                    );
+/* load chat files if not loading through api */
 if (!isset($api)) {
 $ChatFilesDataExecute = $db->Select();
 $ChatFilesDataSelectType = 'all';

@@ -601,7 +601,8 @@ $statement->execute();
 $sql = "CREATE TABLE IF NOT EXISTS 'AppData' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
   'mtimeorhash' TEXT NOT NULL,
-  'zipsize' TEXT NOT NULL
+  'zipsize' TEXT NOT NULL,
+  'foldername' TEXT NOT NULL
   )";
 
 $statement = $this->adapter->query($sql);
