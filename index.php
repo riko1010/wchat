@@ -70,10 +70,11 @@ $sitemap->db = $db;
 $sitemap->CallFunc->{'$app\CFgetfiles'} = $app->CFgetfiles(...);
 $sitemaps = $sitemap->get(
   );
-/* unset temporary app instance */
-unset($app);
+/* reinit */
+$InitData = $Init->Index();
 
 if (!$InitData->IsEmpty) {
+
 
 $app->SetChatFile($REQUEST->queryarg);
 /* $app->SelectedId now set  */
