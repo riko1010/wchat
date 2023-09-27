@@ -1133,11 +1133,15 @@ $this->CallFunc = new stdClass;
 public function get(){
 
 if ($this->CheckFileSystemModification($this->cfFolder, $this->AppData)->status == true) {
- var_dump( 
+ var_dump(
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
     ) ); 
-  $sitemap = $this->Generate();  
+  $sitemap = $this->Generate(); 
+  $sitemap = [ 
+    'status' => true,
+    'response' => 'Sitemap listed.'
+    ];
 } else {
   //check for ??? trigger for sitemap or refresh recommendation for sitemaps */
  // $sitemap = $this->Generate();  
