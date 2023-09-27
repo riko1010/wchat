@@ -651,30 +651,6 @@ return (object) [
     ];
 }
 
-public function SelectOneAppData(
-  $Table,
-  $SelectOneAppDataWhereArray
-  ){
-$SelectOneAppData = $this->sql->select();
-$SelectOneAppData->from($Table);
-$SelectOneAppData->where($SelectConfigWhereArray);
-$SelectOneAppData->limit(1);
-try {
-$statement = $this->sql->prepareStatementForSqlObject($SelectOneAppData);
-$results = $statement->execute();
-} catch (\Exception|\Throwable $e) {
-  return (object) [
-    'status' => false,
-    'response' => 'Select config failed'
-    ];
-}
-
-return (object) [
-    'status' => true,
-    'response' => $results
-    ];
-}
-
 public function Select($Table){
 $selectone = $this->sql->select();
 $selectone->from($Table);
@@ -1035,6 +1011,7 @@ return (object) [
 
 class generateSiteMap {
 
+public $AppData;
 public $cfFolder;
 public $ChatFilesData;
 public $ChatFilesDataIdAsKeys;
