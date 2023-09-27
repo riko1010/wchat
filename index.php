@@ -49,8 +49,8 @@ $AppData = $Init->AppData();
 
 /* temporary app instance */
 $app = new App(
-  $InitData->Data, 
-  $InitData->DataIdAsKeys,
+  &$InitData->Data, 
+  &$InitData->DataIdAsKeys,
   $baseDir
   );
   
@@ -60,8 +60,8 @@ $sitemap->cfFilespattern = $cfFilespattern;
 $sitemap->generatesitemapfile = $generatesitemapfile; 
 $sitemap->SiteUrl = $SiteUrl; 
 $sitemap->cfFolder = $cfFolder;
-$sitemap->ChatFilesData = $InitData->Data;
-$sitemap->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
+$sitemap->ChatFilesData = &$InitData->Data;
+$sitemap->ChatFilesDataIdAsKeys = &$InitData->DataIdAsKeys;
 $sitemap->robotstxt = $robotstxt;
 $sitemap->sitemapxml = $sitemapxml;
 $sitemap->PyArchiveURI = $PyArchiveURI;
@@ -74,12 +74,6 @@ $sitemaps = $sitemap->get(
 unset($app);
 
 if (!$InitData->IsEmpty) {
-
-$app = new App(
-  $ChatFilesData, 
-  $ChatFilesDataIdAsKeys,
-  $baseDir
-  );
 
 $app->SetChatFile($REQUEST->queryarg);
 /* $app->SelectedId now set  */
