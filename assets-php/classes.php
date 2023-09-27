@@ -1296,10 +1296,10 @@ $PrevRecordExecute = $this->db->SelectOne(
     'chatfiles',
     [ 'filepath' => $filepath ]
                         );
-$PrevRecord = ($PrevRecordExecute->status ? iter_to_array($PrevRecordExecute->response) : []);
-var_dump($PrevRecord['mtimeorhash']);
+$PrevRecords = ($PrevRecordExecute->status ? iter_to_array($PrevRecordExecute->response) : []);
+$PrevRecord = $PrevRecord[0];
   if ( 
-     ( count($PrevRecord) > 0 )
+     ( count($PrevRecords) > 0 )
   && ( $PrevRecord['mtimeorhash'] == $mtimeorhash )
   && ( $PrevRecord['url'] == $url ) 
      ) {
