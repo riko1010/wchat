@@ -278,6 +278,7 @@ isr.queryarg = '<?=$app->SelectedId;?>';
 isr.pagination = '<?=$app->NPagination;?>';
 isr.recordsperpage = '<?=$recordsperpage;?>';
 isr.responsecontainer = '#whatsappimages';
+isr.loadercontainer = '.loader';
 // init controller
 controller = new ScrollMagic.Controller();
 	// build scene
@@ -286,13 +287,14 @@ scene = new ScrollMagic.Scene({triggerElement: "#loader", triggerHook: "onEnter"
 .on("enter", function (e) 
 {
 scene.enabled(false);
-$(".loader").removeClass("hidden");
+$(isr.loadercontainer).removeClass("hidden");
 try {
   isr.FetchData().then(function(PromiseResponse) {
   isr.pagination = PromiseResponse.npagination;
   scene.enabled(true);
   scene.update();
   isr.FetchDataSuccessHandler(PromiseResponse);
+  $(isr.loadercontainer).addClass("hidden");
   }, function(PromiseResponse){
   /* failed request, enable scene event listener */
   $('.loader').addClass('hidden');
@@ -300,7 +302,6 @@ try {
   scene.update();  
   });
 } catch(e) {
-  console.log(e);
   $('.loader').addClass('hidden');
   scene.enabled(true);
   scene.update();  
