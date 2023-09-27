@@ -1126,10 +1126,10 @@ $this->CallFunc = new stdClass;
 public function get(){
 
 if ($this->CheckFileSystemModification($this->cfFolder)->status == true) {
- var_dump(
+ print "updatedbfromfs";
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
-    ) ); 
+    ); 
   $sitemap = $this->Generate(); 
   $sitemap = [ 
     'status' => true,
