@@ -205,6 +205,7 @@ public $db;
   $ChatFilesDataIsEmpty = (count($ChatFilesData) > 0 ? 
   false : true
   );  
+  /* isempty true, updatedbfromfilesystem, */
   
   $ChatFilesDataKeys = array_column(
                         $ChatFilesData, 
