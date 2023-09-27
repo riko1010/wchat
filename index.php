@@ -42,7 +42,8 @@ $app = new App(
   $ChatFilesDataIdAsKeys,
   $baseDir
   );
-
+var_dump($ChatFilesData);
+exit;
 $app->SetChatFile($REQUEST->backupfile);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
