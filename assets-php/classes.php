@@ -891,7 +891,7 @@ component attachment
      div 
       a.glightbox3(data-gallery="gallery1" data-height="80vh" data-width="90%" href="$docviewer" data-glightbox="title: $filecaption $filenameandext" data-preload="true")
          h5(class="font-size-15 mb-1" style="color: #000;") #{$filenameandext}
-      span(class="font-size-13 text-muted") pages • #{$filesize} • #{$fileext} 
+      span(class="font-size-13 text-muted") pages â€¢ #{$filesize} â€¢ #{$fileext} 
 ';
 
 
@@ -1028,6 +1028,7 @@ public object $CallFunc;
 public function __construct(){
 $this->CallFunc = new stdClass;  
 }
+
 public function get(){
 
 if ($this->CheckFileSystemModification($this->cfFolder)->status == true) {
