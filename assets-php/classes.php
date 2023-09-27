@@ -1103,7 +1103,38 @@ if (!$MergeDropAndUpateDb->status) {
       'response' => 'Cannot update DB from Filesystem'.$MergeDropAndUpateDb->response
       ]; 
 } 
+/* updae Appdata folder wih conversation hash */
 
+try {
+$UpdateAppData = ($this->CallFunc->{'$db\InsertOrUpdate'})(
+    'AppData',
+    [
+    'bfc' => $bfc,
+    'filename' => $filename, 
+    'dirpath' => $dirpath, 
+    'dirname' => $dirname, 
+    'search' => $search,
+    'groupchat' => $groupchat,
+    'vrecipient' => $vrecipient,
+    'name' => $name,
+    'sync' => $sync,
+    'filepath' => $filepath,
+    'url' => $url,
+    'mtimeorhash' => $mtime,
+    'archivedurl' => $archivedurl
+    ],
+    [ 'filepath' => $filepath ]
+  );
+  
+  if (!$InsertOrUpdate->status) {
+    Throw Exception ($InsertOrUpdate->response);
+  }
+} catch (\Exception|\Throwable $e) {
+  return (object) [
+        'status' => false,
+        'response' => 'Insert or Update failed:'.$e->getMessage()
+        ]; 
+  }
 return (object) [
       'status' => true,
       'response' => 'DB updated from Filesystem'
