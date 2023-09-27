@@ -1209,6 +1209,7 @@ $PrevRecord = $this->db->SelectOne(
   }
 
 } catch (\Exception|\Throwable $e) {
+  var_dump(iter_to_array($PrevRecord));
 return (object) [
       'status' => false,
       'response' => 'Merge chatfiles records failed'
