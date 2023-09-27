@@ -32,7 +32,7 @@ class infinitescrollrequest {
           /* response starting with filenotfound is end of pagination - page refresh to promise ?, ajax refresh to set session/recordid if magically unavailable possible */
           PromiseResponse.requestresponse = 'ajaxrefresh';
         } else if (AjaxResponse.status == 'no request') {
-          /* response starting with no request is no request received - ajax refresh not to promise, to fix session/recordid if magically missing */
+          /* response starting with no request is no request received - notice */
           PromiseResponse.requestresponse = 'ajaxrefresh';
         } else {
           PromiseResponse.requestresponse = 'unknown';
@@ -57,14 +57,15 @@ switch (PromiseResponse) {
   	scene = null;
     break;
   case 'ajaxrefresh':
-    /* ajax put,post, request without response body, request to same url */
+    /* ajax put,post, request without response body, request to same url ?? */
     
     break;
   case 'unknown':
     /* unknown, all other responses, response is not returned but PromiseResponse object returns all assigned properties */
     break;
   default:
-    
+    scene.enabled(true);
+    scene.update();
     break;
   }
 }

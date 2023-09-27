@@ -291,18 +291,16 @@ $(isr.loadercontainer).removeClass("hidden");
 try {
   isr.FetchData().then(function(PromiseResponse) {
   isr.pagination = PromiseResponse.npagination;
-  scene.enabled(true);
-  scene.update();
   isr.FetchDataSuccessHandler(PromiseResponse);
   $(isr.loadercontainer).addClass("hidden");
   }, function(PromiseResponse){
   /* failed request, enable scene event listener */
-  $('.loader').addClass('hidden');
+  $(isr.loadercontainer).addClass("hidden");
   scene.enabled(true);
   scene.update();  
   });
 } catch(e) {
-  $('.loader').addClass('hidden');
+  $(isr.loadercontainer).addClass("hidden");
   scene.enabled(true);
   scene.update();  
 }
