@@ -202,8 +202,8 @@ public $db;
   iter_to_array($ChatFilesDataExecute->response) 
   : 
   [];
-  $ChatFilesDataNotEmpty = (count($ChatFilesData) > 0 ? 
-  true : false
+  $ChatFilesDataIsEmpty = (count($ChatFilesData) > 0 ? 
+  false : true
   );  
   
   $ChatFilesDataKeys = array_column(
@@ -218,20 +218,20 @@ public $db;
   return (object) [
   'Data' => $ChatFilesData,
   'DataIdAsKeys' => $ChatFilesDataIdAsKeys,
-  'Count' => ''
+  'Count' => '',
+  'IsEmpty' => $ChatFilesDataIsEmpty
   ];    
   }
   
   public function API(){
-  
   $ChatFilesDataExecute = $this->db->Select('chatfiles');
   $ChatFilesDataSelectType = 'all';
   $ChatFilesData = $ChatFilesDataExecute->status ?
   iter_to_array($ChatFilesDataExecute->response)
   :
   [];
-  $ChatFilesDataNotEmpty = (count($ChatFilesData) > 0 ? 
-  true : false
+  $ChatFilesDataIsEmpty = (count($ChatFilesData) > 0 ? 
+  false : true
   );
   $ChatFilesDataKeys = array_column(
                       $ChatFilesData, 
@@ -246,7 +246,7 @@ public $db;
   'Data' => $ChatFilesData,
   'DataIdAsKeys' => $ChatFilesDataIdAsKeys,
   'Count' => '',
-  'IsEmpty' => $ChatFilesDataNotEmpty
+  'IsEmpty' => $ChatFilesDataIsEmpty
   ];                         
   }
 

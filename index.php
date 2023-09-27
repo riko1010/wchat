@@ -16,11 +16,11 @@ $whoops->register();
 /* Request Handler */
 
 $data = [
-    'backupfile' => $_REQUEST['queryarg']
+    'queryarg' => $_REQUEST['queryarg']
 ];
 
 $filters = [
-    'backupfile' => 'trim|empty_string_to_null|strip_tags|escape'
+    'queryarg' => 'trim|empty_string_to_null|strip_tags|escape'
 ];
 
 $REQUEST = (object) (new Sanitizer($data, $filters))->sanitize();
@@ -39,15 +39,18 @@ BASE KEY = 1, NOT 0 */
 $db = new sqlitedb(
   pj($baseDir, $sqlitedb)
   );
+$Init = new Init;
+$Init->baseDir = $baseDir;
+$Init->queryarg = $REQUEST->queryarg;
+$Init->db = $db;
 
-  
 $app = new App(
   $ChatFilesData, 
   $ChatFilesDataIdAsKeys,
   $baseDir
   );
 
-$app->SetChatFile($REQUEST->backupfile);
+$app->SetChatFile($REQUEST->queryarg);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
 
