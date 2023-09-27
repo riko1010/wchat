@@ -393,8 +393,12 @@ set file array default key to null, regex if date string.solves newline, of chat
    yield $buffer;  
    $holdbuffer = null;
    } else {
-   $holdbuffer .= ($holdbuffer != null ?
-   $NewLine.$buffer : $buffer);
+   $holdbuffer .= (
+   $holdbuffer != null ?
+   $NewLine.$buffer 
+   : 
+   $buffer
+   );
    }
    /*
    if match, check next, if match, yield
