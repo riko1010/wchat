@@ -36,14 +36,17 @@ require 'assets-php/sqlite.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
+$db = new sqlitedb(
+  pj($baseDir, $sqlitedb)
+  );
 
+  
 $app = new App(
   $ChatFilesData, 
   $ChatFilesDataIdAsKeys,
   $baseDir
   );
-var_dump($ChatFilesData);
-exit;
+
 $app->SetChatFile($REQUEST->backupfile);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );

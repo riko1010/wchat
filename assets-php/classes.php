@@ -186,7 +186,59 @@ return 'success';
 }
 
 class Init {
+  public $InitType;
+  public $baseDir;
+  public $queryarg;
+  public $sqlitedb;
   
+  public function Index() {
+    
+  }
+  
+  public function API(){
+  
+$ChatFilesDataExecute = $db->Select('chatfiles');
+$ChatFilesDataSelectType = 'all';
+$ChatFilesData = $ChatFilesDataExecute->status ?
+iter_to_array($ChatFilesDataExecute->response)
+:
+[];
+$ChatFilesDataNotEmpty = (count($ChatFilesData) > 0 ? 
+                    true 
+                    : 
+                    false
+                    );
+$ChatFilesDataKeys = array_column(
+  $ChatFilesData, 
+  'id'
+  );
+$ChatFilesDataIdAsKeys = array_combine(
+                        $ChatFilesDataKeys, 
+                        $ChatFilesData
+                        );  
+  }
+  
+  public function AppData {
+    
+/* load app data */
+$AppDataExecute = $db->SelectOne(
+  'AppData',
+  [
+  'id' => 1
+  ]);
+$AppData = (object) $AppDataExecute->status ?
+iter_to_array($AppDataExecute->response)
+:
+[];
+/*
+$AppDataNotEmpty = (count($AppData) > 0 ? 
+                    true 
+                    : 
+                    false
+                    );
+                    */
+/* load chat files if not loading through api */
+  }
 }
 
 class App{
