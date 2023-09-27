@@ -608,14 +608,6 @@ $sql = "CREATE TABLE IF NOT EXISTS 'AppData' (
 $statement = $this->adapter->query($sql);
 $statement->execute();
 
-$sql = "INSERT OR UPDATE IF NOT EXISTS 'AppData' (
-  'id'
-  'foldername' TEXT NOT NULL
-  )";
-
-$statement = $this->adapter->query($sql);
-$statement->execute();
-
 $sql = "CREATE TABLE IF NOT EXISTS 'AppLog' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
   'datetime' INT NULL default (strftime('%s','now')),
@@ -628,18 +620,19 @@ $statement->execute();
 } 
 
 public function InsertOrUpdate(
+  $Table,
   $ColumnValuesArray, 
   $UpdateWhereArray
   ){
 
-$InsertOrUpdate = $this->sql->insert('chatfiles');  
+$InsertOrUpdate = $this->sql->insert($Table);  
 
 if (count($this->SelectOne($UpdateWhereArray)) == 1) {
-$InsertOrUpdate = $this->sql->update('chatfiles');
+$InsertOrUpdate = $this->sql->update($Table);
 $InsertOrUpdate->where($UpdateWhereArray);
 $InsertOrUpdate->set($ColumnValuesArray);  
 } else {
-$InsertOrUpdate = $this->sql->insert('chatfiles');  
+$InsertOrUpdate = $this->sql->insert($Table);  
 $InsertOrUpdate->values($ColumnValuesArray);  
 }
 try {
@@ -658,9 +651,12 @@ return (object) [
     ];
 }
 
-public function SelectOneAppData($SelectOneAppDataWhereArray){
+public function SelectOneAppData(
+  $Table,
+  $SelectOneAppDataWhereArray
+  ){
 $SelectOneAppData = $this->sql->select();
-$SelectOneAppData->from('AppData');
+$SelectOneAppData->from($Table);
 $SelectOneAppData->where($SelectConfigWhereArray);
 $SelectOneAppData->limit(1);
 try {
@@ -1201,6 +1197,7 @@ return (object) [
 }
 try {
 $InsertOrUpdate = $this->db->InsertOrUpdate(
+    'chatfiles',
     [
     'bfc' => $bfc,
     'filename' => $filename, 
