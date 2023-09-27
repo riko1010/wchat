@@ -43,7 +43,10 @@ $Init = new Init;
 $Init->baseDir = $baseDir;
 $Init->queryarg = $REQUEST->queryarg;
 $Init->db = $db;
+$InitData = $Init->Index();
 
+if (!$InitData->IsEmpty) {
+/* failed init handler, no files */
 $app = new App(
   $ChatFilesData, 
   $ChatFilesDataIdAsKeys,
@@ -54,7 +57,6 @@ $app->SetChatFile($REQUEST->queryarg);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
 
-if ($ChatFilesDataNotEmpty) {
 $sitemap = new generateSiteMap;
 $sitemap->AppData = $AppData;
 $sitemap->cfFilespattern = $cfFilespattern;
@@ -172,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- no backupfile found -->
 <?php 
 /* may provide archive.org or other archive */
-if (!$ChatFilesDataNotEmpty) {
+if ($InitData->IsEmpty) {
 ?>
 <div class="row">
 <div class="col card">
@@ -185,7 +187,7 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 
 <?php
 /* start chat list if backupfile present */
-if ($ChatFilesDataNotEmpty){
+if (!$InitData->IsEmpty){
 ?>
 <section><h3 class='chat-title'>WhatsApp Chat with <?=$app->Name;?></h3>
 <div class='row p-1 spotlight-group' id='whatsappimages'>

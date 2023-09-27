@@ -193,10 +193,10 @@ public $queryarg;
 public $db;
 
   public function Index() {
-  
   $ChatFilesDataExecute = $this->db->SelectOne(
   'chatfiles',
-  ['id' => $this->queryarg]);
+  ['id' => $this->queryarg]
+  );
   $ChatFilesDataSelectType = 'one';
   $ChatFilesData = $ChatFilesDataExecute->status ? 
   iter_to_array($ChatFilesDataExecute->response) 
