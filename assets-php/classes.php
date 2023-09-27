@@ -1121,7 +1121,7 @@ public $db;
 public stdClass $CallFunc;
 
 public function __construct(){
-//$this->CallFunc = new stdClass;  
+$this->CallFunc = new stdClass;  
 }
 
 public function get(){
@@ -1162,7 +1162,7 @@ public function CheckFileSystemModification($cfFolder){
   clearstatcache();
   $CurrentMTime = filemtime($cfFolder);
   $PrevMTime = ($this->AppData->mtimeorhash ?? false ) ? $this->AppData->mtimeorhash : false;
-  var_dump($CurrentMTime.'-'.$this->AppData);
+  var_dump($this->AppData);
   if ($CurrentMTime == $PrevMTime){
   return (object) [
       'status' => false,
