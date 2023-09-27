@@ -255,7 +255,7 @@ public $db;
   ];                         
   }
 
-  public function AppData ()
+  public function AppData(){
   /* load app data */
   $AppDataExecute = $this->db->SelectOne(
                         'AppData',
@@ -679,13 +679,13 @@ $sql = "CREATE TABLE IF NOT EXISTS 'chatfiles' (
   'dirname' TEXT NOT NULL, 
   'search' TEXT NOT NULL, 
   'groupchat' BOOLEAN NOT NULL,
-  'vrecipient' TEXT NOT NULL,
+  'vrecipient' TEXT NULL,
   'name' TEXT NOT NULL, 
   'sync' INTEGER DEFAULT 1 , 
   'synctime' INTEGER NULL default (strftime('%s','now')), 
   'filepath' TEXT NOT NULL, 
   'url' TEXT NOT NULL, 
-  'archivedurl' TEXT, 
+  'archivedurl' NULL TEXT, 
   'mtimeorhash' TEXT NOT NULL
   )";
 
