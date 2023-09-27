@@ -1062,6 +1062,11 @@ return (object) [
 public function CheckFileSystemModification($cfFolder){
   $CurrentMTime = filemtime($cfFolder);
   $PrevMTime = $this->?Appdata->foldername;
+  
+  return ( 
+    $CurrentMTime !== $PrevMTime ? 
+    false : true 
+    );
 }
 
 public function UpdateDBFromFileSystem($cfFolder){
