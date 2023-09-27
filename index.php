@@ -47,13 +47,9 @@ $Init->BootLoader();
 $InitData = $Init->Index();
 $AppData = $Init->AppData();
 
-/* temporary app instance */
-$app = new App(
-  &$InitData->Data, 
-  &$InitData->DataIdAsKeys,
-  $baseDir
-  );
-  
+/* app instance */
+$app = new App;
+
 $sitemap = new generateSiteMap;
 $sitemap->AppData = $AppData;
 $sitemap->cfFilespattern = $cfFilespattern;
@@ -72,6 +68,8 @@ $sitemaps = $sitemap->get(
   );
 /* reinit */
 $InitData = $Init->Index();
+$app->ChatFilesData = $InitData->Data;
+$app->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
 
 if (!$InitData->IsEmpty) {
 
@@ -86,7 +84,7 @@ return [
   'files' => [filename, file, exists]
   ];
 */
-print 'processlines';
+
 $processlines = new processLines;
 $processlines->vrecipient = $app->VerifiedRecipient;
 $processlines->groupchat = $app->GroupChat;

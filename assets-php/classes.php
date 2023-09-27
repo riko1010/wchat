@@ -295,14 +295,8 @@ public $Name;
 public $baseDir;
 public $NPagination;
 
-public function __construct(
-  $ChatFilesData, 
-  $ChatFilesDataIdAsKeys,
-  $baseDir
-  ) {
-$this->ChatFilesData = $ChatFilesData;
-$this->ChatFilesDataIdAsKeys = $ChatFilesDataIdAsKeys;
-$this->baseDir = $baseDir;
+public function __construct() {
+
 }
 
 public function CFgetfiles($cfFolder, $cfFolders, $pattern) {
