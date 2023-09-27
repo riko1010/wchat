@@ -599,10 +599,11 @@ $statement = $this->adapter->query($sql);
 $statement->execute();
 
 $sql = "CREATE TABLE IF NOT EXISTS 'AppData' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+  'id' INTEGER PRIMARY KEY AUTOINCREMENT NULL, 
   'mtimeorhash' TEXT NOT NULL,
-  'zipsize' TEXT NOT NULL,
-  'foldername' TEXT NOT NULL
+  'zipsize' TEXT NULL,
+  'foldername' TEXT NOT NULL,
+  'synctime' INT NULL default (strftime('%s','now'))
   )";
 
 $statement = $this->adapter->query($sql);
