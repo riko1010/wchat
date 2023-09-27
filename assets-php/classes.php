@@ -1298,18 +1298,17 @@ $PrevRecordExecute = $this->db->SelectOne(
     [ 'filepath' => $filepath ]
                         );
 $PrevRecords = ($PrevRecordExecute->status ? iter_to_array($PrevRecordExecute->response) : []);
-$PrevRecord = $PrevRecords[0];
-  if ( 
-     ( count($PrevRecords) > 0 )
-  && ( $PrevRecord['mtimeorhash'] == $mtimeorhash )
-  && ( $PrevRecord['url'] == $url ) 
+$PrevRecord = count($PrevRecords) > 0 ? $PrevRecords[0];
+  if ( count($PrevRecords) > 0 ) {
+  if ( $PrevRecord['mtimeorhash'] == $mtimeorhash 
+  && $PrevRecord['url'] == $url
      ) {
   $archivedurl = $PrevRecord['archivedurl']; 
   $sync = $PrevRecord['sync']; 
   $archivedurl = $PrevRecord['archivedurl'];
   $vrecipient = $PrevRecord['vrecipient'];
   }
-
+ }
 } catch (\Exception|\Throwable $e) {
   
 return (object) [
