@@ -1313,7 +1313,7 @@ $PrevRecord = ($PrevRecordExecute->status ? iter_to_array($PrevRecordExecute->re
   
 return (object) [
       'status' => false,
-      'response' => 'Merge chatfiles records failed'
+      'response' => 'Merge chatfiles records failed:'.$e->getMessage()
       ];   
 }
 try {
