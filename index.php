@@ -46,7 +46,7 @@ $Init->db = $db;
 $Init->BootLoader();
 $InitData = $Init->Index();
 $AppData = $Init->AppData();
-
+var_dump($InitData->IsEmpty);
 /* temporary app instance */
 $app = new App(
   $InitData->Data, 
@@ -73,7 +73,6 @@ $sitemaps = $sitemap->get(
 /* unset temporary app instance */
 unset($app);
 
-var_dump($InitData);
 if (!$InitData->IsEmpty) {
 /* failed init handler, no files */
 $app = new App(

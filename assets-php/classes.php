@@ -196,7 +196,7 @@ public $db;
   
   }
   
-  public function Index() {
+  public function API() {
   $ChatFilesDataExecute = $this->db->SelectOne(
   'chatfiles',
   ['id' => $this->queryarg]
@@ -228,7 +228,7 @@ public $db;
   ];    
   }
   
-  public function API(){
+  public function Index(){
   $ChatFilesDataExecute = $this->db->Select('chatfiles');
   $ChatFilesDataSelectType = 'all';
   $ChatFilesData = $ChatFilesDataExecute->status ?
