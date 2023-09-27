@@ -1030,9 +1030,7 @@ $this->CallFunc = new stdClass;
 }
 public function get(){
 
-
-if (file_exists($this->generatesitemapfile)) {
-  clearstatcache();
+if (CheckFileSystemModification($this->cfFolder)) {
   $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
     ); 
@@ -1060,12 +1058,13 @@ return (object) [
 }
 
 public function CheckFileSystemModification($cfFolder){
+  clearstatcache();
   $CurrentMTime = filemtime($cfFolder);
-  $PrevMTime = $this->?Appdata->foldername;
+  $PrevMTime = $this->Appdata?->mtimeorhash ?? false;
   
   return ( 
     $CurrentMTime !== $PrevMTime ? 
-    false : true 
+    true : false 
     );
 }
 
