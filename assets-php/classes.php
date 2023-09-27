@@ -1106,24 +1106,14 @@ if (!$MergeDropAndUpateDb->status) {
 /* updae Appdata folder wih conversation hash */
 
 try {
+clearstatcache();
+$cfFoldermtimeorhash = filemtime($cfFolder);
 $UpdateAppData = ($this->CallFunc->{'$db\InsertOrUpdate'})(
     'AppData',
     [
-    'bfc' => $bfc,
-    'filename' => $filename, 
-    'dirpath' => $dirpath, 
-    'dirname' => $dirname, 
-    'search' => $search,
-    'groupchat' => $groupchat,
-    'vrecipient' => $vrecipient,
-    'name' => $name,
-    'sync' => $sync,
-    'filepath' => $filepath,
-    'url' => $url,
-    'mtimeorhash' => $mtime,
-    'archivedurl' => $archivedurl
+    'mtimeorhash' => $cfFoldermtimeorhash
     ],
-    [ 'filepath' => $filepath ]
+    [ 'foldername' => $cfFolder ]
   );
   
   if (!$InsertOrUpdate->status) {
