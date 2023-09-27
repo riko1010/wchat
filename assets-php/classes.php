@@ -195,9 +195,21 @@ public $db;
   public function BootLoader(){
   /* load instance of generate sitemap 
   check db <=> filesystem, 
-  
+  set generate sitemap trigger
   */
-  
+  $GenerateSitemapBLI = new generateSiteMap;
+  $sitemap = new generateSiteMap;
+$sitemap->AppData = $this->AppData();
+$sitemap->cfFilespattern = $this->cfFilespattern;
+$sitemap->SiteUrl = $this->SiteUrl; 
+$sitemap->cfFolder = $this->cfFolder;
+$sitemap->ChatFilesData = $ChatFilesData;
+$sitemap->ChatFilesDataIdAsKeys = $ChatFilesDataIdAsKeys;
+
+$sitemap->bdir = $this->baseDir;
+$sitemap->db = $this->db;
+$sitemap->CallFunc->{'$app\CFgetfiles'} = $app->CFgetfiles(...);
+
   }
   
   public function Index() {
