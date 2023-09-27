@@ -46,18 +46,13 @@ $Init->db = $db;
 $Init->BootLoader();
 $InitData = $Init->Index();
 
-if (!$InitData->IsEmpty) {
-/* failed init handler, no files */
+/* temporary app instance */
 $app = new App(
   $ChatFilesData, 
   $ChatFilesDataIdAsKeys,
   $baseDir
   );
-
-$app->SetChatFile($REQUEST->queryarg);
-/* $app->SelectedId now set  */
-$app->SetVerifiedRecipient( $app->Name );
-
+  
 $sitemap = new generateSiteMap;
 $sitemap->AppData = $AppData;
 $sitemap->cfFilespattern = $cfFilespattern;
@@ -72,7 +67,20 @@ $sitemap->PyArchiveURI = $PyArchiveURI;
 $sitemap->bdir = $baseDir;
 $sitemap->db = $db;
 $sitemap->CallFunc->{'$app\CFgetfiles'} = $app->CFgetfiles(...);
-$sitemaps = $sitemap->get();
+$sitemaps = $sitemap->get(
+  );
+  
+if (!$InitData->IsEmpty) {
+/* failed init handler, no files */
+$app = new App(
+  $ChatFilesData, 
+  $ChatFilesDataIdAsKeys,
+  $baseDir
+  );
+
+$app->SetChatFile($REQUEST->queryarg);
+/* $app->SelectedId now set  */
+$app->SetVerifiedRecipient( $app->Name );
 
 /*
 return [
