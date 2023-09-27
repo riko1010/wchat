@@ -68,12 +68,11 @@ $sitemaps = $sitemap->get(
   );
 /* reinit */
 $InitData = $Init->Index();
-$app->ChatFilesData = $InitData->Data;
-$app->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
 
 if (!$InitData->IsEmpty) {
-
-
+$app->ChatFilesData = $InitData->Data;
+$app->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
+$app->baseDir = $baseDir;
 $app->SetChatFile($REQUEST->queryarg);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
@@ -96,7 +95,7 @@ $processlines->iterable = $app->ChatFileGenerator(
   $processlines->spagination 
   );
 }
-print 'html';
+
 ?>
 <!DOCTYPE html>
 
