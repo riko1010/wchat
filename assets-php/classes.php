@@ -1125,12 +1125,13 @@ $this->CallFunc = new stdClass;
 
 public function get(){
 
-if ($this->CheckFileSystemModification($this->cfFolder)->status == true) {
- print "updatedbfromfs";
+if ($CheckFileSystemModification = $this->CheckFileSystemModification($this->cfFolder) && CheckFileSystemModification->status == true) {
+ 
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
     ); 
   $sitemap = $this->Generate(); 
+  print "updatedbfromfs".$UpdateDBFromFileSystem->response.$sitemap->response.$CheckFileSystemModification->response;
   $sitemap = [ 
     'status' => true,
     'response' => 'Sitemap listed.'
@@ -1162,6 +1163,7 @@ public function CheckFileSystemModification($cfFolder){
   $CurrentMTime = filemtime($cfFolder);
   $PrevMTime = ($this->AppData->Data->mtimeorhash ?? false ) ? $this->AppData->Data->mtimeorhash : false;
   var_dump($this->AppData);
+  var_dump($PrevMTime);
   if ($CurrentMTime == $PrevMTime){
   return (object) [
       'status' => false,
