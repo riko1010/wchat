@@ -1276,7 +1276,7 @@ return (object) [
 
 foreach ($new as $cl){
 clearstatcache();
-$mtime = filemtime($cl['filepath']);
+$mtimeorhash = filemtime($cl['filepath']);
 $bfc = $cl['bfc'];
 $filepath = $cl['filepath'];
 $vrecipient = $cl['vrecipient'];
@@ -1300,7 +1300,7 @@ $PrevRecord = ($PrevRecordExecute->status ? iter_to_array($PrevRecordExecute->re
 
   if ( 
      ( count($PrevRecord) > 0 )
-  && ( $PrevRecord['mtime'] == $mtime )
+  && ( $PrevRecord['mtimeorhash'] == $mtimeorhash )
   && ( $PrevRecord['url'] == $url ) 
      ) {
   $archivedurl = $PrevRecord['archivedurl']; 
@@ -1331,7 +1331,7 @@ $InsertOrUpdate = $this->db->InsertOrUpdate(
     'sync' => $sync,
     'filepath' => $filepath,
     'url' => $url,
-    'mtimeorhash' => $mtime,
+    'mtimeorhash' => $mtimeorhash,
     'archivedurl' => $archivedurl
     ],
     [ 'filepath' => $filepath ]
