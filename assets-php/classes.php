@@ -1062,12 +1062,13 @@ return (object) [
 public function CheckFileSystemModification($cfFolder){
   clearstatcache();
   $CurrentMTime = filemtime($cfFolder);
-  $PrevMTime = $this->Appdata->mtimeorhash ?? false ?? $this->Appdata->mtimeorhash;
-  var_dump($PrevMTime);
-  return ( 
-    $CurrentMTime !== $PrevMTime ? 
-    true : false 
-    );
+  $PrevMTime = ($this->Appdata->mtimeorhash ?? false) ? $this->Appdata->mtimeorhash : false;
+  
+  $status = ($CurrentMTime !== $PrevMTime ? true : false);
+  return (object) [
+      'status' => false,
+      'response' => 'No folders in Chat Folder'
+      ];   
 }
 
 public function UpdateDBFromFileSystem($cfFolder){
