@@ -374,7 +374,9 @@ if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
 $filearray = [];
 $holdbuffer = null;
-$NewLine = '\n';
+/* literal newline, alt is htmlspecialchars_decode of phug render, allowing br, to render as html, $message in pug is currently escaped, alt is rendering as html instead of escape plaintext */
+$NewLine = '
+'; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
@@ -393,12 +395,8 @@ set file array default key to null, regex if date string.solves newline, of chat
    yield $buffer;  
    $holdbuffer = null;
    } else {
-   $holdbuffer .= (
-   $holdbuffer != null ?
-   $NewLine.$buffer 
-   : 
-   $buffer
-   );
+   $holdbuffer .= ($holdbuffer != null ?
+   $NewLine.$buffer : $buffer);
    }
    /*
    if match, check next, if match, yield
