@@ -1031,9 +1031,10 @@ $this->CallFunc = new stdClass;
 public function get(){
 
 if ($this->CheckFileSystemModification($this->cfFolder)->status == true) {
-  $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
+ var_dump( 
+   $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
-    ); 
+    ) ); 
   $sitemap = $this->Generate();  
 } else {
   //check for ??? trigger for sitemap or refresh recommendation for sitemaps */
