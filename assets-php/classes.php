@@ -1030,7 +1030,7 @@ $this->CallFunc = new stdClass;
 }
 public function get(){
 
-if (CheckFileSystemModification($this->cfFolder)) {
+if ($this->CheckFileSystemModification($this->cfFolder)) {
   $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
     ); 

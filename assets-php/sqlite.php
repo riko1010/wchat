@@ -7,7 +7,7 @@ $db = new sqlitedb(
   pj($baseDir, $sqlitedb)
   );
 /* load app data */
-$AppDataExecute = SelectOne(
+$AppDataExecute = $db->SelectOne(
   'AppData',
   [
   'id' => 1
@@ -25,7 +25,7 @@ $AppDataNotEmpty = (count($AppData) > 0 ?
                     */
 /* load chat files if not loading through api */
 if (!isset($api)) {
-$ChatFilesDataExecute = $db->Select();
+$ChatFilesDataExecute = $db->Select('chatfiles');
 $ChatFilesDataSelectType = 'all';
 $ChatFilesData = $ChatFilesDataExecute->status ?
 iter_to_array($ChatFilesDataExecute->response)
@@ -47,7 +47,9 @@ $ChatFilesDataIdAsKeys = array_combine(
   
 } else {
   
-$ChatFilesDataExecute = $db->SelectOne([
+$ChatFilesDataExecute = $db->SelectOne(
+  'chatfiles',
+  [
   'id' => $queryarg
   ]);
 $ChatFilesDataSelectType = 'one';
