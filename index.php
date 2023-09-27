@@ -73,6 +73,7 @@ $sitemaps = $sitemap->get(
 /* unset temporary app instance */
 unset($app);
 
+var_dump($InitData);
 if (!$InitData->IsEmpty) {
 /* failed init handler, no files */
 $app = new App(
