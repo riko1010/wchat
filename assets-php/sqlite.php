@@ -7,7 +7,9 @@ $db = new sqlitedb(
   pj($baseDir, $sqlitedb)
   );
 /* load app data */
-$AppDataExecute = SelectOneConfig([
+$AppDataExecute = SelectOne(
+  'AppData',
+  [
   'id' => 1
   ]);
 $AppData = $AppDataExecute->status ?

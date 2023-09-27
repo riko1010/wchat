@@ -675,9 +675,9 @@ return (object) [
     ];
 }
 
-public function Select(){
+public function Select($Table){
 $selectone = $this->sql->select();
-$selectone->from('chatfiles');
+$selectone->from($Table);
 try {
 $statement = $this->sql->prepareStatementForSqlObject($selectone);
 $results = $statement->execute();
@@ -694,9 +694,12 @@ return (object) [
     ];
 }
 
-public function SelectOne($SelectOneWhereArray){
+public function SelectOne(
+  $Table,
+  $SelectOneWhereArray
+  ){
 $selectone = $this->sql->select();
-$selectone->from('chatfiles');
+$selectone->from($Table);
 $selectone->where($SelectOneWhereArray);
 $selectone->limit(1);
 try {
@@ -715,9 +718,13 @@ return (object) [
     ];
 }
 
-public function DeleteWhereNot($column, ...$args) {
+public function DeleteWhereNot(
+  $Table,
+  $column, 
+  ...$args
+  ) {
 $delete = $this->sql->delete();
-$delete->from('chatfiles');
+$delete->from($Table);
 $delete->where->notIn($column, $args);
 try {
 $statement = $this->sql->prepareStatementForSqlObject($delete);
@@ -1144,6 +1151,7 @@ try {
 $Columnfilepath = array_column($new, 'filepath');
 
 $this->db->DeleteWhereNot(
+  'chatfiles',
   'filepath', 
   ...$Columnfilepath
   );
@@ -1174,6 +1182,7 @@ $archivedurl = '';
 
 try {
 $PrevRecord = $this->db->SelectOne(
+                        'chatfiles',
                         'filepath', 
                         $filepath
                         );
