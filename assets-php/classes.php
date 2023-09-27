@@ -1118,15 +1118,15 @@ public $sitemapxml;
 public $PyArchiveURI;
 public $bdir;
 public $db;
-public object $CallFunc;
+public object $CallFunc = stdClass;
 
 public function __construct(){
-$this->CallFunc = new stdClass;  
+//$this->CallFunc = new stdClass;  
 }
 
 public function get(){
 
-if ($this->CheckFileSystemModification($this->cfFolder, $this->AppData)->status == true) {
+if ($this->CheckFileSystemModification($this->cfFolder)->status == true) {
  var_dump(
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
@@ -1158,11 +1158,11 @@ return (object) [
   ];
 }
 
-public function CheckFileSystemModification($cfFolder, $AppData){
+public function CheckFileSystemModification($cfFolder){
   clearstatcache();
   $CurrentMTime = filemtime($cfFolder);
-  $PrevMTime = ($this->Appdata->mtimeorhash ?? false ) ? $this->Appdata->mtimeorhash : false;
-  var_dump($CurrentMTime.'-'.$this->Appdata);
+  $PrevMTime = ($this->AppData->mtimeorhash ?? false ) ? $this->AppData->mtimeorhash : false;
+  var_dump($CurrentMTime.'-'.$this->AppData);
   if ($CurrentMTime == $PrevMTime){
   return (object) [
       'status' => false,
