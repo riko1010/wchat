@@ -27,15 +27,15 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 -  archive through archive.org spn (pypi/waybackpy), sitemap generation trigges archive, links are from sitemap.csv(updated) ( takes 6 mins each url when throttled ) - sitemap.csv maintains archived links to avoid duplication.
 -  extensionless file fix (filename.) through unzip.py on webhook notice of folder change from dropbox, and, php, on requesting chatfile
 -  pyscripts in python , .htaccess enables cgiexec in python
+-  api for pagination in basedir/api
+-  sqlite for db, db & tables are created on init, updated on directory modification
   
 ## todo
 -  unreachable python urls will fail silently
 -  context menu, floating menu, url, archive.org url, permanent shortlink
--  permanent shortlink to archive.org spn (may use cors requests hack, desire for unmodifiable shortly, current options allow modification when using api)
+-  permanent shortlink to archive.org spn (may use cors requests hack, desire for unmodifiable shortlinks, current options allow modification when using api)
 -  generate sitemap.xml, through unzip.py
 -  error logger - whoops to slack, mail, other, loggly, telegram,
 -  python singleton ? maxtime exec independent of singleton
 -  external services removal for local rendering, google docs viewer, others
 -  centralize config btw php and python
--  api for pagination
--  map reference to files, hash for integrity of keys. direct references pose challenges when accidental file paths are passed outside internal processing (which can happen with api inclusion)
