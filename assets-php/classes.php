@@ -1151,7 +1151,7 @@ $files = $this->filesExists(
   $this->sitemapxml, 
   $this->robotstxt
 );
-
+var_dump($CheckFileSystemModification);
 return (object) [
   'sitemap' => (object) $sitemap,
   'files' => $files
@@ -1162,7 +1162,7 @@ public function CheckFileSystemModification($cfFolder){
   clearstatcache();
   $CurrentMTime = filemtime($cfFolder);
   $PrevMTime = ($this->AppData->Data->mtimeorhash ?? false ) ? $this->AppData->Data->mtimeorhash : false;
-  var_dump($this->AppData);
+  var_dump($this->AppData->Data->mtimeorhash);
   var_dump($PrevMTime);
   if ($CurrentMTime == $PrevMTime){
   return (object) [
