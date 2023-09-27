@@ -649,6 +649,27 @@ return (object) [
     ];
 }
 
+public function SelectOneConfig($SelectConfigWhereArray){
+$selectone = $this->sql->select();
+$selectone->from('AppConfig');
+$selectone->where($SelectConfigWhereArray);
+$selectone->limit(1);
+try {
+$statement = $this->sql->prepareStatementForSqlObject($selectone);
+$results = $statement->execute();
+} catch (\Exception|\Throwable $e) {
+  return (object) [
+    'status' => false,
+    'response' => 'Select config failed'
+    ];
+}
+
+return (object) [
+    'status' => true,
+    'response' => $results
+    ];
+}
+
 public function Select(){
 $selectone = $this->sql->select();
 $selectone->from('chatfiles');
