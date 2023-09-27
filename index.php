@@ -48,8 +48,8 @@ $InitData = $Init->Index();
 
 /* temporary app instance */
 $app = new App(
-  $ChatFilesData, 
-  $ChatFilesDataIdAsKeys,
+  $InitData->Data, 
+  $InitData->DataIdAsKeys,
   $baseDir
   );
   
@@ -69,7 +69,8 @@ $sitemap->db = $db;
 $sitemap->CallFunc->{'$app\CFgetfiles'} = $app->CFgetfiles(...);
 $sitemaps = $sitemap->get(
   );
-  
+/* unset temporary app instance */
+unset($app);
 if (!$InitData->IsEmpty) {
 /* failed init handler, no files */
 $app = new App(
