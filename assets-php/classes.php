@@ -1124,8 +1124,8 @@ $this->CallFunc = new stdClass;
 }
 
 public function get(){
-
-if ($CheckFileSystemModification = $this->CheckFileSystemModification($this->cfFolder) && CheckFileSystemModification->status == true) {
+$CheckFileSystemModification = $this->CheckFileSystemModification($this->cfFolder);
+if ($CheckFileSystemModification->status == true) {
  
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
