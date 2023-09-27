@@ -213,7 +213,7 @@ if (!$InitData->IsEmpty){
     
 <?php
 print "<nav hidden>";
-foreach ($ChatFilesData as $link) {
+foreach ($InitData->Data as $link) {
 print '<a href="'.$link['url'].'">'.$link['url'].'</a> <br />';
 }
 print "</nav>";

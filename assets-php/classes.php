@@ -1297,7 +1297,7 @@ $PrevRecordExecute = $this->db->SelectOne(
     [ 'filepath' => $filepath ]
                         );
 $PrevRecords = ($PrevRecordExecute->status ? iter_to_array($PrevRecordExecute->response) : []);
-$PrevRecord = $PrevRecord[0];
+$PrevRecord = $PrevRecords[0];
   if ( 
      ( count($PrevRecords) > 0 )
   && ( $PrevRecord['mtimeorhash'] == $mtimeorhash )
