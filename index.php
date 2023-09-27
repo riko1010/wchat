@@ -51,7 +51,7 @@ $AppData = $Init->AppData();
 $app = new App;
 
 $sitemap = new generateSiteMap;
-$sitemap->AppData = $AppData;
+$sitemap->AppData = &$AppData;
 $sitemap->cfFilespattern = $cfFilespattern;
 $sitemap->generatesitemapfile = $generatesitemapfile; 
 $sitemap->SiteUrl = $SiteUrl; 
@@ -68,6 +68,7 @@ $sitemaps = $sitemap->get(
   );
 /* reinit */
 $InitData = $Init->Index();
+$AppData = $Init->AppData();
 
 if (!$InitData->IsEmpty) {
 $app->ChatFilesData = $InitData->Data;
