@@ -4,14 +4,14 @@ session_start();
 require_once 'vendor/autoload.php';
 use Elegant\Sanitizer\Sanitizer;
 
-/*
+
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
-*/
+
 
 /* Request Handler */
 
@@ -46,7 +46,7 @@ $Init->db = $db;
 $Init->BootLoader();
 $InitData = $Init->Index();
 $AppData = $Init->AppData();
-var_dump($InitData->IsEmpty);
+
 /* temporary app instance */
 $app = new App(
   $InitData->Data, 
@@ -74,7 +74,7 @@ $sitemaps = $sitemap->get(
 unset($app);
 
 if (!$InitData->IsEmpty) {
-/* failed init handler, no files */
+
 $app = new App(
   $ChatFilesData, 
   $ChatFilesDataIdAsKeys,
@@ -91,7 +91,7 @@ return [
   'files' => [filename, file, exists]
   ];
 */
-
+print 'processlines';
 $processlines = new processLines;
 $processlines->vrecipient = $app->VerifiedRecipient;
 $processlines->groupchat = $app->GroupChat;
@@ -103,7 +103,7 @@ $processlines->iterable = $app->ChatFileGenerator(
   $processlines->spagination 
   );
 }
-
+print 'html';
 ?>
 <!DOCTYPE html>
 
