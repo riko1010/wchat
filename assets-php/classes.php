@@ -192,6 +192,14 @@ public $baseDir;
 public $queryarg;
 public $db;
 
+  public function BootLoader(){
+  /* load instance of generate sitemap 
+  check db <=> filesystem, 
+  
+  */
+  
+  }
+  
   public function Index() {
   $ChatFilesDataExecute = $this->db->SelectOne(
   'chatfiles',

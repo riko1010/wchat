@@ -43,6 +43,7 @@ $Init = new Init;
 $Init->baseDir = $baseDir;
 $Init->queryarg = $REQUEST->queryarg;
 $Init->db = $db;
+$Init->BootLoader();
 $InitData = $Init->Index();
 
 if (!$InitData->IsEmpty) {
