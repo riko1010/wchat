@@ -272,7 +272,12 @@ dev = true;
 if ($app->NPagination != null && $app->SelectedId != null) {
 ?>
 $(document).ready(function(){
-  console.log('dom ready');
+isr = new infinitescrollrequest();
+isr.url = 'api';
+isr.queryarg = '<?=$app->SelectedId;?>';
+isr.pagination = '<?=$app->NPagination;?>';
+isr.recordsperpage = '<?=$recordsperpage;?>';
+isr.responsecontainer = '#whatsappimages';
 // init controller
 controller = new ScrollMagic.Controller();
 	// build scene
@@ -280,15 +285,8 @@ scene = new ScrollMagic.Scene({triggerElement: "#loader", triggerHook: "onEnter"
 .addTo(controller)
 .on("enter", function (e) 
 {
-  console.log('enter event');
 scene.enabled(false);
 $(".loader").removeClass("hidden");
-isr = new infinitescrollrequest();
-isr.url = 'api';
-isr.queryarg = '<?=$app->SelectedId;?>';
-isr.pagination = '<?=$app->NPagination;?>';
-isr.recordsperpage = '<?=$recordsperpage;?>';
-isr.responsecontainer = '#whatsappimages';
 try {
   isr.FetchData().then(function(PromiseResponse) {
   isr.pagination = PromiseResponse.npagination;
