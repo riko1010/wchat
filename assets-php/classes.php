@@ -627,7 +627,10 @@ public function InsertOrUpdate(
 
 $InsertOrUpdate = $this->sql->insert($Table);  
 
-$SelectExecute = $this->SelectOne($UpdateWhereArray);
+$SelectExecute = $this->SelectOne(
+  $Table,
+  $UpdateWhereArray
+  );
 $Select = ($SelectExecute->status ? iter_to_array($SelectExecute->response) : []);
 
 if (count($Select) == 1) {
