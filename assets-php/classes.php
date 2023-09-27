@@ -194,9 +194,9 @@ public $db;
 
   public function Index() {
   
-  $ChatFilesDataExecute = $db->SelectOne(
+  $ChatFilesDataExecute = $this->db->SelectOne(
   'chatfiles',
-  ['id' => $queryarg]);
+  ['id' => $this->queryarg]);
   $ChatFilesDataSelectType = 'one';
   $ChatFilesData = $ChatFilesDataExecute->status ? 
   iter_to_array($ChatFilesDataExecute->response) 
@@ -216,15 +216,15 @@ public $db;
                   );
   
   return (object) [
-  'Data' => ,
-  'DataIdAsKeys' => 
+  'Data' => $ChatFilesData,
+  'DataIdAsKeys' => $ChatFilesDataIdAsKeys,
   'Count' => ''
   ];    
   }
   
   public function API(){
   
-  $ChatFilesDataExecute = $db->Select('chatfiles');
+  $ChatFilesDataExecute = $this->db->Select('chatfiles');
   $ChatFilesDataSelectType = 'all';
   $ChatFilesData = $ChatFilesDataExecute->status ?
   iter_to_array($ChatFilesDataExecute->response)
@@ -243,16 +243,17 @@ public $db;
             );  
   
   return (object) [
-  'Data' => ,
-  'DataIdAsKeys' => 
-  'Count' => ''
+  'Data' => $ChatFilesData,
+  'DataIdAsKeys' => $ChatFilesDataIdAsKeys,
+  'Count' => '',
+  'IsEmpty' => $ChatFilesDataNotEmpty
   ];                         
   }
 
   public function AppData {
   
   /* load app data */
-  $AppDataExecute = $db->SelectOne(
+  $AppDataExecute = $this->db->SelectOne(
                         'AppData',
                         ['id' => 1]);
   $AppData = (object) $AppDataExecute->status ?
@@ -269,9 +270,7 @@ public $db;
   /* load chat files if not loading through api */
   
   return (object) [
-  'Data' => ,
-  'DataIdAsKeys' => 
-  'Count' => ''
+  'Data' => $AppData
   ];   
   }
 }
