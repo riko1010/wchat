@@ -944,7 +944,9 @@ else
 ';
 
 // Facade way (with Phug)
-yield $phug->render($template);
+yield htmlspecialchars_decode(
+  $phug->render($template)
+  );
                 
 }
                     
