@@ -260,10 +260,8 @@ public $db;
   $AppDataExecute = $this->db->SelectOne(
                         'AppData',
                         ['id' => 1]);
-  $AppData = (object) $AppDataExecute->status ?
-  iter_to_array($AppDataExecute->response)
-  :
-  [];
+  $AppData = (object) ($AppDataExecute->status ?
+  iter_to_array($AppDataExecute->response) : []);
   /*
   $AppDataNotEmpty = (count($AppData) > 0 ? 
   true 
@@ -1161,7 +1159,7 @@ return (object) [
 public function CheckFileSystemModification($cfFolder){
   clearstatcache();
   $CurrentMTime = filemtime($cfFolder);
-  $PrevMTime = ($this->AppData->mtimeorhash ?? false ) ? $this->AppData->mtimeorhash : false;
+  $PrevMTime = ($this->AppData->Data->mtimeorhash ?? false ) ? $this->AppData->Data->mtimeorhash : false;
   var_dump($this->AppData);
   if ($CurrentMTime == $PrevMTime){
   return (object) [
