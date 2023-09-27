@@ -1192,9 +1192,8 @@ $archivedurl = '';
 
 try {
 $PrevRecord = $this->db->SelectOne(
-                        'chatfiles',
-                        'filepath', 
-                        $filepath
+    'chatfiles',
+    [ 'filepath' => $filepath ]
                         );
 
   if ( 
