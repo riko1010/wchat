@@ -185,6 +185,10 @@ file_put_contents($ChatFile, str_replace($fromstring, $tostring, file_get_conten
 return 'success';
 }
 
+class Init {
+  
+}
+
 class App{
   
 public $ChatFile; 
