@@ -45,6 +45,7 @@ $Init->queryarg = $REQUEST->queryarg;
 $Init->db = $db;
 $Init->BootLoader();
 $InitData = $Init->Index();
+$AppData = $Init->AppData();
 
 /* temporary app instance */
 $app = new App(
@@ -71,6 +72,7 @@ $sitemaps = $sitemap->get(
   );
 /* unset temporary app instance */
 unset($app);
+
 if (!$InitData->IsEmpty) {
 /* failed init handler, no files */
 $app = new App(

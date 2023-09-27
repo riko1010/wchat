@@ -255,8 +255,7 @@ public $db;
   ];                         
   }
 
-  public function AppData {
-  
+  public function AppData ()
   /* load app data */
   $AppDataExecute = $this->db->SelectOne(
                         'AppData',
