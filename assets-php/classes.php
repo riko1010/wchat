@@ -1050,7 +1050,8 @@ return (object) [
 }
 
 public function CheckFileSystemModification($cfFolder){
-  
+  $CurrentMTime = filemtime($cfFolder);
+  $PrevMTime = '';
 }
 
 public function UpdateDBFromFileSystem($cfFolder){
@@ -1075,10 +1076,10 @@ $cfFiles = ($this->CallFunc->{'$app\CFgetfiles'})(
       ];   
   }
 
-$OldArray = $this->ChatFilesData;
+$PrevArray = $this->ChatFilesData;
 $NewArray = $cfFiles->cfl;
 $MergeDropAndUpateDb = $this->MergeDropAndUpateDb(
-              $OldArray, 
+              $PrevArray, 
               $NewArray
               );
 
@@ -1111,7 +1112,7 @@ $data[] = [
 return $data;
 }
 
-public function MergeDropAndUpateDb($old, $new){
+public function MergeDropAndUpateDb($Prev, $new){
 
 try {
 $Columnfilepath = array_column($new, 'filepath');
@@ -1146,20 +1147,20 @@ $archivedurl = '';
 //$synctime = time();
 
 try {
-$OldRecord = $this->db->SelectOne(
+$PrevRecord = $this->db->SelectOne(
                         'filepath', 
                         $filepath
                         );
 
   if ( 
-     ( count($OldRecord) > 0 )
-  && ( $OldRecord['mtime'] == $mtime )
-  && ( $OldRecord['url'] == $url ) 
+     ( count($PrevRecord) > 0 )
+  && ( $PrevRecord['mtime'] == $mtime )
+  && ( $PrevRecord['url'] == $url ) 
      ) {
-  $archivedurl = $OldRecord['archivedurl']; 
-  $sync = $OldRecord['sync']; 
-  $archivedurl = $OldRecord['archivedurl'];
-  $vrecipient = $OldRecord['vrecipient'];
+  $archivedurl = $PrevRecord['archivedurl']; 
+  $sync = $PrevRecord['sync']; 
+  $archivedurl = $PrevRecord['archivedurl'];
+  $vrecipient = $PrevRecord['vrecipient'];
   }
 
 } catch (\Exception|\Throwable $e) {
@@ -1266,7 +1267,7 @@ if (file_exists($this->sitemapxml) && file_exists($this->generatesitemapfile)) {
   //rename($this->generatesitemapfile, Path::join('autodelete', $this->generatesitemapfile));
 } else {
   /* failed to generate sitemap, restore old */
-  if (file_exists(Path::join('autodelete', $this->sitemapxml))) {
+  if (fie_exists(Path::join('autodelete', $this->sitemapxml))) {
     clearstatcache();
     rename(Path::join('autodelete', $this->sitemapxml), $this->sitemapxml);
   return (object) [
