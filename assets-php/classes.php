@@ -1020,6 +1020,7 @@ $this->CallFunc = new stdClass;
 }
 public function get(){
 
+
 if (file_exists($this->generatesitemapfile)) {
   clearstatcache();
   $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
@@ -1046,6 +1047,10 @@ return (object) [
   'sitemap' => (object) $sitemap,
   'files' => $files
   ];
+}
+
+public function CheckFileSystemModification($cfFolder){
+  
 }
 
 public function UpdateDBFromFileSystem($cfFolder){
