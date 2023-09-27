@@ -269,7 +269,7 @@ dev = true;
 <?php
 /* try, catch exception to precent break on exceptions */
 /* no scrollmagic needed if no id or pagination */
-if ($app->NPpagination != null && $app->SelectedId != null) {
+if ($app->NPagination != null && $app->SelectedId != null) {
 ?>
 $(document).ready(function(){
 // init controller
@@ -299,7 +299,8 @@ try {
   scene.enabled(true);
   scene.update();  
   });
-} catch(e) {
+} catch(e) 
+  console.log(e);
   $('.loader').addClass('hidden');
   scene.enabled(true);
   scene.update();  
