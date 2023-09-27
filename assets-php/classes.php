@@ -1125,7 +1125,8 @@ $cfFoldermtimeorhash = filemtime($cfFolder);
 $UpdateAppData = $this->db->InsertOrUpdate(
     'AppData',
     [
-    'mtimeorhash' => $cfFoldermtimeorhash
+    'mtimeorhash' => $cfFoldermtimeorhash,
+    'foldername' => $cfFolder
     ],
     [ 'foldername' => $cfFolder ]
   );
