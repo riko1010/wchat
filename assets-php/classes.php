@@ -647,7 +647,7 @@ $results = $statement->execute();
 } catch (\Exception|\Throwable $e) {
   return (object) [
     'status' => false,
-    'response' => 'Insert or Update chat files records failed'
+    'response' => 'Insert or Update records failed'
     ];
 }
 
