@@ -1118,7 +1118,7 @@ public $sitemapxml;
 public $PyArchiveURI;
 public $bdir;
 public $db;
-public object $CallFunc = stdClass;
+public stdClass $CallFunc;
 
 public function __construct(){
 //$this->CallFunc = new stdClass;  
