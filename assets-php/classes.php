@@ -260,8 +260,9 @@ public $db;
   $AppDataExecute = $this->db->SelectOne(
                         'AppData',
                         ['id' => 1]);
-  $AppData = (object) ($AppDataExecute->status ?
+  $AppDatas = ($AppDataExecute->status ?
   iter_to_array($AppDataExecute->response) : []);
+  $AppData = (object) (count($AppDatas) > 0 ? $AppDatas[0]  : []);
   /*
   $AppDataNotEmpty = (count($AppData) > 0 ? 
   true 
