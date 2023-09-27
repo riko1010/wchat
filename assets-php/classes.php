@@ -608,6 +608,14 @@ $sql = "CREATE TABLE IF NOT EXISTS 'AppData' (
 $statement = $this->adapter->query($sql);
 $statement->execute();
 
+$sql = "INSERT OR UPDATE IF NOT EXISTS 'AppData' (
+  'id'
+  'foldername' TEXT NOT NULL
+  )";
+
+$statement = $this->adapter->query($sql);
+$statement->execute();
+
 $sql = "CREATE TABLE IF NOT EXISTS 'AppLog' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
   'datetime' INT NULL default (strftime('%s','now')),
@@ -650,13 +658,13 @@ return (object) [
     ];
 }
 
-public function SelectOneConfig($SelectConfigWhereArray){
-$selectone = $this->sql->select();
-$selectone->from('AppConfig');
-$selectone->where($SelectConfigWhereArray);
-$selectone->limit(1);
+public function SelectOneAppData($SelectOneAppDataWhereArray){
+$SelectOneAppData = $this->sql->select();
+$SelectOneAppData->from('AppData');
+$SelectOneAppData->where($SelectConfigWhereArray);
+$SelectOneAppData->limit(1);
 try {
-$statement = $this->sql->prepareStatementForSqlObject($selectone);
+$statement = $this->sql->prepareStatementForSqlObject($SelectOneAppData);
 $results = $statement->execute();
 } catch (\Exception|\Throwable $e) {
   return (object) [
