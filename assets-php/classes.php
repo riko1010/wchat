@@ -192,7 +192,38 @@ class Init {
   public $sqlitedb;
   
   public function Index() {
-    
+  
+  
+$ChatFilesDataExecute = $db->SelectOne(
+  'chatfiles',
+  [
+  'id' => $queryarg
+  ]);
+$ChatFilesDataSelectType = 'one';
+$ChatFilesData = $ChatFilesDataExecute->status ? 
+iter_to_array($ChatFilesDataExecute->response) 
+: 
+[];
+$ChatFilesDataNotEmpty = (count($ChatFilesData) > 0 ? 
+  true 
+  : 
+  false
+  );  
+
+$ChatFilesDataKeys = array_column(
+  $ChatFilesData, 
+  'id'
+  );
+$ChatFilesDataIdAsKeys = array_combine(
+                        $ChatFilesDataKeys, 
+                        $ChatFilesData
+                        );
+  
+  return (object) [
+    'Data' => ,
+    'DataIdAsKeys' => 
+    'Count' => ''
+    ];    
   }
   
   public function API(){
@@ -216,6 +247,12 @@ $ChatFilesDataIdAsKeys = array_combine(
                         $ChatFilesDataKeys, 
                         $ChatFilesData
                         );  
+  
+  return (object) [
+    'Data' => ,
+    'DataIdAsKeys' => 
+    'Count' => ''
+    ];                         
   }
   
   public function AppData {
