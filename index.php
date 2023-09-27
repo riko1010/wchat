@@ -49,6 +49,7 @@ $app->SetVerifiedRecipient( $app->Name );
 
 if ($ChatFilesDataNotEmpty) {
 $sitemap = new generateSiteMap;
+$sitemap->AppData = $AppData;
 $sitemap->cfFilespattern = $cfFilespattern;
 $sitemap->generatesitemapfile = $generatesitemapfile; 
 $sitemap->SiteUrl = $SiteUrl; 
