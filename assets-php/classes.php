@@ -1129,7 +1129,7 @@ $this->CallFunc = new stdClass;
 
 public function get(){
 
-if ($this->CheckFileSystemModification($this->cfFolder)->status == true) {
+if ($this->CheckFileSystemModification($this->cfFolder, $this->AppData)->status == true) {
  var_dump( 
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
@@ -1157,10 +1157,10 @@ return (object) [
   ];
 }
 
-public function CheckFileSystemModification($cfFolder){
+public function CheckFileSystemModification($cfFolder, $AppData){
   clearstatcache();
   $CurrentMTime = filemtime($cfFolder);
-  $PrevMTime = ($this->Appdata->mtimeorhash ?? false ) ? $this->Appdata->mtimeorhash : false;
+  $PrevMTime = ($Appdata->mtimeorhash ?? false ) ? $Appdata->mtimeorhash : false;
   
   if ($CurrentMTime == $PrevMTime){
   return (object) [
