@@ -272,6 +272,7 @@ dev = true;
 if ($app->NPagination != null && $app->SelectedId != null) {
 ?>
 $(document).ready(function(){
+  console.log('dom ready');
 // init controller
 controller = new ScrollMagic.Controller();
 	// build scene
@@ -279,6 +280,7 @@ scene = new ScrollMagic.Scene({triggerElement: "#loader", triggerHook: "onEnter"
 .addTo(controller)
 .on("enter", function (e) 
 {
+  console.log('enter event');
 scene.enabled(false);
 $(".loader").removeClass("hidden");
 isr = new infinitescrollrequest();
@@ -299,7 +301,7 @@ try {
   scene.enabled(true);
   scene.update();  
   });
-} catch(e) 
+} catch(e) {
   console.log(e);
   $('.loader').addClass('hidden');
   scene.enabled(true);
