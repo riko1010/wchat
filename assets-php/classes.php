@@ -1131,7 +1131,7 @@ $UpdateAppData = $this->db->InsertOrUpdate(
   );
   
   if (!$UpdateAppData->status) {
-    Throw Exception ($UpdateAppData->response);
+    Throw new Exception ($UpdateAppData->response);
   }
 } catch (\Exception|\Throwable $e) {
   return (object) [
@@ -1244,7 +1244,7 @@ $InsertOrUpdate = $this->db->InsertOrUpdate(
   );
   
   if (!$InsertOrUpdate->status) {
-    Throw Exception ($InsertOrUpdate->response);
+    Throw new Exception ($InsertOrUpdate->response);
   }
 } catch (\Exception|\Throwable $e) {
   return (object) [
