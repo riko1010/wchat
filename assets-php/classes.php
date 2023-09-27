@@ -685,7 +685,7 @@ $sql = "CREATE TABLE IF NOT EXISTS 'chatfiles' (
   'synctime' INTEGER NULL default (strftime('%s','now')), 
   'filepath' TEXT NOT NULL, 
   'url' TEXT NOT NULL, 
-  'archivedurl' NULL TEXT, 
+  'archivedurl' TEXT NULL, 
   'mtimeorhash' TEXT NOT NULL
   )";
 
