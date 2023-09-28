@@ -93,8 +93,8 @@ if ($app->NoSelected === true) {
 $app->SetVerifiedRecipient( $app->Name );
 
 $PaginationViability = $app->PaginationViability(
- (int) $REQUEST->paginationfrom,
- (int) $REQUEST->paginationto
+  $REQUEST->paginationfrom,
+  $REQUEST->paginationto
   );
   
 if ($PaginationViability->status === false) {
