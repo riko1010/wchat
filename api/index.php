@@ -36,7 +36,7 @@ $filters = [
 ];
 
 $REQUEST = (object) (new Sanitizer($data, $filters))->sanitize();
-
+/* fallback will be termination, notice */
 
 if (
   $REQUEST->pagination != null && 
