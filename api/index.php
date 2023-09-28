@@ -121,8 +121,8 @@ $ApiResponse = new stdClass;
 $ProcessLines = $processlines->Process();
 /* $processlines->iterable->getReturn() reasonably available after processLines/Process* */
 $ApiResponse->response = iter_to_array($ProcessLines);
-$ApiResponse->paginationfrom = $processlines->NPaginationFrom;
-$ApiResponse->paginationto = $processlines->NPaginationTo;
+$ApiResponse->paginationfrom = $app->NPaginationFrom;
+$ApiResponse->paginationto = $app->NPaginationTo;
 $ApiResponse->status = 'success';
 print json_encode($ApiResponse);
 exit;
