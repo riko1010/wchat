@@ -111,8 +111,8 @@ $processlines->groupchat = $app->GroupChat;
 $processlines->ChatFile = $app->ChatFile;
 $processlines->dirpath = $app->DirPath;
 $processlines->baseDir = $baseDir;
-$processlines->PaginationFrom = (int) $REQUEST->paginationfrom;
-$processlines->PaginationTo = (int) $REQUEST->paginationto;
+$processlines->PaginationFrom = $REQUEST->paginationfrom;
+$processlines->PaginationTo = $REQUEST->paginationto;
 $processlines->iterable = $app->ChatFileGenerator(
   $processlines->PaginationFrom,
   $processlines->PaginationTo
