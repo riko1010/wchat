@@ -85,7 +85,8 @@ $processlines->baseDir = $baseDir;
 $processlines->PaginationFrom = 0;
 $processlines->PaginationTo = $recordsperpage;
 $processlines->iterable = $app->ChatFileGenerator(
-  $processlines->PaginationFrom 
+  $processlines->PaginationFrom,
+  $processlines->PaginationTo
   );
 }
 
