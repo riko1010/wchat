@@ -292,7 +292,7 @@ public $CheckLegacy = false;
 public $VerifiedRecipient;
 public $Name;
 public $baseDir;
-public $NPagination;
+public object $NPagination;
 
 public function __construct() {
 
