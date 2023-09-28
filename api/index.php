@@ -61,7 +61,7 @@ $AppData = $Init->AppData();
 
 /* app instance */
 $app = new App;
-
+/* query arg did not find requested file, no file exists all possible reason for isempty, index updates db from fs when this happens using generatesitemap\get , filenotfound may trigger ajax index refresh (prospect of file being intentionally deleted, will notify and return to hash with true page reload, wont update db from fs here */
 if ($InitData->IsEmpty) {
  $ApiResponse->status = 'filenotfound';
  $ApiResponse->response = 'file not found';
