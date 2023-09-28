@@ -283,7 +283,8 @@ $(document).ready(function(){
 isr = new infinitescrollrequest();
 isr.url = 'api';
 isr.queryarg = '<?=$app->SelectedId;?>';
-isr.pagination = '<?=$app->NPagination;?>';
+isr.paginationfrom = '<?=$app->NPagination;?>';
+isr.paginationto = '<?=$app->NPagination;?>';
 isr.recordsperpage = '<?=$recordsperpage;?>';
 /* must overflow vh for trigger event 'onenter' reasonably*/
 isr.minrecordsperpage = 50; 
