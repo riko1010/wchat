@@ -267,7 +267,7 @@ if ($sitemap['exists'] == false) continue;
 </div>
 
     <footer>
-      <?=(!$app->NPagination ?: $app->NPagination->From.','.$app->NPagination->To);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
+      <?=($app->eof ?: $app->NPagination->From.','.$app->NPagination->To);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
     </footer>
 <script src="assets-js/classes.js" referrerpolicy="no-referrer"></script>    
 <script>
@@ -275,7 +275,7 @@ dev = true;
 <?php
 /* try, catch exception to precent break on exceptions */
 /* no scrollmagic needed if no id or pagination */
-if ($app->NPagination != null && $app->SelectedId != null) {
+if ($app->eof == false && $app->SelectedId != null) {
 ?>
 $(document).ready(function(){
 isr = new infinitescrollrequest();
