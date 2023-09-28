@@ -510,8 +510,8 @@ set file array default key to null, regex if date string.solves newline, of chat
      if ($holdbuffer != null) {
        yield $holdbuffer;
      $holdbuffer = null;
-     break;
      }
+     break;
    }
 if ($holdbuffer != null) {
 /* tolerant termination to next match */
@@ -519,10 +519,12 @@ $to++;
 }
 $i++;
 } while ($i < $to);
+
 if ($eof) {
 $NextTo = $to + $GLOBALS['recordsperpage'];
 $this->NPagination = "{$to},{$NextTo}";
 }
+
 return $this->NPagination;
 }
 
