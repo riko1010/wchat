@@ -292,7 +292,8 @@ public $CheckLegacy = false;
 public $VerifiedRecipient;
 public $Name;
 public $baseDir;
-public object $NPagination;
+public int $NPaginationFrom;
+public int $NPaginationTo;
 public bool $eof = false;
 
 public function __construct() {
@@ -526,10 +527,8 @@ $i++;
 
 if (!$this->eof) {
 $NextTo = $to + $GLOBALS['recordsperpage'];
-$this->NPagination = (object) [
-  'From' => $to, 
-  'To' => $NextTo
-  ];
+$this->NPaginationFrom = $to;
+$this->NPaginationTo = $NextTo;
 }
 
 return $this->NPagination;
