@@ -457,8 +457,8 @@ $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 }
 
 public function ChatFileGenerator(
-  $PaginationFrom = null,
-  $PaginationTo = null,
+ int $PaginationFrom = null,
+ int $PaginationTo = null,
   $cfFiles = null
   ){
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
@@ -473,7 +473,7 @@ $NewLine = '
 '; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = (is_numeric(trim($PaginationFrom)) ? trim($PaginationFrom) : 0 );
-$to = (is_numeric(trim($PaginationTo)) ? trim($PaginationTo) : $GLOBALS['recordsperpage'] );
+$to = $oto = (is_numeric(trim($PaginationTo)) ? trim($PaginationTo) : $GLOBALS['recordsperpage'] );
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
@@ -531,7 +531,12 @@ $this->NPaginationFrom = $to;
 $this->NPaginationTo = $NextTo;
 }
 
-return $this->NPagination;
+return (object) [
+  'PaginationFrom' => $from,
+  'PaginationTo' => $oto,
+  'TolerantPaginationTo' => $to,
+  'TerminationType' => $TerminationType
+  ];
 }
 
 public function ChatFileGeneratorRecipient($Paginations, $cfFiles = null){
