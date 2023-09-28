@@ -51,7 +51,32 @@ $queryarg = $REQUEST->queryarg;
 $pagination = $REQUEST->pagination;
 $ApiResponse = new stdClass;
 
+$db = new sqlitedb(
+  pj($baseDir, $sqlitedb)
+  );
+$Init = new Init;
+$Init->baseDir = $baseDir;
+$Init->queryarg = $REQUEST->queryarg;
+$Init->db = $db;
+$InitData = $Init->API();
+$AppData = $Init->AppData();
 
+/* app instance */
+$app = new App;
+
+if (!$InitData->IsEmpty) {
+
+$processlines = new processLines;
+$processlines->vrecipient = $app->VerifiedRecipient;
+$processlines->groupchat = $app->GroupChat;
+$processlines->ChatFile = $app->ChatFile;
+$processlines->dirpath = $app->DirPath;
+$processlines->baseDir = $baseDir;
+$processlines->spagination = "0,$recordsperpage";
+$processlines->iterable = $app->ChatFileGenerator(
+  $processlines->spagination 
+  );
+}
 if (!$ChatFilesDataNotEmpty) {
  $ApiResponse->status = 'filenotfound';
  $ApiResponse->status = 'file not found';
@@ -59,17 +84,14 @@ if (!$ChatFilesDataNotEmpty) {
  exit; 
 }
 
-if ($ChatFilesDataSelectType == 'one') {
-/* ChatFilesData array index, ChatFilesDataIdAsKeys array index, one, all, acceptable as session/queryarg,  'one'/* processed which default to first item in array, [0] */
-}
+$app = new App;
+$app->ChatFilesData = $InitData->Data;
+$app->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
+$app->baseDir = $baseDir;
+$app->SetChatFile($REQUEST->queryarg);
+/* $app->SelectedId now set  */
+$app->SetVerifiedRecipient( $app->Name );
 
-$app = new App(
-  $ChatFilesData, 
-  $ChatFilesDataIdAsKeys,
-  $baseDir
-  );
-
-$app->SetChatFile($queryarg);
 /* for api, cant default to first item in array, App\NoSelected does not return true on defaulting to first item in ChatFilesData , ChatFilesDataIdAsKeys */
 if ($app->NoSelected === true) {
  $ApiResponse->status = 'filenotfound';
@@ -77,8 +99,6 @@ if ($app->NoSelected === true) {
  print json_encode($ApiResponse);
  exit; 
 }
-
-$app->SetVerifiedRecipient( $app->Name );
 
 $PaginationViability = $app->PaginationViability(
   $REQUEST->pagination
