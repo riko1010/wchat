@@ -46,7 +46,7 @@ if (
   ) {
 
 /* further declaration of multiple use vars */
-/* _request/queryarg can accept $ChatFilesData index starting from 0, $ChatFilesDataIdAsKeys indexed by id, search, 'one', 'all' for selection of SelectOne or Select in sqlite chatfiles query */
+/* _request/queryarg can accept $ChatFilesData index starting from 0, $ChatFilesDataIdAsKeys indexed by id, search */
 $queryarg = $REQUEST->queryarg;
 $pagination = $REQUEST->pagination;
 $ApiResponse = new stdClass;
@@ -64,33 +64,17 @@ $AppData = $Init->AppData();
 /* app instance */
 $app = new App;
 
-if (!$InitData->IsEmpty) {
-
-$processlines = new processLines;
-$processlines->vrecipient = $app->VerifiedRecipient;
-$processlines->groupchat = $app->GroupChat;
-$processlines->ChatFile = $app->ChatFile;
-$processlines->dirpath = $app->DirPath;
-$processlines->baseDir = $baseDir;
-$processlines->spagination = "0,$recordsperpage";
-$processlines->iterable = $app->ChatFileGenerator(
-  $processlines->spagination 
-  );
-}
-if (!$ChatFilesDataNotEmpty) {
+if ($InitData->IsEmpty) {
  $ApiResponse->status = 'filenotfound';
  $ApiResponse->status = 'file not found';
  print json_encode($ApiResponse);
  exit; 
 }
 
-$app = new App;
 $app->ChatFilesData = $InitData->Data;
 $app->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
 $app->baseDir = $baseDir;
 $app->SetChatFile($REQUEST->queryarg);
-/* $app->SelectedId now set  */
-$app->SetVerifiedRecipient( $app->Name );
 
 /* for api, cant default to first item in array, App\NoSelected does not return true on defaulting to first item in ChatFilesData , ChatFilesDataIdAsKeys */
 if ($app->NoSelected === true) {
@@ -99,6 +83,8 @@ if ($app->NoSelected === true) {
  print json_encode($ApiResponse);
  exit; 
 }
+
+$app->SetVerifiedRecipient( $app->Name );
 
 $PaginationViability = $app->PaginationViability(
   $REQUEST->pagination
