@@ -977,10 +977,10 @@ $phug->share([
 $template .= '
 component attachment
  .spotlight(indexnum="$counterfilearray" data-src="$docviewer")
-  div(class="card shadow-none border bg-soft-whatsapp")
+  div(class="card shadow-none border bg-wa")
    .card-body
      div(class="avatar me-1")
-      div(class="avatar-title rounded bg-soft-whatsapp text-primary")
+      div(class="avatar-title rounded bg-wa text-primary")
         img.fileiconsvg( src="$fileicon")
      div 
       a.glightbox3(data-gallery="gallery1" data-height="80vh" data-width="90%" href="$docviewer" data-glightbox="title: $filecaption $filenameandext" data-preload="true")
@@ -1031,8 +1031,8 @@ elseif $type == "chat"
   
     .col-9
       div(class=$recipient ? "" : "message-right" class="col-auto message")
-       div(class=$recipient ? "message-left chat message-left-contents" : "message-right-contents bg-soft-whatsapp" class="col rounded p-2")
-         div(class=$recipient ? "message-left" : "bg-soft-whatsapp" class="col sender") #{$sender}
+       div(class=$recipient ? "message-left chat message-left-contents" : "message-right-contents bg-wa" class="col rounded p-2")
+         div(class=$recipient ? "message-left" : "bg-wa" class="col sender") #{$sender}
          div(class=$recipient ? "message-left" : "")
            if $groupchat == true
             div(class="col groupsender message-left" style="color:$sendercolor;")
@@ -1043,7 +1043,7 @@ elseif $type == "chat"
            else
             div
              span.messageEl #{$message}
-         span(class="col time" class=$recipient ? "message-left" : "bg-soft-whatsapp") #{$time}
+         span(class="col time" class=$recipient ? "message-left" : "bg-wa") #{$time}
 else
  +unformattedchatline
 ';
