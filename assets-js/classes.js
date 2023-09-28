@@ -22,16 +22,16 @@ class infinitescrollrequest {
         },
         dataType: 'json'
       }).then(function(AjaxResponse) {
+        Classthis.EndTime = Date.now();
         devlog('request done');
         if (AjaxResponse.status == 'success') {
           PromiseResponse.npagination = AjaxResponse.pagination;
-          Classthis.EndTime = Date.now();
           /* adjust total records by response speed for 100 records default min = 25, max = 100 */
-          Classthis.TotalTime = (Classthis.EndTime - Classthis.StartTime);
-          devlog(`${Classthis.TotalTime}  mseconds`);
-          Classthis.TimeForARecord = Classthis.TotalTime / Classthis.recordsperpage;
-          Classthis.adjustedpagination = Classthis.maxFetchDataDuration * Classthis.TimeForARecord;
-          PromiseResponse.npagination = Classthis.adjustedpagination;
+          Classthis.TotalDuration = (Classthis.EndTime - Classthis.StartTime);
+          devlog(`${Classthis.TotalDuration}  mseconds`);
+          Classthis.DurationForARecord = Classthis.TotalDuration / Classthis.recordsperpage;
+          Classthis.adjustedpaginationTo = Classthis.maxFetchDataDuration * Classthis.DurationForARecord;
+          PromiseResponse.npagination.To = Classthis.adjustedpaginationTo;
           
           $(Classthis.responsecontainer).append(AjaxResponse.response);
           
