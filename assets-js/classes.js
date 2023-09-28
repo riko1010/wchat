@@ -37,7 +37,7 @@ if (Ct.TotalDuration > Ct.maxFetchDataDuration) {
 /* adjust total records by response speed for 100 records default min = 25, max = 100 */
 devlog(`${Ct.TotalDuration}  mseconds`);
 Ct.DurationForARecord = Ct.TotalDuration / Ct.recordsperpage;
-Ct.nrecordsperpage = Ct.maxFetchDataDuration * Ct.DurationForARecord;
+Ct.nrecordsperpage = Ct.recordsperpage / Ct.maxFetchDataDuration;
 devlog(`New records per page: ${Ct.nrecordsperpage}`);
 if (Ct.nrecordsperpage < Ct.minrecordsperpage) {
 /* set to minimum if connection extremely slow, must overflow vh for trigger reasonably */
