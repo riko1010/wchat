@@ -470,7 +470,7 @@ $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Paginat
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
-return $Paginations;
+return null;
 }
 do {
   $buffer = $sfd->current();
