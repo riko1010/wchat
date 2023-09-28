@@ -32,7 +32,10 @@ class infinitescrollrequest {
           Classthis.DurationForARecord = Classthis.TotalDuration / Classthis.recordsperpage;
           Classthis.adjustedrecordsperpage = Classthis.maxFetchDataDuration * Classthis.DurationForARecord;
           if (Classthis.adjustedrecordsperpage < Classthis.minrecordsperpage) {
+            /* set to minimum if connection extremely slow, must overflow vh for trigger reasonably */
             Classthis.adjustedrecordsperpage = Classthis.minrecordsperpage;
+            Classthis.adjustedpaginationTo = PromiseResponse.npagination.From + Classthis.adjustedrecordsperpage;
+          } else {
             Classthis.adjustedpaginationTo = PromiseResponse.npagination.From + Classthis.adjustedrecordsperpage;
           }
           PromiseResponse.npagination.To = Classthis.adjustedpaginationTo;
