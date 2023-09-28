@@ -39,3 +39,6 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 -  python singleton ? maxtime exec independent of singleton
 -  external services removal for local rendering, google docs viewer, others
 -  centralize config btw php and python
+
+Coding style
+Usage of types, which would be unecessary for small tasks, 0 increasingly being a default value for int type, preference of casting types to int/type, 1 will be used a start point for all affairs including 0 based keys, 0 will be assumed to be null.
