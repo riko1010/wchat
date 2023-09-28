@@ -11,6 +11,7 @@ class infinitescrollrequest {
     return new Promise(function(resolve, reject) {
       /* post request sent was built and network debugger shows the request body built and concatenated with &, type www/urlencoded** data , api shows $_REQUEST to be empty. using get, requests is deprecated, axios examples for post do not work, superagent, fetch, others considered or xmlhttp* */
       let PromiseResponse = {};
+      Classthis.StartTime = Date.now();
       $.ajax({
         method: "GET",
         url: Classthis.url,
@@ -22,6 +23,7 @@ class infinitescrollrequest {
       }).then(function(AjaxResponse) {
         devlog('request done');
         if (AjaxResponse.status == 'success') {
+          Classthis.EndTime = Date.Now();
           $(Classthis.responsecontainer).append(AjaxResponse.response);
           PromiseResponse.npagination = AjaxResponse.pagination;
         } else if (AjaxResponse.status == 'eof') {

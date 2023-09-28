@@ -295,14 +295,13 @@ scene = new ScrollMagic.Scene({triggerElement: "#loader", triggerHook: "onEnter"
 scene.enabled(false);
 $(isr.loadercontainer).removeClass("hidden");
 try {
-  StartTime = Date.now();
   isr.FetchData().then(function(PromiseResponse) {
+    /* success handler */
   isr.pagination = PromiseResponse.npagination;
   isr.FetchDataSuccessHandler(PromiseResponse);
   $(isr.loadercontainer).addClass("hidden");
   }, function(PromiseResponse){
   /* failed request, enable scene event listener */
-  EndTime = Date.now();
   $(isr.loadercontainer).addClass("hidden");
   scene.enabled(true);
   scene.update();  
