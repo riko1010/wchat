@@ -303,7 +303,8 @@ $(isr.loadercontainer).removeClass("hidden");
 try {
   isr.FetchData().then(function(PromiseResponse) {
     /* success handler */
-  isr.pagination = PromiseResponse.npagination;
+  isr.paginationfrom = PromiseResponse.npaginationfrom;
+  isr.paginationto = PromiseResponse.npaginationto;
   isr.recordsperpage = PromiseResponse.nrecordsperpage;
   
   isr.FetchDataSuccessHandler(PromiseResponse);

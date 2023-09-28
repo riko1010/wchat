@@ -29,7 +29,8 @@ if (AjaxResponse.status == 'success') {
 $(Ct.responsecontainer).append(AjaxResponse.response);
 
 Ct.TotalDuration = (Ct.EndTime - Ct.StartTime);
-PromiseResponse.npagination = AjaxResponse.pagination;
+PromiseResponse.npaginationfrom = AjaxResponse.paginationfrom;
+PromiseResponse.npaginationto = AjaxResponse.paginationto;
 PromiseResponse.nrecordsperpage = Ct.recordsperpage;
 
 if (Ct.TotalDuration > Ct.maxFetchDataDuration) {
@@ -40,14 +41,14 @@ Ct.nrecordsperpage = Ct.maxFetchDataDuration * Ct.DurationForARecord;
 if (Ct.nrecordsperpage < Ct.minrecordsperpage) {
 /* set to minimum if connection extremely slow, must overflow vh for trigger reasonably */
 Ct.nrecordsperpage = Ct.minrecordsperpage;
-Ct.npaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
+Ct.npaginationto = PromiseResponse.npaginationfrom + Ct.nrecordsperpage;
 } else {
-Ct.npaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
+Ct.npaginationto = PromiseResponse.npaginationfrom + Ct.nrecordsperpage;
 }
-PromiseResponse.npagination.To = Ct.npaginationTo;
+PromiseResponse.npaginationto = Ct.npaginationto;
 PromiseResponse.nrecordsperpage = Ct.nrecordsperpage; 
 devlog(`Adjusted Records per page: ${Ct.nrecordsperpage}`);
-devlog(`Adjusted Pagination: ${PromiseResponse.npagination}`);
+devlog(`Adjusted Pagination: ${PromiseResponse.npaginationfrom} - ${PromiseResponse.npaginationto}`);
 }
        
         } else if (AjaxResponse.status == 'eof') {
