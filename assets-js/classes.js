@@ -30,7 +30,11 @@ class infinitescrollrequest {
           Classthis.TotalDuration = (Classthis.EndTime - Classthis.StartTime);
           devlog(`${Classthis.TotalDuration}  mseconds`);
           Classthis.DurationForARecord = Classthis.TotalDuration / Classthis.recordsperpage;
-          Classthis.adjustedpaginationTo = Classthis.maxFetchDataDuration * Classthis.DurationForARecord;
+          Classthis.adjustedrecordsperpage = Classthis.maxFetchDataDuration * Classthis.DurationForARecord;
+          if (Classthis.adjustedrecordsperpage < Classthis.minrecordsperpage) {
+            Classthis.adjustedrecordsperpage = Classthis.minrecordsperpage;
+            Classthis.adjustedpaginationTo = PromiseResponse.npagination.From + Classthis.adjustedrecordsperpage;
+          }
           PromiseResponse.npagination.To = Classthis.adjustedpaginationTo;
           
           $(Classthis.responsecontainer).append(AjaxResponse.response);
