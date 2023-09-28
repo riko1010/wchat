@@ -38,6 +38,7 @@ if (Ct.TotalDuration > Ct.maxFetchDataDuration) {
 devlog(`${Ct.TotalDuration}  mseconds`);
 Ct.DurationForARecord = Ct.TotalDuration / Ct.recordsperpage;
 Ct.nrecordsperpage = Ct.maxFetchDataDuration * Ct.DurationForARecord;
+devlog(`New records per page: ${Ct.nrecordsperpage}`);
 if (Ct.nrecordsperpage < Ct.minrecordsperpage) {
 /* set to minimum if connection extremely slow, must overflow vh for trigger reasonably */
 Ct.nrecordsperpage = Ct.minrecordsperpage;
@@ -45,6 +46,7 @@ Ct.npaginationto = PromiseResponse.npaginationfrom + Ct.nrecordsperpage;
 } else {
 Ct.npaginationto = PromiseResponse.npaginationfrom + Ct.nrecordsperpage;
 }
+
 PromiseResponse.npaginationto = Ct.npaginationto;
 PromiseResponse.nrecordsperpage = Ct.nrecordsperpage; 
 devlog(`Adjusted Records per page: ${Ct.nrecordsperpage}`);

@@ -28,14 +28,16 @@ require Path::join($baseDir, 'assets-php/classes.php');
 /* Request Handler */
 $data = [
     'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null ),
-    'pagination' => (isset($_REQUEST['pagination']) ? $_REQUEST['pagination'] : null ),
+    'paginationfrom' => (isset($_REQUEST['paginationfrom']) ? $_REQUEST['paginationfrom'] : null ),
+    'paginationto' => (isset($_REQUEST['paginationto']) ? $_REQUEST['paginationto'] : null ),
     'recordsperpage' => (isset($_REQUEST['recordsperpage']) ? $_REQUEST['recordsperpage'] : null )
 ];
 
 $filters = [
     'queryarg' => 'trim|empty_string_to_null|strip_tags|escape',
-    'pagination' => 'trim|empty_string_to_null|strip_tags|escape',
-    'pagination' => 'trim|empty_string_to_null|strip_tags|escape'
+    'paginationfrom' => 'trim|empty_string_to_null|strip_tags|escape',
+    'paginationto' => 'trim|empty_string_to_null|strip_tags|escape',
+    'recordsperpage' => 'trim|empty_string_to_null|strip_tags|escape'
 ];
 
 $REQUEST = (object) (new Sanitizer($data, $filters))->sanitize();
