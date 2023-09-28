@@ -50,7 +50,7 @@ if (
 /* _request/queryarg can accept $ChatFilesData index starting from 0, $ChatFilesDataIdAsKeys indexed by id, search */
 $queryarg = $REQUEST->queryarg;
 $pagination = $REQUEST->pagination;
-$recordsperpage = $REQUEST->pagination;
+$recordsperpage = ($REQUEST->pagination != null ? $REQUEST->pagination : $recordsperpage);
 
 $db = new sqlitedb(
   pj($baseDir, $sqlitedb)

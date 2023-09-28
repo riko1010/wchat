@@ -27,9 +27,11 @@ devlog('request done');
 if (AjaxResponse.status == 'success') {
 $(Ct.responsecontainer).append(AjaxResponse.response);
 
-PromiseResponse.npagination = AjaxResponse.pagination;
-/* adjust total records by response speed for 100 records default min = 25, max = 100 */
 Ct.TotalDuration = (Ct.EndTime - Ct.StartTime);
+PromiseResponse.npagination = AjaxResponse.pagination;
+
+if (Ct.TotalDuration > Ct.maxFetchDataDuration) {
+/* adjust total records by response speed for 100 records default min = 25, max = 100 */
 devlog(`${Ct.TotalDuration}  mseconds`);
 Ct.DurationForARecord = Ct.TotalDuration / Ct.recordsperpage;
 Ct.nrecordsperpage = Ct.maxFetchDataDuration * Ct.DurationForARecord;
@@ -42,6 +44,7 @@ Ct.npaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
 }
 PromiseResponse.npagination.To = Ct.npaginationTo;
 PromiseResponse.nrecordsperpage = Ct.nrecordsperpage; 
+}
        
         } else if (AjaxResponse.status == 'eof') {
           /* response starting with eof is end of pagination, destroy scene notice to promise */
