@@ -945,7 +945,7 @@ $template .= '
 component attachment
  div(class="wa-ic") 
   a(class="wa-m g" href="$lfilepath" data-gallery="g" data-width="100vw" data-height="auto" data-glightbox="title: $filecaption $filenameandext")
-    img(class="object-fit-cover border rounded zi-r" src="$filepath")
+    img(class="object-fit-cover border rounded zi-r" width="200px" src="$filepath")
  ';
 
           
