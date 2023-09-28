@@ -23,15 +23,16 @@ class infinitescrollrequest {
       }).then(function(AjaxResponse) {
         devlog('request done');
         if (AjaxResponse.status == 'success') {
+          PromiseResponse.npagination = AjaxResponse.pagination;
           Classthis.EndTime = Date.now();
           /* adjust total records by response speed for 100 records default min = 25, max = 100 */
           Classthis.TotalTime = (Classthis.EndTime - Classthis.StartTime) / 1000;
           devlog(`${Classthis.TotalTime}  seconds`);
           Classthis.TimeForARecord = Classthis.TotalTime / 100;
           Classthis.adjustedpagination = 2500 * Classthis.TimeForARecord;
+          PromiseResponse.npagination = Classthis.adjustedpagination;
           
           $(Classthis.responsecontainer).append(AjaxResponse.response);
-          
           
         } else if (AjaxResponse.status == 'eof') {
           /* response starting with eof is end of pagination, destroy scene notice to promise */

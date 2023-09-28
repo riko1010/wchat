@@ -454,7 +454,11 @@ $i++;
 $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 }
 
-public function ChatFileGenerator($Paginations = null, $cfFiles = null){
+public function ChatFileGenerator(
+  $PaginationFrom = null,
+  $PaginationTo = null,
+  $cfFiles = null
+  ){
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
 $sfd = new SplFileObject($cfFiles);
 if (!$sfd) return 'error: could not open chat file';
@@ -467,7 +471,7 @@ $NewLine = '
 '; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
-$to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
+$to = (is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
