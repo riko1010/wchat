@@ -91,11 +91,11 @@ section .message {
 .message-left {
   background-color: whitesmoke!important;
 }
-.message-right-contents {
+.m-r-c {
 float: right!important;
 clear:right;
 }
-.message-left-contents{
+.m-l-c{
   float:left;
 }
 .message .time {

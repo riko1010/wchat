@@ -1031,7 +1031,7 @@ elseif $type == "chat"
   
     .col-9
       div(class=$recipient ? "" : "message-right" class="col-auto message")
-       div(class=$recipient ? "message-left chat message-left-contents" : "message-right-contents bg-wa" class="col rounded p-2")
+       div(class=$recipient ? "message-left chat m-l-c" : "m-r-c bg-wa" class="col rounded p-2")
          div(class=$recipient ? "message-left" : "bg-wa" class="col sender") #{$sender}
          div(class=$recipient ? "message-left" : "")
            if $groupchat == true
