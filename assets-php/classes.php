@@ -542,6 +542,7 @@ return (object) [
   ];
 }
 
+/* dedicated recipient identifier */
 public function ChatFileGeneratorRecipient($Paginations, $cfFiles = null){
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
 $sfd = new SplFileObject($cfFiles);
@@ -606,14 +607,17 @@ $i++;
   } 
 }
 
-public function PaginationViability($Paginations, $cfFiles = null){
+public function PaginationViability(
+ ?int $PaginationFrom = nukl,
+ ?int $PaginationTo = null,
+  $cfFiles = null
+  ) {
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);
 
-$Pagination = explode(',', $Paginations);
-$from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : false );
-$to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : false );
+$from = $PaginationFrom;
+$to = ($PaginationTo == 0 ? $GLOBALS['recordsperpage'] : $PaginationTo );
 
-if ($from === false) {
+if ($from === null) {
   return (object) [ 
   'status' => false,
   'response' => 'pagination string invalid' 
