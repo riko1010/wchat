@@ -959,8 +959,8 @@ $phug->share([
 
 $template .= '
 component attachment
- .videos
-  .video-wrap
+ .zv
+  .zvw
     .zvip
       a(class="wa-m g" href="$videoURI" data-glightbox="title:$filecaption $filenameandext" data-preload="true" data-media="video" data-gallery="g")
           .play-btn
@@ -981,7 +981,7 @@ component attachment
    .card-body
      div(class="avatar me-1")
       div(class="avatar-title rounded bg-wa text-primary")
-        img.fileiconsvg( src="$fileicon")
+        img.zfis( src="$fileicon")
      div 
       a.g(data-gallery="g" data-height="80vh" data-width="90%" href="$docviewer" data-glightbox="title: $filecaption $filenameandext" data-preload="true")
          h5(class="font-size-15 mb-1" style="color: #000;") #{$filenameandext}

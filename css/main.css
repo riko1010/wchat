@@ -275,26 +275,26 @@ height: 250px;
 a {
     text-decoration: none!important;
 }
-.fileiconsvg {
+.zfis {
   height: 48px!important;
 }
 
-.videos {
+.zv {
   margin: 20px auto;
   max-width: 250px;
 }
 /* Individual video container */
-.video-wrap {
+.zvw {
   position: relative;
   max-width: 250px;
   width: 100%;
   margin-bottom: 10px;
 }
-.video-wrap .placeholder {
+.zvw .placeholder {
   max-width: 250px;
   width: 100%;
 }
-.video-wrap .play-btn {
+.zvw .play-btn {
   position: absolute;
   max-width: 250px;
   width: 100px;
@@ -309,8 +309,8 @@ a {
   border-radius: 50px;
   transition: color, background-color .2s ease;
 }
-.video-wrap .play-btn:hover,
-.video-wrap .play-btn:focus {
+.zvw .play-btn:hover,
+.zvw .play-btn:focus {
   color: #000;
   background-color: rgba(255,255,255,.8);
   cursor: pointer;
