@@ -7,42 +7,42 @@ class infinitescrollrequest {
   recordsperpage;
 
   FetchData() {
-    var Classthis = this;
+    var Ct = this;
     return new Promise(function(resolve, reject) {
       /* post request sent was built and network debugger shows the request body built and concatenated with &, type www/urlencoded** data , api shows $_REQUEST to be empty. using get, requests is deprecated, axios examples for post do not work, superagent, fetch, others considered or xmlhttp* */
       let PromiseResponse = {};
-      Classthis.StartTime = Date.now();
+      Ct.StartTime = Date.now();
       $.ajax({
         method: "GET",
-        url: Classthis.url,
+        url: Ct.url,
         data: {
-          queryarg: Classthis.queryarg,
-          pagination: Classthis.pagination,
-          recordsperpage: Classthis.recordsperpage
+          queryarg: Ct.queryarg,
+          pagination: Ct.pagination,
+          recordsperpage: Ct.recordsperpage
         },
         dataType: 'json'
-      }).then(function(AjaxResponse) {
-        Classthis.EndTime = Date.now();
-        devlog('request done');
-        if (AjaxResponse.status == 'success') {
-          $(Classthis.responsecontainer).append(AjaxResponse.response);
-          
-          PromiseResponse.npagination = AjaxResponse.pagination;
-          /* adjust total records by response speed for 100 records default min = 25, max = 100 */
-          Classthis.TotalDuration = (Classthis.EndTime - Classthis.StartTime);
-          devlog(`${Classthis.TotalDuration}  mseconds`);
-          Classthis.DurationForARecord = Classthis.TotalDuration / Classthis.recordsperpage;
-          Classthis.adjustedrecordsperpage = Classthis.maxFetchDataDuration * Classthis.DurationForARecord;
-          if (Classthis.adjustedrecordsperpage < Classthis.minrecordsperpage) {
-            /* set to minimum if connection extremely slow, must overflow vh for trigger reasonably */
-            Classthis.adjustedrecordsperpage = Classthis.minrecordsperpage;
-            Classthis.adjustedpaginationTo = PromiseResponse.npagination.From + Classthis.adjustedrecordsperpage;
-          } else {
-            Classthis.adjustedpaginationTo = PromiseResponse.npagination.From + Classthis.adjustedrecordsperpage;
-          }
-          PromiseResponse.npagination.To = Classthis.adjustedpaginationTo;
-          PromiseResponse.adjustedrecordsperpage = Classthis.adjustedrecordsperpage; 
-         
+}).then(function(AjaxResponse) {
+Ct.EndTime = Date.now();
+devlog('request done');
+if (AjaxResponse.status == 'success') {
+$(Ct.responsecontainer).append(AjaxResponse.response);
+
+PromiseResponse.npagination = AjaxResponse.pagination;
+/* adjust total records by response speed for 100 records default min = 25, max = 100 */
+Ct.TotalDuration = (Ct.EndTime - Ct.StartTime);
+devlog(`${Ct.TotalDuration}  mseconds`);
+Ct.DurationForARecord = Ct.TotalDuration / Ct.recordsperpage;
+Ct.nrecordsperpage = Ct.maxFetchDataDuration * Ct.DurationForARecord;
+if (Ct.nrecordsperpage < Ct.minrecordsperpage) {
+/* set to minimum if connection extremely slow, must overflow vh for trigger reasonably */
+Ct.nrecordsperpage = Ct.minrecordsperpage;
+Ct.adjustedpaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
+} else {
+Ct.adjustedpaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
+}
+PromiseResponse.npagination.To = Ct.adjustedpaginationTo;
+PromiseResponse.nrecordsperpage = Ct.nrecordsperpage; 
+       
         } else if (AjaxResponse.status == 'eof') {
           /* response starting with eof is end of pagination, destroy scene notice to promise */
           PromiseResponse.requestresponse = 'destroyscene';
