@@ -21,7 +21,6 @@ class infinitescrollrequest {
         dataType: 'json'
       }).then(function(AjaxResponse) {
         devlog('request done');
-        /* response starting with <div class="ChatID" is valid */
         if (AjaxResponse.status == 'success') {
           $(Classthis.responsecontainer).append(AjaxResponse.response);
           PromiseResponse.npagination = AjaxResponse.pagination;

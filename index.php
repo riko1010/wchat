@@ -331,7 +331,7 @@ head(function() {
     preload: true
 });
 
-  $(".ChatID").on('contextmenu', function(){
+  $(".cID").on('contextmenu', function(){
       // show menu to copy chat or auto copy chat id then notify... 
     });
 

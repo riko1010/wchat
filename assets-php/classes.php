@@ -997,7 +997,7 @@ $phug->share([
 
 $template .= '
 component attachment
- audio.whatsappaudio(id="audio{$counterfilearray}" controls preload="auto" preload="none" playsinline)
+ audio.wa-a(id="audio{$counterfilearray}" controls preload="auto" preload="none" playsinline)
   source(src="$filepath" type="$audiotype")
  ';
     
@@ -1017,7 +1017,7 @@ component attachment
 
 $template .= '
 -
-div.ChatID(id="c{$counterfilearray}")
+div.cID(id="c{$counterfilearray}")
 if $type == "notification"
  div(class="row justify-content-center m-1")
   div(class="col-9 rounded alert justify-content-center")
@@ -1048,7 +1048,7 @@ else
  +unformattedchatline
 ';
 
-// Facade way (with Phug)
+// instance way (with Phug)
 yield $phug->render($template);
                 
 }
