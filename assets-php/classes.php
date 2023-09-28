@@ -1130,14 +1130,15 @@ if ($CheckFileSystemModification->status == true) {
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $this->cfFolder
     ); 
-  $sitemap = $this->Generate(); 
-  print "updatedbfromfs".$UpdateDBFromFileSystem->response.$sitemap->response.$CheckFileSystemModification->response;
+  $Generate = $this->Generate(); 
+  $Responses = 'UpdateDBFromFileSystem:'.$UpdateDBFromFileSystem->response;
+  $Responses .= 'Generate:'.$Generate->response;
   $sitemap = [ 
     'status' => true,
     'response' => 'Sitemap listed.'
     ];
 } else {
-  //check for ??? trigger for sitemap or refresh recommendation for sitemaps */
+  /* check for ??? trigger for sitemap or refresh recommendation for sitemaps */
  // $sitemap = $this->Generate();  
   /* sitemap generator file does not exist, assumption is sitemap does for now */
   $sitemap = [ 
@@ -1151,7 +1152,7 @@ $files = $this->filesExists(
   $this->sitemapxml, 
   $this->robotstxt
 );
-var_dump($CheckFileSystemModification);
+
 return (object) [
   'sitemap' => (object) $sitemap,
   'files' => $files
@@ -1410,7 +1411,7 @@ $sitemap->write();
     ];
 }
 
-if (file_exists($this->sitemapxml) && file_exists($this->generatesitemapfile)) {
+if (file_exists($this->sitemapxml)) {
   clearstatcache();
   //rename($this->generatesitemapfile, Path::join('autodelete', $this->generatesitemapfile));
 } else {
