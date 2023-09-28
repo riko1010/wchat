@@ -17,7 +17,8 @@ class infinitescrollrequest {
         url: Ct.url,
         data: {
           queryarg: Ct.queryarg,
-          pagination: Ct.pagination,
+          paginationfrom: Ct.paginationfrom,
+          paginationto: Ct.paginationto,
           recordsperpage: Ct.recordsperpage
         },
         dataType: 'json'

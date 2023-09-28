@@ -269,7 +269,7 @@ if ($sitemap['exists'] == false) continue;
 </div>
 
     <footer>
-      <?=($app->eof ?: $app->NPagination->From.','.$app->NPagination->To);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
+      <?=($app->eof ?: $app->NPaginationFrom.','.$app->NPaginationTo);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
     </footer>
 <script src="assets-js/classes.js" referrerpolicy="no-referrer"></script>    
 <script>
@@ -283,8 +283,8 @@ $(document).ready(function(){
 isr = new infinitescrollrequest();
 isr.url = 'api';
 isr.queryarg = '<?=$app->SelectedId;?>';
-isr.paginationfrom = '<?=$app->NPagination;?>';
-isr.paginationto = '<?=$app->NPagination;?>';
+isr.paginationfrom = '<?=$app->NPaginationFrom;?>';
+isr.paginationto = '<?=$app->NPaginationTo;?>';
 isr.recordsperpage = '<?=$recordsperpage;?>';
 /* must overflow vh for trigger event 'onenter' reasonably*/
 isr.minrecordsperpage = 50; 
