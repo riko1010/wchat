@@ -472,8 +472,8 @@ $this->eof = false;
 $NewLine = '
 '; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
-$from = (is_numeric(trim($PaginationFrom)) ? trim($PaginationFrom) : 0 );
-$to = $oto = (is_numeric(trim($PaginationTo)) ? trim($PaginationTo) : $GLOBALS['recordsperpage'] );
+$from = $PaginationFrom;
+$to = $oto = ($PaginationTo == 0 ? $PaginationTo : $GLOBALS['recordsperpage'] );
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
