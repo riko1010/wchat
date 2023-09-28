@@ -461,6 +461,7 @@ if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
 $filearray = [];
 $holdbuffer = null;
+$eof = false;
 /* literal newline, alt is htmlspecialchars_decode of phug render, allowing br, to render as html, $message in pug is currently escaped, alt is rendering as html instead of escape plaintext */
 $NewLine = '
 '; 
@@ -470,6 +471,8 @@ $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Paginat
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
+  /* eof on non existent pagination?, termination here or at end */
+$eof = true;  
 return null;
 }
 do {
@@ -503,6 +506,7 @@ set file array default key to null, regex if date string.solves newline, of chat
    }
   if ($sfd->eof()) {
      /* end of file, yield holdbuffer containing all unidentified buffer  */
+     $eof = true;
      if ($holdbuffer != null) {
        yield $holdbuffer;
      $holdbuffer = null;
@@ -515,8 +519,10 @@ $to++;
 }
 $i++;
 } while ($i < $to);
+if ($eof) {
 $NextTo = $to + $GLOBALS['recordsperpage'];
 $this->NPagination = "{$to},{$NextTo}";
+}
 return $this->NPagination;
 }
 
