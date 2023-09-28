@@ -1,5 +1,6 @@
 <?php 
 //error_reporting(0);
+header('Content-Type: text/plain; charset=utf-8');
 /*
 simple api implementation
 pagination
