@@ -48,7 +48,6 @@ if (
 /* _request/queryarg can accept $ChatFilesData index starting from 0, $ChatFilesDataIdAsKeys indexed by id, search */
 $queryarg = $REQUEST->queryarg;
 $pagination = $REQUEST->pagination;
-$ApiResponse = new stdClass;
 
 $db = new sqlitedb(
   pj($baseDir, $sqlitedb)
@@ -65,6 +64,7 @@ $app = new App;
 
 if ($InitData->IsEmpty) {
  /* query arg did not find requested file, no file exists all possible reason for isempty, index updates db from fs when this happens using generatesitemap\get , filenotfound may trigger ajax index refresh (prospect of file being intentionally deleted, will notify and return to hash with true page reload, wont update db from fs here */
+ $ApiResponse = new stdClass;
  $ApiResponse->status = 'filenotfound';
  $ApiResponse->response = 'file not found';
  print json_encode($ApiResponse);
@@ -78,6 +78,7 @@ $app->SetChatFile($REQUEST->queryarg);
 
 /* for api, cant default to first item in array, App\NoSelected does not return true on defaulting to first item in ChatFilesData , ChatFilesDataIdAsKeys */
 if ($app->NoSelected === true) {
+ $ApiResponse = new stdClass;
  $ApiResponse->status = 'filenotfound';
  $ApiResponse->response = 'no valid queryarg';
  print json_encode($ApiResponse);
@@ -91,6 +92,7 @@ $PaginationViability = $app->PaginationViability(
   );
   
 if ($PaginationViability->status === false) {
+  $ApiResponse = new stdClass;
   $ApiResponse->response = $PaginationViability->response;
   $ApiResponse->status = 'eof';
   print json_encode($ApiResponse);
@@ -105,12 +107,12 @@ $processlines->dirpath = $app->DirPath;
 $processlines->baseDir = $baseDir;
 $processlines->spagination = $pagination;
 $processlines->iterable = $app->ChatFileGenerator(
-  $processlines->spagination 
+  ...$processlines->spagination 
   );
-  
-$ApiResponse->response = $processlines->Process();
+$ApiResponse = new stdClass;
+$ProcessLines = $processlines->Process();
 /* $processlines->iterable->getReturn() reasonably available after processLines/Process* */
-$ApiResponse->response = iter_to_array($ApiResponse->response);
+$ApiResponse->response = iter_to_array($ProcessLines);
 $ApiResponse->pagination = $processlines->iterable->getReturn();
 $ApiResponse->status = 'success';
 print json_encode($ApiResponse);
@@ -118,6 +120,7 @@ exit;
 }
 
 /* no request */
+  $ApiResponse = new stdClass;
   $ApiResponse->response = '';
   $ApiResponse->status = 'no request:'.json_encode($_REQUEST);
   print json_encode($ApiResponse);
