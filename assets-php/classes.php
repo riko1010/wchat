@@ -457,8 +457,8 @@ $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 }
 
 public function ChatFileGenerator(
- int $PaginationFrom = null,
- int $PaginationTo = null,
+ int $PaginationFrom = 0,
+ ?int $PaginationTo = null,
   $cfFiles = null
   ){
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
@@ -473,12 +473,13 @@ $NewLine = '
 '; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = $PaginationFrom;
-$to = $oto = ($PaginationTo == 0 ? $PaginationTo : $GLOBALS['recordsperpage'] );
+$to = $oto = ($PaginationTo == 0 ? $GLOBALS['recordsperpage'] : $PaginationTo );
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
   /* eof on non existent pagination?, termination here or at end */
 $this->eof = true;  
+$TerminationType = 'eof';
 }
 do {
   $buffer = $sfd->current();
@@ -512,6 +513,7 @@ set file array default key to null, regex if date string.solves newline, of chat
   if ($sfd->eof()) {
      /* end of file, yield holdbuffer containing all unidentified buffer  */
      $this->eof = true;
+     $TerminationType = 'eof';
      if ($holdbuffer != null) {
        yield $holdbuffer;
      $holdbuffer = null;
