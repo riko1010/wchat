@@ -106,10 +106,10 @@ clear:right;
   font-size: 0.75rem;
   display: none! important;
 }
-.zm .groupsender{
+.zm .gs{
   font-size: 0.75rem;
 }
-.groupchat {
+.gc {
   display:inline-block;
   float:left; 
   max-width:25px; 

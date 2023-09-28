@@ -1027,22 +1027,22 @@ if $type == "notification"
 elseif $type == "chat"
   div(class=$recipient ? "justify-content-start" : "justify-content-end" class="row m-1")
     if $groupchat == true
-     div(class="col bx bx-sm bxs-user-circle groupchat" style="color:$sendercolor;")
+     div(class="col bx bx-sm bxs-user-circle gc" style="color:$sendercolor;")
   
     .col-9
-      div(class=$recipient ? "" : "zmr" class="col-auto message")
+      div(class=$recipient ? "" : "zmr" class="col-auto zm")
        div(class=$recipient ? "zml chat m-l-c" : "m-r-c bg-wa" class="col rounded p-2")
          div(class=$recipient ? "zml" : "bg-wa" class="col sender") #{$sender}
          div(class=$recipient ? "zml" : "")
            if $groupchat == true
-            div(class="col groupsender zml" style="color:$sendercolor;")
+            div(class="col gs zml" style="color:$sendercolor;")
              strong #{$sender}
             
            if $attachmentexists == true
             +attachment
            else
             div
-             span.messageEl #{$message}
+             span.mEl #{$message}
          span(class="col time" class=$recipient ? "zml" : "bg-wa") #{$time}
 else
  +unformattedchatline

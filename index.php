@@ -320,7 +320,7 @@ try {
 /* headjs loads, on ready -> */
 head(function() {
   /* make links clickable */
-  autolinks('.messageEl');
+  autolinks('.mEl');
   /* lightbox for images, docs, iframes */ 
   const lightbox = GLightbox({
     touchNavigation: true,
