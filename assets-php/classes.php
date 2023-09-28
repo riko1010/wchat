@@ -474,7 +474,7 @@ $NewLine = '
 '; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = $PaginationFrom;
-$to = $oto = ($PaginationTo == 0 ? $GLOBALS['recordsperpage'] : $PaginationTo );
+$to = $oto = ($PaginationTo == null ? $GLOBALS['recordsperpage'] : $PaginationTo );
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
@@ -608,14 +608,14 @@ $i++;
 }
 
 public function PaginationViability(
- ?int $PaginationFrom = nukl,
+ ?int $PaginationFrom = null,
  ?int $PaginationTo = null,
   $cfFiles = null
   ) {
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);
 
 $from = $PaginationFrom;
-$to = ($PaginationTo == 0 ? $GLOBALS['recordsperpage'] : $PaginationTo );
+$to = ($PaginationTo == null ? $GLOBALS['recordsperpage'] : $PaginationTo );
 
 if ($from === null) {
   return (object) [ 
