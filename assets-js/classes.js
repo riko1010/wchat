@@ -36,11 +36,11 @@ Ct.nrecordsperpage = Ct.maxFetchDataDuration * Ct.DurationForARecord;
 if (Ct.nrecordsperpage < Ct.minrecordsperpage) {
 /* set to minimum if connection extremely slow, must overflow vh for trigger reasonably */
 Ct.nrecordsperpage = Ct.minrecordsperpage;
-Ct.adjustedpaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
+Ct.npaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
 } else {
-Ct.adjustedpaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
+Ct.npaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
 }
-PromiseResponse.npagination.To = Ct.adjustedpaginationTo;
+PromiseResponse.npagination.To = Ct.npaginationTo;
 PromiseResponse.nrecordsperpage = Ct.nrecordsperpage; 
        
         } else if (AjaxResponse.status == 'eof') {
