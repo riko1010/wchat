@@ -14,15 +14,12 @@ $whoops->register();
 
 
 /* Request Handler */
-
 $data = [
     'queryarg' => $_REQUEST['queryarg']
 ];
-
 $filters = [
     'queryarg' => 'trim|empty_string_to_null|strip_tags|escape'
 ];
-
 $REQUEST = (object) (new Sanitizer($data, $filters))->sanitize();
 
 $currentURL = null;
@@ -32,7 +29,6 @@ $totalrecords = null;
 
 require 'assets-php/settings.php';
 require 'assets-php/classes.php';
-require 'assets-php/sqlite.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
@@ -43,7 +39,6 @@ $Init = new Init;
 $Init->baseDir = $baseDir;
 $Init->queryarg = $REQUEST->queryarg;
 $Init->db = $db;
-$Init->BootLoader();
 $InitData = $Init->Index();
 $AppData = $Init->AppData();
 

@@ -1,6 +1,5 @@
 <?php 
 //error_reporting(0);
-session_start();
 /*
 simple api implementation
 pagination, 
@@ -52,8 +51,6 @@ $queryarg = $REQUEST->queryarg;
 $pagination = $REQUEST->pagination;
 $ApiResponse = new stdClass;
 
-require Path::join($baseDir, 'assets-php/sqlite.php');
-/* $ChatFilesData, $ChatFilesDataNotEmpty now available */
 
 if (!$ChatFilesDataNotEmpty) {
  $ApiResponse->status = 'filenotfound';
