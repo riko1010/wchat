@@ -45,6 +45,8 @@ Ct.npaginationTo = PromiseResponse.npagination.From + Ct.nrecordsperpage;
 }
 PromiseResponse.npagination.To = Ct.npaginationTo;
 PromiseResponse.nrecordsperpage = Ct.nrecordsperpage; 
+devlog(`Adjusted Records per page: ${Ct.nrecordsperpage}`);
+devlog(`Adjusted Pagination: ${PromiseResponse.npagination}`);
 }
        
         } else if (AjaxResponse.status == 'eof') {
