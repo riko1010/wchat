@@ -1110,7 +1110,6 @@ public $cfFolder;
 public $ChatFilesData;
 public $ChatFilesDataIdAsKeys;
 public $cfFilespattern;
-public $generatesitemapfile;
 public $SiteUrl;
 public $robotstxt;
 public $sitemapxml;
@@ -1413,7 +1412,7 @@ $sitemap->write();
 
 if (file_exists($this->sitemapxml)) {
   clearstatcache();
-  //rename($this->generatesitemapfile, Path::join('autodelete', $this->generatesitemapfile));
+
 } else {
   /* failed to generate sitemap, restore old */
   if (fie_exists(Path::join('autodelete', $this->sitemapxml))) {

@@ -15,7 +15,6 @@ $dropboxfolderuriaszipheader = "https://www.dropbox.com/sh/bw5ze45z2essn97/AADWf
 $PyArchiveURI = 'https://wchat.space/python/runarchive.py';
 /* folder with individual chat folders */
 $cfFolder = "conversations"; 
-$generatesitemapfile = 'generate_sitemap';
 $extracted = true;
 /* video url as %s , replacement with sprintf */
 $videoPlayerURL = 'https://onelineplayer.com/player.html?autoplay=true&autopause=true&muted=true&loop=true&url='
@@ -30,8 +29,6 @@ $docViewer = 'https://docs.google.com/viewer?url='
 /* opengraph */
 $ogImage = $SiteUrl.'/images/ogimage.jpg';
 $ogcontenttype = 'chat';
-/* url in string parser, top level tlds in links without protocol, replacement pattern, current is phug. url is %s */
-$UrlHighlight = 'a(href="%s")%s/';
 /* matches chatfile.(unique int identifier).txt - last occurence .(unique int identifier).txt */
 $cfFilespattern = '/WhatsApp Chat with\s(?P<name>.*?)((\.\d)?.txt)/i';
 /* sitemap */

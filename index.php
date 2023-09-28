@@ -53,7 +53,6 @@ $app = new App;
 $sitemap = new generateSiteMap;
 $sitemap->AppData = &$AppData;
 $sitemap->cfFilespattern = $cfFilespattern;
-$sitemap->generatesitemapfile = $generatesitemapfile; 
 $sitemap->SiteUrl = $SiteUrl; 
 $sitemap->cfFolder = $cfFolder;
 $sitemap->ChatFilesData = &$InitData->Data;
