@@ -1,6 +1,5 @@
 <?php 
 //error_reporting(0);
-session_start();
 require_once 'vendor/autoload.php';
 use Elegant\Sanitizer\Sanitizer;
 
@@ -15,7 +14,7 @@ $whoops->register();
 
 /* Request Handler */
 $data = [
-    'queryarg' => $_REQUEST['queryarg']
+    'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null )
 ];
 $filters = [
     'queryarg' => 'trim|empty_string_to_null|strip_tags|escape'
@@ -23,8 +22,6 @@ $filters = [
 $REQUEST = (object) (new Sanitizer($data, $filters))->sanitize();
 
 $currentURL = null;
-/* reset 'session/eof' to null */
-$_SESSION['eof'] = null;
 $totalrecords = null;
 
 require 'assets-php/settings.php';

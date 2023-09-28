@@ -26,8 +26,8 @@ require Path::join($baseDir, 'assets-php/classes.php');
 
 /* Request Handler */
 $data = [
-    'queryarg' => $_REQUEST['queryarg'],
-    'pagination' => $_REQUEST['pagination']
+    'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null ),
+    'pagination' => (isset($_REQUEST['pagination']) ? $_REQUEST['pagination'] : null )
 ];
 
 $filters = [
