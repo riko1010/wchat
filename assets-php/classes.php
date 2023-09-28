@@ -468,6 +468,7 @@ $Pagination = explode(',', $Paginations);
 $filearray = [];
 $holdbuffer = null;
 $this->eof = false;
+$TerminationType = 'done';
 /* literal newline, alt is htmlspecialchars_decode of phug render, allowing br, to render as html, $message in pug is currently escaped, alt is rendering as html instead of escape plaintext */
 $NewLine = '
 '; 
