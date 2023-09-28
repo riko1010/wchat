@@ -943,9 +943,9 @@ $phug->share([
 
 $template .= '
 component attachment
- div(class="whatsappimagescontainer") 
-  a(class="whatsappmedia glightbox3" href="$lfilepath" data-gallery="gallery1" data-width="100vw" data-height="auto" data-glightbox="title: $filecaption $filenameandext")
-    img(class="object-fit-cover border rounded img-responsive" style="width:200px;" src="$filepath")
+ div(class="wa-ic") 
+  a(class="wa-m glightbox3" href="$lfilepath" data-gallery="gallery1" data-width="100vw" data-height="auto" data-glightbox="title: $filecaption $filenameandext")
+    img(class="object-fit-cover border rounded zi-r" src="$filepath")
  ';
 
           
@@ -962,9 +962,9 @@ component attachment
  .videos
   .video-wrap
     .videoinlineposter
-      a(class="whatsappmedia glightbox3" href="$videoURI" data-glightbox="title:$filecaption $filenameandext" data-preload="true" data-media="video" data-gallery="gallery1")
+      a(class="wa-m glightbox3" href="$videoURI" data-glightbox="title:$filecaption $filenameandext" data-preload="true" data-media="video" data-gallery="gallery1")
           .play-btn
-          img(class="object-fit-cover placeholder border rounded img-responsive img-fluid" width="250px" height="auto" src="$videoPoster")
+          img(class="object-fit-cover placeholder border rounded zi-r img-fluid" width="250px" height="auto" src="$videoPoster")
  ';
 
 } elseif (in_array($fileext, array("pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "pages"))) {

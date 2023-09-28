@@ -128,8 +128,8 @@ clear:right;
 .hidden {
 	display:none!important;
 	}
-.img-responsive img {
-width:200px;
+.zi-r img {
+width:200px!important;
 height: 250px;
 	}
 .video-container {
