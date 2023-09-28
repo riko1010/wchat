@@ -82,9 +82,9 @@ $processlines->groupchat = $app->GroupChat;
 $processlines->ChatFile = $app->ChatFile;
 $processlines->dirpath = $app->DirPath;
 $processlines->baseDir = $baseDir;
-$processlines->spagination = "0,$recordsperpage";
+$processlines->spagination = [0, $recordsperpage];
 $processlines->iterable = $app->ChatFileGenerator(
-  $processlines->spagination 
+  ...$processlines->spagination 
   );
 }
 
@@ -267,7 +267,7 @@ if ($sitemap['exists'] == false) continue;
 </div>
 
     <footer>
-      <?=(!$app->NPagination ?: $app->NPagination);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
+      <?=(!$app->NPagination ?: $app->NPagination->From.','.$app->NPagination->To);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
     </footer>
 <script src="assets-js/classes.js" referrerpolicy="no-referrer"></script>    
 <script>
