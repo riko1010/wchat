@@ -17,7 +17,8 @@ class infinitescrollrequest {
         url: Classthis.url,
         data: {
           queryarg: Classthis.queryarg,
-          pagination: Classthis.pagination
+          pagination: Classthis.pagination,
+          recordsperpage: Classthis.recordsperpage
         },
         dataType: 'json'
       }).then(function(AjaxResponse) {
