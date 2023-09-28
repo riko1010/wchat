@@ -29,6 +29,7 @@ $(Ct.responsecontainer).append(AjaxResponse.response);
 
 Ct.TotalDuration = (Ct.EndTime - Ct.StartTime);
 PromiseResponse.npagination = AjaxResponse.pagination;
+PromiseResponse.nrecordsperpage = Ct.recordsperpage;
 
 if (Ct.TotalDuration > Ct.maxFetchDataDuration) {
 /* adjust total records by response speed for 100 records default min = 25, max = 100 */
