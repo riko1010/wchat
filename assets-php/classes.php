@@ -961,7 +961,7 @@ $template .= '
 component attachment
  .videos
   .video-wrap
-    .videoinlineposter
+    .zvip
       a(class="wa-m g" href="$videoURI" data-glightbox="title:$filecaption $filenameandext" data-preload="true" data-media="video" data-gallery="g")
           .play-btn
           img(class="object-fit-cover placeholder border rounded zi-r img-fluid" width="250px" height="auto" src="$videoPoster")

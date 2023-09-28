@@ -326,7 +326,7 @@ head(function() {
     touchNavigation: true,
     loop: true,
     autoplayVideos: true,
-    selector: '.glightbox3',
+    selector: '.g',
     closeOnOutsideClick: true,
     preload: true
 });
