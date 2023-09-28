@@ -835,7 +835,8 @@ public $groupchat;
 public $ChatFile;
 public $dirpath;
 public $iterable;
-public $spagination;
+public $PaginationFrom;
+public $PaginationTo;
 public $baseDir;
 
 public function Process(){
