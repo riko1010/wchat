@@ -2,9 +2,8 @@
 //error_reporting(0);
 /*
 simple api implementation
-pagination, 
-totalrecords without iterating the entirety seems difficult, if necessary a check for viability of the pagination startpoint using seek would determine if scrollmagic should be destroyed to prevent further requests.
-
+pagination
+  pagination viability 
 */
 require_once '../vendor/autoload.php';
 
@@ -21,7 +20,6 @@ $whoops->register();
 
 /* declaration of vars, some vars will be redeclared in settings, regardless of depth, absolute path to shared assets is desired */
 $baseDir = dirname(__DIR__);
-$api = true;
 
 require Path::join($baseDir, 'assets-php/settings.php');
 require Path::join($baseDir, 'assets-php/classes.php');
@@ -66,7 +64,7 @@ $app = new App;
 
 if ($InitData->IsEmpty) {
  $ApiResponse->status = 'filenotfound';
- $ApiResponse->status = 'file not found';
+ $ApiResponse->response = 'file not found';
  print json_encode($ApiResponse);
  exit; 
 }
@@ -79,7 +77,7 @@ $app->SetChatFile($REQUEST->queryarg);
 /* for api, cant default to first item in array, App\NoSelected does not return true on defaulting to first item in ChatFilesData , ChatFilesDataIdAsKeys */
 if ($app->NoSelected === true) {
  $ApiResponse->status = 'filenotfound';
- $ApiResponse->status = 'no valid queryarg';
+ $ApiResponse->response = 'no valid queryarg';
  print json_encode($ApiResponse);
  exit; 
 }
@@ -117,6 +115,7 @@ print json_encode($ApiResponse);
 exit;
 }
 
+  $ApiResponse->response = '';
   $ApiResponse->status = 'no request:'.json_encode($_REQUEST);
   print json_encode($ApiResponse);
 ?>
