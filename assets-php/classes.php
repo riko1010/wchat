@@ -853,7 +853,7 @@ public function ProcessAndPrint(){
 }
 
 public function iterate(){
-$Pagination = explode(',', $this->spagination);
+$Pagination = $this->spagination;
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
 
