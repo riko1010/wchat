@@ -28,11 +28,13 @@ require Path::join($baseDir, 'assets-php/classes.php');
 /* Request Handler */
 $data = [
     'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null ),
-    'pagination' => (isset($_REQUEST['pagination']) ? $_REQUEST['pagination'] : null )
+    'pagination' => (isset($_REQUEST['pagination']) ? $_REQUEST['pagination'] : null ),
+    'recordsperpage' => (isset($_REQUEST['recordsperpage']) ? $_REQUEST['recordsperpage'] : null )
 ];
 
 $filters = [
     'queryarg' => 'trim|empty_string_to_null|strip_tags|escape',
+    'pagination' => 'trim|empty_string_to_null|strip_tags|escape',
     'pagination' => 'trim|empty_string_to_null|strip_tags|escape'
 ];
 
@@ -48,6 +50,7 @@ if (
 /* _request/queryarg can accept $ChatFilesData index starting from 0, $ChatFilesDataIdAsKeys indexed by id, search */
 $queryarg = $REQUEST->queryarg;
 $pagination = $REQUEST->pagination;
+$recordsperpage = $REQUEST->pagination;
 
 $db = new sqlitedb(
   pj($baseDir, $sqlitedb)
