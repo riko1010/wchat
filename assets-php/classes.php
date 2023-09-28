@@ -853,9 +853,8 @@ public function ProcessAndPrint(){
 }
 
 public function iterate($From = null, $To = null){
-$Pagination = $this->spagination;
 $from = (is_numeric(trim($From)) ? trim($From) : 0 );
-$to = (is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
+$to = (is_numeric(trim($From)) ? trim($To) : $GLOBALS['recordsperpage'] );
 
 foreach ($this->iterable as $line) {
   yield from $this->processline(
