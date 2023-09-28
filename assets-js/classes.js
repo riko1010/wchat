@@ -24,6 +24,9 @@ class infinitescrollrequest {
         devlog('request done');
         if (AjaxResponse.status == 'success') {
           Classthis.EndTime = Date.Now();
+          /* adjust total records by response speed for 100 records default min = 25, max = 100 */
+          Classthis.TotalTime = (Classthis.StartTime - Classthis.EndTime) / 1000;
+          devlog(`{Classthis.TotalTime}  seconds`)
           $(Classthis.responsecontainer).append(AjaxResponse.response);
           PromiseResponse.npagination = AjaxResponse.pagination;
         } else if (AjaxResponse.status == 'eof') {
