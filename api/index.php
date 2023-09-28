@@ -27,10 +27,10 @@ require Path::join($baseDir, 'assets-php/classes.php');
 
 /* Request Handler */
 $data = [
-    'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null ),
-    'paginationfrom' => (isset($_REQUEST['paginationfrom']) ? $_REQUEST['paginationfrom'] : null ),
-    'paginationto' => (isset($_REQUEST['paginationto']) ? $_REQUEST['paginationto'] : null ),
-    'recordsperpage' => (isset($_REQUEST['recordsperpage']) ? $_REQUEST['recordsperpage'] : null )
+'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null ),
+'paginationfrom' => (isset($_REQUEST['paginationfrom']) ? $_REQUEST['paginationfrom'] : null ),
+'paginationto' => (isset($_REQUEST['paginationto']) ? $_REQUEST['paginationto'] : null ),
+'recordsperpage' => (isset($_REQUEST['recordsperpage']) ? $_REQUEST['recordsperpage'] : null )
 ];
 
 $filters = [
@@ -93,8 +93,8 @@ if ($app->NoSelected === true) {
 $app->SetVerifiedRecipient( $app->Name );
 
 $PaginationViability = $app->PaginationViability(
-  $REQUEST->paginationfrom,
-  $REQUEST->paginationto
+ (int) $REQUEST->paginationfrom,
+ (int) $REQUEST->paginationto
   );
   
 if ($PaginationViability->status === false) {
@@ -111,8 +111,8 @@ $processlines->groupchat = $app->GroupChat;
 $processlines->ChatFile = $app->ChatFile;
 $processlines->dirpath = $app->DirPath;
 $processlines->baseDir = $baseDir;
-$processlines->PaginationFrom = $REQUEST->paginationfrom;
-$processlines->PaginationTo = $REQUEST->paginationto;
+$processlines->PaginationFrom = (int) $REQUEST->paginationfrom;
+$processlines->PaginationTo = (int) $REQUEST->paginationto;
 $processlines->iterable = $app->ChatFileGenerator(
   $processlines->PaginationFrom,
   $processlines->PaginationTo
