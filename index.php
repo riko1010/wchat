@@ -60,6 +60,13 @@ $sitemap->db = $db;
 $sitemap->CallFunc->{'$app\CFgetfiles'} = $app->CFgetfiles(...);
 $sitemaps = $sitemap->get(
   );
+/*
+return [
+  'sitemap' => [status, response]
+  'files' => [filename, file, exists]
+  ];
+*/
+
 /* reinit */
 $InitData = $Init->Index();
 $AppData = $Init->AppData();
@@ -71,13 +78,6 @@ $app->baseDir = $baseDir;
 $app->SetChatFile($REQUEST->queryarg);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
-
-/*
-return [
-  'sitemap' => [status, response]
-  'files' => [filename, file, exists]
-  ];
-*/
 
 $processlines = new processLines;
 $processlines->vrecipient = $app->VerifiedRecipient;
