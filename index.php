@@ -283,6 +283,7 @@ isr.url = 'api';
 isr.queryarg = '<?=$app->SelectedId;?>';
 isr.pagination = '<?=$app->NPagination;?>';
 isr.recordsperpage = '<?=$recordsperpage;?>';
+isr.maxFetchDataDuration = 2500; //ms
 isr.responsecontainer = '#whatsappimages';
 isr.loadercontainer = '.loader';
 // init controller
