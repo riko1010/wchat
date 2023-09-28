@@ -288,7 +288,7 @@ isr.paginationto = '<?=$app->NPaginationTo;?>';
 isr.recordsperpage = '<?=$recordsperpage;?>';
 /* must overflow vh for trigger event 'onenter' reasonably*/
 isr.minrecordsperpage = 50; 
-isr.maxFetchDataDuration = 2500; //ms
+isr.maxFetchDataDuration = 1000; //ms
 isr.responsecontainer = '#whatsappimages';
 isr.loadercontainer = '.loader';
 // init controller
