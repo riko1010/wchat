@@ -985,7 +985,7 @@ component attachment
      div 
       a.g(data-gallery="g" data-height="80vh" data-width="90%" href="$docviewer" data-glightbox="title: $filecaption $filenameandext" data-preload="true")
          h5(class="font-size-15 mb-1" style="color: #000;") #{$filenameandext}
-      span(class="font-size-13 text-muted") pages ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ #{$filesize} ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ #{$fileext} 
+      span(class="font-size-13 text-muted") pages • #{$filesize} • #{$fileext}
 ';
 
 
