@@ -80,15 +80,15 @@ section {
   border-radius: 0.5rem;
   background: var(--cream);
 }
-section .message {
+section .zm {
   color: #333;
 }
 
-.message-right {
+.zmr {
   background-color: #dcf8c6!important;
   clear:right;
 }
-.message-left {
+.zml {
   background-color: whitesmoke!important;
 }
 .m-r-c {
@@ -98,15 +98,15 @@ clear:right;
 .m-l-c{
   float:left;
 }
-.message .time {
+.zm .time {
   font-size: 0.5rem;
   float:right;
 }
-.message .sender{
+.zm .sender{
   font-size: 0.75rem;
   display: none! important;
 }
-.message .groupsender{
+.zm .groupsender{
   font-size: 0.75rem;
 }
 .groupchat {
@@ -116,7 +116,7 @@ clear:right;
   padding-left:0!important;
   height:25px;
 }
-.message .chat {
+.zm .chat {
   font-size: 1rem;
 }
 .alert{

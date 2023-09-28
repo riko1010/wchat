@@ -1030,12 +1030,12 @@ elseif $type == "chat"
      div(class="col bx bx-sm bxs-user-circle groupchat" style="color:$sendercolor;")
   
     .col-9
-      div(class=$recipient ? "" : "message-right" class="col-auto message")
-       div(class=$recipient ? "message-left chat m-l-c" : "m-r-c bg-wa" class="col rounded p-2")
-         div(class=$recipient ? "message-left" : "bg-wa" class="col sender") #{$sender}
-         div(class=$recipient ? "message-left" : "")
+      div(class=$recipient ? "" : "zmr" class="col-auto message")
+       div(class=$recipient ? "zml chat m-l-c" : "m-r-c bg-wa" class="col rounded p-2")
+         div(class=$recipient ? "zml" : "bg-wa" class="col sender") #{$sender}
+         div(class=$recipient ? "zml" : "")
            if $groupchat == true
-            div(class="col groupsender message-left" style="color:$sendercolor;")
+            div(class="col groupsender zml" style="color:$sendercolor;")
              strong #{$sender}
             
            if $attachmentexists == true
@@ -1043,7 +1043,7 @@ elseif $type == "chat"
            else
             div
              span.messageEl #{$message}
-         span(class="col time" class=$recipient ? "message-left" : "bg-wa") #{$time}
+         span(class="col time" class=$recipient ? "zml" : "bg-wa") #{$time}
 else
  +unformattedchatline
 ';
