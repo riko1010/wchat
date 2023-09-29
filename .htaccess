@@ -5,7 +5,7 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*?)$ index.php?queryarg=$1 [QSA]
-AuthType Basic
-AuthName "Access to the dev site"
-AuthUserFile .htpasswd
-Require valid-user
+#AuthType Basic
+#AuthName "Access to the dev site"
+#AuthUserFile .htpasswd
+#Require valid-user
