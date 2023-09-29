@@ -528,7 +528,10 @@ $to++;
 $i++;
 } while ($i < $to && !$this->eof);
 
-if (!$this->eof) {
+if ($this->eof) {
+$this->NPaginationFrom = 0;
+$this->NPaginationTo = 0;
+} else {
 $NextTo = $to + $GLOBALS['recordsperpage'];
 $this->NPaginationFrom = $to;
 $this->NPaginationTo = $NextTo;
