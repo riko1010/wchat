@@ -6,7 +6,7 @@ namespace Curl;
 
 class Curl extends BaseCurl
 {
-    const VERSION = '9.17.4';
+    const VERSION = '9.18.2';
     const DEFAULT_TIMEOUT = 30;
 
     public $curl = null;
@@ -526,11 +526,6 @@ class Curl extends BaseCurl
             $this->curlErrorMessage = $curl_error_message;
         }
 
-        $this->httpStatusCode = $this->getInfo(CURLINFO_HTTP_CODE);
-        $this->httpError = in_array((int) floor($this->httpStatusCode / 100), [4, 5], true);
-        $this->error = $this->curlError || $this->httpError;
-        $this->errorCode = $this->error ? ($this->curlError ? $this->curlErrorCode : $this->httpStatusCode) : 0;
-
         // NOTE: CURLINFO_HEADER_OUT set to true is required for requestHeaders
         // to not be empty (e.g. $curl->setOpt(CURLINFO_HEADER_OUT, true);).
         if ($this->getOpt(CURLINFO_HEADER_OUT) === true) {
@@ -538,6 +533,18 @@ class Curl extends BaseCurl
         }
         $this->responseHeaders = $this->parseResponseHeaders($this->rawResponseHeaders);
         $this->response = $this->parseResponse($this->responseHeaders, $this->rawResponse);
+
+        $this->httpStatusCode = $this->getInfo(CURLINFO_HTTP_CODE);
+        $this->httpError = in_array((int) floor($this->httpStatusCode / 100), [4, 5], true);
+        $this->error = $this->curlError || $this->httpError;
+
+        $this->call($this->afterSendCallback);
+
+        if (!in_array($this->error, [true, false], true)) {
+            trigger_error('$instance->error MUST be set to true or false', E_USER_WARNING);
+        }
+
+        $this->errorCode = $this->error ? ($this->curlError ? $this->curlErrorCode : $this->httpStatusCode) : 0;
 
         $this->httpErrorMessage = '';
         if ($this->error) {
@@ -1926,8 +1933,33 @@ class Curl extends BaseCurl
         }
 
         if (
-            isset($response_headers['Content-Encoding']) && $response_headers['Content-Encoding'] === 'gzip' &&
-            is_string($response)
+            (
+                // Ensure that the server says the response is compressed with
+                // gzip and the response has not already been decoded. Use
+                // is_string() to ensure that $response is a string being passed
+                // to mb_strpos() and gzdecode(). Use extension_loaded() to
+                // ensure that mb_strpos() uses the mbstring extension and not a
+                // polyfill.
+                isset($response_headers['Content-Encoding']) &&
+                $response_headers['Content-Encoding'] === 'gzip' &&
+                is_string($response) &&
+                (
+                    (
+                        extension_loaded('mbstring') &&
+                        mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0, 'US-ASCII') === 0
+                    ) ||
+                    !extension_loaded('mbstring')
+                )
+            ) || (
+                // Or ensure that the response looks like it is compressed with
+                // gzip. Use is_string() to ensure that $response is a string
+                // being passed to mb_strpos() and gzdecode(). Use
+                // extension_loaded() to ensure that mb_strpos() uses the
+                // mbstring extension and not a polyfill.
+                is_string($response) &&
+                extension_loaded('mbstring') &&
+                mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0, 'US-ASCII') === 0
+            )
         ) {
             // Use @ to suppress message "Warning gzdecode(): data error".
             $decoded_response = @gzdecode($response);
