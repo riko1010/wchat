@@ -36,13 +36,13 @@ $Init = new Init;
 $Init->baseDir = $baseDir;
 $Init->queryarg = $REQUEST->queryarg;
 $InitData = $Init->Index($db);
-$AppData = $Init->AppData($db);
+$Config = $Init->Config($db);
 
 /* app instance */
 $App = new App;
 
 $sitemap = new generateSiteMap;
-$sitemap->AppData = &$AppData;
+$sitemap->AppData = &$Config;
 $sitemap->cfFilespattern = $cfFilespattern;
 $sitemap->SiteUrl = $SiteUrl; 
 $sitemap->cfFolder = $cfFolder;
@@ -64,7 +64,7 @@ return [
 
 /* reinit */
 $InitData = $Init->Index($db);
-$AppData = $Init->AppData($db);
+$Config = $Init->Config($db);
 
 if (!$InitData->IsEmpty) {
 $App->ChatFilesData = $InitData->Data;

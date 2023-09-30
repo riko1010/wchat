@@ -262,7 +262,7 @@ public $queryarg;
   ];                         
   }
 
-  public function AppData(Database $db){
+  public function Config(Database $db){
   /* load app data */
   $AppDataExecute = $db->SelectOne(
                         'AppData',
@@ -278,7 +278,9 @@ public $queryarg;
   );
   */
   /* load chat files if not loading through api */
-  $config = new Config('');
+  $config = new Config(
+    $this->baseDir.'/assets-php/settings.php'
+    );
   
   return $config;   
   }
