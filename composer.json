@@ -11,7 +11,6 @@
         "symfony/filesystem": "^6.3",
         "bentools/iterable-functions": "^2.1",
         "elegantweb/sanitizer": "^2.1",
-        "laminas/laminas-db": "^2.18",
-        "laminas/laminas-config": "^3.9"
+        "laminas/laminas-db": "^2.18"
     }
 }
