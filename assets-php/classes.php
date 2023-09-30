@@ -611,14 +611,14 @@ $i++;
 }
 
 public function PaginationViability(
- ?int $PaginationFrom = null,
- ?int $PaginationTo = null,
+ int $PaginationFrom,
+ int $PaginationTo = 0,
   $cfFiles = null
   ) {
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);
 
 $from = $PaginationFrom;
-$to = ($PaginationTo == null ? $GLOBALS['recordsperpage'] : $PaginationTo );
+$to = ($PaginationTo == 0 ? $GLOBALS['recordsperpage'] : $PaginationTo );
 
 if ($from === null) {
   return (object) [ 

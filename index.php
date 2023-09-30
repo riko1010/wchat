@@ -94,6 +94,7 @@ $app\NPaginationFrom
 $app\NPaginationTo
 now available 
 */
+
 $PrevPaginationStatus = 'disabled';
 $NextPaginationStatus = 'disabled';
 ?>
