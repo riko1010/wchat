@@ -1,23 +1,23 @@
 <?php
 return [
-  'whatsappchatsURI' => 'https://dev.wchat.space',
-  'SiteUrl' => 'https://dev.wchat.space',
-  'recordsperpage' => '',
-  'unzippyURI' => 'https://wchat.space/python/rununzip.py',
-  'dropboxfolderuriaszip' => 'https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?dl=1',
-  'dropboxfolderuriaszipheader' => 'https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?raw=1',
-  'PyArchiveURI' => '',
-  'cfFolder' => '',
-  'videoPlayerURL' => '',
-  'videoPlayerPoster' => '',
-  'docViewer' => '',
-  'ogimage' => '',
-  'ogcontenttype' => '',
-  'cfFilespattern' => '',
-  'sitemapxml' => '',
-  'robotstxt' => '',
-  '$baseDir' => '',
-  'sqlitedb' => ''
+'whatsappchatsURI' => 'https://dev.wchat.space',
+'SiteUrl' => 'https://dev.wchat.space',
+'recordsperpage' => 100,
+'unzippyURI' => 'https://wchat.space/python/rununzip.py',
+'dropboxfolderuriaszip' => 'https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?dl=1',
+'dropboxfolderuriaszipheader' => 'https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?raw=1',
+'PyArchiveURI' => 'https://wchat.space/python/runarchive.py',
+'cfFolder' => 'conversations',
+'videoPlayerURL' => 'https://onelineplayer.com/player.html?autoplay=true&autopause=true&muted=true&loop=true&url=%s&poster=&time=true&progressBar=true&overlay=true&muteButton=true&fullscreenButton=true&style=light&quality=auto&playButton=true',
+'videoPlayerPoster' => 'images/videoposter.png',
+'docViewer' => 'https://docs.google.com/viewer?url=%s&embedded=true',
+'ogimage' => $SiteUrl.'/images/ogimage.jpg',
+'ogcontenttype' => 'chat',
+'cfFilespattern' => '/WhatsApp Chat with\s(?P<name>.*?)((\.\d)?.txt)/i',
+'sitemapxml' => 'sitemap.xml',
+'robotstxt' => 'robots.txt',
+'baseDir' => dirname(__DIR__),
+'sqlitedb' => 'db.sqlite'
   ];
   
 $whatsappchatsURI = 'https://dev.wchat.space';
@@ -37,15 +37,11 @@ $PyArchiveURI = 'https://wchat.space/python/runarchive.py';
 $cfFolder = "conversations"; 
 $extracted = true;
 /* video url as %s , replacement with sprintf */
-$videoPlayerURL = 'https://onelineplayer.com/player.html?autoplay=true&autopause=true&muted=true&loop=true&url='
-.'%s'.
-'&poster=&time=true&progressBar=true&overlay=true&muteButton=true&fullscreenButton=true&style=light&quality=auto&playButton=true';
+$videoPlayerURL = 'https://onelineplayer.com/player.html?autoplay=true&autopause=true&muted=true&loop=true&url=%s&poster=&time=true&progressBar=true&overlay=true&muteButton=true&fullscreenButton=true&style=light&quality=auto&playButton=true';
 /* default video poster - if filename.ext.png exists in same dir, it'll be used instead */
 $videoPlayerPoster = 'images/videoposter.png';
 /* doc url as %s, replacement with sprintf */
-$docViewer = 'https://docs.google.com/viewer?url='
-.'%s'.
-'&embedded=true';
+$docViewer = 'https://docs.google.com/viewer?url=%s&embedded=true';
 /* opengraph */
 $ogImage = $SiteUrl.'/images/ogimage.jpg';
 $ogcontenttype = 'chat';
