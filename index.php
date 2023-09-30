@@ -135,6 +135,7 @@ https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css
 
 <script src="https://cdn.jsdelivr.net/npm/scrollmagic@2.0.8/scrollmagic/minified/ScrollMagic.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script src="assets-js/classes.js" referrerpolicy="no-referrer"></script>  
 <script>
  $(document).ready(function(){
      // setup Tooltips
@@ -271,7 +272,7 @@ if ($sitemap['exists'] == false) continue;
     <footer>
       <?=($app->eof ?: $app->NPaginationFrom.','.$app->NPaginationTo);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
     </footer>
-<script src="assets-js/classes.js" referrerpolicy="no-referrer"></script>    
+  
 <script>
 dev = true;
 <?php
