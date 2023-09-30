@@ -89,7 +89,11 @@ $processlines->iterable = $app->ChatFileGenerator(
   $processlines->PaginationTo
   );
 }
-
+/* 
+$app\NPaginationFrom
+$app\NPaginationTo
+now available 
+*/
 ?>
 <!DOCTYPE html>
 
@@ -198,7 +202,7 @@ if (!$InitData->IsEmpty){
 <section id="ArchivedNav">
 <nav aria-label="...">
   <ul class="pagination">
-    <li class="page-item disabled">
+    <li class="page-item <?=$PrevPaginationStatus;?>">
       <a class="page-link">Previous</a>
     </li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
