@@ -1,5 +1,23 @@
 <?php
 return [
+  'whatsappchatsURI' => '',
+  'SiteUrl' => '',
+  'recordsperpage' => '',
+  'unzippyURI' => '',
+  'dropboxfolderuriaszip' => '',
+  'dropboxfolderuriaszipheader' => '',
+  'PyArchiveURI' => '',
+  'cfFolder' => '',
+  'videoPlayerURL' => '',
+  'videoPlayerPoster' => '',
+  'docViewer' => '',
+  'ogimage' => '',
+  'ogcontenttype' => '',
+  'cfFilespattern' => '',
+  'sitemapxml' => '',
+  'robotstxt' => '',
+  '$baseDir' => '',
+  'sqlitedb' => ''
   ];
   
 $whatsappchatsURI = 'https://dev.wchat.space';
