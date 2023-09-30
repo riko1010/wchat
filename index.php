@@ -40,7 +40,7 @@ $InitData = $Init->Index();
 $AppData = $Init->AppData();
 
 /* app instance */
-$app = new App;
+$App = new App;
 
 $sitemap = new generateSiteMap;
 $sitemap->AppData = &$AppData;
@@ -54,7 +54,7 @@ $sitemap->sitemapxml = $sitemapxml;
 $sitemap->PyArchiveURI = $PyArchiveURI;
 $sitemap->bdir = $baseDir;
 $sitemap->db = $db;
-$sitemap->CallFunc->{'$app\CFgetfiles'} = $app->CFgetfiles(...);
+$sitemap->CallFunc->{'$App\CFgetfiles'} = $App->CFgetfiles(...);
 $sitemaps = $sitemap->get(
   );
 /*
@@ -69,29 +69,29 @@ $InitData = $Init->Index();
 $AppData = $Init->AppData();
 
 if (!$InitData->IsEmpty) {
-$app->ChatFilesData = $InitData->Data;
-$app->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
-$app->baseDir = $baseDir;
-$app->SetChatFile($REQUEST->queryarg);
-/* $app->SelectedId now set  */
-$app->SetVerifiedRecipient( $app->Name );
+$App->ChatFilesData = $InitData->Data;
+$App->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
+$App->baseDir = $baseDir;
+$App->SetChatFile($REQUEST->queryarg);
+/* $App->SelectedId now set  */
+$App->SetVerifiedRecipient( $App->Name );
 
 $processLines = new processLines;
-$processLines->vrecipient = $app->VerifiedRecipient;
-$processLines->groupchat = $app->GroupChat;
-$processLines->ChatFile = $app->ChatFile;
-$processLines->dirpath = $app->DirPath;
+$processLines->vrecipient = $App->VerifiedRecipient;
+$processLines->groupchat = $App->GroupChat;
+$processLines->ChatFile = $App->ChatFile;
+$processLines->dirpath = $App->DirPath;
 $processLines->baseDir = $baseDir;
 $processLines->PaginationFrom = 0;
 $processLines->PaginationTo = $recordsperpage;
-$processLines->iterable = $app->ChatFileGenerator(
+$processLines->iterable = $App->ChatFileGenerator(
   $processLines->PaginationFrom,
   $processLines->PaginationTo
   );
 }
 /* 
-$app\NPaginationFrom
-$app\NPaginationTo
+$App\NPaginationFrom
+$App\NPaginationTo
 now available 
 */
 ?>
@@ -104,10 +104,10 @@ now available
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?=$app->PageTitle();?></title>
+    <title><?=$App->PageTitle();?></title>
 
 <!-- opengraph -->
-<meta property="og:title" content="<?=$app->PageTitle();?>" />
+<meta property="og:title" content="<?=$App->PageTitle();?>" />
 <meta property="og:type" content="<?=$ogcontenttype;?>" />
 <meta property="og:url" content="<?=$currentURL;?>" />
 <meta property="og:image" content="<?=$ogImage;?>" />
@@ -169,7 +169,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="brand">
       <!-- select -->
 <select style="" class="form-select form-control searchselect">
-<?=$app->Menu();?>           
+<?=$App->Menu();?>           
  </select>      
     </header>
     
@@ -192,15 +192,15 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 /* start chat list if backupfile present */
 if (!$InitData->IsEmpty){
 ?>
-<section><h3 class='chat-title'>WhatsApp Chat with <?=$app->Name;?></h3>
+<section><h3 class='chat-title'>WhatsApp Chat with <?=$App->Name;?></h3>
 <div class='row p-1 spotlight-group' id='whatsappimages'>
-<?=$processLines->ProcessAndPrint();?>
+<?=$processLines->ProcessAndPrint($App);?>
 </div>
 
 </section>
 
 <section id="ArchivedNav">
-<?=$app->PaginationNav();?>
+<?=$App->PaginationNav();?>
 </section>
 
 <div id="loader"> </div>
@@ -279,7 +279,7 @@ if ($sitemap['exists'] == false) continue;
 </div>
 
     <footer>
-      <?=($app->eof ?: $app->NPaginationFrom.','.$app->NPaginationTo);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
+      <?=($App->eof ?: $App->NPaginationFrom.','.$App->NPaginationTo);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
     </footer>
   
 <script>
@@ -287,14 +287,14 @@ dev = true;
 <?php
 /* try, catch exception to precent break on exceptions */
 /* no scrollmagic needed if no id or pagination */
-if ($app->eof == false && $app->SelectedId != null) {
+if ($App->eof == false && $App->SelectedId != null) {
 ?>
 $(document).ready(function(){
 isr = new infinitescrollrequest();
 isr.url = 'api';
-isr.queryarg = '<?=$app->SelectedId;?>';
-isr.paginationfrom = '<?=$app->NPaginationFrom;?>';
-isr.paginationto = '<?=$app->NPaginationTo;?>';
+isr.queryarg = '<?=$App->SelectedId;?>';
+isr.paginationfrom = '<?=$App->NPaginationFrom;?>';
+isr.paginationto = '<?=$App->NPaginationTo;?>';
 isr.recordsperpage = '<?=$recordsperpage;?>';
 /* must overflow vh for trigger event 'onenter' reasonably*/
 isr.minrecordsperpage = 50; 

@@ -890,7 +890,7 @@ public function Process(){
     }  
 }
 
-public function ProcessAndPrint(){
+public function ProcessAndPrint(App $App){
   /* print */
   foreach ($this->iterate() as $iterable) {
     print $iterable;
@@ -1242,7 +1242,7 @@ return (object) [
       ];   
 }
 
-$cfFiles = ($this->CallFunc->{'$app\CFgetfiles'})(
+$cfFiles = ($this->CallFunc->{'$App\CFgetfiles'})(
   $cfFolders->chatFolder, 
   $cfFolders->chatFolders, 
   $this->cfFilespattern
