@@ -710,7 +710,7 @@ return $menu;
 
 }
 
-class sqlitedb{
+class Database {
   
 private $adapter;
 private $sql;
