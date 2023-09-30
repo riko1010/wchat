@@ -174,13 +174,24 @@ function CFgetfolders($cfFolder) {
 /* end CFgetfolders */
 }
 
-function replaceinFile($fromstring, $tostring, $ChatFile){
+function replaceinFile(
+  $fromstring, 
+  $tostring, 
+  App $App
+  ){
 try {
-file_put_contents($ChatFile, str_replace($fromstring, $tostring, file_get_contents($ChatFile)));
+file_put_contents(
+  $App->ChatFile, 
+  str_replace(
+    $fromstring, 
+    $tostring, 
+    file_get_contents($App->ChatFile)
+    )
+  );
 } catch(Exception $e)
 {
   /* error - modify chat file exception */
-  return 'error: could not fix path to renamed extensionless file';
+  return 'error: could not fix path to renamed extensionless file:'$e->getMessage();
 }
 return 'success';
 }
@@ -874,9 +885,6 @@ return (object) [
 }
 
 class processLines {
-public $vrecipient;
-public $ChatFile;
-public $dirpath;
 public $iterable;
 public int $PaginationFrom;
 public int $PaginationTo;
@@ -900,7 +908,10 @@ public function iterate(App $App){
 $from = $this->PaginationFrom;
 $to = $this->PaginationTo;
 
-foreach ($this->iterable as $line) {
+foreach ($App->ChatFileGenerator(
+  $this->PaginationFrom,
+  $this->PaginationTo
+  ) as $line) {
   yield from $this->processline(
     $line, 
     $from,

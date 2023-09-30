@@ -79,10 +79,6 @@ $processLines = new processLines;
 $processLines->baseDir = $baseDir;
 $processLines->PaginationFrom = 0;
 $processLines->PaginationTo = $recordsperpage;
-$processLines->iterable = $App->ChatFileGenerator(
-  $processLines->PaginationFrom,
-  $processLines->PaginationTo
-  );
 }
 /* 
 $App\NPaginationFrom
