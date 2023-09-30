@@ -1,5 +1,7 @@
 <?php
-
+return [
+  ];
+  
 $whatsappchatsURI = 'https://dev.wchat.space';
 /* urls can be same , url below uses this dir as base dir */
 $SiteUrl = 'https://dev.wchat.space';

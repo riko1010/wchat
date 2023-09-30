@@ -278,10 +278,9 @@ public $queryarg;
   );
   */
   /* load chat files if not loading through api */
+  $config = new Config('');
   
-  return (object) [
-  'Data' => $AppData
-  ];   
+  return $config;   
   }
 }
 
