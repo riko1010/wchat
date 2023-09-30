@@ -55,8 +55,7 @@ $sitemap->PyArchiveURI = $PyArchiveURI;
 $sitemap->bdir = $baseDir;
 $sitemap->db = $db;
 $sitemap->CallFunc->{'$App\CFgetfiles'} = $App->CFgetfiles(...);
-$sitemaps = $sitemap->get(
-  );
+$sitemaps = $sitemap->get();
 /*
 return [
   'sitemap' => [status, response]

@@ -879,8 +879,8 @@ public $groupchat;
 public $ChatFile;
 public $dirpath;
 public $iterable;
-public $PaginationFrom;
-public $PaginationTo;
+public int $PaginationFrom;
+public int $PaginationTo;
 public $baseDir;
 
 public function Process(App $App){
@@ -898,8 +898,8 @@ public function ProcessAndPrint(App $App){
 }
 
 public function iterate(App $App){
-$from = (is_numeric(trim($this->PaginationFrom)) ? trim($this->PaginationFrom) : 0 );
-$to = (is_numeric(trim($this->PaginationTo)) ? trim($this->PaginationTo) : $GLOBALS['recordsperpage'] );
+$from = $this->PaginationFrom;
+$to = $this->PaginationTo;
 
 foreach ($this->iterable as $line) {
   yield from $this->processline(
