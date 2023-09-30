@@ -11,8 +11,10 @@ return [
 'videoPlayerURL' => 'https://onelineplayer.com/player.html?autoplay=true&autopause=true&muted=true&loop=true&url=%s&poster=&time=true&progressBar=true&overlay=true&muteButton=true&fullscreenButton=true&style=light&quality=auto&playButton=true',
 'videoPlayerPoster' => 'images/videoposter.png',
 'docViewer' => 'https://docs.google.com/viewer?url=%s&embedded=true',
-'ogimage' => $SiteUrl.'/images/ogimage.jpg',
-'ogcontenttype' => 'chat',
+'og' => [
+  'image' => $SiteUrl.'/images/ogimage.jpg',
+  'contenttype' => 'chat'
+  ],
 'cfFilespattern' => '/WhatsApp Chat with\s(?P<name>.*?)((\.\d)?.txt)/i',
 'sitemapxml' => 'sitemap.xml',
 'robotstxt' => 'robots.txt',
