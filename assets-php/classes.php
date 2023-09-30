@@ -648,7 +648,7 @@ return (object) [
   }
 }
 
-public PaginationNav(processLines $processlines){
+public function PaginationNav(processLines $processlines){
 $PrevPaginationStatus = (
   $this->NPaginationFrom == 0 ? 
   'disabled' : ''
@@ -661,16 +661,16 @@ $NextPaginationStatus = (
     );
 
 $PrevPaginationHref = $processlines->PaginationFrom.'-'.$processlines->PaginationTo;
-$NextPaginationHref = $this->PaginationFrom.'-'.$this->PaginationTo;
+$NextPaginationHref = $this->NPaginationFrom.'-'.$this->NPaginationTo;
 
 $PaginationNav = '  
   <nav aria-label="...">
   <ul class="pagination">
     <li class="page-item '.$PrevPaginationStatus.'">
-      <a href= class="page-link">Previous</a>
+      <a href='.$PrevPaginationHref.' class="page-link">Previous</a>
     </li>
     <li class="page-item '.$NextPaginationStatus.'">
-      <a class="page-link" href="#">Next</a>
+      <a href='.$NextPaginationHref.' class="page-link">Next</a>
     </li>
   </ul>
 </nav>';
