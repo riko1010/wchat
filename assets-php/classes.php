@@ -883,21 +883,21 @@ public $PaginationFrom;
 public $PaginationTo;
 public $baseDir;
 
-public function Process(){
+public function Process(App $App){
 /* yield */
-  foreach ($this->iterate() as $iterable) {
+  foreach ($this->iterate($App) as $iterable) {
       yield $iterable;
     }  
 }
 
 public function ProcessAndPrint(App $App){
   /* print */
-  foreach ($this->iterate() as $iterable) {
+  foreach ($this->iterate($App) as $iterable) {
     print $iterable;
   }  
 }
 
-public function iterate(){
+public function iterate(App $App){
 $from = (is_numeric(trim($this->PaginationFrom)) ? trim($this->PaginationFrom) : 0 );
 $to = (is_numeric(trim($this->PaginationTo)) ? trim($this->PaginationTo) : $GLOBALS['recordsperpage'] );
 
