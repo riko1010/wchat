@@ -35,6 +35,7 @@ return array(
     'Lazer\\' => array($vendorDir . '/greg0/lazer-database/src'),
     'Laminas\\Stdlib\\' => array($vendorDir . '/laminas/laminas-stdlib/src'),
     'Laminas\\Db\\' => array($vendorDir . '/laminas/laminas-db/src'),
+    'Laminas\\Config\\' => array($vendorDir . '/laminas/laminas-config/src'),
     'Illuminate\\Validation\\' => array($vendorDir . '/illuminate/validation'),
     'Illuminate\\Translation\\' => array($vendorDir . '/illuminate/translation'),
     'Illuminate\\Support\\' => array($vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/conditionable', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/support'),

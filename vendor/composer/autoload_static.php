@@ -69,6 +69,7 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
             'Lazer\\' => 6,
             'Laminas\\Stdlib\\' => 15,
             'Laminas\\Db\\' => 11,
+            'Laminas\\Config\\' => 15,
         ),
         'I' => 
         array (
@@ -227,6 +228,10 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         'Laminas\\Db\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-db/src',
+        ),
+        'Laminas\\Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-config/src',
         ),
         'Illuminate\\Validation\\' => 
         array (
