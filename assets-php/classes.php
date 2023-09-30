@@ -885,7 +885,6 @@ return (object) [
 }
 
 class processLines {
-public $iterable;
 public int $PaginationFrom;
 public int $PaginationTo;
 public $baseDir;
