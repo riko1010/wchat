@@ -1118,7 +1118,11 @@ yield $phug->render($template);
                     
 }
 
-public function AttachmentHandler($message, $attachmentneedle, $dirpath) {
+public function AttachmentHandler(
+  $message, 
+  $attachmentneedle, 
+  App $App
+  ) {
 $attachments = (str_contains($message, $attachmentneedle) ? explode($attachmentneedle, $message) : false);
 if (!$attachments) return 'error: no files attached';
 
@@ -1130,11 +1134,11 @@ $caption = (isset($attachments[1]) ? $attachments[1] : '' );
 /* make absolute for exists */
 $absfilepath = Path::join(
   $this->baseDir, 
-  $dirpath, 
+  $App->DirPath, 
   $attachment
   );
 $filepath = Path::join(
-  $dirpath, 
+  $App->DirPath,
   $attachment
   );  
 $exists = ($attachment != '' && file_exists($absfilepath) ? true : false);
@@ -1148,7 +1152,13 @@ if (!$ext) return 'error: could not guess file extension';
 $newfilepath = $absfilepath.$ext;  
 if(!rename($absfilepath, $newfilepath)) return 'error: could not fix file extension';
 /* modify this chat file */
-if('success' !== replaceinFile($attachment, $attachment.$ext, $this->ChatFile)) return 'error: could not update chat file with fixed extensionless files'; 
+if('success' !== replaceinFile(
+  $attachment, 
+  $attachment.$ext, 
+  $App
+  )) { 
+    return 'error: could not update chat file with fixed extensionless files'; 
+  }
 $absfilepath = $newfilepath;
 }
 

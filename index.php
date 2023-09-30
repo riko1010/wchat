@@ -76,7 +76,6 @@ $App->SetChatFile($REQUEST->queryarg);
 $App->SetVerifiedRecipient( $App->Name );
 
 $processLines = new processLines;
-$processLines->ChatFile = $App->ChatFile;
 $processLines->baseDir = $baseDir;
 $processLines->PaginationFrom = 0;
 $processLines->PaginationTo = $recordsperpage;
