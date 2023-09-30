@@ -944,7 +944,7 @@ $sender = ''; /* unformatted */
 
 if(isset($messagelinetype)){
 
-$recipient = ($App->GroupChat ? true : ( (strtolower($sender) == $this->vrecipient) ? true : false));
+$recipient = ($App->GroupChat ? true : ( (strtolower($sender) == $App->VerifiedRecipient) ? true : false));
 
 $phug = new Phug\Renderer([
 'globals' => [
@@ -952,7 +952,7 @@ $phug = new Phug\Renderer([
 'message' => $message,
 'time' => $time,
 'recipient' => $recipient,
-'vrecipient' => $this->vrecipient,
+'vrecipient' => $App->VerifiedRecipient,
 'attachmentexists' => false,
 'type' => $messagelinetype,
 'groupchat' => $App->GroupChat,
@@ -981,7 +981,7 @@ $attachmentneedle = '(file attached)';
 $attachments = $this->AttachmentHandler(
   $message, 
   $attachmentneedle, 
-  $this->dirpath
+  $App
   );
 
 if (isset($attachments->exists) && $attachments->exists == true) {
