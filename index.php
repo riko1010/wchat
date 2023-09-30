@@ -94,6 +94,8 @@ $app\NPaginationFrom
 $app\NPaginationTo
 now available 
 */
+$PrevPaginationStatus = 'disabled';
+$NextPaginationStatus = 'disabled';
 ?>
 <!DOCTYPE html>
 
@@ -205,12 +207,7 @@ if (!$InitData->IsEmpty){
     <li class="page-item <?=$PrevPaginationStatus;?>">
       <a class="page-link">Previous</a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active" aria-current="page">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
+    <li class="page-item <?=$NextPaginationStatus;?>">
       <a class="page-link" href="#">Next</a>
     </li>
   </ul>
