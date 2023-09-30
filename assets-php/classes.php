@@ -648,6 +648,23 @@ return (object) [
   }
 }
 
+public PaginationNav(){
+$PrevPaginationStatus = ($this->NPaginationFrom == 0 ? 'disabled' : '');
+$NextPaginationStatus = ($this->NPaginationTo == 0 ? 'disabled' : '');
+  <nav aria-label="...">
+
+  <ul class="pagination">
+
+    <li class="page-item <?=$PrevPaginationStatus;?>">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item <?=$NextPaginationStatus;?>">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+
+}
 public function PageTitle(){
 return 'Whatsapp Chat '
 .(isset($this->NoSelected) ? '' : (isset($this->Name) && $this->Name != '' ? ('with '.$this->Name) : ''));  

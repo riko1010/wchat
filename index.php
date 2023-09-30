@@ -203,16 +203,7 @@ if (!$InitData->IsEmpty){
 </section>
 
 <section id="ArchivedNav">
-<nav aria-label="...">
-  <ul class="pagination">
-    <li class="page-item <?=$PrevPaginationStatus;?>">
-      <a class="page-link">Previous</a>
-    </li>
-    <li class="page-item <?=$NextPaginationStatus;?>">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+<?=$app->PaginationNav();?>
 </section>
 
 <div id="loader"> </div>
