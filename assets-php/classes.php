@@ -202,14 +202,9 @@ class Init {
 public $InitType;
 public $baseDir;
 public $queryarg;
-public $db;
-
-  public function BootLoader(){
   
-  }
-  
-  public function API() {
-  $ChatFilesDataExecute = $this->db->SelectOne(
+  public function API(Database $db) {
+  $ChatFilesDataExecute = $db->SelectOne(
   'chatfiles',
   ['id' => $this->queryarg]
   );
@@ -240,8 +235,8 @@ public $db;
   ];    
   }
   
-  public function Index(){
-  $ChatFilesDataExecute = $this->db->Select('chatfiles');
+  public function Index(Database $db){
+  $ChatFilesDataExecute = $db->Select('chatfiles');
   $ChatFilesDataSelectType = 'all';
   $ChatFilesData = $ChatFilesDataExecute->status ?
   iter_to_array($ChatFilesDataExecute->response)
@@ -267,9 +262,9 @@ public $db;
   ];                         
   }
 
-  public function AppData(){
+  public function AppData(Database $db){
   /* load app data */
-  $AppDataExecute = $this->db->SelectOne(
+  $AppDataExecute = $db->SelectOne(
                         'AppData',
                         ['id' => 1]);
   $AppDatas = ($AppDataExecute->status ?

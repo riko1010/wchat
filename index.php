@@ -64,8 +64,8 @@ return [
 */
 
 /* reinit */
-$InitData = $Init->Index();
-$AppData = $Init->AppData();
+$InitData = $Init->Index($db);
+$AppData = $Init->AppData($db);
 
 if (!$InitData->IsEmpty) {
 $App->ChatFilesData = $InitData->Data;
