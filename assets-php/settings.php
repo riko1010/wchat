@@ -1,11 +1,11 @@
 <?php
 return [
-  'whatsappchatsURI' => '',
-  'SiteUrl' => '',
+  'whatsappchatsURI' => 'https://dev.wchat.space',
+  'SiteUrl' => 'https://dev.wchat.space',
   'recordsperpage' => '',
-  'unzippyURI' => '',
-  'dropboxfolderuriaszip' => '',
-  'dropboxfolderuriaszipheader' => '',
+  'unzippyURI' => 'https://wchat.space/python/rununzip.py',
+  'dropboxfolderuriaszip' => 'https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?dl=1',
+  'dropboxfolderuriaszipheader' => 'https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?raw=1',
   'PyArchiveURI' => '',
   'cfFolder' => '',
   'videoPlayerURL' => '',
