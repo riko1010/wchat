@@ -648,7 +648,7 @@ return (object) [
   }
 }
 
-public function PaginationNav(processLines $processlines){
+public function PaginationNav(processLines $processLines){
 $PrevPaginationStatus = (
   $this->NPaginationFrom == 0 ? 
   'disabled' : ''
@@ -660,8 +660,8 @@ $NextPaginationStatus = (
     'disabled' : ''
     );
 
-$PrevPaginationHref = $processlines->PaginationFrom.'-'.$processlines->PaginationTo;
-$NextPaginationHref = $this->NPaginationFrom.'-'.$this->NPaginationTo;
+$PrevPaginationHref = '?'.$processLines->PaginationFrom.'-'.$processLines->PaginationTo;
+$NextPaginationHref = '?'.$this->NPaginationFrom.'-'.$this->NPaginationTo;
 
 $PaginationNav = '  
   <nav aria-label="...">

@@ -76,17 +76,17 @@ $app->SetChatFile($REQUEST->queryarg);
 /* $app->SelectedId now set  */
 $app->SetVerifiedRecipient( $app->Name );
 
-$processlines = new processLines;
-$processlines->vrecipient = $app->VerifiedRecipient;
-$processlines->groupchat = $app->GroupChat;
-$processlines->ChatFile = $app->ChatFile;
-$processlines->dirpath = $app->DirPath;
-$processlines->baseDir = $baseDir;
-$processlines->PaginationFrom = 0;
-$processlines->PaginationTo = $recordsperpage;
-$processlines->iterable = $app->ChatFileGenerator(
-  $processlines->PaginationFrom,
-  $processlines->PaginationTo
+$processLines = new processLines;
+$processLines->vrecipient = $app->VerifiedRecipient;
+$processLines->groupchat = $app->GroupChat;
+$processLines->ChatFile = $app->ChatFile;
+$processLines->dirpath = $app->DirPath;
+$processLines->baseDir = $baseDir;
+$processLines->PaginationFrom = 0;
+$processLines->PaginationTo = $recordsperpage;
+$processLines->iterable = $app->ChatFileGenerator(
+  $processLines->PaginationFrom,
+  $processLines->PaginationTo
   );
 }
 /* 
@@ -197,7 +197,7 @@ if (!$InitData->IsEmpty){
 ?>
 <section><h3 class='chat-title'>WhatsApp Chat with <?=$app->Name;?></h3>
 <div class='row p-1 spotlight-group' id='whatsappimages'>
-<?=$processlines->ProcessAndPrint();?>
+<?=$processLines->ProcessAndPrint();?>
 </div>
 
 </section>
