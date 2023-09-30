@@ -76,8 +76,6 @@ $App->SetChatFile($REQUEST->queryarg);
 $App->SetVerifiedRecipient( $App->Name );
 
 $processLines = new processLines;
-$processLines->vrecipient = $App->VerifiedRecipient;
-$processLines->groupchat = $App->GroupChat;
 $processLines->ChatFile = $App->ChatFile;
 $processLines->dirpath = $App->DirPath;
 $processLines->baseDir = $baseDir;

@@ -875,7 +875,6 @@ return (object) [
 
 class processLines {
 public $vrecipient;
-public $groupchat;
 public $ChatFile;
 public $dirpath;
 public $iterable;
@@ -904,14 +903,19 @@ $to = $this->PaginationTo;
 foreach ($this->iterable as $line) {
   yield from $this->processline(
     $line, 
-    $from
+    $from,
+    $App
     );
   $from++;
 }   
 
 }
 
-public function processline($line, $counterfilearray){ 
+public function processline(
+  $line, 
+  int $counterfilearray
+  App $App
+  ){ 
          
 $string = $line;
 
@@ -940,7 +944,7 @@ $sender = ''; /* unformatted */
 
 if(isset($messagelinetype)){
 
-$recipient = ($this->groupchat ? true : ( (strtolower($sender) == $this->vrecipient) ? true : false));
+$recipient = ($App->GroupChat ? true : ( (strtolower($sender) == $this->vrecipient) ? true : false));
 
 $phug = new Phug\Renderer([
 'globals' => [
@@ -951,7 +955,7 @@ $phug = new Phug\Renderer([
 'vrecipient' => $this->vrecipient,
 'attachmentexists' => false,
 'type' => $messagelinetype,
-'groupchat' => $this->groupchat,
+'groupchat' => $App->GroupChat,
 'sendercolor' => getsendercolor($sender),
 'counterfilearray' => $counterfilearray
     ]
