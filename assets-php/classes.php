@@ -649,13 +649,19 @@ return (object) [
 }
 
 public PaginationNav(processLines $processlines){
-$PrevPaginationStatus = ($this->NPaginationFrom == 0 ? 'disabled' : '');
+$PrevPaginationStatus = (
+  $this->NPaginationFrom == 0 ? 
+  'disabled' : ''
+  );
 $NextPaginationStatus = (
   ($this->PaginationViability(
     $this->NPaginationFrom
     ))->status == false ?
     'disabled' : ''
     );
+
+$PrevPaginationHref = $processlines->PaginationFrom.'-'.$processlines->PaginationTo;
+$NextPaginationHref = $this->PaginationFrom.'-'.$this->PaginationTo;
 
 $PaginationNav = '  
   <nav aria-label="...">
