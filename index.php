@@ -205,7 +205,7 @@ if (!$InitData->IsEmpty){
 
             ?>
     </main>
-    
+<!-- hidden nav, may show on noscript -->    
 <?php
 print "<nav hidden>";
 foreach ($InitData->Data as $link) {
@@ -213,6 +213,7 @@ print '<a href="'.$link['url'].'">'.$link['url'].'</a> <br />';
 }
 print "</nav>";
 ?>
+<!-- end hidden nav -->
 
 <!-- Modal -->
 <div class="modal fade" id="sitemapModal" tabindex="-1" aria-labelledby="sitemapModalLabel" aria-hidden="true">
