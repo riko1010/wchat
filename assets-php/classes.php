@@ -5,7 +5,7 @@ Initializations of classes, functions happen at the end of the functions and cla
 initializing the functions or classes before definitions is not feasible
 
 */
-require_once($baseDir.'/vendor/autoload.php');
+
 use SoftCreatR\MimeDetector\MimeDetector;
 use SoftCreatR\MimeDetector\MimeDetectorException;
 use samdark\sitemap\Sitemap;
