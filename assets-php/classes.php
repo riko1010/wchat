@@ -920,7 +920,7 @@ foreach ($App->ChatFileGenerator(
 
 public function processline(
   $line, 
-  int $counterfilearray
+  int $counterfilearray,
   App $App
   ){ 
          

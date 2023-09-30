@@ -3,14 +3,13 @@
 require_once 'vendor/autoload.php';
 use Elegant\Sanitizer\Sanitizer;
 
-/*
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
-*/
+
 
 /* Request Handler */
 $data = [
@@ -37,7 +36,8 @@ $Init->baseDir = $baseDir;
 $Init->queryarg = $REQUEST->queryarg;
 $InitData = $Init->Index($db);
 $Config = $Init->Config($db);
-
+var_dump($Config);
+exit;
 /* app instance */
 $App = new App;
 
