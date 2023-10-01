@@ -185,15 +185,16 @@ return 'success';
 
 Class Request {
   
-  public function _construct($request){
+  public function _construct($Request){
     /* Request Handler */
 $data = [
-    'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null )
+    'queryarg' => (isset($Request['queryarg']) ? $Request['queryarg'] : null )
 ];
 $filters = [
     'queryarg' => 'trim|empty_string_to_null|strip_tags|escape'
 ];
-$Request = new Sanitizer($data, $filters);
+
+$RequestData = new Sanitizer($data, $filters);
 $RequestData = $Request->sanitize();
 
 return (object) $RequestData;
@@ -204,13 +205,12 @@ return (object) $RequestData;
 
 class Init {
   
-public $InitType;
-public $REQUEST;
 public $Data;
   
   public function Loader(
     Config $Config,
     Database $db,
+    Request $Request
     ) {
     $CheckFileSystemModification = $this->CheckFileSystemModification($Config);
     if ($CheckFileSystemModification->status == true) {
@@ -229,7 +229,7 @@ public $Data;
     
     if ($Config->InitType == 'API') {
       $this->Data = $Init->API(
-        $this->REQUEST, 
+        $Request, 
         $db,
         );
     } else {

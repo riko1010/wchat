@@ -12,7 +12,7 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 /* Request Handler */
-$REQUEST = new Request($_REQUEST);
+$Request = new Request($_REQUEST);
 
 $currentURL = null;
 $totalrecords = null;
@@ -26,7 +26,6 @@ $Config = new Config (include $ConfigFile, true);
 $Config->InitType = 'Index';
 $db = new Database( $Config, );
 $Init = new Init;
-$Init->REQUEST = $REQUEST;
 $Init->Loader($db, $Config,);
 
 $sitemap = new generateSiteMap;
