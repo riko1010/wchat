@@ -749,7 +749,7 @@ public function SetVerifiedRecipient(
   App $App,
   Init $Init,
   ){
-$cfFiles = ($cfFiles !== null ?: $this->ChatFile);
+
 $recipient = trim(strtolower($App->Name)); 
 $identities = [];   
 $i = 0;
@@ -784,11 +784,9 @@ $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 }
 
 public function ChatFileGenerator(
- int $PaginationFrom = 0,
- int $PaginationTo = 0,
-  $cfFiles = null
+ Config $Config,
+ App $App,
   ){
-$cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
 $sfd = new SplFileObject($cfFiles);
 if (!$sfd) return 'error: could not open chat file';
 
@@ -800,8 +798,8 @@ $TerminationType = 'done';
 $NewLine = '
 '; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
-$from = $PaginationFrom;
-$to = $oto = ($PaginationTo == 0 ? $GLOBALS['recordsperpage'] : $PaginationTo );
+$from = $Config->PaginationFrom;
+$to = $oto = ($Config->PaginationFrom == 0 ? $Config->recordsperpage'] : $PaginationTo );
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
