@@ -93,11 +93,14 @@ function docViewer($uri) {
   ); 
 }
 
-function addurl($path){
+function addurl(
+  $path, 
+  Config $Config,
+  ){
   return (
-    $GLOBALS['SiteUrl']
+    $Config->SiteUrl
   .'/'
-  .Path::makeRelative($path, $GLOBALS['baseDir'])
+  .Path::makeRelative($path, $Config->baseDir)
   );
 }
 
@@ -410,6 +413,7 @@ return (object) [
 public function MergeDropAndUpdateDb(
   $Prev, 
   $new,
+  Config $Config,
   Database $db,
   ){
 
@@ -436,7 +440,10 @@ $bfc = $cl['bfc'];
 $filepath = $cl['filepath'];
 $vrecipient = $cl['vrecipient'];
 $name = $cl['name'];
-$url = addurl($cl['search']);
+$url = addurl( 
+  $cl['search'], 
+  $Config,
+  );
 $search = $cl['search'];
 $filename = $cl['filename'];
 $dirpath = $cl['dirpath'];
@@ -1592,7 +1599,11 @@ $sitemap->addItem($Link, time());
 }
 
 try {
-$sitemap->setStylesheet(addurl('sitemap.xsl'));
+$sitemap->setStylesheet(
+  addurl(
+    'sitemap.xsl', 
+    $Config, 
+    ));
 $sitemap->write();
 } catch(Exception $e){
   //sitemap.xml write error
