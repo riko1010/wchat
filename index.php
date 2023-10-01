@@ -79,9 +79,9 @@ now available
 
 <!-- opengraph -->
 <meta property="og:title" content="<?=$App->PageTitle();?>" />
-<meta property="og:type" content="<?=$ogcontenttype;?>" />
+<meta property="og:type" content="<?=$Config->og->contenttype;?>" />
 <meta property="og:url" content="<?=$currentURL;?>" />
-<meta property="og:image" content="<?=$ogImage;?>" />
+<meta property="og:image" content="<?=$Config->og->image;?>" />
     
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">

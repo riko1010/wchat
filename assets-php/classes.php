@@ -801,7 +801,6 @@ $InsertOrUpdate = $db->InsertOrUpdate(
         'response' => 'Insert or Update failed:'.$e->getMessage()
         ]; 
   }
-}
 
 $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 }
