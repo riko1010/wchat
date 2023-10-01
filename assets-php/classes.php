@@ -170,6 +170,7 @@ Class Request {
   $data = [];
   $filters = [];
   foreach ($Requests as $Request => $Val) {
+    print $Request.'-'.$Val.'<hr/>';
   $data[] = [
       $Request => $Val,
   ];
