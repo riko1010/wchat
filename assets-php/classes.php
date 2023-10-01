@@ -200,7 +200,11 @@ $this->Data = $RequestData;
   }
   
   public function __unset($PropertyName){
-  $this->Data[$PropertyName];  
+    try {
+    unset($this->Data[$PropertyName]);
+    } catch(\Exception|\Throwable $e) {
+    
+    }
   }
   
   public function get(
