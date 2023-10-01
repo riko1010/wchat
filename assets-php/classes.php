@@ -1434,7 +1434,7 @@ public function __construct(){
 $this->CallFunc = new stdClass;  
 }
 
-public function get(){
+public function get(Config $Config){
 $GenerateSitemap = false;
 if ($GenerateSitemap) {
   $Generate = $this->Generate(); 
@@ -1455,8 +1455,8 @@ if ($GenerateSitemap) {
 //objects 
 $files = $this->filesExists(
   $this->bdir,
-  $this->sitemapxml, 
-  $this->robotstxt
+  $Config->sitemapxml, 
+  $Config->robotstxt
 );
 
 return (object) [
