@@ -171,15 +171,10 @@ Class Request {
   $data = [];
   $filters = [];
   foreach ($Requests as $Request => $Val) {
-  $data[] = [
-      $Request => $Val,
-  ];
-  $filters[] = [
-      $Request => 'trim|empty_string_to_null|strip_tags|escape',
-  ];
+  $data[$Request] = $Val;
+  $filters[$Request] = 'trim|empty_string_to_null|strip_tags|escape';
   }
-var_dump($data);
-exit;
+
 $RequestData = new Sanitizer($data, $filters);
 $RequestData = $RequestData->sanitize();
 
