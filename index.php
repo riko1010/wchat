@@ -22,8 +22,7 @@ $REQUEST = (object) (new Sanitizer($data, $filters))->sanitize();
 
 $currentURL = null;
 $totalrecords = null;
-
-require 'assets-php/settings.php';
+$ConfigFile = 'assets-php/settings.php';
 require 'assets-php/classes.php';
 
 /*  load whatsapp backup file by ?backupfile=1
