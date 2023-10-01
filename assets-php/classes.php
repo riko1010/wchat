@@ -1194,12 +1194,12 @@ public function iterate(
   Config $Config, 
   App $App,
   ){
-$from = $this->PaginationFrom;
-$to = $this->PaginationTo;
+$from = $Config->PaginationFrom;
+$to = $Config->PaginationTo;
 
 foreach ($App->ChatFileGenerator(
-  $this->PaginationFrom,
-  $this->PaginationTo
+  $Config->PaginationFrom,
+  $Config->PaginationTo
   ) as $line) {
   yield from $this->processline(
     $line, 
