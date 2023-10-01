@@ -202,6 +202,7 @@ class Init {
 public $InitType;
   
   public function _construct(
+    $InitType,
     Config $Config,
     Database $db,
     ) {
