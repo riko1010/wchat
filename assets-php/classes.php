@@ -176,6 +176,7 @@ private $Writeable;
     ){
   $data = [];
   $filters = [];
+  $this->Writeable = $Writeable;
   foreach ($Requests as $Request => $Val) {
   $data[$Request] = $Val;
   $filters[$Request] = 'trim|empty_string_to_null|strip_tags|escape';
@@ -197,6 +198,7 @@ $this->Data = $RequestData;
   }
   
   public function __set($PropertyName, $Val) {
+  if ($this->Writeable) Throw new Exception(''); return false;
   $this->Data[$PropertyName] = $Val;  
   }
   
