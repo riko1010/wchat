@@ -161,28 +161,6 @@ function ras($needle, $haystack) {
     return false;
 }
 
-function replaceinFile(
-  $fromstring, 
-  $tostring, 
-  $File,
-  ){
-try {
-file_put_contents(
-  $File, 
-  str_replace(
-    $fromstring, 
-    $tostring, 
-    file_get_contents($File)
-    )
-  );
-} catch(Exception $e)
-{
-  /* error - modify chat file exception */
-  return 'error: could not fix path to renamed extensionless file:'.$e->getMessage();
-}
-return 'success';
-}
-
 Class Request {
   
   public function _construct($Requests){
@@ -606,8 +584,6 @@ class App {
 public $ChatFile; 
 public $DirPath;
 public $GroupChat;
-public $ChatFilesData;
-public $ChatFilesDataIdAsKeys;
 public $Selected;
 public $SelectedId;
 public $NoSelected = true;
@@ -659,7 +635,7 @@ ras($Request->queryarg, array_column($Init->Data->Data, 'id')) : $ras );
 $this->Selected = 0;
 }
 
-$SelectedChatFile = $this->ChatFilesData[$this->Selected];
+$SelectedChatFile = $Init->Data->Data[$this->Selected];
 $this->SelectedId = $SelectedChatFile['id'];
 $this->ChatFile = Path::join(
   $Config->baseDir,
@@ -886,6 +862,28 @@ set file array default key to null, regex if date string.solves newline, of chat
 $i++;  
 
   } 
+}
+
+public function replaceinFile(
+  $fromstring, 
+  $tostring, 
+  $File,
+  ){
+try {
+file_put_contents(
+  $File, 
+  str_replace(
+    $fromstring, 
+    $tostring, 
+    file_get_contents($File)
+    )
+  );
+} catch(Exception $e)
+{
+  /* error - modify chat file exception */
+  return 'error: could not fix path to renamed extensionless file:'.$e->getMessage();
+}
+return 'success';
 }
 
 public function PaginationViability(
@@ -1447,10 +1445,10 @@ if (!$ext) return 'error: could not guess file extension';
 $newfilepath = $absfilepath.$ext;  
 if(!rename($absfilepath, $newfilepath)) return 'error: could not fix file extension';
 /* modify this chat file */
-if('success' !== replaceinFile(
+if('success' !== $App->replaceinFile(
   $attachment, 
   $attachment.$ext, 
-  $App
+  $App->ChatFile,
   )) { 
     return 'error: could not update chat file with fixed extensionless files'; 
   }
