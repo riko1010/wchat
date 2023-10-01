@@ -174,12 +174,11 @@ Class Request {
   $data[$Request] = $Val;
   $filters[$Request] = 'trim|empty_string_to_null|strip_tags|escape';
   }
-var_dump($data);
-var_dump($filters);
+
 $RequestData = new Sanitizer($data, $filters);
 $RequestData = $RequestData->sanitize();
-
-return (object) $RequestData;
+var_dump($RequestData);
+return $RequestData;
 
   }
   
