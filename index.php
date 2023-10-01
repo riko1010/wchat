@@ -27,7 +27,7 @@ require 'assets-php/classes.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
-$Config = new Config(include $ConfigFile, true);
+$Config = new Laminas\Config\Config(include $ConfigFile, true);
 
 $db = new Database(
   pj(
