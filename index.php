@@ -2,6 +2,7 @@
 //error_reporting(0);
 require_once 'vendor/autoload.php';
 use Elegant\Sanitizer\Sanitizer;
+use PHLAK\Config\Config;
 
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -31,7 +32,6 @@ $Config = new Config( $ConfigFile );
 $Init = new Init;
 $Init->baseDir = $Config->get('baseDir');
 $Init->queryarg = $REQUEST->queryarg;
-$InitData = $Init->Index($db);
 $Init->AppendConfig(
   $db,
   'AppData',
@@ -46,6 +46,7 @@ $db = new Database(
     $Config->get('sqlitedb'),
     )
   );
+$InitData = $Init->Index($db);
 /* app instance */
 $App = new App;
 
