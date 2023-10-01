@@ -315,7 +315,7 @@ public $REQUEST;
   Config $Config,
   Database $db,
   ){
-$cfFolders = CFgetfolders($Config->cfFolder);
+$cfFolders = $this->CFgetfolders($Config);
 if (count($cfFolders->chatFolders) < 1 ) {
 return (object) [
       'status' => false,
@@ -545,7 +545,7 @@ return (object) [
 /* end CFgetfiles */
   }
 
-function CFgetfolders(Config $Config) {
+public function CFgetfolders(Config $Config) {
   /* can filter dirs with iteration of glob */
   if (!isset($Config->cfFolder)) return 'error: empty path';
   if (!is_dir($Config->cfFolder)) return 'error: folder is not a dir or empty path';
