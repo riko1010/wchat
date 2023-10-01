@@ -337,7 +337,6 @@ return (object) [
 }
 
 $cfFiles = $this->CFgetfiles(
-  $cfFolders->chatFolder, 
   $cfFolders->chatFolders, 
   $Config,
   );
