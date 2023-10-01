@@ -644,6 +644,13 @@ $this->ChatFile = Path::join(
 $this->Name = $SelectedChatFile['name'];
 $this->DirPath = $SelectedChatFile['dirpath'];
 $this->GroupChat = $SelectedChatFile['groupchat'];
+
+if ($SelectedChatFile['vrecipient'] != null) {
+  $this->VerifiedRecipient = $SelectedChatFile['vrecipient'];
+} else {
+  $this->SetVerifiedRecipient();
+}
+
 }
 
 public function CheckLegacyChatFileQuery(
@@ -675,7 +682,9 @@ public function CheckLegacyChatFileQuery(
 
 }
 
-public function SetVerifiedRecipient($recipient, $cfFiles = null){
+public function SetVerifiedRecipient(
+  Config $Config,
+  ){
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);
 $identities = [];   
 $i = 0;
