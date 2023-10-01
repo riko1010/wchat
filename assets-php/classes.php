@@ -186,7 +186,18 @@ return 'success';
 Class Request {
   
   public function _construct($request){
-    
+    /* Request Handler */
+$data = [
+    'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null )
+];
+$filters = [
+    'queryarg' => 'trim|empty_string_to_null|strip_tags|escape'
+];
+$Request = new Sanitizer($data, $filters);
+$RequestData = $Request->sanitize();
+
+return (object) $RequestData;
+
   }
   
 }

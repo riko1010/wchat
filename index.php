@@ -12,13 +12,7 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 /* Request Handler */
-$data = [
-    'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null )
-];
-$filters = [
-    'queryarg' => 'trim|empty_string_to_null|strip_tags|escape'
-];
-$REQUEST = (object) (new Sanitizer($data, $filters))->sanitize();
+$REQUEST = new Request($_REQUEST);
 
 $currentURL = null;
 $totalrecords = null;
