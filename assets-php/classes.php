@@ -221,6 +221,8 @@ $this->Data = $RequestData;
     $ErrorMsg = $e->getMessage();
     if ($DefaultValue != false){
     return $DefaultValue;
+    } elseif ($DefaultValue != false){
+    return $DefaultValue;
     } else {
     Throw new Exception($ErrorMsg);
     }
