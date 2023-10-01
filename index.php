@@ -24,6 +24,8 @@ BASE KEY = 1, NOT 0 */
 
 $Config = new Config (include $ConfigFile, true);
 $Config->InitType = 'Index';
+$Config->PaginationFrom = 0;
+$Config->PaginationTo = $Config->recordsperpage;
 $db = new Database( $Config, );
 $Init = new Init;
 $Init->Loader(
@@ -56,8 +58,6 @@ $App->SetChatFile(
 /* $App->SelectedId now set  */
 
 $processLines = new processLines;
-$processLines->PaginationFrom = 0;
-$processLines->PaginationTo = $recordsperpage;
 }
 /* 
 $App\NPaginationFrom

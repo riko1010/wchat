@@ -684,11 +684,13 @@ public function CheckLegacyChatFileQuery(
 
 public function SetVerifiedRecipient(
   Config $Config,
+  App $App,
+  Init $Init,
   ){
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);
+$recipient = trim(strtolower($App->Name)); 
 $identities = [];   
 $i = 0;
-$recipient = trim(strtolower($recipient)); 
 $cfselectedfilegenerator = $this->ChatFileGeneratorRecipient('all');
 foreach ($cfselectedfilegenerator as $filearray) {
 $pattern = '/(?P<time>.*?,+.*?)-(?P<sender>.*?):(?P<message>.*)/is';
