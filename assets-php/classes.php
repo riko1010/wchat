@@ -178,9 +178,10 @@ Class Request {
       $Request => 'trim|empty_string_to_null|strip_tags|escape',
   ];
   }
-
+var_dump($data);
+exit;
 $RequestData = new Sanitizer($data, $filters);
-$RequestData = $Request->sanitize();
+$RequestData = $RequestData->sanitize();
 
 return (object) $RequestData;
 
