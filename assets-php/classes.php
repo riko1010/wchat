@@ -166,10 +166,13 @@ function ras($needle, $haystack) {
 }
 
 Class Request {
+
+private $Data;
   
   public function __construct(
-    $Requests
-    $Writeable = ){
+    $Requests,
+    $Writeable = false,
+    ){
   $data = [];
   $filters = [];
   foreach ($Requests as $Request => $Val) {
@@ -180,14 +183,24 @@ Class Request {
 $RequestData = new Sanitizer($data, $filters);
 $RequestData = $RequestData->sanitize();
 
-return (object) $RequestData;
+$this->Data = $RequestData;
+
   }
   
   public function __get($PropertyName){
+  try {
+    
+  } catch (\Exception|\)
+  }
+  
+  public function __set($PropertyName) {
     
   }
   
-  public function get() {
+  public function get(
+    $PropertyName, 
+    $DefaultValue,
+    ) {
     
   }
   
