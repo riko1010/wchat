@@ -61,7 +61,7 @@ $Init = new Init;
 $Init->baseDir = $baseDir;
 $Init->queryarg = $REQUEST->queryarg;
 $Init->db = $db;
-$InitData = $Init->API();
+$InitData = $Init->API($REQUEST);
 $AppData = $Init->AppData();
 
 /* app instance */

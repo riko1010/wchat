@@ -19,6 +19,6 @@ return [
   'sitemapxml' => 'sitemap.xml',
   'robotstxt' => 'robots.txt',
   'baseDir' => dirname(__DIR__),
-  'sqlitedb' => 'db.sqlite'
+  'sqlitedb' => dirname(__DIR__).'db.sqlite'
   ];
  

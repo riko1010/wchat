@@ -30,15 +30,8 @@ BASE KEY = 1, NOT 0 */
 
 $Config = new Config (include $ConfigFile, true);
 
-$db = new Database(
-  pj(
-    $Config->baseDir, 
-    $Config->sqlitedb,
-    )
-  );
+$db = new Database( $Config->sqlitedb, );
 $Init = new Init;
-$Init->baseDir = $Config->baseDir;
-$InitData = $Init->Index($db);
 $Init->AppendConfig(
   $db,
   'AppData',
@@ -46,8 +39,8 @@ $Init->AppendConfig(
   $Config,
   );
 
-var_dump($Config);
-exit;
+$InitData = $Init->Index($db);
+
 /* app instance */
 $App = new App;
 
