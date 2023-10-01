@@ -284,7 +284,7 @@ public $queryarg;
   );
   */
   /* load chat files if not loading through api */
-  $Config->merge([$Table => $AppData]);
+  $Config->{$Table} = $AppData;
   
   return $Config;   
   }
