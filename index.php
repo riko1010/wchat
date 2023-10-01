@@ -27,6 +27,7 @@ require 'assets-php/classes.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
+$Config = new Config( $ConfigFile );
 $Init = new Init;
 $Init->baseDir = $baseDir;
 $Init->queryarg = $REQUEST->queryarg;
