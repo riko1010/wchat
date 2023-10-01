@@ -314,7 +314,10 @@ public $InitType;
     }   
   }
 
-public function UpdateDBFromFileSystem(Config $Config){
+public function UpdateDBFromFileSystem(
+  Config $Config,
+  Database $db,
+  ){
 $cfFolders = CFgetfolders($Config->cfFolder);
 if (count($cfFolders->chatFolders) < 1 ) {
 return (object) [
@@ -353,7 +356,7 @@ if (!$MergeDropAndUpateDb->status) {
 try {
 clearstatcache();
 $cfFoldermtimeorhash = filemtime($cfFolder);
-$UpdateAppData = $this->db->InsertOrUpdate(
+$UpdateAppData = $db->InsertOrUpdate(
     'AppData',
     [
     'mtimeorhash' => $cfFoldermtimeorhash,
@@ -371,7 +374,7 @@ $UpdateAppData = $this->db->InsertOrUpdate(
         'response' => 'Insert or Update failed:'.$e->getMessage()
         ]; 
   }
-  
+/* reinit Init\index */  
 return (object) [
       'status' => true,
       'response' => 'DB updated from Filesystem'
