@@ -1022,7 +1022,7 @@ return 'Whatsapp Chat '
 }
 
 public function Menu(
-  Init $init,
+  Init $Init,
   ){
   /* build menu */
 $menu = '';

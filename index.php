@@ -140,7 +140,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="brand">
       <!-- select -->
 <select style="" class="form-select form-control searchselect">
-<?=$App->Menu();?>           
+<?=$App->Menu($Init);?>           
  </select>      
     </header>
     
