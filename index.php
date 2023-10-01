@@ -1,7 +1,6 @@
 <?php 
 //error_reporting(0);
 require_once 'vendor/autoload.php';
-use Elegant\Sanitizer\Sanitizer;
 use Laminas\Config\Config as Config;
 
 use Whoops\Handler\JsonResponseHandler;
@@ -16,8 +15,6 @@ require 'assets-php/classes.php';
 
 /* Request Handler */
 $Request = new Request($_REQUEST);
-var_dump($Request->test());
-exit;
 $currentURL = null;
 $totalrecords = null;
 

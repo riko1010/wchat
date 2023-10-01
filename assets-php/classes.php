@@ -22,6 +22,7 @@ use Laminas\Db\Sql\Select;
 use Laminas\Db\Sql\Update;
 use Laminas\Db\Sql\Insert;
 use Laminas\Config\Config as Config;
+use Elegant\Sanitizer\Sanitizer;
 
 function ntfy($message){
   $curl = new Curl;
@@ -166,17 +167,10 @@ function ras($needle, $haystack) {
 
 Class Request {
   
-  public function test(){
-   print 'test';
-  }
-  public function _construct($Requests){
+  public function __construct($Requests){
   $data = [];
   $filters = [];
-  print 'requests';
-  var_dump($Requests);
-  print 'requests';
   foreach ($Requests as $Request => $Val) {
-    print $Request.'-'.$Val.'<hr/>';
   $data[] = [
       $Request => $Val,
   ];
