@@ -16,7 +16,7 @@ require 'assets-php/classes.php';
 
 /* Request Handler */
 $Request = new Request($_REQUEST);
-var_dump($Request);
+var_dump($Request->test());
 exit;
 $currentURL = null;
 $totalrecords = null;

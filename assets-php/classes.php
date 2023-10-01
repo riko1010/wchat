@@ -166,9 +166,13 @@ function ras($needle, $haystack) {
 
 Class Request {
   
+  public function test(){
+   print 'test';
+  }
   public function _construct($Requests){
   $data = [];
   $filters = [];
+  print 'requests';
   var_dump($Requests);
   print 'requests';
   foreach ($Requests as $Request => $Val) {
