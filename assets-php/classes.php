@@ -199,6 +199,13 @@ public $REQUEST;
     $db,
     );  
     }
+    
+    $Init->AppendConfig(
+    'AppData',
+    ['id' => 1],
+    $db,
+    $Config,
+    );
 
   }
   
