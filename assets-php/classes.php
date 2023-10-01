@@ -721,11 +721,11 @@ class Database {
 private $adapter;
 private $sql;
 
-function __construct($sqlitedb){
+function __construct(Config $Config){
   
 $this->adapter = new Laminas\Db\Adapter\Adapter([
     'driver'   => 'Pdo_Sqlite',
-    'database' => $sqlitedb,
+    'database' => $Config->sqlitedb,
 ]);
 $this->sql = new Sql($this->adapter);
 
