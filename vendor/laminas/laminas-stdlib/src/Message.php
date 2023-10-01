@@ -1,23 +1,25 @@
 <?php
 
-declare(strict_types=1);
+/**
+ * @see       https://github.com/laminas/laminas-stdlib for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-stdlib/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-stdlib/blob/master/LICENSE.md New BSD License
+ */
 
 namespace Laminas\Stdlib;
 
 use Traversable;
 
-use function array_key_exists;
-use function get_debug_type;
-use function is_array;
-use function is_scalar;
-use function sprintf;
-
 class Message implements MessageInterface
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $metadata = [];
 
-    /** @var mixed */
+    /**
+     * @var string
+     */
     protected $content = '';
 
     /**
@@ -37,10 +39,10 @@ class Message implements MessageInterface
             $this->metadata[$spec] = $value;
             return $this;
         }
-        if (! is_array($spec) && ! $spec instanceof Traversable) {
+        if (!is_array($spec) && !$spec instanceof Traversable) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Expected a string, array, or Traversable argument in first position; received "%s"',
-                get_debug_type($spec)
+                (is_object($spec) ? get_class($spec) : gettype($spec))
             ));
         }
         foreach ($spec as $key => $value) {
@@ -63,7 +65,7 @@ class Message implements MessageInterface
             return $this->metadata;
         }
 
-        if (! is_scalar($key)) {
+        if (!is_scalar($key)) {
             throw new Exception\InvalidArgumentException('Non-scalar argument provided for key');
         }
 

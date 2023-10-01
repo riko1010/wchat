@@ -13,6 +13,7 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
+        '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
@@ -74,8 +75,10 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         array (
             'Lazer\\Test\\' => 11,
             'Lazer\\' => 6,
+            'Laminas\\ZendFrameworkBridge\\' => 28,
             'Laminas\\Stdlib\\' => 15,
-            'Laminas\\Db\\' => 11,
+            'Laminas\\Hydrator\\' => 17,
+            'Laminas\\Config\\' => 15,
         ),
         'I' => 
         array (
@@ -243,13 +246,21 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         array (
             0 => __DIR__ . '/..' . '/greg0/lazer-database/src',
         ),
+        'Laminas\\ZendFrameworkBridge\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src',
+        ),
         'Laminas\\Stdlib\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-stdlib/src',
         ),
-        'Laminas\\Db\\' => 
+        'Laminas\\Hydrator\\' => 
         array (
-            0 => __DIR__ . '/..' . '/laminas/laminas-db/src',
+            0 => __DIR__ . '/..' . '/laminas/laminas-hydrator/src',
+        ),
+        'Laminas\\Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-config/src',
         ),
         'Illuminate\\Validation\\' => 
         array (
