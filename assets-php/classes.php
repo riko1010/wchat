@@ -347,8 +347,12 @@ $cfFiles = $this->CFgetfiles(
       'response' => 'Cannot fetch chat files or no chat files'
       ];   
   }
-
+if ($Config->InitType == 'API') {
+/*API */
 $PrevArray = $this->ChatFilesData;
+} else {
+/* Index */ 
+}
 $NewArray = $cfFiles->cfl;
 $MergeDropAndUpateDb = $this->MergeDropAndUpateDb(
               $PrevArray, 
