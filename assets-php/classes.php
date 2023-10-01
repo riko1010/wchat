@@ -164,15 +164,15 @@ function ras($needle, $haystack) {
 function replaceinFile(
   $fromstring, 
   $tostring, 
-  App $App
+  $File,
   ){
 try {
 file_put_contents(
-  $App->ChatFile, 
+  $File, 
   str_replace(
     $fromstring, 
     $tostring, 
-    file_get_contents($App->ChatFile)
+    file_get_contents($File)
     )
   );
 } catch(Exception $e)
