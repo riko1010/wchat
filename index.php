@@ -15,9 +15,10 @@ require 'assets-php/classes.php';
 
 /* Request Handler */
 $Request = new Request($_REQUEST);
+$Request->w = 'test';
 var_dump($Request);
-var_dump($Request->query);
-var_dump($Request->sjjs);
+var_dump($Request->queryarg);
+
 exit;
 $currentURL = null;
 $totalrecords = null;

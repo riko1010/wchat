@@ -168,6 +168,7 @@ function ras($needle, $haystack) {
 Class Request {
 
 private $Data;
+private $Writeable;
   
   public function __construct(
     $Requests,
