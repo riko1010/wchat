@@ -190,6 +190,7 @@ public $REQUEST;
 public $Data;
   
   public function _construct(
+    $InitType,
     Config $Config,
     Database $db,
     ) {
@@ -208,7 +209,14 @@ public $Data;
     $Config,
     );
     
+    if ($Config->InitType == 'API') {
+      $this->Data = $Init->API(
+        $this->REQUEST, 
+        $db,
+        );
+    } else {
     $this->Data = $Init->Index($db);
+    }
 
   }
   
