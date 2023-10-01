@@ -161,20 +161,6 @@ function ras($needle, $haystack) {
     return false;
 }
 
-function CFgetfolders($cfFolder) {
-  /* can filter dirs with iteration of glob */
-  if (!isset($cfFolder)) return 'error: empty path';
-  if (!is_dir($cfFolder)) return 'error: folder is not a dir or empty path';
-  $cfFolders = glob($cfFolder.'/*', GLOB_ONLYDIR);
-  if (!$cfFolders || count($cfFolders) < 1) return 'error: folder not found or no dirs in base dir';
-  
-  return (object) [
-    'chatFolders' => $cfFolders,
-    'chatFolder' => $cfFolder
-    ];
-/* end CFgetfolders */
-}
-
 function replaceinFile(
   $fromstring, 
   $tostring, 
@@ -504,7 +490,6 @@ return (object) [
 }
 
 public function CFgetfiles(
-  $cfFolder, 
   $cfFolders, 
   Config $Config,
   ) {
@@ -534,7 +519,6 @@ $bfc++;
 
 $dirname = basename($dir);
 $filename = basename($f);
-//$f = '';
 $cfl[$gbfc]['bfc'] = $bfc;
 $cfl[$gbfc]['vrecipient'] = $this->VerifiedRecipient;
 $cfl[$gbfc]['name']= trim($matches["name"]);
@@ -559,6 +543,20 @@ return (object) [
   'gbfc' => $gbfc
   ];
 /* end CFgetfiles */
+  }
+
+function CFgetfolders(Config $Config) {
+  /* can filter dirs with iteration of glob */
+  if (!isset($Config->cfFolder)) return 'error: empty path';
+  if (!is_dir($Config->cfFolder)) return 'error: folder is not a dir or empty path';
+  $cfFolders = glob($Config->cfFolder.'/*', GLOB_ONLYDIR);
+  if (!$cfFolders || count($cfFolders) < 1) return 'error: folder not found or no dirs in base dir';
+  
+  return (object) [
+    'chatFolders' => $cfFolders,
+    'chatFolder' => $Config->cfFolder
+    ];
+/* end CFgetfolders */
   }
 
 }
