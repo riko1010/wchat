@@ -185,14 +185,17 @@ return 'success';
 
 Class Request {
   
-  public function _construct($Request){
-  foreach () {
-$data = [
-    'queryarg' => (isset($Request['queryarg']) ? $Request['queryarg'] : null )
-];
-$filters = [
-    'queryarg' => 'trim|empty_string_to_null|strip_tags|escape'
-];
+  public function _construct($Requests){
+  $data = [];
+  $filters = [];
+  foreach ($Requests as $Request => $Val) {
+  $data[] = [
+      $Request => $Val,
+  ];
+  $filters[] = [
+      $Request => 'trim|empty_string_to_null|strip_tags|escape',
+  ];
+  }
 
 $RequestData = new Sanitizer($data, $filters);
 $RequestData = $Request->sanitize();
@@ -210,7 +213,7 @@ public $Data;
   public function Loader(
     Config $Config,
     Database $db,
-    Request $Request
+    Request $Request,
     ) {
     $CheckFileSystemModification = $this->CheckFileSystemModification($Config);
     if ($CheckFileSystemModification->status == true) {
@@ -239,7 +242,7 @@ public $Data;
   }
   
   public function API(
-    $REQUEST,
+    Request $Request,
     Database $db,
     ){
   $ChatFilesDataExecute = $db->SelectOne(
