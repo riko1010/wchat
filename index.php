@@ -2,7 +2,7 @@
 //error_reporting(0);
 require_once 'vendor/autoload.php';
 use Elegant\Sanitizer\Sanitizer;
-use PHLAK\Config\Config;
+use Laminas\Config\Config as Config;
 
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -28,7 +28,7 @@ require 'assets-php/classes.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
-$Config = new Laminas\Config\Config(include $ConfigFile, true);
+$Config = new Config(include $ConfigFile, true);
 $db = new Database(
   pj(
     $Config->baseDir, 
@@ -45,7 +45,7 @@ $Init->AppendConfig(
   ['id' => 1],
   $Config,
   );
-var_dump($Config->AppData);
+var_dump($Config);
 exit;
 
 /* app instance */
