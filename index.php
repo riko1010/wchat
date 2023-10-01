@@ -29,7 +29,7 @@ require 'assets-php/classes.php';
 BASE KEY = 1, NOT 0 */
 
 $Config = new Config (include $ConfigFile, true);
-
+$Config->InitType = 'Index';
 $db = new Database( $Config, );
 $Init = new Init( 'Index', $db, $Config, );
 $Init->AppendConfig(
