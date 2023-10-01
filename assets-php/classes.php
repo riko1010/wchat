@@ -353,7 +353,8 @@ $PrevArray = $this->ChatFilesData;
 $NewArray = $cfFiles->cfl;
 $MergeDropAndUpateDb = $this->MergeDropAndUpateDb(
               $PrevArray, 
-              $NewArray
+              $NewArray,
+              $db,
               );
 
 if (!$MergeDropAndUpateDb->status) {
@@ -370,9 +371,9 @@ $UpdateAppData = $db->InsertOrUpdate(
     'AppData',
     [
     'mtimeorhash' => $cfFoldermtimeorhash,
-    'foldername' => $cfFolder
+    'foldername' => $Config->cfFolder
     ],
-    [ 'foldername' => $cfFolder ]
+    [ 'foldername' => $Config->cfFolder ]
   );
   
   if (!$UpdateAppData->status) {
@@ -393,8 +394,8 @@ return (object) [
 
 public function MergeDropAndUpateDb(
   $Prev, 
-  $new
-  Database $db
+  $new,
+  Database $db,
   ){
 
 try {
