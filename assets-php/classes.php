@@ -1154,11 +1154,16 @@ return (object) [
 class processLines {
 public int $PaginationFrom;
 public int $PaginationTo;
-public $baseDir;
 
-public function Process(App $App){
+public function Process(
+  Config $Config,
+  App $App,
+  ){
 /* yield */
-  foreach ($this->iterate($App) as $iterable) {
+  foreach ($this->iterate(
+    $Config,
+    $App,
+    ) as $iterable) {
       yield $iterable;
     }  
 }
@@ -1168,12 +1173,18 @@ public function ProcessAndPrint(
   App $App,
   ){
   /* print */
-  foreach ($this->iterate($App) as $iterable) {
+  foreach ($this->iterate(
+    $Config,
+    $App,
+    ) as $iterable) {
     print $iterable;
   }  
 }
 
-public function iterate(App $App){
+public function iterate(
+  Config $Config, 
+  App $App,
+  ){
 $from = $this->PaginationFrom;
 $to = $this->PaginationTo;
 
@@ -1184,7 +1195,8 @@ foreach ($App->ChatFileGenerator(
   yield from $this->processline(
     $line, 
     $from,
-    $App
+    $Config,
+    $App,
     );
   $from++;
 }   
@@ -1194,7 +1206,8 @@ foreach ($App->ChatFileGenerator(
 public function processline(
   $line, 
   int $counterfilearray,
-  App $App
+  Config $Config,
+  App $App,
   ){ 
          
 $string = $line;
@@ -1261,7 +1274,8 @@ $attachmentneedle = '(file attached)';
 $attachments = $this->AttachmentHandler(
   $message, 
   $attachmentneedle, 
-  $App
+  $Config,
+  $App,
   );
 
 if (isset($attachments->exists) && $attachments->exists == true) {
@@ -1402,7 +1416,7 @@ public function AttachmentHandler(
   $message, 
   $attachmentneedle, 
   Config $Config,
-  App $App
+  App $App,
   ) {
 $attachments = (str_contains($message, $attachmentneedle) ? explode($attachmentneedle, $message) : false);
 if (!$attachments) return 'error: no files attached';
@@ -1414,7 +1428,7 @@ $ext = (isset($attachments[0]) ? trim(strtolower(pathinfo($attachments[0], PATHI
 $caption = (isset($attachments[1]) ? $attachments[1] : '' );
 /* make absolute for exists */
 $absfilepath = Path::join(
-  $this->baseDir, 
+  $Config->baseDir, 
   $App->DirPath, 
   $attachment
   );
