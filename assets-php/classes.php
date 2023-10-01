@@ -293,6 +293,25 @@ public $InitType;
   
   return $Config;   
   }
+  
+  public function CheckFileSystemModification($cfFolder){
+  clearstatcache();
+  $CurrentMTime = filemtime($cfFolder);
+  $PrevMTime = ($this->AppData->Data->mtimeorhash ?? false ) ? $this->AppData->Data->mtimeorhash : false;
+  
+  if ($CurrentMTime == $PrevMTime){
+  return (object) [
+      'status' => false,
+      'response' => 'FileSystem is not modified'
+      ];   
+  } else {
+  return (object) [
+      'status' => true,
+      'response' => 'FileSystem is modified'
+      ];     
+    }   
+  }
+  
 }
 
 class App{
@@ -1243,24 +1262,6 @@ return (object) [
   'sitemap' => (object) $sitemap,
   'files' => $files
   ];
-}
-
-public function CheckFileSystemModification($cfFolder){
-  clearstatcache();
-  $CurrentMTime = filemtime($cfFolder);
-  $PrevMTime = ($this->AppData->Data->mtimeorhash ?? false ) ? $this->AppData->Data->mtimeorhash : false;
-  
-  if ($CurrentMTime == $PrevMTime){
-  return (object) [
-      'status' => false,
-      'response' => 'FileSystem is not modified'
-      ];   
-  } else {
-  return (object) [
-      'status' => true,
-      'response' => 'FileSystem is modified'
-      ];     
-  }   
 }
 
 public function UpdateDBFromFileSystem($cfFolder){
