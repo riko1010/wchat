@@ -34,11 +34,8 @@ $db = new Database( $Config, );
 $Init = new Init;
 $Init->REQUEST = $REQUEST;
 $Init->Loader($db, $Config,);
-/* app instance */
-$App = new App;
 
 $sitemap = new generateSiteMap;
-
 $sitemaps = $sitemap->get($Config, $Init,);
 /*
 return [
@@ -47,7 +44,9 @@ return [
   ];
 */
 
-if (!$InitData->IsEmpty) {
+if (!$Init->Data->IsEmpty) {
+/* app instance */
+$App = new App;
 $App->ChatFilesData = $InitData->Data;
 $App->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
 $App->baseDir = $baseDir;
@@ -148,7 +147,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- no backupfile found -->
 <?php 
 /* may provide archive.org or other archive */
-if ($InitData->IsEmpty) {
+if ($Init->Data->IsEmpty) {
 ?>
 <div class="row">
 <div class="col card">
@@ -161,7 +160,7 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 
 <?php
 /* start chat list if backupfile present */
-if (!$InitData->IsEmpty){
+if (!$Init->Data->IsEmpty){
 ?>
 <section><h3 class='chat-title'>WhatsApp Chat with <?=$App->Name;?></h3>
 <div class='row p-1 spotlight-group' id='whatsappimages'>
@@ -187,7 +186,7 @@ if (!$InitData->IsEmpty){
 <!-- hidden nav, may show on noscript -->    
 <?php
 print "<nav hidden>";
-foreach ($InitData->Data as $link) {
+foreach ($Init->Data->IsEmpty as $link) {
 print '<a href="'.$link['url'].'">'.$link['url'].'</a> <br />';
 }
 print "</nav>";

@@ -1519,7 +1519,7 @@ $sitemap = new Sitemap($Config->sitemapxml);
 }
 
 $ChatFilesData_column_search = array_column(
-  $Init->ChatFilesData, 
+  $Init->Data->Data, 
   'url'
   );
 foreach ($ChatFilesData_column_search as $Links) {
