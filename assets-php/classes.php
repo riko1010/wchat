@@ -1163,7 +1163,10 @@ public function Process(App $App){
     }  
 }
 
-public function ProcessAndPrint(App $App){
+public function ProcessAndPrint(
+  Config $Config,
+  App $App,
+  ){
   /* print */
   foreach ($this->iterate($App) as $iterable) {
     print $iterable;
@@ -1398,6 +1401,7 @@ yield $phug->render($template);
 public function AttachmentHandler(
   $message, 
   $attachmentneedle, 
+  Config $Config,
   App $App
   ) {
 $attachments = (str_contains($message, $attachmentneedle) ? explode($attachmentneedle, $message) : false);

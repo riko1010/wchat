@@ -57,7 +57,6 @@ $App->SetChatFile(
 $App->SetVerifiedRecipient( $App->Name );
 
 $processLines = new processLines;
-$processLines->baseDir = $baseDir;
 $processLines->PaginationFrom = 0;
 $processLines->PaginationTo = $recordsperpage;
 }
@@ -166,7 +165,10 @@ if (!$Init->Data->IsEmpty){
 ?>
 <section><h3 class='chat-title'>WhatsApp Chat with <?=$App->Name;?></h3>
 <div class='row p-1 spotlight-group' id='whatsappimages'>
-<?=$processLines->ProcessAndPrint($App);?>
+<?=$processLines->ProcessAndPrint(
+$Config,
+$App,
+);?>
 </div>
 
 </section>
