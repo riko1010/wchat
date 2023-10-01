@@ -54,7 +54,6 @@ $App->SetChatFile(
   $Init,
   );
 /* $App->SelectedId now set  */
-$App->SetVerifiedRecipient( $App->Name );
 
 $processLines = new processLines;
 $processLines->PaginationFrom = 0;
