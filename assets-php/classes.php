@@ -198,7 +198,11 @@ $this->Data = $RequestData;
   }
   
   public function __set($PropertyName, $Val) {
-  if ($this->Writeable) Throw new Exception($PropertyName." is not writeable. Pass true as the second parameter in {get_class()} to write temporarily."); return false;
+  if (!$this->Writeable) {
+    Throw new Exception($PropertyName." is not writeable. Pass true as the second parameter in {get_class()} to write temporarily."); 
+    return false;
+  }
+  
   $this->Data[$PropertyName] = $Val;  
   }
   
