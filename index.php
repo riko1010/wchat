@@ -31,16 +31,15 @@ BASE KEY = 1, NOT 0 */
 $Config = new Config (include $ConfigFile, true);
 $Config->InitType = 'Index';
 $db = new Database( $Config, );
-$Init = new Init( $db, $Config, );
-
+$Init = new Init;
+$Init->REQUEST = $REQUEST;
+$Init->Loader($db, $Config,);
 /* app instance */
 $App = new App;
 
 $sitemap = new generateSiteMap;
 
-$sitemap->ChatFilesData = &$InitData->Data;
-$sitemap->ChatFilesDataIdAsKeys = &$InitData->DataIdAsKeys;
-$sitemaps = $sitemap->get($Init, $Config);
+$sitemaps = $sitemap->get($Config, $Init,);
 /*
 return [
   'sitemap' => [status, response]
