@@ -33,8 +33,6 @@ $Config->InitType = 'Index';
 $db = new Database( $Config, );
 $Init = new Init( 'Index', $db, $Config, );
 
-$InitData = $Init->Index($db);
-
 /* app instance */
 $App = new App;
 

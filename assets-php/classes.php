@@ -187,6 +187,7 @@ class Init {
   
 public $InitType;
 public $REQUEST;
+public $Data;
   
   public function _construct(
     Config $Config,
@@ -206,6 +207,8 @@ public $REQUEST;
     $db,
     $Config,
     );
+    
+    $this->Data = $Init->Index($db);
 
   }
   
