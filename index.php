@@ -29,6 +29,9 @@ require 'assets-php/classes.php';
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
 $Config = new Config(include $ConfigFile, true);
+var_dump($Config);
+
+exit;
 $db = new Database(
   pj(
     $Config->baseDir, 
@@ -45,8 +48,7 @@ $Init->AppendConfig(
   ['id' => 1],
   $Config,
   );
-var_dump($Config);
-exit;
+
 
 /* app instance */
 $App = new App;
