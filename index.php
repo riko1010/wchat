@@ -2,7 +2,7 @@
 //error_reporting(0);
 require_once 'vendor/autoload.php';
 use Elegant\Sanitizer\Sanitizer;
-
+use Laminas\Config\Config as Config;
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
@@ -10,7 +10,6 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
-class_alias('Laminas\Config\Config', 'Config');
 /* Request Handler */
 $data = [
     'queryarg' => (isset($_REQUEST['queryarg']) ? $_REQUEST['queryarg'] : null )
@@ -27,7 +26,7 @@ require 'assets-php/classes.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
-$Config = new Laminas\Config\Config(include $ConfigFile, true);
+$Config = new Config (include $ConfigFile, true);
 
 $db = new Database(
   pj(

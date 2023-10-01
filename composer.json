@@ -12,7 +12,6 @@
         "bentools/iterable-functions": "^2.1",
         "elegantweb/sanitizer": "^2.1",
         "psr/container": "^2.0.2",
-        "phlak/config": "^7.0",
         "laminas/laminas-config": "^2.5",
         "laminas/laminas-db": "^2.6"
     }
