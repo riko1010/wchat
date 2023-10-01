@@ -38,7 +38,6 @@ $db = new Database(
   );
 $Init = new Init;
 $Init->baseDir = $Config->baseDir;
-$Init->queryarg = $REQUEST->queryarg;
 $InitData = $Init->Index($db);
 $Init->AppendConfig(
   $db,

@@ -200,13 +200,14 @@ return 'success';
 class Init {
   
 public $InitType;
-public $baseDir;
-public $queryarg;
   
-  public function API(Database $db) {
+  public function API(
+    Database $db,
+    $REQUEST,
+    ){
   $ChatFilesDataExecute = $db->SelectOne(
   'chatfiles',
-  ['id' => $this->queryarg]
+  ['id' => $REQUEST->queryarg]
   );
   $ChatFilesDataSelectType = 'one';
   $ChatFilesData = $ChatFilesDataExecute->status ? 
@@ -283,7 +284,7 @@ public $queryarg;
   false
   );
   */
-  /* load chat files if not loading through api */
+  /* add AppData to Config object*/
   $Config->{$Table} = $AppData;
   
   return $Config;   
