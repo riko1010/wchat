@@ -2,6 +2,7 @@
 //error_reporting(0);
 require_once 'vendor/autoload.php';
 use Elegant\Sanitizer\Sanitizer;
+use Laminas\Config\Config as Config;
 
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -26,10 +27,9 @@ require 'assets-php/classes.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
-class_alias('Laminas\Config\Config', 'Config');
+
 $Config = new Config (include $ConfigFile, true);
-var_dump(get_class($Config));
-exit;
+
 $db = new Database(
   pj(
     $Config->baseDir, 
