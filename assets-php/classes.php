@@ -660,6 +660,7 @@ public function SetChatFile(
   Config $Config,
   Request $Request,
   Init $Init,
+  App $App,
   ) {
 /* SetChatFile on index uses $_GET/backupfile , on api uses _request/queryarg - queryarg is RecordId, assets-php/sqlite uses queryarg to selectone/select, latter if $api, if not found, ChatFileDataNotEmpty = false , meaning empty  */
 
@@ -705,7 +706,11 @@ $this->GroupChat = $SelectedChatFile['groupchat'];
 if ($SelectedChatFile['vrecipient'] != null) {
   $this->VerifiedRecipient = $SelectedChatFile['vrecipient'];
 } else {
-  $this->SetVerifiedRecipient();
+  $this->SetVerifiedRecipient(
+  $Config,
+  $App,
+  $Init,
+  );
 }
 
 }
