@@ -381,6 +381,107 @@ return (object) [
       ]; 
   } 
 
+public function MergeDropAndUpateDb(
+  $Prev, 
+  $new
+  Database $db
+  ){
+
+try {
+$Columnfilepath = array_column($new, 'filepath');
+
+$db->DeleteWhereNot(
+  'chatfiles',
+  'filepath', 
+  ...$Columnfilepath
+  );
+
+} catch (\Exception|\Throwable $e) {
+return (object) [
+      'status' => true,
+      'response' => 'Cannot delete redundant Chatfiles from DB'.$e->getMessage()
+      ]; 
+}
+
+foreach ($new as $cl){
+clearstatcache();
+$mtimeorhash = filemtime($cl['filepath']);
+$bfc = $cl['bfc'];
+$filepath = $cl['filepath'];
+$vrecipient = $cl['vrecipient'];
+$name = $cl['name'];
+$url = addurl($cl['search']);
+$search = $cl['search'];
+$filename = $cl['filename'];
+$dirpath = $cl['dirpath'];
+$dirname = $cl['dirname'];
+$groupchat = $cl['groupchat'];
+$sync = 1;
+$archivedurl = '';
+//$synctime = time();
+
+try {
+$PrevRecordExecute = $db->SelectOne(
+    'chatfiles',
+    [ 'filepath' => $filepath ]
+                        );
+$PrevRecords = ($PrevRecordExecute->status ? iter_to_array($PrevRecordExecute->response) : []);
+$PrevRecord = count($PrevRecords) > 0 ? $PrevRecords[0] : [];
+  if ( count($PrevRecords) > 0 ) {
+  if ( $PrevRecord['mtimeorhash'] == $mtimeorhash 
+  && $PrevRecord['url'] == $url
+     ) {
+  $archivedurl = $PrevRecord['archivedurl']; 
+  $sync = $PrevRecord['sync']; 
+  $archivedurl = $PrevRecord['archivedurl'];
+  $vrecipient = $PrevRecord['vrecipient'];
+  }
+ }
+} catch (\Exception|\Throwable $e) {
+  
+return (object) [
+      'status' => false,
+      'response' => 'Merge chatfiles records failed:'.$e->getMessage()
+      ];   
+}
+try {
+$InsertOrUpdate = $db->InsertOrUpdate(
+    'chatfiles',
+    [
+    'bfc' => $bfc,
+    'filename' => $filename, 
+    'dirpath' => $dirpath, 
+    'dirname' => $dirname, 
+    'search' => $search,
+    'groupchat' => $groupchat,
+    'vrecipient' => $vrecipient,
+    'name' => $name,
+    'sync' => $sync,
+    'filepath' => $filepath,
+    'url' => $url,
+    'mtimeorhash' => $mtimeorhash,
+    'archivedurl' => $archivedurl
+    ],
+    [ 'filepath' => $filepath ]
+  );
+  
+  if (!$InsertOrUpdate->status) {
+    Throw new Exception ($InsertOrUpdate->response);
+  }
+} catch (\Exception|\Throwable $e) {
+  return (object) [
+        'status' => false,
+        'response' => 'Insert or Update failed:'.$e->getMessage()
+        ]; 
+  }
+}
+
+return (object) [
+      'status' => true,
+      'response' => $InsertOrUpdate
+      ]; 
+}
+
 public function CFgetfiles(
   $cfFolder, 
   $cfFolders, 
@@ -1308,15 +1409,10 @@ $this->CallFunc = new stdClass;
 }
 
 public function get(){
-$CheckFileSystemModification = $this->CheckFileSystemModification($this->cfFolder);
-if ($CheckFileSystemModification->status == true) {
- 
-   $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
-    $this->cfFolder
-    ); 
+$GenerateSitemap = false;
+if ($GenerateSitemap) {
   $Generate = $this->Generate(); 
-  $Responses = 'UpdateDBFromFileSystem:'.$UpdateDBFromFileSystem->response;
-  $Responses .= 'Generate:'.$Generate->response;
+  $Responses = 'Generate:'.$Generate->response;
   $sitemap = [ 
     'status' => true,
     'response' => 'Sitemap listed.'
@@ -1357,103 +1453,6 @@ $data[] = [
   ];
 }
 return $data;
-}
-
-public function MergeDropAndUpateDb($Prev, $new){
-
-try {
-$Columnfilepath = array_column($new, 'filepath');
-
-$this->db->DeleteWhereNot(
-  'chatfiles',
-  'filepath', 
-  ...$Columnfilepath
-  );
-
-} catch (\Exception|\Throwable $e) {
-return (object) [
-      'status' => true,
-      'response' => 'Cannot delete redundant Chatfiles from DB'.$e->getMessage()
-      ]; 
-}
-
-foreach ($new as $cl){
-clearstatcache();
-$mtimeorhash = filemtime($cl['filepath']);
-$bfc = $cl['bfc'];
-$filepath = $cl['filepath'];
-$vrecipient = $cl['vrecipient'];
-$name = $cl['name'];
-$url = addurl($cl['search']);
-$search = $cl['search'];
-$filename = $cl['filename'];
-$dirpath = $cl['dirpath'];
-$dirname = $cl['dirname'];
-$groupchat = $cl['groupchat'];
-$sync = 1;
-$archivedurl = '';
-//$synctime = time();
-
-try {
-$PrevRecordExecute = $this->db->SelectOne(
-    'chatfiles',
-    [ 'filepath' => $filepath ]
-                        );
-$PrevRecords = ($PrevRecordExecute->status ? iter_to_array($PrevRecordExecute->response) : []);
-$PrevRecord = count($PrevRecords) > 0 ? $PrevRecords[0] : [];
-  if ( count($PrevRecords) > 0 ) {
-  if ( $PrevRecord['mtimeorhash'] == $mtimeorhash 
-  && $PrevRecord['url'] == $url
-     ) {
-  $archivedurl = $PrevRecord['archivedurl']; 
-  $sync = $PrevRecord['sync']; 
-  $archivedurl = $PrevRecord['archivedurl'];
-  $vrecipient = $PrevRecord['vrecipient'];
-  }
- }
-} catch (\Exception|\Throwable $e) {
-  
-return (object) [
-      'status' => false,
-      'response' => 'Merge chatfiles records failed:'.$e->getMessage()
-      ];   
-}
-try {
-$InsertOrUpdate = $this->db->InsertOrUpdate(
-    'chatfiles',
-    [
-    'bfc' => $bfc,
-    'filename' => $filename, 
-    'dirpath' => $dirpath, 
-    'dirname' => $dirname, 
-    'search' => $search,
-    'groupchat' => $groupchat,
-    'vrecipient' => $vrecipient,
-    'name' => $name,
-    'sync' => $sync,
-    'filepath' => $filepath,
-    'url' => $url,
-    'mtimeorhash' => $mtimeorhash,
-    'archivedurl' => $archivedurl
-    ],
-    [ 'filepath' => $filepath ]
-  );
-  
-  if (!$InsertOrUpdate->status) {
-    Throw new Exception ($InsertOrUpdate->response);
-  }
-} catch (\Exception|\Throwable $e) {
-  return (object) [
-        'status' => false,
-        'response' => 'Insert or Update failed:'.$e->getMessage()
-        ]; 
-  }
-}
-
-return (object) [
-      'status' => true,
-      'response' => $InsertOrUpdate
-      ]; 
 }
 
 public function Generate(){
