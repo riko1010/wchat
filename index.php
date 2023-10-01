@@ -32,10 +32,11 @@ $Init = new Init;
 $Init->baseDir = $Config->get('baseDir');
 $Init->queryarg = $REQUEST->queryarg;
 $InitData = $Init->Index($db);
-$Config = $Init->AppendConfig(
+$Init->AppendConfig(
   $db,
   'AppData',
   ['id' => 1],
+  $Config,
   );
 var_dump($Config);
 exit;

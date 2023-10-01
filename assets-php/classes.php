@@ -266,6 +266,7 @@ public $queryarg;
     Database $db,
     $Table,
     $ColumnValuesArray,
+    Config $Config,
     ){
   /* load app data */
   $AppDataExecute = $db->SelectOne(
@@ -283,8 +284,9 @@ public $queryarg;
   );
   */
   /* load chat files if not loading through api */
+  $Config->set($Table, $AppData);
   
-  return $config;   
+  return $Config;   
   }
 }
 
