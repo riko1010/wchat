@@ -216,8 +216,8 @@ public $InitType;
   }
   
   public function API(
-    Database $db,
     $REQUEST,
+    Database $db,
     ){
   $ChatFilesDataExecute = $db->SelectOne(
   'chatfiles',
@@ -348,10 +348,14 @@ $cfFiles = $this->CFgetfiles(
       ];   
   }
 if ($Config->InitType == 'API') {
-/*API */
-$PrevArray = $this->ChatFilesData;
+/* API */
+$PrevArray = $this->Index($db)->Data;
 } else {
 /* Index */ 
+$PrevArray = $this->Index(
+  $this->REQUEST, 
+  $db,
+  )->Data;
 }
 $NewArray = $cfFiles->cfl;
 $MergeDropAndUpateDb = $this->MergeDropAndUpateDb(
