@@ -205,14 +205,7 @@ public $InitType;
     Database $db,
     Config $Config,
     ) {
-      
-    $this->AppendConfig(
-    $db,
-    'AppData',
-    ['id' => 1],
-    $Config,
-    );
-    
+     
   }
   
   public function API(
