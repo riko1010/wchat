@@ -247,7 +247,7 @@ public $Data;
     ){
   $ChatFilesDataExecute = $db->SelectOne(
   'chatfiles',
-  ['id' => $REQUEST->queryarg]
+  ['id' => $Request->queryarg]
   );
   $ChatFilesDataSelectType = 'one';
   $ChatFilesData = $ChatFilesDataExecute->status ? 

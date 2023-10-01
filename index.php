@@ -26,10 +26,17 @@ $Config = new Config (include $ConfigFile, true);
 $Config->InitType = 'Index';
 $db = new Database( $Config, );
 $Init = new Init;
-$Init->Loader($db, $Config,);
+$Init->Loader(
+  $db, 
+  $Config, 
+  $Request, 
+  );
 
 $sitemap = new generateSiteMap;
-$sitemaps = $sitemap->get($Config, $Init,);
+$sitemaps = $sitemap->get(
+  $Config, 
+  $Init, 
+  );
 /*
 return [
   'sitemap' => [status, response]
@@ -43,7 +50,7 @@ $App = new App;
 $App->ChatFilesData = $InitData->Data;
 $App->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
 $App->baseDir = $baseDir;
-$App->SetChatFile($REQUEST->queryarg);
+$App->SetChatFile($Request);
 /* $App->SelectedId now set  */
 $App->SetVerifiedRecipient( $App->Name );
 
