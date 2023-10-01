@@ -294,10 +294,12 @@ public $InitType;
   return $Config;   
   }
   
-  public function CheckFileSystemModification($cfFolder){
+  public function CheckFileSystemModification(
+    Config $Config
+    ){
   clearstatcache();
-  $CurrentMTime = filemtime($cfFolder);
-  $PrevMTime = ($this->AppData->Data->mtimeorhash ?? false ) ? $this->AppData->Data->mtimeorhash : false;
+  $CurrentMTime = filemtime($Config->cfFolder);
+  $PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false;
   
   if ($CurrentMTime == $PrevMTime){
   return (object) [
@@ -311,30 +313,70 @@ public $InitType;
       ];     
     }   
   }
-  
+
+public function UpdateDBFromFileSystem(Config $Config){
+$cfFolders = CFgetfolders($Config->cfFolder);
+if (count($cfFolders->chatFolders) < 1 ) {
+return (object) [
+      'status' => false,
+      'response' => 'No folders in Chat Folder'
+      ];   
 }
 
-class App{
+$cfFiles = $this->CFgetfiles(
+  $cfFolders->chatFolder, 
+  $cfFolders->chatFolders, 
+  $this->cfFilespattern
+  );
+
+  if (count($cfFiles->cfl) < 1) {
+  return (object) [
+      'status' => false,
+      'response' => 'Cannot fetch chat files or no chat files'
+      ];   
+  }
+
+$PrevArray = $this->ChatFilesData;
+$NewArray = $cfFiles->cfl;
+$MergeDropAndUpateDb = $this->MergeDropAndUpateDb(
+              $PrevArray, 
+              $NewArray
+              );
+
+if (!$MergeDropAndUpateDb->status) {
+  return (object) [
+      'status' => false,
+      'response' => 'Cannot update DB from Filesystem'.$MergeDropAndUpateDb->response
+      ]; 
+} 
+/* update Appdata folder with conversation hash */
+try {
+clearstatcache();
+$cfFoldermtimeorhash = filemtime($cfFolder);
+$UpdateAppData = $this->db->InsertOrUpdate(
+    'AppData',
+    [
+    'mtimeorhash' => $cfFoldermtimeorhash,
+    'foldername' => $cfFolder
+    ],
+    [ 'foldername' => $cfFolder ]
+  );
   
-public $ChatFile; 
-public $DirPath;
-public $GroupChat;
-public $ChatFilesData;
-public $ChatFilesDataIdAsKeys;
-public $Selected;
-public $SelectedId;
-public $NoSelected = true;
-public $CheckLegacy = false;
-public $VerifiedRecipient;
-public $Name;
-public $baseDir;
-public int $NPaginationFrom;
-public int $NPaginationTo;
-public bool $eof = false;
-
-public function __construct() {
-
-}
+  if (!$UpdateAppData->status) {
+    Throw new Exception ($UpdateAppData->response);
+  }
+} catch (\Exception|\Throwable $e) {
+  return (object) [
+        'status' => false,
+        'response' => 'Insert or Update failed:'.$e->getMessage()
+        ]; 
+  }
+  
+return (object) [
+      'status' => true,
+      'response' => 'DB updated from Filesystem'
+      ]; 
+  } 
 
 public function CFgetfiles($cfFolder, $cfFolders, $pattern) {
 
@@ -384,7 +426,33 @@ return (object) [
   'gbfc' => $gbfc
   ];
 /* end CFgetfiles */
+  }
+
 }
+
+class App{
+  
+public $ChatFile; 
+public $DirPath;
+public $GroupChat;
+public $ChatFilesData;
+public $ChatFilesDataIdAsKeys;
+public $Selected;
+public $SelectedId;
+public $NoSelected = true;
+public $CheckLegacy = false;
+public $VerifiedRecipient;
+public $Name;
+public $baseDir;
+public int $NPaginationFrom;
+public int $NPaginationTo;
+public bool $eof = false;
+
+public function __construct() {
+
+}
+
+
 
 public function SetChatFile(
   $queryarg = null
@@ -1262,70 +1330,6 @@ return (object) [
   'sitemap' => (object) $sitemap,
   'files' => $files
   ];
-}
-
-public function UpdateDBFromFileSystem($cfFolder){
-$cfFolders = CFgetfolders($cfFolder);
-if (count($cfFolders->chatFolders) < 1 ) {
-return (object) [
-      'status' => false,
-      'response' => 'No folders in Chat Folder'
-      ];   
-}
-
-$cfFiles = ($this->CallFunc->{'$App\CFgetfiles'})(
-  $cfFolders->chatFolder, 
-  $cfFolders->chatFolders, 
-  $this->cfFilespattern
-  );
-
-  if (count($cfFiles->cfl) < 1) {
-  return (object) [
-      'status' => false,
-      'response' => 'Cannot fetch chat files or no chat files'
-      ];   
-  }
-
-$PrevArray = $this->ChatFilesData;
-$NewArray = $cfFiles->cfl;
-$MergeDropAndUpateDb = $this->MergeDropAndUpateDb(
-              $PrevArray, 
-              $NewArray
-              );
-
-if (!$MergeDropAndUpateDb->status) {
-  return (object) [
-      'status' => false,
-      'response' => 'Cannot update DB from Filesystem'.$MergeDropAndUpateDb->response
-      ]; 
-} 
-/* update Appdata folder with conversation hash */
-try {
-clearstatcache();
-$cfFoldermtimeorhash = filemtime($cfFolder);
-$UpdateAppData = $this->db->InsertOrUpdate(
-    'AppData',
-    [
-    'mtimeorhash' => $cfFoldermtimeorhash,
-    'foldername' => $cfFolder
-    ],
-    [ 'foldername' => $cfFolder ]
-  );
-  
-  if (!$UpdateAppData->status) {
-    Throw new Exception ($UpdateAppData->response);
-  }
-} catch (\Exception|\Throwable $e) {
-  return (object) [
-        'status' => false,
-        'response' => 'Insert or Update failed:'.$e->getMessage()
-        ]; 
-  }
-  
-return (object) [
-      'status' => true,
-      'response' => 'DB updated from Filesystem'
-      ]; 
 }
 
 public function filesExists($sdir, ...$sfiles){
