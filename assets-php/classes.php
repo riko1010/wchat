@@ -326,7 +326,7 @@ return (object) [
 $cfFiles = $this->CFgetfiles(
   $cfFolders->chatFolder, 
   $cfFolders->chatFolders, 
-  $this->cfFilespattern
+  $Config,
   );
 
   if (count($cfFiles->cfl) < 1) {
@@ -378,7 +378,11 @@ return (object) [
       ]; 
   } 
 
-public function CFgetfiles($cfFolder, $cfFolders, $pattern) {
+public function CFgetfiles(
+  $cfFolder, 
+  $cfFolders, 
+  Config $Config,
+  ) {
 
 $gbfc = 0;
 $cfl = [];
@@ -395,7 +399,11 @@ $bfc = 0;
 foreach ($readdir as $f) {
  /* match file by pattern */
 /* list whatsapp chat backup files using regex */
-if (preg_match($pattern, $f, $matches)) {
+if (preg_match(
+  $Config->cfFilespattern, 
+  $f, 
+  $matches
+  )) {
 /* bfc is for aesthtics,not count or pointing */
 $bfc++;
 
