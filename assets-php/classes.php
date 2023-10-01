@@ -183,6 +183,14 @@ file_put_contents(
 return 'success';
 }
 
+Class Request {
+  
+  public function _construct($request){
+    
+  }
+  
+}
+
 class Init {
   
 public $InitType;
@@ -607,12 +615,12 @@ public function SetChatFile(
   ) {
 /* SetChatFile on index uses $_GET/backupfile , on api uses _request/queryarg - queryarg is RecordId, assets-php/sqlite uses queryarg to selectone/select, latter if $api, if not found, ChatFileDataNotEmpty = false , meaning empty  */
 
-if ($queryarg != null) {
+if ($this->REQUEST->queryarg != null) {
 /* recursive array search case , ras for search field */
-$ras = ras($queryarg, array_column($this->ChatFilesData, 'search'));
+$ras = ras($this->REQUEST->queryarg, array_column($this->ChatFilesData, 'search'));
 /* ras for id field if not found */
 $ras = ($ras == null ? 
-ras($queryarg, array_column($this->ChatFilesData, 'id')) : $ras );
+ras($this->REQUEST->queryarg, array_column($this->ChatFilesData, 'id')) : $ras );
   (($ras === false) ? ([
     $this->CheckLegacy, 
     $this->NoSelected, 
@@ -630,7 +638,7 @@ ras($queryarg, array_column($this->ChatFilesData, 'id')) : $ras );
     ]) );
 
 /* legacy url */
-(!$this->CheckLegacy ?: $this->CheckLegacyChatFileQuery($queryarg)); 
+(!$this->CheckLegacy ?: $this->CheckLegacyChatFileQuery($Init, $queryarg)); 
 } else {
 /* ChatFilesData array index, default to first item in array, 0 */ 
 $this->Selected = 0;
@@ -647,14 +655,17 @@ $this->DirPath = $SelectedChatFile['dirpath'];
 $this->GroupChat = $SelectedChatFile['groupchat'];
 }
 
-public function CheckLegacyChatFileQuery($query){
+public function CheckLegacyChatFileQuery(
+  Init $Init,
+  $query,
+  ){
    $query = str_replace('_', '', $query);
     $cflcsearch = array_map(
     function($x) {
       return strtolower(
         str_replace(' ', '', $x)
         );
-    }, array_column($this->ChatFilesData, 'dirname'));
+    }, array_column($Init->Data->Data, 'dirname'));
     $ras = ras($query, $cflcsearch);
     
     (($ras === false) ? ([
