@@ -218,13 +218,10 @@ $this->Data = $RequestData;
   try {
     return $this->Data[$PropertyName];  
     } catch (\Exception|\Throwable $e) {
-    $ErrorMsg = $e->getMessage();
-    if ($DefaultValue != false){
-    return $DefaultValue;
-    } elseif ($DefaultValue != false){
+    if (func_num_args() == 2){
     return $DefaultValue;
     } else {
-    Throw new Exception($ErrorMsg);
+    Throw new Exception($PropertyName.' is not in $_REQUEST'); 
     }
     }    
   }
