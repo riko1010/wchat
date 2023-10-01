@@ -207,6 +207,10 @@ $this->Data = $RequestData;
     }
   }
   
+  public function __debugInfo(){
+    return $this->Data;
+  }
+  
   public function get(
     $PropertyName, 
     $DefaultValue = null,
