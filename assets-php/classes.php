@@ -186,7 +186,7 @@ return 'success';
 Class Request {
   
   public function _construct($Request){
-    /* Request Handler */
+  foreach () {
 $data = [
     'queryarg' => (isset($Request['queryarg']) ? $Request['queryarg'] : null )
 ];
@@ -620,8 +620,6 @@ public function __construct() {
 
 }
 
-
-
 public function SetChatFile(
   Request $Request,
   Init $Init,
@@ -670,9 +668,9 @@ $this->GroupChat = $SelectedChatFile['groupchat'];
 
 public function CheckLegacyChatFileQuery(
   Init $Init,
-  $query,
+  Request $Request,
   ){
-   $query = str_replace('_', '', $query);
+   $query = str_replace('_', '', $Request->queryarg);
     $cflcsearch = array_map(
     function($x) {
       return strtolower(
