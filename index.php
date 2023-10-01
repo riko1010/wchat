@@ -39,18 +39,9 @@ $InitData = $Init->Index($db);
 $App = new App;
 
 $sitemap = new generateSiteMap;
-$sitemap->AppData = &$Config;
-$sitemap->cfFilespattern = $cfFilespattern;
 $sitemap->SiteUrl = $SiteUrl; 
-$sitemap->cfFolder = $cfFolder;
 $sitemap->ChatFilesData = &$InitData->Data;
 $sitemap->ChatFilesDataIdAsKeys = &$InitData->DataIdAsKeys;
-$sitemap->robotstxt = $robotstxt;
-$sitemap->sitemapxml = $sitemapxml;
-$sitemap->PyArchiveURI = $PyArchiveURI;
-$sitemap->bdir = $baseDir;
-$sitemap->db = $db;
-$sitemap->CallFunc->{'$App\CFgetfiles'} = $App->CFgetfiles(...);
 $sitemaps = $sitemap->get();
 /*
 return [
@@ -58,10 +49,6 @@ return [
   'files' => [filename, file, exists]
   ];
 */
-
-/* reinit */
-$InitData = $Init->Index($db);
-$Config = $Init->Config($db);
 
 if (!$InitData->IsEmpty) {
 $App->ChatFilesData = $InitData->Data;

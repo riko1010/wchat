@@ -1417,27 +1417,18 @@ return (object) [
 
 class generateSiteMap {
 
-public $AppData;
-public $cfFolder;
 public $ChatFilesData;
 public $ChatFilesDataIdAsKeys;
-public $cfFilespattern;
 public $SiteUrl;
-public $robotstxt;
-public $sitemapxml;
-public $PyArchiveURI;
-public $bdir;
-public $db;
-public stdClass $CallFunc;
 
 public function __construct(){
-$this->CallFunc = new stdClass;  
+ 
 }
 
 public function get(Config $Config){
 $GenerateSitemap = false;
 if ($GenerateSitemap) {
-  $Generate = $this->Generate(); 
+  $Generate = $this->Generate($Config); 
   $Responses = 'Generate:'.$Generate->response;
   $sitemap = [ 
     'status' => true,
@@ -1544,7 +1535,7 @@ if (file_exists($Config->sitemapxml)) {
   /* failed to generate sitemap, restore old */
   if (fie_exists(Path::join('autodelete', $Config->sitemapxml))) {
     clearstatcache();
-    rename(Path::join('autodelete', $Config->sitemapxml), $this->sitemapxml);
+    rename(Path::join('autodelete', $Config->sitemapxml), $Config->sitemapxml);
   return (object) [
     'status' => false,
     'response' => 'sitemap generator failed - old sitemap restored'
@@ -1555,7 +1546,7 @@ if (file_exists($Config->sitemapxml)) {
 try {
 /* call py wayback executable */
 $curl = new Curl;
-$curl->post($this->PyArchiveURI);
+$curl->post($Config->PyArchiveURI);
 $curl->close();
 } catch(Exception $e) {
 //post to py, execution does not return output
