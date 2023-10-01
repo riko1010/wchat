@@ -350,6 +350,7 @@ public $Data;
   public function UpdateDBFromFileSystem(
   Config $Config,
   Database $db,
+  Request $Request,
   ){
 $cfFolders = $this->CFgetfolders($Config);
 if (count($cfFolders->chatFolders) < 1 ) {
@@ -622,16 +623,17 @@ public function __construct() {
 
 
 public function SetChatFile(
-  $queryarg = null
+  Request $Request,
+  Init $Init,
   ) {
 /* SetChatFile on index uses $_GET/backupfile , on api uses _request/queryarg - queryarg is RecordId, assets-php/sqlite uses queryarg to selectone/select, latter if $api, if not found, ChatFileDataNotEmpty = false , meaning empty  */
 
-if ($this->REQUEST->queryarg != null) {
+if ($Request->queryarg != null) {
 /* recursive array search case , ras for search field */
-$ras = ras($this->REQUEST->queryarg, array_column($this->ChatFilesData, 'search'));
+$ras = ras($Request->queryarg, array_column($Init->Data->Data, 'search'));
 /* ras for id field if not found */
 $ras = ($ras == null ? 
-ras($this->REQUEST->queryarg, array_column($this->ChatFilesData, 'id')) : $ras );
+ras($Request->queryarg, array_column($Init->Data->Data, 'id')) : $ras );
   (($ras === false) ? ([
     $this->CheckLegacy, 
     $this->NoSelected, 
@@ -649,7 +651,7 @@ ras($this->REQUEST->queryarg, array_column($this->ChatFilesData, 'id')) : $ras )
     ]) );
 
 /* legacy url */
-(!$this->CheckLegacy ?: $this->CheckLegacyChatFileQuery($Init, $queryarg)); 
+(!$this->CheckLegacy ?: $this->CheckLegacyChatFileQuery($Init, $Request)); 
 } else {
 /* ChatFilesData array index, default to first item in array, 0 */ 
 $this->Selected = 0;
