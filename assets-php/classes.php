@@ -21,7 +21,6 @@ use Laminas\Db\Sql\Delete;
 use Laminas\Db\Sql\Select;
 use Laminas\Db\Sql\Update;
 use Laminas\Db\Sql\Insert;
-use PHLAK\Config\Config;
 
 function ntfy($message){
   $curl = new Curl;
@@ -284,7 +283,7 @@ public $queryarg;
   );
   */
   /* load chat files if not loading through api */
-  $Config->set($Table, $AppData);
+  $Config->merge([$Table => $AppData]);
   
   return $Config;   
   }
