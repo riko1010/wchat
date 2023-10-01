@@ -935,20 +935,23 @@ return (object) [
   }
 }
 
-public function PaginationNav(processLines $processLines){
+public function PaginationNav(
+  Config $Config,
+  App $App,
+  ){
 $PrevPaginationStatus = (
   $this->NPaginationFrom == 0 ? 
   'disabled' : ''
   );
 $NextPaginationStatus = (
   ($this->PaginationViability(
-    $this->NPaginationFrom
+    $App->NPaginationFrom
     ))->status == false ?
     'disabled' : ''
     );
 
-$PrevPaginationHref = '?'.$processLines->PaginationFrom.'-'.$processLines->PaginationTo;
-$NextPaginationHref = '?'.$this->NPaginationFrom.'-'.$this->NPaginationTo;
+$PrevPaginationHref = '?'.$Config->PaginationFrom.'-'.$Config->PaginationTo;
+$NextPaginationHref = '?'.$App->NPaginationFrom.'-'.$App->NPaginationTo;
 
 $PaginationNav = '  
   <nav aria-label="...">
@@ -970,10 +973,12 @@ return 'Whatsapp Chat '
 .(isset($this->NoSelected) ? '' : (isset($this->Name) && $this->Name != '' ? ('with '.$this->Name) : ''));  
 }
 
-public function Menu(){
+public function Menu(
+  Init $init,
+  ){
   /* build menu */
 $menu = '';
-$ChatFilesData = $this->ChatFilesData;
+$ChatFilesData = $Init->Data->Data;
 foreach ($ChatFilesData as $SelectList){
 $selected = (isset($selected) && $selected == 'selected' ? '' : ( $SelectList['id'] == $this->SelectedId ? 'selected' : ''));
 $nextchatfilesList = (null !== ( $nextchatfilesList = next($ChatFilesData))) ? $nextchatfilesList : false;

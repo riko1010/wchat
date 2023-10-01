@@ -173,7 +173,10 @@ $App,
 </section>
 
 <section id="ArchivedNav">
-<?=$App->PaginationNav();?>
+<?=$App->PaginationNav(
+$Config, 
+$App,
+);?>
 </section>
 
 <div id="loader"> </div>
