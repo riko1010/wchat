@@ -213,12 +213,17 @@ $this->Data = $RequestData;
   
   public function get(
     $PropertyName, 
-    $DefaultValue = null,
+    $DefaultValue = false,
     ) {
   try {
     return $this->Data[$PropertyName];  
     } catch (\Exception|\Throwable $e) {
+    $ErrorMsg = $e->getMessage();
+    if ($DefaultValue != false){
     return $DefaultValue;
+    } else {
+    Throw new Exception($ErrorMsg);
+    }
     }    
   }
   
