@@ -539,7 +539,7 @@ $bfc++;
 $dirname = basename($dir);
 $filename = basename($f);
 $cfl[$gbfc]['bfc'] = $bfc;
-$cfl[$gbfc]['vrecipient'] = $this->VerifiedRecipient;
+$cfl[$gbfc]['vrecipient'] = null;
 $cfl[$gbfc]['name']= trim($matches["name"]);
 $cfl[$gbfc]['filename'] = $filename;
 $cfl[$gbfc]['filepath'] = $f;
