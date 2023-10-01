@@ -29,14 +29,17 @@ require 'assets-php/classes.php';
 BASE KEY = 1, NOT 0 */
 $Config = new Config( $ConfigFile );
 $Init = new Init;
-$Init->baseDir = $baseDir;
+$Init->baseDir = $Config->get('baseDir');
 $Init->queryarg = $REQUEST->queryarg;
 $InitData = $Init->Index($db);
-$Config = $Init->Config($db);
+$Config = $Init->AppendConfig($db);
 var_dump($Config);
 exit;
 $db = new Database(
-  pj($baseDir, $sqlitedb)
+  pj(
+    $Config->get('baseDir'), 
+    $Config->get('sqlitedb'),
+    )
   );
 /* app instance */
 $App = new App;
