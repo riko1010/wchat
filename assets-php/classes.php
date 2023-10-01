@@ -201,8 +201,18 @@ class Init {
   
 public $InitType;
   
-  public function _construct() {
-     
+  public function _construct(
+    Config $Config,
+    Database $db,
+    ) {
+    $CheckFileSystemModification = $this->CheckFileSystemModification($Config->cfFolder);
+    if ($CheckFileSystemModification->status == true) {
+   $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
+    $Config,
+    $db
+    );  
+    }
+
   }
   
   public function API(
@@ -314,7 +324,7 @@ public $InitType;
     }   
   }
 
-public function UpdateDBFromFileSystem(
+  public function UpdateDBFromFileSystem(
   Config $Config,
   Database $db,
   ){
