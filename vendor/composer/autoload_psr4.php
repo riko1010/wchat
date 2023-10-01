@@ -40,6 +40,7 @@ return array(
     'Laminas\\ZendFrameworkBridge\\' => array($vendorDir . '/laminas/laminas-zendframework-bridge/src'),
     'Laminas\\Stdlib\\' => array($vendorDir . '/laminas/laminas-stdlib/src'),
     'Laminas\\Hydrator\\' => array($vendorDir . '/laminas/laminas-hydrator/src'),
+    'Laminas\\Db\\' => array($vendorDir . '/laminas/laminas-db/src'),
     'Laminas\\Config\\' => array($vendorDir . '/laminas/laminas-config/src'),
     'Illuminate\\Validation\\' => array($vendorDir . '/illuminate/validation'),
     'Illuminate\\Translation\\' => array($vendorDir . '/illuminate/translation'),

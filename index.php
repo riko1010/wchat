@@ -28,15 +28,15 @@ require 'assets-php/classes.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
-$Config = new Config( $ConfigFile );
+$Config = new Laminas\Config\Config(include $ConfigFile);
 $db = new Database(
   pj(
-    $Config->get('baseDir'), 
-    $Config->get('sqlitedb'),
+    $Config->baseDir, 
+    $Config->sqlitedb,
     )
   );
 $Init = new Init;
-$Init->baseDir = $Config->get('baseDir');
+$Init->baseDir = $Config->baseDir;
 $Init->queryarg = $REQUEST->queryarg;
 $InitData = $Init->Index($db);
 $Init->AppendConfig(
@@ -45,7 +45,7 @@ $Init->AppendConfig(
   ['id' => 1],
   $Config,
   );
-var_dump($Config->get('AppData')->id);
+var_dump($Config->AppData);
 exit;
 
 /* app instance */

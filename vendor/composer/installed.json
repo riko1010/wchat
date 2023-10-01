@@ -1239,6 +1239,75 @@
             "install-path": "../laminas/laminas-config"
         },
         {
+            "name": "laminas/laminas-db",
+            "version": "2.6.2",
+            "version_normalized": "2.6.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-db.git",
+                "reference": "ed12acd7ac63d29e2c32433038667595fb321fa1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-db/zipball/ed12acd7ac63d29e2c32433038667595fb321fa1",
+                "reference": "ed12acd7ac63d29e2c32433038667595fb321fa1",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-stdlib": "~2.7",
+                "laminas/laminas-zendframework-bridge": "^1.0",
+                "php": ">=5.5"
+            },
+            "replace": {
+                "zendframework/zend-db": "self.version"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "laminas/laminas-eventmanager": "~2.5",
+                "laminas/laminas-hydrator": "~1.0",
+                "laminas/laminas-mvc": "~2.5",
+                "laminas/laminas-servicemanager": "~2.5",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "laminas/laminas-eventmanager": "Laminas\\EventManager component",
+                "laminas/laminas-hydrator": "Laminas\\Hydrator component for using HydratingResultSets",
+                "laminas/laminas-servicemanager": "Laminas\\ServiceManager component"
+            },
+            "time": "2019-12-31T20:00:00+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev",
+                    "dev-develop": "2.7-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\Db\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "db",
+                "laminas"
+            ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-db/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-db/issues",
+                "rss": "https://github.com/laminas/laminas-db/releases.atom",
+                "source": "https://github.com/laminas/laminas-db"
+            },
+            "install-path": "../laminas/laminas-db"
+        },
+        {
             "name": "laminas/laminas-hydrator",
             "version": "1.0.0",
             "version_normalized": "1.0.0.0",

@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c1f607df9b4e5957e131164c48c667d36b2c8593',
+        'reference' => 'c40e1170970c6d36ef541992264946ccb55d7663',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c1f607df9b4e5957e131164c48c667d36b2c8593',
+            'reference' => 'c40e1170970c6d36ef541992264946ccb55d7663',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -196,6 +196,15 @@
             'reference' => '6aa30b69d0e23f82fc70b2f104ea5f264a2124b9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laminas/laminas-config',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'laminas/laminas-db' => array(
+            'pretty_version' => '2.6.2',
+            'version' => '2.6.2.0',
+            'reference' => 'ed12acd7ac63d29e2c32433038667595fb321fa1',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laminas/laminas-db',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -590,6 +599,12 @@
             'dev_requirement' => false,
             'replaced' => array(
                 0 => '2.5.1',
+            ),
+        ),
+        'zendframework/zend-db' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '2.6.2',
             ),
         ),
         'zendframework/zend-hydrator' => array(
