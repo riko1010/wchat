@@ -28,9 +28,6 @@ require 'assets-php/classes.php';
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
-$db = new Database(
-  pj($baseDir, $sqlitedb)
-  );
 $Init = new Init;
 $Init->baseDir = $baseDir;
 $Init->queryarg = $REQUEST->queryarg;
@@ -38,6 +35,9 @@ $InitData = $Init->Index($db);
 $Config = $Init->Config($db);
 var_dump($Config);
 exit;
+$db = new Database(
+  pj($baseDir, $sqlitedb)
+  );
 /* app instance */
 $App = new App;
 
