@@ -45,7 +45,7 @@ $Init->AppendConfig(
   ['id' => 1],
   $Config,
   );
-var_dump($Config->get('AppData',['id']));
+var_dump($Config->get('AppData')->id);
 exit;
 
 /* app instance */
