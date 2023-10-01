@@ -1454,9 +1454,9 @@ if ($GenerateSitemap) {
 }
 //objects 
 $files = $this->filesExists(
-  $this->bdir,
+  $Config->baseDir,
   $Config->sitemapxml, 
-  $Config->robotstxt
+  $Config->robotstxt,
 );
 
 return (object) [
@@ -1481,7 +1481,7 @@ $data[] = [
 return $data;
 }
 
-public function Generate(){
+public function Generate(Config $Config){
 
 if (!is_dir('autodelete')) {
   if (!mkdir('autodelete')) {
@@ -1492,19 +1492,19 @@ if (!is_dir('autodelete')) {
   }
 }
 
-if (file_exists($this->sitemapxml)) {
+if (file_exists($Config->sitemapxml)) {
 clearstatcache();  
-  if (!rename($this->sitemapxml, Path::join('autodelete', $this->sitemapxml))) { 
+  if (!rename($Config->sitemapxml, Path::join('autodelete', $Config->sitemapxml))) { 
     return (object) [
     'status' => false,
-    'response' => 'cannot move '.$this->sitemapxml.' to autodelete'
+    'response' => 'cannot move '.$Config->sitemapxml.' to autodelete'
     ];
   }
 }
 
 try {
 // create Sitemap
-$sitemap = new Sitemap($this->sitemapxml);
+$sitemap = new Sitemap($Config->sitemapxml);
 } catch(Exception $e) {
   return [
     'status' => false,
@@ -1533,18 +1533,18 @@ $sitemap->write();
   //sitemap.xml write error
   return (object) [
     'status' => false,
-    'response' => $this->sitemapxml.' - cant update(3)'
+    'response' => $Config->sitemapxml.' - cant update(3)'
     ];
 }
 
-if (file_exists($this->sitemapxml)) {
+if (file_exists($Config->sitemapxml)) {
   clearstatcache();
 
 } else {
   /* failed to generate sitemap, restore old */
-  if (fie_exists(Path::join('autodelete', $this->sitemapxml))) {
+  if (fie_exists(Path::join('autodelete', $Config->sitemapxml))) {
     clearstatcache();
-    rename(Path::join('autodelete', $this->sitemapxml), $this->sitemapxml);
+    rename(Path::join('autodelete', $Config->sitemapxml), $this->sitemapxml);
   return (object) [
     'status' => false,
     'response' => 'sitemap generator failed - old sitemap restored'
