@@ -200,6 +200,7 @@ return 'success';
 class Init {
   
 public $InitType;
+public $REQUEST;
   
   public function _construct(
     Config $Config,
@@ -209,7 +210,7 @@ public $InitType;
     if ($CheckFileSystemModification->status == true) {
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $Config,
-    $db
+    $db,
     );  
     }
 
@@ -347,16 +348,18 @@ $cfFiles = $this->CFgetfiles(
       'response' => 'Cannot fetch chat files or no chat files'
       ];   
   }
+  
 if ($Config->InitType == 'API') {
 /* API */
-$PrevArray = $this->Index($db)->Data;
-} else {
-/* Index */ 
-$PrevArray = $this->Index(
+$PrevArray = $this->API(
   $this->REQUEST, 
   $db,
   )->Data;
+} else {
+/* Index */ 
+$PrevArray = $this->Index($db)->Data;
 }
+
 $NewArray = $cfFiles->cfl;
 $MergeDropAndUpateDb = $this->MergeDropAndUpateDb(
               $PrevArray, 
@@ -373,7 +376,7 @@ if (!$MergeDropAndUpateDb->status) {
 /* update Appdata folder with conversation hash */
 try {
 clearstatcache();
-$cfFoldermtimeorhash = filemtime($cfFolder);
+$cfFoldermtimeorhash = filemtime($Config->cfFolder);
 $UpdateAppData = $db->InsertOrUpdate(
     'AppData',
     [
