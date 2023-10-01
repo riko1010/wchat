@@ -374,7 +374,7 @@ $cfFiles = $this->CFgetfiles(
 if ($Config->InitType == 'API') {
 /* API */
 $PrevArray = $this->API(
-  $this->REQUEST, 
+  $Request, 
   $db,
   )->Data;
 } else {
