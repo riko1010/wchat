@@ -54,6 +54,7 @@ $App->SetChatFile(
   $Request, 
   $Init,
   $App,
+  $db,
   );
 /* $App->SelectedId now set  */
 

@@ -661,6 +661,7 @@ public function SetChatFile(
   Request $Request,
   Init $Init,
   App $App,
+  Database $db,
   ) {
 /* SetChatFile on index uses $_GET/backupfile , on api uses _request/queryarg - queryarg is RecordId, assets-php/sqlite uses queryarg to selectone/select, latter if $api, if not found, ChatFileDataNotEmpty = false , meaning empty  */
 
@@ -710,6 +711,7 @@ if ($SelectedChatFile['vrecipient'] != null) {
   $Config,
   $App,
   $Init,
+  $db,
   );
 }
 
@@ -748,6 +750,7 @@ public function SetVerifiedRecipient(
   Config $Config,
   App $App,
   Init $Init,
+  Database $db,
   ){
 
 $recipient = trim(strtolower($App->Name)); 
@@ -780,7 +783,25 @@ if (preg_match($pattern, $filearray, $matches)) {
 $i++;
 }
 
-
+try {
+$InsertOrUpdate = $db->InsertOrUpdate(
+    'chatfiles',
+    [
+    'vrecipient' => $vrecipient,
+    ],
+    [ 'filepath' => $filepath ]
+  );
+  
+  if (!$InsertOrUpdate->status) {
+    Throw new Exception ($InsertOrUpdate->response);
+  }
+} catch (\Exception|\Throwable $e) {
+  return (object) [
+        'status' => false,
+        'response' => 'Insert or Update failed:'.$e->getMessage()
+        ]; 
+  }
+}
 
 $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 }
