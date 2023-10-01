@@ -347,16 +347,16 @@ $PrevArray = $this->Index($db)->Data;
 }
 
 $NewArray = $cfFiles->cfl;
-$MergeDropAndUpateDb = $this->MergeDropAndUpateDb(
+$MergeDropAndUpdateDb = $this->MergeDropAndUpdateDb(
               $PrevArray, 
               $NewArray,
               $db,
               );
 
-if (!$MergeDropAndUpateDb->status) {
+if (!$MergeDropAndUpdateDb->status) {
   return (object) [
       'status' => false,
-      'response' => 'Cannot update DB from Filesystem'.$MergeDropAndUpateDb->response
+      'response' => 'Cannot update DB from Filesystem'.$MergeDropAndUpdateDb->response
       ]; 
 } 
 /* update Appdata folder with conversation hash */
@@ -388,7 +388,7 @@ return (object) [
       ]; 
   } 
 
-public function MergeDropAndUpateDb(
+public function MergeDropAndUpdateDb(
   $Prev, 
   $new,
   Database $db,
