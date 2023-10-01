@@ -196,14 +196,22 @@ $this->Data = $RequestData;
   }
   
   public function __set($PropertyName, $Val) {
-  $this->Data[$PropertyName]  
+  $this->Data[$PropertyName] = $Val;  
+  }
+  
+  public function __unset($PropertyName){
+  $this->Data[$PropertyName];  
   }
   
   public function get(
     $PropertyName, 
-    $DefaultValue,
+    $DefaultValue = null,
     ) {
-    
+  try {
+    return $this->Data[$PropertyName];  
+    } catch (\Exception|\Throwable $e) {
+    return $DefaultValue;
+    }    
   }
   
 }
