@@ -187,14 +187,16 @@ $this->Data = $RequestData;
 
   }
   
-  public function __get($PropertyName){
-  try {
-    
-  } catch (\Exception|\)
+    public function __get($PropertyName){
+    try {
+    return $this->Data[$PropertyName];  
+    } catch (\Exception|\Throwable $e) {
+    Throw new Exception($PropertyName.' is not in $_REQUEST'); 
+    }
   }
   
-  public function __set($PropertyName) {
-    
+  public function __set($PropertyName, $Val) {
+  $this->Data[$PropertyName]  
   }
   
   public function get(
