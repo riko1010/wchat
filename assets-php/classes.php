@@ -785,9 +785,8 @@ $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 
 public function ChatFileGenerator(
  Config $Config,
- App $App,
   ){
-$sfd = new SplFileObject($cfFiles);
+$sfd = new SplFileObject($this->ChatFile);
 if (!$sfd) return 'error: could not open chat file';
 
 $filearray = [];
@@ -799,7 +798,7 @@ $NewLine = '
 '; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = $Config->PaginationFrom;
-$to = $oto = ($Config->PaginationFrom == 0 ? $Config->recordsperpage'] : $PaginationTo );
+$to = $oto = ($Config->PaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationFrom );
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
@@ -877,8 +876,6 @@ $sfd = new SplFileObject($cfFiles);
 if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
 $filearray = [];
-$holdbuffer = null;
-$NewLine = '<br/>';
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
 $to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
@@ -893,18 +890,7 @@ foreach ($sfd as $line)
 set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
 
   if(preg_match($pattern, $buffer, $matches)) {
-   $sfd->seek($i + 1);
-   if (preg_match($pattern, $sfd->current(), $matches)) {
-   yield $buffer;  
-   } else {
-   $holdbuffer .= $buffer;
-   }
-   /* return pointer to current iteration */
-   $sfd->seek($i);
-   /*
-   if match, check next, if match, yield
-   if not match, hold, continue?, if not match, bind prev, check next, if match, yield, else , hold, continue
-   */
+   yield $buffer;
    } else { 
    	/* append assumed chat continuation to previous array, \n or \r\n considered. */
    $sfd->seek($i + 1);
