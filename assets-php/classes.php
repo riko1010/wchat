@@ -189,8 +189,7 @@ public $InitType;
 public $REQUEST;
 public $Data;
   
-  public function _construct(
-    $InitType,
+  public function Loader(
     Config $Config,
     Database $db,
     ) {

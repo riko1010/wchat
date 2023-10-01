@@ -31,7 +31,7 @@ BASE KEY = 1, NOT 0 */
 $Config = new Config (include $ConfigFile, true);
 $Config->InitType = 'Index';
 $db = new Database( $Config, );
-$Init = new Init( 'Index', $db, $Config, );
+$Init = new Init( $db, $Config, );
 
 /* app instance */
 $App = new App;
