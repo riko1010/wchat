@@ -262,11 +262,16 @@ public $queryarg;
   ];                         
   }
 
-  public function Config(Database $db){
+  public function AppendConfig(
+    Database $db,
+    $Table,
+    $ColumnValuesArray,
+    ){
   /* load app data */
   $AppDataExecute = $db->SelectOne(
-                        'AppData',
-                        ['id' => 1]);
+                 $Table,
+                 $ColumnValuesArray,
+                    );
   $AppDatas = ($AppDataExecute->status ?
   iter_to_array($AppDataExecute->response) : []);
   $AppData = (object) (count($AppDatas) > 0 ? $AppDatas[0]  : []);
@@ -278,9 +283,6 @@ public $queryarg;
   );
   */
   /* load chat files if not loading through api */
-  $config = new Config(
-    $this->baseDir.'/assets-php/settings.php'
-    );
   
   return $config;   
   }
