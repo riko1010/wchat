@@ -47,10 +47,12 @@ return [
 if (!$Init->Data->IsEmpty) {
 /* app instance */
 $App = new App;
-$App->ChatFilesData = $InitData->Data;
-$App->ChatFilesDataIdAsKeys = $InitData->DataIdAsKeys;
-$App->baseDir = $baseDir;
-$App->SetChatFile($Request);
+
+$App->SetChatFile(
+  $Config, 
+  $Request, 
+  $Init,
+  );
 /* $App->SelectedId now set  */
 $App->SetVerifiedRecipient( $App->Name );
 

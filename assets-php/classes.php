@@ -624,6 +624,7 @@ public function __construct() {
 }
 
 public function SetChatFile(
+  Config $Config,
   Request $Request,
   Init $Init,
   ) {
@@ -661,7 +662,7 @@ $this->Selected = 0;
 $SelectedChatFile = $this->ChatFilesData[$this->Selected];
 $this->SelectedId = $SelectedChatFile['id'];
 $this->ChatFile = Path::join(
-  $this->baseDir,
+  $Config->baseDir,
   $SelectedChatFile['filepath']
   );
 $this->Name = $SelectedChatFile['name'];
