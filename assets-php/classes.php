@@ -870,39 +870,25 @@ return (object) [
 }
 
 /* dedicated recipient identifier */
-public function ChatFileGeneratorRecipient($Paginations, $cfFiles = null){
-$cfFiles = ($cfFiles !== null ?: $this->ChatFile);  
-$sfd = new SplFileObject($cfFiles);
+public function ChatFileGeneratorRecipient(
+  Config $Config,
+  ){
+$sfd = new SplFileObject($this->ChatFile);
 if (!$sfd) return 'error: could not open chat file';
 $Pagination = explode(',', $Paginations);
-$filearray = [];
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
-$from = (isset($Pagination[0]) && is_numeric(trim($Pagination[0])) ? trim($Pagination[0]) : 0 );
-$to = (isset($Pagination[1]) && is_numeric(trim($Pagination[1])) ? trim($Pagination[1]) : $GLOBALS['recordsperpage'] );
+$from = $Config->PaginationFrom;
+$to = $oto = ($Config->PaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationFrom );
 $i = $from;
 foreach ($sfd as $line)
 {
   /* goto start line in pagination arg */
-  $sfd->seek($i);
   $buffer = $sfd->current();
    if (!$sfd->valid()) { continue; /* could not read line */ }
-   /* whatsapp export lists lines without date string given newline is the delimiter and becomes difficult to determine if line is chat, notification or ....
-set file array default key to null, regex if date string.solves newline, of chat continuation problem by appending unidentified lines to previous line */
 
   if(preg_match($pattern, $buffer, $matches)) {
    yield $buffer;
-   } else { 
-   	/* append assumed chat continuation to previous array, \n or \r\n considered. */
-   $sfd->seek($i + 1);
-   if (preg_match($pattern, $sfd->current(), $matches)) {
-   $holdbuffer .= ($holdbuffer != null ?
-   $NewLine.$buffer : $buffer);
-   yield $holdbuffer;  
-   $holdbuffer = null;
    } else {
-   $holdbuffer .= ($holdbuffer != null ?
-   $NewLine.$buffer : $buffer);
-   }
    
    if (!$sfd->valid()) {
      /* end of file, yield holdbuffer containing all unidentified buffer  */
@@ -911,14 +897,9 @@ set file array default key to null, regex if date string.solves newline, of chat
      $holdbuffer = null;
      }
    }
-   
-   /* set point to current iteration */
-   $sfd->seek($i);
    }
-
 $i++;  
-
-  } 
+  }
 }
 
 public function replaceinFile(
