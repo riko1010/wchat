@@ -169,6 +169,8 @@ Class Request {
   public function _construct($Requests){
   $data = [];
   $filters = [];
+  var_dump($Requests);
+  print 'requests';
   foreach ($Requests as $Request => $Val) {
     print $Request.'-'.$Val.'<hr/>';
   $data[] = [
