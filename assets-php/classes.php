@@ -177,9 +177,8 @@ Class Request {
 
 $RequestData = new Sanitizer($data, $filters);
 $RequestData = $RequestData->sanitize();
-var_dump($RequestData);
-return $RequestData;
 
+return (object) $RequestData;
   }
   
 }
