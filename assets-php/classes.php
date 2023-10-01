@@ -205,7 +205,7 @@ public $Data;
     );  
     }
     
-    $Init->AppendConfig(
+    $this->AppendConfig(
     'AppData',
     ['id' => 1],
     $db,
@@ -213,12 +213,12 @@ public $Data;
     );
     
     if ($Config->InitType == 'API') {
-      $this->Data = $Init->API(
+      $this->Data = $this->API(
         $Request, 
         $db,
         );
     } else {
-    $this->Data = $Init->Index($db);
+    $this->Data = $this->Index($db);
     }
 
   }
@@ -372,6 +372,7 @@ $NewArray = $cfFiles->cfl;
 $MergeDropAndUpdateDb = $this->MergeDropAndUpdateDb(
               $PrevArray, 
               $NewArray,
+              $Config,
               $db,
               );
 
