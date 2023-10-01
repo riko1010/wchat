@@ -32,7 +32,12 @@ $Config = new Config (include $ConfigFile, true);
 
 $db = new Database( $Config, );
 $Init = new Init( $db, $Config, );
-
+$Init->AppendConfig(
+    'AppData',
+    ['id' => 1],
+    $db,
+    $Config,
+    );
 $InitData = $Init->Index($db);
 
 /* app instance */

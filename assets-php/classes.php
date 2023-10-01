@@ -201,10 +201,7 @@ class Init {
   
 public $InitType;
   
-  public function _construct(
-    Database $db,
-    Config $Config,
-    ) {
+  public function _construct() {
      
   }
   
@@ -271,9 +268,9 @@ public $InitType;
   }
 
   public function AppendConfig(
-    Database $db,
     $Table,
     $ColumnValuesArray,
+    Database $db,
     Config $Config,
     ){
   /* load app data */
