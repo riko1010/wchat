@@ -42,7 +42,7 @@ $sitemap = new generateSiteMap;
 $sitemap->SiteUrl = $SiteUrl; 
 $sitemap->ChatFilesData = &$InitData->Data;
 $sitemap->ChatFilesDataIdAsKeys = &$InitData->DataIdAsKeys;
-$sitemaps = $sitemap->get();
+$sitemaps = $sitemap->get($Init, $Config);
 /*
 return [
   'sitemap' => [status, response]

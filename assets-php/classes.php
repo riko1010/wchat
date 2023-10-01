@@ -1425,10 +1425,13 @@ public function __construct(){
  
 }
 
-public function get(Config $Config){
+public function get(
+  Config $Config,
+  Init $Init,
+  ){
 $GenerateSitemap = false;
 if ($GenerateSitemap) {
-  $Generate = $this->Generate($Config); 
+  $Generate = $this->Generate($Config, $Init); 
   $Responses = 'Generate:'.$Generate->response;
   $sitemap = [ 
     'status' => true,
@@ -1472,7 +1475,10 @@ $data[] = [
 return $data;
 }
 
-public function Generate(Config $Config){
+public function Generate(
+  Config $Config,
+  Init $Init,
+  ){
 
 if (!is_dir('autodelete')) {
   if (!mkdir('autodelete')) {
