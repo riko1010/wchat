@@ -11,13 +11,13 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
-/* Request Handler */
-$Request = new Request($_REQUEST);
-
-$currentURL = null;
-$totalrecords = null;
 $ConfigFile = 'assets-php/settings.php';
 require 'assets-php/classes.php';
+
+/* Request Handler */
+$Request = new Request($_REQUEST);
+$currentURL = null;
+$totalrecords = null;
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
@@ -29,8 +29,8 @@ $Config->PaginationTo = $Config->recordsperpage;
 $db = new Database( $Config, );
 $Init = new Init;
 $Init->Loader(
-  $db, 
   $Config, 
+  $db, 
   $Request, 
   );
 
