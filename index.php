@@ -39,7 +39,7 @@ $InitData = $Init->Index($db);
 $App = new App;
 
 $sitemap = new generateSiteMap;
-$sitemap->SiteUrl = $SiteUrl; 
+
 $sitemap->ChatFilesData = &$InitData->Data;
 $sitemap->ChatFilesDataIdAsKeys = &$InitData->DataIdAsKeys;
 $sitemaps = $sitemap->get($Init, $Config);

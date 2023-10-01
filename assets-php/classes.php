@@ -1417,10 +1417,6 @@ return (object) [
 
 class generateSiteMap {
 
-public $ChatFilesData;
-public $ChatFilesDataIdAsKeys;
-public $SiteUrl;
-
 public function __construct(){
  
 }
@@ -1431,7 +1427,10 @@ public function get(
   ){
 $GenerateSitemap = false;
 if ($GenerateSitemap) {
-  $Generate = $this->Generate($Config, $Init); 
+  $Generate = $this->Generate(
+    $Config, 
+    $Init,
+    ); 
   $Responses = 'Generate:'.$Generate->response;
   $sitemap = [ 
     'status' => true,
@@ -1510,7 +1509,7 @@ $sitemap = new Sitemap($Config->sitemapxml);
 }
 
 $ChatFilesData_column_search = array_column(
-  $this->ChatFilesData, 
+  $Init->ChatFilesData, 
   'url'
   );
 foreach ($ChatFilesData_column_search as $Links) {
