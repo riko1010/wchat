@@ -814,38 +814,6 @@ return (object) [
   ];
 }
 
-/* dedicated recipient identifier */
-public function ChatFileGeneratorRecipient(
-  Config $Config,
-  ){
-$sfd = new SplFileObject($this->ChatFile);
-if (!$sfd) return 'error: could not open chat file';
-$pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
-$from = $Config->PaginationFrom;
-$to = ($Config->PaginationTo == 0 ? ($from + $Config->recordsperpage) : $Config->PaginationTo );
-$i = $from;
-foreach ($sfd as $line)
-{
-  /* goto start line in pagination arg */
-  $buffer = $sfd->current();
-   if (!$sfd->valid()) { continue; /* could not read line */ }
-
-  if(preg_match($pattern, $buffer, $matches)) {
-   yield $buffer;
-   } else {
-   
-   if (!$sfd->valid()) {
-     /* end of file, yield holdbuffer containing all unidentified buffer  */
-     if ($holdbuffer != null) {
-       yield $holdbuffer;
-     $holdbuffer = null;
-     }
-   }
-   }
-$i++;  
-  }
-}
-
 public function replaceinFile(
   $fromstring, 
   $tostring, 
@@ -1236,6 +1204,9 @@ $sender = ''; /* unformatted */
 if(isset($messagelinetype)){
 
 $recipient = ($App->GroupChat ? true : ( (strtolower($sender) == $App->SelectedChatFile['name']) ? true : false));
+if ($recipient == true) {
+  
+}
 
 $phug = new Phug\Renderer([
 'globals' => [
