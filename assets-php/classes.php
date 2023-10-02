@@ -787,7 +787,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     [
     'vrecipient' => $vrecipient,
     ],
-    [ 'filepath' => $Init->Data->Data['filepath'] ]
+    [ 'filepath' => $App->ChatFile ]
   );
   
   if (!$InsertOrUpdate->status) {
