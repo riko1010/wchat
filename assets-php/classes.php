@@ -1118,6 +1118,7 @@ public function InsertOrUpdate(
   $Target = 'insertorupdate',
   ){
 /* Targets = insertorupdate|insert|update */  
+$Target = strtolower($Target);
 if ($Target == 'insertorupdate' || $Target == 'update') {
 $SelectExecute = $this->SelectOne(
   $Table,
@@ -1130,12 +1131,13 @@ $InsertOrUpdate = $this->sql->update($Table);
 $InsertOrUpdate->where($UpdateWhereArray);
 $InsertOrUpdate->set($ColumnValuesArray);  
 }
-
 }
 
-if ($Target == 'insertorupdate'){
+if ($Target == 'insertorupdate' || $Target == 'insert'){
+if (count($Select) == 1) {  
 $InsertOrUpdate = $this->sql->insert($Table);  
 $InsertOrUpdate->values($ColumnValuesArray);  
+}
 }
 try {
 $statement = $this->sql->prepareStatementForSqlObject($InsertOrUpdate);
