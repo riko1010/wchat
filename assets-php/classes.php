@@ -701,7 +701,7 @@ $this->ChatFile = Path::join(
 $this->Name = $SelectedChatFile['name'];
 $this->DirPath = $SelectedChatFile['dirpath'];
 $this->GroupChat = $SelectedChatFile['groupchat'];
-var_dump()
+
 if ($SelectedChatFile['vrecipient'] != null) {
   $this->VerifiedRecipient = $SelectedChatFile['vrecipient'];
 } else {
@@ -711,7 +711,8 @@ if ($SelectedChatFile['vrecipient'] != null) {
   $db,
   );
 }
-
+var_dump($this->VerifiedRecipient);
+exit;
 }
 
 public function CheckLegacyChatFileQuery(
@@ -778,7 +779,8 @@ if (preg_match($pattern, $filearray, $matches)) {
 }
 $i++;
 }
-
+var_dump($vrecipient);
+exit;
 try {
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
