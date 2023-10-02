@@ -1000,7 +1000,7 @@ public function PaginationNav(
   Config $Config,
   ){
 $PrevPaginationStatus = (
-  $Config->NPaginationFrom == 0 ? 
+  $Config->PaginationFrom == 0 ? 
   'disabled' : ''
   );
 $NextPaginationStatus = (
@@ -1008,12 +1008,12 @@ $NextPaginationStatus = (
     'disabled' : ''
     );
 
-$PrevPaginationHref = '?'.$Config->PaginationFrom.'-'.$Config->PaginationTo;
+$PrevPaginationHref = '?'.$Config->PPaginationFrom.'-'.$Config->PPaginationTo;
 $NextPaginationHref = '?'.$Config->NPaginationFrom.'-'.$Config->NPaginationTo;
 
 $PaginationNav = '  
   <nav aria-label="...">
-  <ul class="pagination">
+  <ul class="pagination pagination-lg">
     <li class="page-item '.$PrevPaginationStatus.'">
       <a href='.$PrevPaginationHref.' class="page-link">Previous</a>
     </li>
