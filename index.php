@@ -175,12 +175,12 @@ $App,
 
 </section>
 
-<section id="ArchivedNav">
+<paginationnav id="ArchivedNav">
 <?=$App->PaginationNav(
 $Config, 
 $App,
 );?>
-</section>
+</paginationnav>
 
 <div id="loader"> </div>
 <div class="loader hidden d-flex justify-content-center">
