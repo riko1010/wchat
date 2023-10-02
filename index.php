@@ -264,7 +264,7 @@ if ($sitemap['exists'] == false) continue;
 <script>
 dev = true;
 <?php
-/* archive.org modifies js, functions are available, classes do not seem available,
+/* archive.org modifies js, jwuery, functions are available, classes do not seem available, suggestgroupchat will ot utlize classes until solution found */
 if ($Config->SuggestGroupChat == true) {
 ?>
 
