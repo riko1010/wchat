@@ -703,16 +703,6 @@ $this->Name = $this->SelectedChatFile['name'];
 $this->DirPath = $this->SelectedChatFile['dirpath'];
 $this->GroupChat = $this->SelectedChatFile['groupchat'];
 
-if ($this->SelectedChatFile['vrecipient'] != null) {
-  $this->VerifiedRecipient = $this->SelectedChatFile['vrecipient'];
-} else {
- $this->SetVerifiedRecipient(
-  $Config,
-  $Init,
-  $db,
-  );
-}
-
 }
 
 public function CheckLegacyChatFileQuery(
@@ -743,69 +733,6 @@ public function CheckLegacyChatFileQuery(
     ]) );
 
 }
-
-public function SetVerifiedRecipient(
-  Config $Config,
-  Init $Init,
-  Database $db,
-  ){
-
-$recipient = trim(strtolower($this->Name)); 
-$identities = [];   
-$i = 0;
-$cfselectedfilegenerator = $this->ChatFileGeneratorRecipient($Config);
-foreach ($cfselectedfilegenerator as $filearray) {
-$pattern = '/(?P<time>.*?,+.*?)-(?P<sender>.*?):(?P<message>.*)/is';
-if (preg_match($pattern, $filearray, $matches)) {
-  $sender = strtolower(trim($matches["sender"]));
-  if ($sender != '') {
-   if ($sender == $recipient) {
-    $vrecipient = $sender;
-    break;
-  } else {
-    /* levenshtein based */
-     $plev = (isset($lev) ? $lev : 'notset');
-     $lev = levenshtein($recipient, $sender);
-
-     if ($plev == 'notset') {
-     $vrecipient = $sender;
-     } else {
-     $vrecipient = ($plev > $lev ? $sender : $vrecipient);
-     }
-    /* end levenshtein guess */
-  }
-  /* end $identities similarity check */
-}
-}
-$i++;
-}
-
-try {
-$InsertOrUpdate = $db->InsertOrUpdate(
-    'chatfiles',
-    [
-    'vrecipient' => $vrecipient,
-    ],
-    [ 'filepath' => $this->SelectedChatFile['filepath'] ]
-  ));
-  
-  if (!$InsertOrUpdate->status) {
-    Throw new Exception ($InsertOrUpdate->response);
-  }
-} catch (\Exception|\Throwable $e) {
-  return (object) [
-        'status' => false,
-        'response' => 'Insert or Update failed:'.$e->getMessage()
-        ]; 
-  }
-
-$this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
-
-return (object) [
-        'status' => true,
-        'response' => 'Insert or Update completed successfully'
-        ]; 
-  }
 
 public function ChatFileGenerator(
  Config $Config,
