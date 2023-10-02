@@ -264,7 +264,14 @@ if ($sitemap['exists'] == false) continue;
 <script>
 dev = true;
 <?php
-/* try, catch exception to precent break on exceptions */
+/* archive.org modifies js, functions are available, classes do not seem available,
+if ($Config->SuggestGroupChat == true) {
+?>
+
+<?php
+}
+?>
+<?php
 /* no scrollmagic needed if no id or pagination */
 if ($App->eof == false && $App->SelectedId != null) {
 ?>
