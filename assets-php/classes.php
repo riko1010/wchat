@@ -643,6 +643,7 @@ public $DirPath;
 public $GroupChat;
 public $Selected;
 public $SelectedId;
+public $SelectedChatFile;
 public $NoSelected = true;
 public $CheckLegacy = false;
 public $VerifiedRecipient;
@@ -693,17 +694,17 @@ $this->Selected = 0;
 }
 
 $this->SelectedChatFile = $Init->Data->Data[$this->Selected];
-$this->SelectedId = $SelectedChatFile['id'];
+$this->SelectedId = $this->SelectedChatFile['id'];
 $this->ChatFile = Path::join(
   $Config->baseDir,
-  $SelectedChatFile['filepath']
+  $this->SelectedChatFile['filepath']
   );
-$this->Name = $SelectedChatFile['name'];
-$this->DirPath = $SelectedChatFile['dirpath'];
-$this->GroupChat = $SelectedChatFile['groupchat'];
+$this->Name = $this->SelectedChatFile['name'];
+$this->DirPath = $this->SelectedChatFile['dirpath'];
+$this->GroupChat = $this->SelectedChatFile['groupchat'];
 
-if ($SelectedChatFile['vrecipient'] != null) {
-  $this->VerifiedRecipient = $SelectedChatFile['vrecipient'];
+if ($this->SelectedChatFile['vrecipient'] != null) {
+  $this->VerifiedRecipient = $this->SelectedChatFile['vrecipient'];
 } else {
  var_dump( $this->SetVerifiedRecipient(
   $Config,
