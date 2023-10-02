@@ -245,6 +245,7 @@ public $Data;
     Request $Request,
     ) {
     $CheckFileSystemModification = $this->CheckFileSystemModification($Config);
+    var_dump($CheckFileSystemModification);
     if ($CheckFileSystemModification->status == true) {
    $UpdateDBFromFileSystem = $this->UpdateDBFromFileSystem(
     $Config,
@@ -375,7 +376,9 @@ public $Data;
   } else {
   return (object) [
       'status' => true,
-      'response' => 'FileSystem is modified'
+      'response' => 'FileSystem is modified',
+      'PrevMTime' => $PrevMTime,
+      'CurrentMTime' => $CurrentMTime,
       ];     
     }   
   }
