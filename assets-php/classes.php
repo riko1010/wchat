@@ -366,7 +366,7 @@ public $Data;
     ){
   clearstatcache();
   $CurrentMTime = filemtime($Config->cfFolder);
-  var_dump($Config->cfFolder);
+  var_dump($Config->AppData);
   var_dump($PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false);
   
   if ($CurrentMTime == $PrevMTime){
