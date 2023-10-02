@@ -947,12 +947,10 @@ return 'success';
 
 public function PaginationViability(
  Config $Config,
- $cfFiles = null
   ) {
-$cfFiles = ($cfFiles !== null ?: $this->ChatFile);
 
-$from = $PaginationFrom;
-$to = ($PaginationTo == 0 ? $Config->recordsperpage : $PaginationTo );
+$from = $Config->PaginationFrom;
+$to = ($Config->PaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
 
 if ($from === null) {
   return (object) [ 
@@ -961,7 +959,7 @@ if ($from === null) {
   ];
 }
 
-$sfd = new SplFileObject($cfFiles);
+$sfd = new SplFileObject($this->ChatFile);
 if (!$sfd) {
   return (object) [ 
   'status' => false,
