@@ -1148,7 +1148,7 @@ $results = $statement->execute();
 } catch (\Exception|\Throwable $e) {
   return (object) [
     'status' => false,
-    'response' => 'Insert or Update records failed:'.$e->getMessage()
+    'response' => 'Insert or Update records failed:'$.$e->getMessage()
     ];
 }
 /* idk if necessary, may verify, transactions, rollbacks, reasonably implement operation integrity, laminas-db doesnt expose this at its docs surface but a qestions shows possible */
