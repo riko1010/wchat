@@ -782,13 +782,13 @@ $i++;
 }
 
 try {
-$InsertOrUpdate = $db->InsertOrUpdate(
+var_dump($InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
     'vrecipient' => $vrecipient,
     ],
     [ 'filepath' => $this->SelectedChatFile['filepath'] ]
-  );
+  ));
   
   if (!$InsertOrUpdate->status) {
     Throw new Exception ($InsertOrUpdate->response);
