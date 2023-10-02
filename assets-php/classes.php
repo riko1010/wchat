@@ -371,8 +371,8 @@ public $Data;
     ){
   clearstatcache();
   $CurrentMTime = filemtime($Config->cfFolder);
-  var_dump($Config->AppData);
-  var_dump($PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false);
+  
+  $PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false;
   
   if ($CurrentMTime == $PrevMTime){
   return (object) [
@@ -610,7 +610,7 @@ $cfl[$gbfc]['dirname'] = $dirname;
 $cfl[$gbfc]['search'] = str_replace('+', '', str_replace(' ', '', $dirname.'-'.$cfl[$gbfc]['name'])).((!$bfc > 1) ?: $bfc);
 $cfl[$gbfc]['groupchat'] = (str_contains($matches['name'], 'group') ? true : false);
 /* list select options of folder and chat files - supports multiple chat files in one dir, media files hopefully wont conflict, idk the chances but... ??? */
-
+var_dump($cfl[$gbfc]['search']);
 $gbfc++;
 }
 /* end whatsapp backup files */
