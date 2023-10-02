@@ -1115,22 +1115,25 @@ public function InsertOrUpdate(
   $Table,
   $ColumnValuesArray, 
   $UpdateWhereArray,
-  $Target = 'update',
+  $Target = 'insertorupdate',
   ){
-    
-if ($Target != 'update') {
+/* Targets = insertorupdate|insert|update */  
+if ($Target == 'insertorupdate' || $Target == 'update') {
 $SelectExecute = $this->SelectOne(
   $Table,
   $UpdateWhereArray
   );
 $Select = ($SelectExecute->status ? iter_to_array($SelectExecute->response) : []);
-}
 
-if (count($Select) == 1 || strtolower($Target) == 'update') {
+if (count($Select) == 1) {
 $InsertOrUpdate = $this->sql->update($Table);
 $InsertOrUpdate->where($UpdateWhereArray);
 $InsertOrUpdate->set($ColumnValuesArray);  
-} else {
+}
+
+}
+
+if ($Target == 'insertorupdate'){
 $InsertOrUpdate = $this->sql->insert($Table);  
 $InsertOrUpdate->values($ColumnValuesArray);  
 }
