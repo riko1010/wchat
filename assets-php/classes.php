@@ -789,7 +789,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     [
     'vrecipient' => $vrecipient,
     ],
-    [ 'filepath' => $filepath ]
+    [ 'filepath' => $Init->Data->Data->filepath ]
   );
   
   if (!$InsertOrUpdate->status) {
@@ -878,7 +878,7 @@ if ($this->eof) {
 $this->NPaginationFrom = 0;
 $this->NPaginationTo = 0;
 } else {
-$NextTo = $to + $GLOBALS['recordsperpage'];
+$NextTo = $to + $Config->recordsperpage;
 $this->NPaginationFrom = $to;
 $this->NPaginationTo = $NextTo;
 }
@@ -946,14 +946,13 @@ return 'success';
 }
 
 public function PaginationViability(
- int $PaginationFrom,
- int $PaginationTo = 0,
-  $cfFiles = null
+ Config $Config,
+ $cfFiles = null
   ) {
 $cfFiles = ($cfFiles !== null ?: $this->ChatFile);
 
 $from = $PaginationFrom;
-$to = ($PaginationTo == 0 ? $GLOBALS['recordsperpage'] : $PaginationTo );
+$to = ($PaginationTo == 0 ? $Config->recordsperpage : $PaginationTo );
 
 if ($from === null) {
   return (object) [ 
