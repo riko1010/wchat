@@ -945,10 +945,21 @@ return 'success';
 
 public function PaginationViability(
  Config $Config,
+ $Target = 'next',
   ) {
-
+if ($Target == 'next') {
 $from = $Config->NPaginationFrom;
 $to = ($Config->NPaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
+elseif ($Target == 'next') {
+  
+} elseif () {
+  
+} else {
+  return (object) [ 
+  'status' => false,
+  'response' => 'Dupoorted Targets are prev|current|next' 
+  ];
+}
 
 if ($from === null) {
   return (object) [ 
