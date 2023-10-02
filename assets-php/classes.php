@@ -1251,8 +1251,7 @@ $from = $Config->PaginationFrom;
 $to = $Config->PaginationTo;
 
 foreach ($App->ChatFileGenerator(
-  $Config->PaginationFrom,
-  $Config->PaginationTo
+  $Config
   ) as $line) {
   yield from $this->processline(
     $line, 
