@@ -780,7 +780,7 @@ if (preg_match($pattern, $filearray, $matches)) {
 }
 $i++;
 }
-var_dump($this->ChatFile);
+var_dump($this->SelectedChatFile['filepath']);
 exit;
 try {
 $InsertOrUpdate = $db->InsertOrUpdate(
@@ -788,7 +788,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     [
     'vrecipient' => $vrecipient,
     ],
-    [ 'filepath' => $this->ChatFile ]
+    [ 'filepath' => $this->SelectedChatFile['filepath'] ]
   );
   
   if (!$InsertOrUpdate->status) {
