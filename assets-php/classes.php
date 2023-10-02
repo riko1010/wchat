@@ -782,6 +782,7 @@ $i++;
 }
 
 try {
+var_dump($this->SelectedChatFile['filepath']);
 var_dump($InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
