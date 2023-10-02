@@ -1203,9 +1203,9 @@ $sender = ''; /* unformatted */
 
 if(isset($messagelinetype)){
 
-$recipient = ($App->GroupChat ? true : ( (strtolower($sender) == $App->SelectedChatFile['name']) ? true : false));
+$recipient = ($App->GroupChat ? true : ( (strtolower($sender) == strtolower($App->SelectedChatFile['name'])) ? true : false));
 if ($recipient == true) {
-  $SuggestGroupChat = false;
+  $Config->SuggestGroupChat = false;
 }
 
 $phug = new Phug\Renderer([

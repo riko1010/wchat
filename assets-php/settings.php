@@ -23,4 +23,5 @@ return [
   'robotstxt' => 'robots.txt',
   'baseDir' => dirname(__DIR__),
   'sqlitedb' => dirname(__DIR__) . '/' . 'db.sqlite',
+  'SuggestGroupChat' => true,
 ];
