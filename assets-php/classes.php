@@ -702,7 +702,8 @@ $this->ChatFile = Path::join(
 $this->Name = $this->SelectedChatFile['name'];
 $this->DirPath = $this->SelectedChatFile['dirpath'];
 $this->GroupChat = $this->SelectedChatFile['groupchat'];
-
+var_dump($this->SelectedChatFile['filepath']);
+exit;
 if ($this->SelectedChatFile['vrecipient'] != null) {
   $this->VerifiedRecipient = $this->SelectedChatFile['vrecipient'];
 } else {
