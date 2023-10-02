@@ -950,12 +950,13 @@ public function PaginationViability(
 if ($Target == 'next') {
 $from = $Config->NPaginationFrom;
 $to = ($Config->NPaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
-elseif ($Target == 'current') {
+} elseif ($Target == 'current') {
 $from = $Config->PaginationFrom;
 $to = ($Config->PaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );  
 } elseif ($Target == 'prev') {
+  /* prevent lower to, or 0 by adding recordsperpage */
 $from = $Config->PPaginationFrom;
-$to = ($Config->PPaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );  
+$to = ($Config->PPaginationTo == 0 ? ($from + $Config->recordsperpage) : $Config->PaginationTo );  
 } else {
   return (object) [ 
   'status' => false,
@@ -999,10 +1000,7 @@ $PrevPaginationStatus = (
   'disabled' : ''
   );
 $NextPaginationStatus = (
-  ($this->PaginationViability(
-    'next',
-    $Config
-    ))->status == false ?
+  $this->eof == true ?
     'disabled' : ''
     );
 
