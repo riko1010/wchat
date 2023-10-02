@@ -779,7 +779,8 @@ if (preg_match($pattern, $filearray, $matches)) {
 }
 $i++;
 }
-
+var_dump($this->ChatFile);
+exit;
 try {
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
