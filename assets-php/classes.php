@@ -1124,21 +1124,22 @@ public function InsertOrUpdate(
   ){
 /* Targets = insertorupdate|insert|update */  
 $Target = strtolower($Target);
+$TType = null;
 if ($Target == 'insertorupdate' || $Target == 'update') {
 $SelectExecute = $this->SelectOne(
   $Table,
   $UpdateWhereArray
   );
 $Select = ($SelectExecute->status ? iter_to_array($SelectExecute->response) : []);
-$Update = (count($Select) == 1 ? true : false);
-if ($Update) {
+$TType = (count($Select) == 1 ? 'update' : null);
+if ($TType == 'update') {
 $InsertOrUpdate = $this->sql->update($Table);
 $InsertOrUpdate->where($UpdateWhereArray);
 $InsertOrUpdate->set($ColumnValuesArray);  
 }
 }
 
-if (($Target == 'insertorupdate' && !$Update) || $Target == 'insert'){
+if (($Target == 'insertorupdate' && $TType != 'update') || $Target == 'insert'){
 $InsertOrUpdate = $this->sql->insert($Table);  
 $InsertOrUpdate->values($ColumnValuesArray);  
 }
@@ -1148,12 +1149,14 @@ $results = $statement->execute();
 } catch (\Exception|\Throwable $e) {
   return (object) [
     'status' => false,
-    'response' => 'Insert or Update records failed:'$.$e->getMessage()
+    'type' => $TType,
+    'response' => 'Insert or Update records failed:'.$e->getMessage()
     ];
 }
 /* idk if necessary, may verify, transactions, rollbacks, reasonably implement operation integrity, laminas-db doesnt expose this at its docs surface but a qestions shows possible */
 return (object) [
     'status' => true,
+    'type' => $TType,
     'response' => $results
     ];
 }
