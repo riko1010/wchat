@@ -487,7 +487,6 @@ clearstatcache();
 $mtimeorhash = filemtime($cl['filepath']);
 $bfc = $cl['bfc'];
 $filepath = $cl['filepath'];
-$vrecipient = $cl['vrecipient'];
 $name = $cl['name'];
 $url = addurl( 
   $cl['search'], 
@@ -516,7 +515,6 @@ $PrevRecord = count($PrevRecords) > 0 ? $PrevRecords[0] : [];
   $archivedurl = $PrevRecord['archivedurl']; 
   $sync = $PrevRecord['sync']; 
   $archivedurl = $PrevRecord['archivedurl'];
-  $vrecipient = $PrevRecord['vrecipient'];
   }
  }
 } catch (\Exception|\Throwable $e) {
@@ -536,7 +534,6 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     'dirname' => $dirname, 
     'search' => $search,
     'groupchat' => $groupchat,
-    'vrecipient' => $vrecipient,
     'name' => $name,
     'sync' => $sync,
     'filepath' => $filepath,
@@ -595,7 +592,6 @@ $bfc++;
 $dirname = basename($dir);
 $filename = basename($f);
 $cfl[$gbfc]['bfc'] = $bfc;
-$cfl[$gbfc]['vrecipient'] = null;
 $cfl[$gbfc]['name']= trim($matches["name"]);
 $cfl[$gbfc]['filename'] = $filename;
 $cfl[$gbfc]['filepath'] = $f;
@@ -646,7 +642,6 @@ public $SelectedId;
 public $SelectedChatFile;
 public $NoSelected = true;
 public $CheckLegacy = false;
-public $VerifiedRecipient;
 public $Name;
 public $baseDir;
 public bool $eof = false;
@@ -1007,7 +1002,6 @@ $sql = "CREATE TABLE IF NOT EXISTS 'chatfiles' (
   'dirname' TEXT NOT NULL, 
   'search' TEXT NOT NULL, 
   'groupchat' BOOLEAN NOT NULL,
-  'vrecipient' TEXT NULL,
   'name' TEXT NOT NULL, 
   'sync' INTEGER DEFAULT 1 , 
   'synctime' INTEGER NULL default (strftime('%s','now')), 
@@ -1241,7 +1235,7 @@ $sender = ''; /* unformatted */
 
 if(isset($messagelinetype)){
 
-$recipient = ($App->GroupChat ? true : ( (strtolower($sender) == $App->VerifiedRecipient) ? true : false));
+$recipient = ($App->GroupChat ? true : ( (strtolower($sender) == $App->SelectedChatFile['name']) ? true : false));
 
 $phug = new Phug\Renderer([
 'globals' => [
@@ -1249,7 +1243,6 @@ $phug = new Phug\Renderer([
 'message' => $message,
 'time' => $time,
 'recipient' => $recipient,
-'vrecipient' => $App->VerifiedRecipient,
 'attachmentexists' => false,
 'type' => $messagelinetype,
 'groupchat' => $App->GroupChat,
