@@ -949,8 +949,8 @@ public function PaginationViability(
  Config $Config,
   ) {
 
-$from = $Config->PaginationFrom;
-$to = ($Config->PaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
+$from = $this->NPaginationFrom;
+$to = ($this->NPaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
 
 if ($from === null) {
   return (object) [ 
