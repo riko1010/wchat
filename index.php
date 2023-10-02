@@ -34,7 +34,9 @@ $Init->Loader(
   $db, 
   $Request, 
   );
-var_dump($Config->AppData->mtimeorhash);
+
+var_dump(($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false);
+
 $sitemap = new generateSiteMap;
 $sitemaps = $sitemap->get(
   $Config, 

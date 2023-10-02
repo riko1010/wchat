@@ -528,7 +528,7 @@ return (object) [
       ];   
 }
 try {
-var_dump(
+
   $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
@@ -546,7 +546,7 @@ var_dump(
     'archivedurl' => $archivedurl
     ],
     [ 'filepath' => $filepath ]
-  ));
+  );
   
   if (!$InsertOrUpdate->status) {
     Throw new Exception ($InsertOrUpdate->response);
