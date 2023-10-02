@@ -706,11 +706,10 @@ $this->GroupChat = $this->SelectedChatFile['groupchat'];
 if ($this->SelectedChatFile['vrecipient'] != null) {
   $this->VerifiedRecipient = $this->SelectedChatFile['vrecipient'];
 } else {
- var_dump( $this->SetVerifiedRecipient(
+ $this->SetVerifiedRecipient(
   $Config,
   $Init,
   $db,
-  )
   );
 }
 
@@ -782,8 +781,7 @@ $i++;
 }
 
 try {
-var_dump($this->SelectedChatFile['filepath']);
-var_dump($InsertOrUpdate = $db->InsertOrUpdate(
+$InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
     'vrecipient' => $vrecipient,
