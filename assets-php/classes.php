@@ -702,8 +702,7 @@ $this->ChatFile = Path::join(
 $this->Name = $this->SelectedChatFile['name'];
 $this->DirPath = $this->SelectedChatFile['dirpath'];
 $this->GroupChat = $this->SelectedChatFile['groupchat'];
-var_dump($this->SelectedChatFile['vrecipient']);
-exit;
+
 if ($this->SelectedChatFile['vrecipient'] != null) {
   $this->VerifiedRecipient = $this->SelectedChatFile['vrecipient'];
 } else {
@@ -1152,7 +1151,7 @@ $results = $statement->execute();
     'response' => 'Insert or Update records failed:'.$e->getMessage()
     ];
 }
-/* idk if reasonable, may verify 
+/* idk if necessary, may verify, transactions, rollbacks, reasonably implement operation integrity, laminas-db doesnt expose this at its docs surface but a qestions shows possible */
 return (object) [
     'status' => true,
     'response' => $results
