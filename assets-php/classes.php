@@ -780,7 +780,7 @@ if (preg_match($pattern, $filearray, $matches)) {
 $i++;
 }
 var_dump($vrecipient);
-exit;
+exit;    
 try {
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
@@ -801,7 +801,8 @@ $InsertOrUpdate = $db->InsertOrUpdate(
   }
 
 $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
-}
+
+  }
 
 public function ChatFileGenerator(
  Config $Config,
