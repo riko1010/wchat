@@ -818,7 +818,7 @@ $NewLine = '
 '; 
 $pattern = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = $Config->PaginationFrom;
-$to = $oto = ($Config->PaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
+$to = $oto = ($Config->PaginationTo == 0 ? ($from + $Config->recordsperpage : $Config->PaginationTo );
 $i = $from;
 $sfd->seek($i);
 if ($sfd->eof()) {
