@@ -362,11 +362,12 @@ public $Data;
   }
   
   public function CheckFileSystemModification(
-    Config $Config
+    Config $Config,
     ){
   clearstatcache();
   $CurrentMTime = filemtime($Config->cfFolder);
-  $PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false;
+  var_dump($Config->cfFolder);
+  var_dump($PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false);
   
   if ($CurrentMTime == $PrevMTime){
   return (object) [
