@@ -950,14 +950,16 @@ public function PaginationViability(
 if ($Target == 'next') {
 $from = $Config->NPaginationFrom;
 $to = ($Config->NPaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
-elseif ($Target == 'next') {
-  
-} elseif () {
-  
+elseif ($Target == 'current') {
+$from = $Config->PaginationFrom;
+$to = ($Config->PaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );  
+} elseif ($Target == 'prev') {
+$from = $Config->PPaginationFrom;
+$to = ($Config->PPaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );  
 } else {
   return (object) [ 
   'status' => false,
-  'response' => 'Dupoorted Targets are prev|current|next' 
+  'response' => 'Supported Targets are prev|current|next' 
   ];
 }
 

@@ -25,6 +25,8 @@ $Config = new Config (include $ConfigFile, true);
 $Config->InitType = 'Index';
 $Config->PaginationFrom = 0;
 $Config->PaginationTo = $Config->recordsperpage;
+$Config->PPaginationFrom = 0;
+$Config->PPaginationTo = 0;
 $db = new Database( $Config, );
 $Init = new Init;
 $Init->Loader(
