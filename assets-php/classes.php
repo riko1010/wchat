@@ -789,7 +789,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     [
     'vrecipient' => $vrecipient,
     ],
-    [ 'filepath' => $Init->Data->Data->filepath ]
+    [ 'filepath' => $Init->Data->Data['filepath'] ]
   );
   
   if (!$InsertOrUpdate->status) {
