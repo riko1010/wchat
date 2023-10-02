@@ -648,8 +648,6 @@ public $CheckLegacy = false;
 public $VerifiedRecipient;
 public $Name;
 public $baseDir;
-public int $NPaginationFrom;
-public int $NPaginationTo;
 public bool $eof = false;
 
 public function __construct() {
@@ -875,12 +873,12 @@ $i++;
 } while ($i < $to && !$this->eof);
 
 if ($this->eof) {
-$this->NPaginationFrom = 0;
-$this->NPaginationTo = 0;
+$Config->NPaginationFrom = 0;
+$Config->NPaginationTo = 0;
 } else {
 $NextTo = $to + $Config->recordsperpage;
-$this->NPaginationFrom = $to;
-$this->NPaginationTo = $NextTo;
+$Config->NPaginationFrom = $to;
+$Config->NPaginationTo = $NextTo;
 }
 
 return (object) [
@@ -949,8 +947,8 @@ public function PaginationViability(
  Config $Config,
   ) {
 
-$from = $this->NPaginationFrom;
-$to = ($this->NPaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
+$from = $Config->NPaginationFrom;
+$to = ($Config->NPaginationTo == 0 ? $Config->recordsperpage : $Config->PaginationTo );
 
 if ($from === null) {
   return (object) [ 
@@ -982,21 +980,21 @@ return (object) [
 
 public function PaginationNav(
   Config $Config,
-  App $App,
   ){
 $PrevPaginationStatus = (
-  $this->NPaginationFrom == 0 ? 
+  $Config->NPaginationFrom == 0 ? 
   'disabled' : ''
   );
 $NextPaginationStatus = (
   ($this->PaginationViability(
-    $App->NPaginationFrom
+    'next',
+    $Config
     ))->status == false ?
     'disabled' : ''
     );
 
 $PrevPaginationHref = '?'.$Config->PaginationFrom.'-'.$Config->PaginationTo;
-$NextPaginationHref = '?'.$App->NPaginationFrom.'-'.$App->NPaginationTo;
+$NextPaginationHref = '?'.$Config->NPaginationFrom.'-'.$Config->NPaginationTo;
 
 $PaginationNav = '  
   <nav aria-label="...">
