@@ -705,14 +705,14 @@ $this->GroupChat = $SelectedChatFile['groupchat'];
 if ($SelectedChatFile['vrecipient'] != null) {
   $this->VerifiedRecipient = $SelectedChatFile['vrecipient'];
 } else {
-  $this->SetVerifiedRecipient(
+ var_dump( $this->SetVerifiedRecipient(
   $Config,
   $Init,
   $db,
+  )
   );
 }
-var_dump($this->VerifiedRecipient);
-exit;
+
 }
 
 public function CheckLegacyChatFileQuery(
@@ -779,8 +779,7 @@ if (preg_match($pattern, $filearray, $matches)) {
 }
 $i++;
 }
-var_dump($vrecipient);
-exit;    
+
 try {
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
@@ -1115,7 +1114,8 @@ $statement->execute();
 public function InsertOrUpdate(
   $Table,
   $ColumnValuesArray, 
-  $UpdateWhereArray
+  $UpdateWhereArray,
+  $Target = 'update',
   ){
 
 $InsertOrUpdate = $this->sql->insert($Table);  
@@ -1126,7 +1126,7 @@ $SelectExecute = $this->SelectOne(
   );
 $Select = ($SelectExecute->status ? iter_to_array($SelectExecute->response) : []);
 
-if (count($Select) == 1) {
+if (count($Select) == 1 || $Update) {
 $InsertOrUpdate = $this->sql->update($Table);
 $InsertOrUpdate->where($UpdateWhereArray);
 $InsertOrUpdate->set($ColumnValuesArray);  
