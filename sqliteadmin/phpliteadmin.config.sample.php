@@ -13,7 +13,7 @@
 $password = 'admin';
 
 //directory relative to this file to search for databases (if false, manually list databases in the $databases variable)
-$directory = '../';
+$directory = '.';
 
 //whether or not to scan the subdirectories of the above directory infinitely deep
 $subdirectories = false;
@@ -24,6 +24,10 @@ $databases = array(
 	array(
 		'path'=> 'database1.sqlite',
 		'name'=> 'Database 1'
+	),
+	array(
+		'path'=> 'database2.sqlite',
+		'name'=> 'Database 2'
 	),
 );
 
