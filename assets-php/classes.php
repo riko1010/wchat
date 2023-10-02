@@ -702,7 +702,7 @@ $this->ChatFile = Path::join(
 $this->Name = $this->SelectedChatFile['name'];
 $this->DirPath = $this->SelectedChatFile['dirpath'];
 $this->GroupChat = $this->SelectedChatFile['groupchat'];
-var_dump($this->SelectedChatFile['filepath']);
+var_dump($this->SelectedChatFile['vrecipient']);
 exit;
 if ($this->SelectedChatFile['vrecipient'] != null) {
   $this->VerifiedRecipient = $this->SelectedChatFile['vrecipient'];
@@ -781,8 +781,7 @@ if (preg_match($pattern, $filearray, $matches)) {
 }
 $i++;
 }
-var_dump($this->SelectedChatFile['filepath']);
-exit;
+
 try {
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
@@ -804,6 +803,10 @@ $InsertOrUpdate = $db->InsertOrUpdate(
 
 $this->VerifiedRecipient = (isset($vrecipient) ? $vrecipient : false);
 
+return (object) [
+        'status' => true,
+        'response' => 'Insert or Update completed successfully'
+        ]; 
   }
 
 public function ChatFileGenerator(
@@ -1149,7 +1152,7 @@ $results = $statement->execute();
     'response' => 'Insert or Update records failed:'.$e->getMessage()
     ];
 }
-
+/* idk if reasonable, may verify 
 return (object) [
     'status' => true,
     'response' => $results
