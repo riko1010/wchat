@@ -597,7 +597,7 @@ $cfl[$gbfc]['filename'] = $filename;
 $cfl[$gbfc]['filepath'] = $f;
 $cfl[$gbfc]['dirpath'] = $dir.'/';
 $cfl[$gbfc]['dirname'] = $dirname;
-$cfl[$gbfc]['search'] = str_replace('+', '', str_replace(' ', '', $dirname.'-'.$cfl[$gbfc]['name'])).(($bfc < 1) ?: $bfc);
+$cfl[$gbfc]['search'] = str_replace('+', '', str_replace(' ', '', $dirname.'-'.$cfl[$gbfc]['name'])).((!$bfc > 1) ?: $bfc);
 $cfl[$gbfc]['groupchat'] = (str_contains($matches['name'], 'group') ? true : false);
 /* list select options of folder and chat files - supports multiple chat files in one dir, media files hopefully wont conflict, idk the chances but... ??? */
 
