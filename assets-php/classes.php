@@ -692,7 +692,7 @@ ras($Request->queryarg, array_column($Init->Data->Data, 'id')) : $ras );
 $this->Selected = 0;
 }
 
-$SelectedChatFile = $Init->Data->Data[$this->Selected];
+$this->SelectedChatFile = $Init->Data->Data[$this->Selected];
 $this->SelectedId = $SelectedChatFile['id'];
 $this->ChatFile = Path::join(
   $Config->baseDir,
