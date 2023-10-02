@@ -1205,7 +1205,7 @@ if(isset($messagelinetype)){
 
 $recipient = ($App->GroupChat ? true : ( (strtolower($sender) == $App->SelectedChatFile['name']) ? true : false));
 if ($recipient == true) {
-  
+  $SuggestGroupChat = false;
 }
 
 $phug = new Phug\Renderer([
