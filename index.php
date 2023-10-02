@@ -34,6 +34,7 @@ $Init->Loader(
   $db, 
   $Request, 
   );
+var_dump($Init->Data->Data);
 
 $sitemap = new generateSiteMap;
 $sitemaps = $sitemap->get(
