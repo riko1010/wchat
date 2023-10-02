@@ -525,7 +525,8 @@ return (object) [
       ];   
 }
 try {
-$InsertOrUpdate = $db->InsertOrUpdate(
+var_dump(
+  $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
     'bfc' => $bfc,
@@ -542,7 +543,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     'archivedurl' => $archivedurl
     ],
     [ 'filepath' => $filepath ]
-  );
+  ));
   
   if (!$InsertOrUpdate->status) {
     Throw new Exception ($InsertOrUpdate->response);
