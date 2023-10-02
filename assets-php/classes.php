@@ -1125,19 +1125,17 @@ $SelectExecute = $this->SelectOne(
   $UpdateWhereArray
   );
 $Select = ($SelectExecute->status ? iter_to_array($SelectExecute->response) : []);
-
-if (count($Select) == 1) {
+$Update = (count($Select) == 1 ? true : false);
+if ($Update) {
 $InsertOrUpdate = $this->sql->update($Table);
 $InsertOrUpdate->where($UpdateWhereArray);
 $InsertOrUpdate->set($ColumnValuesArray);  
 }
 }
 
-if ($Target == 'insertorupdate' || $Target == 'insert'){
-if (count($Select) == 1) {  
+if (($Target == 'insertorupdate' && !$Update) || $Target == 'insert'){
 $InsertOrUpdate = $this->sql->insert($Table);  
 $InsertOrUpdate->values($ColumnValuesArray);  
-}
 }
 try {
 $statement = $this->sql->prepareStatementForSqlObject($InsertOrUpdate);
