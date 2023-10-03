@@ -25,10 +25,11 @@ switch ($routeInfo[0]) {
         // ... 405 Method Not Allowed
         break;
     case FastRoute\Dispatcher::FOUND:
+        $container = new DI\Container();
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         // ... call $handler with $vars
-        $handler($vars);
+        var_dump($handler.'-'.$vars);
         //$handler($vars);
         break;
 }
