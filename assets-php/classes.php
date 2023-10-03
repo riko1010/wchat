@@ -238,6 +238,10 @@ $this->Data = $RequestData;
 class Controller {
   
 public function RouteIndex(...$queryarg) {
+  
+$ConfigFile = 'assets-php/settings.php';
+
+
   var_dump($queryarg);
 }  
 }

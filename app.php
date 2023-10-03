@@ -1,5 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
+require 'assets-php/classes.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    

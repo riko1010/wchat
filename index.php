@@ -10,8 +10,6 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 */
-$ConfigFile = 'assets-php/settings.php';
-require 'assets-php/classes.php';
 
 /* Request Handler */
 $Request = new Request($_REQUEST);
