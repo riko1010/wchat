@@ -1,7 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
 require 'assets-php/classes.php';
-use Laminas\Config\Config as Config;
 
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;

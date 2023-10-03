@@ -21,7 +21,6 @@ use Laminas\Db\Sql\Delete;
 use Laminas\Db\Sql\Select;
 use Laminas\Db\Sql\Update;
 use Laminas\Db\Sql\Insert;
-use Laminas\Config\Config as Config;
 use Elegant\Sanitizer\Sanitizer;
 
 function ntfy($message){
@@ -232,6 +231,10 @@ $this->Data = $RequestData;
     }
     }    
   }
+  
+}
+
+class Config extends Laminas\Config\Config {
   
 }
 
