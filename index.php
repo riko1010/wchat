@@ -41,7 +41,8 @@ $generator = new UrlGenerator($routes, $context);
 $url = $generator->generate('blog_show', [
     'slug' => 'my-blog-post',
 ]);
-
+print $url;
+exit;
 
 /* Request Handler */
 $Request = new Request($_REQUEST);
