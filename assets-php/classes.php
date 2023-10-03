@@ -240,9 +240,49 @@ class Controller {
 public function RouteIndex(...$queryarg) {
   
 $ConfigFile = 'assets-php/settings.php';
+$Config = new Config (include $ConfigFile, true);
+$db = new Database( $Config, );
 
+$Init = new Init;
 
-  var_dump($queryarg);
+$Init->Loader(
+  $Config, 
+  $db, 
+  $Request, 
+  );
+
+$sitemap = new generateSiteMap;
+$sitemaps = $sitemap->get(
+  $Config, 
+  $Init, 
+  );
+/*
+return [
+  'sitemap' => [status, response]
+  'files' => [filename, file, exists]
+  ];
+*/
+
+if (!$Init->Data->IsEmpty) {
+/* app instance */
+$App = new App;
+
+$App->SetChatFile(
+  $Config, 
+  $Request, 
+  $Init,
+  $App,
+  $db,
+  );
+/* $App->SelectedId now set  */
+
+$processLines = new processLines;
+}
+/* 
+$App\NPaginationFrom
+$App\NPaginationTo
+now available 
+*/
 }  
 }
 
