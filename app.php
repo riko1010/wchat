@@ -3,6 +3,11 @@ require_once 'vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/{queryarg}[/{paginationfrom:\d+}[-{paginationto:\d+}]]', ['Controller', 'RouteIndex']);
+    $r->addGroup('/admin', function (RouteCollector $r) {
+    $r->addRoute('GET', '/do-something', 'handler');
+    $r->addRoute('GET', '/do-another-thing', 'handler');
+    $r->addRoute('GET', '/do-something-else', 'handler');
+});
 });
 
 // Fetch method and URI from somewhere
