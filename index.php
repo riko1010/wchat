@@ -1,7 +1,6 @@
 <?php
 //error_reporting(0);
 require_once 'vendor/autoload.php';
-use Laminas\Config\Config as Config;
 /*
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -11,8 +10,6 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 */
 
-/* Request Handler */
-$Request = new Request($_REQUEST);
 $currentURL = null;
 $totalrecords = null;
 
@@ -20,11 +17,8 @@ $totalrecords = null;
 BASE KEY = 1, NOT 0 */
 
 
-$Config->InitType = 'Index';
-$Config->PaginationFrom = 0;
-$Config->PaginationTo = $Config->recordsperpage;
-$Config->PPaginationFrom = 0;
-$Config->PPaginationTo = 0;
+
+
 
 $db = new Database( $Config, );
 $Init = new Init;

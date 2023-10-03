@@ -249,18 +249,14 @@ public function RouteIndex(
   App $App,
   processLines $processLines,
   ) {
-  
-//$db = new Database( $Config, );
-
-//$Init = new Init;
-
+$Config->PPaginationFrom = 0;
+$Config->PPaginationTo = 0;
 $Init->Loader(
   $Config, 
   $db, 
   $Request, 
   );
 
-//$sitemap = new generateSiteMap;
 $sitemaps = $sitemap->get(
   $Config, 
   $Init, 
@@ -274,7 +270,6 @@ return [
 
 if (!$Init->Data->IsEmpty) {
 /* app instance */
-//$App = new App;
 
 $App->SetChatFile(
   $Config, 
@@ -283,9 +278,7 @@ $App->SetChatFile(
   $App,
   $db,
   );
-/* $App->SelectedId now set  */
 
-//$processLines = new processLines;
 }
 /* 
 $App\NPaginationFrom
