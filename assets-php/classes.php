@@ -252,7 +252,7 @@ public function RouteIndex(
   processLines $processLines,
   ) {
     
-$container->get('');
+var_dump($container->get('RouterDataSet'));
 $Config->PPaginationFrom = 0;
 $Config->PPaginationTo = 0;
 $Init->Loader(
