@@ -3,6 +3,13 @@ require_once 'vendor/autoload.php';
 require 'assets-php/classes.php';
 use Laminas\Config\Config as Config;
 
+use Whoops\Handler\JsonResponseHandler;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
+
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    
    $r->addRoute('GET', '/{queryarg}/{paginationfrom:\d+}-{paginationto:\d+}', ['Controller', 'RouteIndex']);
@@ -32,14 +39,16 @@ switch ($routeInfo[0]) {
         // ... 405 Method Not Allowed
         break;
     case FastRoute\Dispatcher::FOUND:
-        $ConfigFile = 'assets-php/settings.php';
-        $Config = new Config (include $ConfigFile, true);
-        $container = new DI\Container();
-        $container->set('MyInterface', \DI\create('MyClass'));
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
-        /* Request Handler */
-        $Request = new Request($vars);
+        $ConfigFile = 'assets-php/settings.php';
+        $container = new DI\Container();
+        $container->set(
+          'Config', \DI\create('Config', [include $ConfigFile, true])
+          );
+        $container->set(
+          'Request', \DI\create('Request', [$vars])
+          );
         // ... call $handler with $vars
         $container->call($handler, $vars);
         //$handler($vars);
