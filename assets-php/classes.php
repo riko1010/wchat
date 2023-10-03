@@ -237,6 +237,9 @@ $this->Data = $RequestData;
 
 class Controller {
   
+public function () {
+  
+}  
 }
 
 class Init {
