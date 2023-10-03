@@ -21,6 +21,7 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '15ccd68fa44f09908130a99637706dd7' => __DIR__ . '/..' . '/bentools/iterable-functions/src/iterable-functions.php',
+        '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -82,6 +83,10 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
             'Illuminate\\Filesystem\\' => 22,
             'Illuminate\\Contracts\\' => 21,
             'Illuminate\\Container\\' => 21,
+        ),
+        'F' => 
+        array (
+            'FastRoute\\' => 10,
         ),
         'E' => 
         array (
@@ -270,6 +275,10 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         'Illuminate\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/container',
+        ),
+        'FastRoute\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
         'Elegant\\Sanitizer\\' => 
         array (

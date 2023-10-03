@@ -13,6 +13,7 @@
         "elegantweb/sanitizer": "^2.1",
         "psr/container": "^2.0.2",
         "laminas/laminas-config": "^2.5",
-        "laminas/laminas-db": "^2.6"
+        "laminas/laminas-db": "^2.6",
+        "nikic/fast-route": "^1.3"
     }
 }
