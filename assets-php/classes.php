@@ -237,8 +237,8 @@ $this->Data = $RequestData;
 
 class Controller {
   
-public function () {
-  
+public function RouteIndex(...$queryarg) {
+  var_dump($queryarg);
 }  
 }
 

@@ -2,7 +2,7 @@
 require_once 'vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/{}', 'Controller::');
+    $r->addRoute('GET', '/{queryarg}', 'Controller::RouteIndex');
 });
 
 // Fetch method and URI from somewhere
@@ -28,6 +28,8 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         // ... call $handler with $vars
+        var_dump($handler.'-'.$vars);
+        //$handler($vars);
         break;
 }
 
