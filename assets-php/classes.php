@@ -240,18 +240,8 @@ class Config extends Laminas\Config\Config {
 }
 
 class Controller {
-  
-public function RouteIndex(
-  ContainerInterface $container,
-  Config $Config,
-  Request $Request,
-  Database $db,
-  Init $Init,
-  generateSiteMap $sitemap,
-  App $App,
-  processLines $processLines,
-  ) {
-    
+
+public function __construct(ContainerInterface $container,) {
 $RouterDataSet = $container->get('RouterDataSet');
 $builder = new \DI\ContainerBuilder();
 $containerBuilder->addDefinitions([
@@ -264,6 +254,19 @@ $RouterDataSet['ConfigModify'],
     ->constructor($RouterDataSet['RequestRaw']),
 ]);
 $container = $builder->build();
+$container->call([$this::class, 'RouteIndex']);
+}
+
+public function RouteIndex(
+  ContainerInterface $container,  
+  Config $Config,
+  Request $Request,
+  Database $db,
+  Init $Init,
+  generateSiteMap $sitemap,
+  App $App,
+  processLines $processLines,
+  ) {
 
 $Config->InitType = $RouterDataSet['InitType'];
 $Config->PaginationFrom = $RouterDataSet['PaginationFrom'];
