@@ -238,11 +238,13 @@ $this->Data = $RequestData;
 class Controller {
   
 public function RouteIndex(
+  Config $Config,
+  Request $Request,
   Database $db,
   Init $Init,
   generateSiteMap $sitemap,
   App $App,
-  processLines $proc
+  processLines $processLines,
   ) {
   
 //$db = new Database( $Config, );
@@ -719,7 +721,6 @@ public function SetChatFile(
   Config $Config,
   Request $Request,
   Init $Init,
-  Apnit,
   App $App,
   Database $db,
   ) {

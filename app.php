@@ -36,7 +36,10 @@ switch ($routeInfo[0]) {
         $container = new DI\Container();
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
+        var_dump($_REQUEST);
+        exit;
         // ... call $handler with $vars
+        $container->call($handler, $vars);
         var_dump($vars);
         //$handler($vars);
         break;
