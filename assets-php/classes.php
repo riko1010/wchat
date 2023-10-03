@@ -237,13 +237,17 @@ $this->Data = $RequestData;
 
 class Controller {
   
-public function RouteIndex(...$queryarg) {
+public function RouteIndex(
+  Database $db,
+  Init $Init,
+  generateSiteMap $sitemap,
+  App $App,
+  processLines $proc
+  ) {
   
-$ConfigFile = 'assets-php/settings.php';
-$Config = new Config (include $ConfigFile, true);
-$db = new Database( $Config, );
+//$db = new Database( $Config, );
 
-$Init = new Init;
+//$Init = new Init;
 
 $Init->Loader(
   $Config, 
@@ -251,7 +255,7 @@ $Init->Loader(
   $Request, 
   );
 
-$sitemap = new generateSiteMap;
+//$sitemap = new generateSiteMap;
 $sitemaps = $sitemap->get(
   $Config, 
   $Init, 
@@ -265,7 +269,7 @@ return [
 
 if (!$Init->Data->IsEmpty) {
 /* app instance */
-$App = new App;
+//$App = new App;
 
 $App->SetChatFile(
   $Config, 
@@ -276,7 +280,7 @@ $App->SetChatFile(
   );
 /* $App->SelectedId now set  */
 
-$processLines = new processLines;
+//$processLines = new processLines;
 }
 /* 
 $App\NPaginationFrom
@@ -715,6 +719,7 @@ public function SetChatFile(
   Config $Config,
   Request $Request,
   Init $Init,
+  Apnit,
   App $App,
   Database $db,
   ) {

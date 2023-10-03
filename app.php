@@ -31,6 +31,8 @@ switch ($routeInfo[0]) {
         // ... 405 Method Not Allowed
         break;
     case FastRoute\Dispatcher::FOUND:
+        $ConfigFile = 'assets-php/settings.php';
+        $Config = new Config (include $ConfigFile, true);
         $container = new DI\Container();
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
