@@ -50,7 +50,7 @@ switch ($routeInfo[0]) {
           'Request', \DI\create('Request', [$vars])
           );
         // ... call $handler with $vars
-        $container->call($handler, $vars);
+        $container->call($handler);
         //$handler($vars);
         break;
 }
