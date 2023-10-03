@@ -1,6 +1,7 @@
 <?php
 require_once 'vendor/autoload.php';
 require 'assets-php/classes.php';
+use Psr\Container\ContainerInterface;
 
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;

@@ -22,6 +22,7 @@ use Laminas\Db\Sql\Select;
 use Laminas\Db\Sql\Update;
 use Laminas\Db\Sql\Insert;
 use Elegant\Sanitizer\Sanitizer;
+use Psr\Container\ContainerInterface;
 
 function ntfy($message){
   $curl = new Curl;
@@ -250,6 +251,8 @@ public function RouteIndex(
   App $App,
   processLines $processLines,
   ) {
+    
+$container->get('');
 $Config->PPaginationFrom = 0;
 $Config->PPaginationTo = 0;
 $Init->Loader(
