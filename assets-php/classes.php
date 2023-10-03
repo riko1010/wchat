@@ -251,12 +251,16 @@ public function RouteIndex(
   App $App,
   processLines $processLines,
   ) {
-'Config' => DI\autowire()
-        ->constructor(include $ConfigFile, true),
-        'Request' => DI\autowire()
+    
+$RouterDataSet = $container->get('RouterDataSet');
+$containerBuilder->addDefinitions([
+    'Config' => DI\autowire()
+        ->constructor(include $RouterDataSet['ConfigFile'], 
+        true),
+    'Request' => DI\autowire()
         ->constructor($RequestRaw),
-        
-var_dump($container->get('RouterDataSet'));
+]);
+
 $Config->InitType = 'Index';
         $Config->PaginationFrom = 0;
         $Config->PaginationTo = $Config->recordsperpage;
