@@ -47,6 +47,9 @@ switch ($routeInfo[0]) {
         'Request' => DI\autowire()
         ->constructor($vars),
         ]);
+        $Config->InitType = 'Index';
+        $Config->PaginationFrom = 0;
+        $Config->PaginationTo = $Config->recordsperpage;
         // ... call $handler with $vars
         $container->call($handler);
         //$handler($vars);

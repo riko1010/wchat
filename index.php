@@ -15,51 +15,6 @@ $totalrecords = null;
 
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
-
-
-
-
-
-$db = new Database( $Config, );
-$Init = new Init;
-$Init->Loader(
-  $Config, 
-  $db, 
-  $Request, 
-  );
-
-$sitemap = new generateSiteMap;
-$sitemaps = $sitemap->get(
-  $Config, 
-  $Init, 
-  );
-/*
-return [
-  'sitemap' => [status, response]
-  'files' => [filename, file, exists]
-  ];
-*/
-
-if (!$Init->Data->IsEmpty) {
-/* app instance */
-$App = new App;
-
-$App->SetChatFile(
-  $Config, 
-  $Request, 
-  $Init,
-  $App,
-  $db,
-  );
-/* $App->SelectedId now set  */
-
-$processLines = new processLines;
-}
-/* 
-$App\NPaginationFrom
-$App\NPaginationTo
-now available 
-*/
 ?>
 <!DOCTYPE html>
 
@@ -70,13 +25,13 @@ now available
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?=$App->PageTitle();?></title>
+    <title><?= $App->PageTitle() ?></title>
 
 <!-- opengraph -->
-<meta property="og:title" content="<?=$App->PageTitle();?>" />
-<meta property="og:type" content="<?=$Config->og->contenttype;?>" />
-<meta property="og:url" content="<?=$currentURL;?>" />
-<meta property="og:image" content="<?=$Config->og->image;?>" />
+<meta property="og:title" content="<?= $App->PageTitle() ?>" />
+<meta property="og:type" content="<?= $Config->og->contenttype ?>" />
+<meta property="og:url" content="<?= $currentURL ?>" />
+<meta property="og:image" content="<?= $Config->og->image ?>" />
     
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -135,61 +90,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="brand">
       <!-- select -->
 <select style="" class="form-select form-control searchselect">
-<?=$App->Menu($Init);?>           
+<?= $App->Menu($Init) ?>           
  </select>      
     </header>
     
     <main class='container h-100'>
 <!-- no backupfile found -->
-<?php 
-/* may provide archive.org or other archive */
-if ($Init->Data->IsEmpty) {
-?>
+ /* may provide archive.org or other archive */<?php if (
+   $Init->Data->IsEmpty
+ ) { ?>
 <div class="row">
 <div class="col card">
 cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 </div>
 </div>
-<?php
-}
-?>
+<?php } ?>
 
-<?php
-/* start chat list if backupfile present */
-if (!$Init->Data->IsEmpty){
-?>
-<section><h3 class='chat-title'>WhatsApp Chat with <?=$App->Name;?></h3>
+ /* start chat list if backupfile present */<?php if (
+   !$Init->Data->IsEmpty
+ ) { ?>
+<section><h3 class='chat-title'>WhatsApp Chat with <?= $App->Name ?></h3>
 <div class='row p-1 spotlight-group' id='whatsappimages'>
-<?=$processLines->ProcessAndPrint(
-$Config,
-$App,
-);?>
+<?= $processLines->ProcessAndPrint($Config, $App) ?>
 </div>
 
 </section>
 
 <paginationnav id="ArchivedNav">
-<?=$App->PaginationNav(
-$Config, 
-$App,
-);?>
+<?= $App->PaginationNav($Config, $App) ?>
 </paginationnav>
 
 <div id="loader"> </div>
 <div class="loader hidden d-flex justify-content-center">
 <img src="icons/loader.gif" alt="Loading">
 </div>
-<?php
-}
+<?php }
 /* end chat list */
-
-            ?>
+?>
     </main>
 <!-- hidden nav, may show on noscript -->    
 <?php
 print "<nav hidden>";
 foreach ($Init->Data->IsEmpty as $link) {
-print '<a href="'.$link['url'].'">'.$link['url'].'</a> <br />';
+  print '<a href="' . $link['url'] . '">' . $link['url'] . '</a> <br />';
 }
 print "</nav>";
 ?>
@@ -206,38 +149,42 @@ print "</nav>";
       <div class="modal-body">
 
 <ul class="list-group list-group-flush">
-<?php        
-if (isset($sitemaps->files)) {
-
-foreach($sitemaps->files as $sitemap) {
-if ($sitemap['exists'] == false) continue;
-?>   
-  <a href="<?=$sitemap['rpath']; ?>" class="link-body-emphasis list-group-item list-group-item-action d-flex justify-content-between align-items-start" target="_blank">
+<?php if (isset($sitemaps->files)) {
+  foreach ($sitemaps->files as $sitemap) {
+    if ($sitemap['exists'] == false) {
+      continue;
+    } ?>   
+  <a href="<?= $sitemap[
+    'rpath'
+  ] ?>" class="link-body-emphasis list-group-item list-group-item-action d-flex justify-content-between align-items-start" target="_blank">
     <div class="ms-2 me-auto">
       <div class="fw-bold">
-      <?=$sitemap['filename']; ?>
+      <?= $sitemap['filename'] ?>
         </div>
-<?=isset($sitemap['stats']) ? getFilesize($sitemap['stats']['size'], 'human') : ''; ?>
+<?= isset($sitemap['stats'])
+  ? getFilesize($sitemap['stats']['size'], 'human')
+  : '' ?>
     </div>
     <span class="badge bg-success rounded-pill">
-<?=isset($sitemap['stats']) ? date('M d, Y', $sitemap['stats']['mtime']) : ''; ?>
+<?= isset($sitemap['stats'])
+  ? date('M d, Y', $sitemap['stats']['mtime'])
+  : '' ?>
     </span>
   </a>  
-<?php 
-}
-}
-?>
+<?php
+  }
+} ?>
   <span class="link-body-emphasis list-group-item list-group-item-action d-flex justify-content-between align-items-start">
 
     <div class="ms-2 me-auto">
 
       <div class="fw-bold">
-      <?=($sitemaps->sitemap->status ? 'OK' : 'ERROR'); ?>
+      <?= $sitemaps->sitemap->status ? 'OK' : 'ERROR' ?>
         </div>
-<?=$sitemaps->sitemap->response; ?>
+<?= $sitemaps->sitemap->response ?>
     </div>
     <span class="badge bg-success rounded-pill">
-<?=date('M d, Y h:i:sa', time()); ?>
+<?= date('M d, Y h:i:sa', time()) ?>
     </span>
   </span>  
 
@@ -251,30 +198,30 @@ if ($sitemap['exists'] == false) continue;
 </div>
 
     <footer>
-      <?=($App->eof ?: $Config->NPaginationFrom.','.$Config->NPaginationTo);?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
+      <?= $App->eof ?:
+        $Config->NPaginationFrom .
+          ',' .
+          $Config->NPaginationTo ?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
     </footer>
   
 <script>
 dev = true;
-<?php
-/* archive.org modifies js, jwuery, functions are available, classes do not seem available, suggestgroupchat will ot utlize classes until solution found */
-if ($Config->SuggestGroupChat == true) {
-?>
+ /* archive.org modifies js, jwuery, functions are available, classes do not seem available, suggestgroupchat will ot utlize classes until solution found */<?php if (
+   $Config->SuggestGroupChat == true
+ ) { ?>
 
-<?php
-}
-?>
-<?php
-/* no scrollmagic needed if no id or pagination */
-if ($App->eof == false && $App->SelectedId != null) {
-?>
+<?php } ?>
+ /* no scrollmagic needed if no id or pagination */<?php if (
+   $App->eof == false &&
+   $App->SelectedId != null
+ ) { ?>
 $(document).ready(function(){
 isr = new infinitescrollrequest();
 isr.url = 'api';
-isr.queryarg = '<?=$App->SelectedId;?>';
-isr.paginationfrom = '<?=$Config->NPaginationFrom;?>';
-isr.paginationto = '<?=$Config->NPaginationTo;?>';
-isr.recordsperpage = '<?=$Config->recordsperpage;?>';
+isr.queryarg = '<?= $App->SelectedId ?>';
+isr.paginationfrom = '<?= $Config->NPaginationFrom ?>';
+isr.paginationto = '<?= $Config->NPaginationTo ?>';
+isr.recordsperpage = '<?= $Config->recordsperpage ?>';
 /* must overflow vh for trigger event 'onenter' reasonably*/
 isr.minrecordsperpage = 50; 
 isr.maxFetchDataDuration = 1000; //ms
@@ -313,9 +260,7 @@ try {
 });
 
 });
-<?php
-}
-?>
+<?php } ?>
 /* headjs loads, on ready -> */
 head(function() {
   /* make links clickable */
