@@ -241,6 +241,7 @@ class Config extends Laminas\Config\Config {
 class Controller {
   
 public function RouteIndex(
+  ContainerInterface $container,
   Config $Config,
   Request $Request,
   Database $db,
