@@ -40,18 +40,16 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
+        $RequestRaw = $routeInfo[2];
         $ConfigFile = 'assets-php/settings.php';
-        $container = new DI\Container([
-        'Config' => DI\autowire()
-        ->constructor(include $ConfigFile, true),
-        'Request' => DI\autowire()
-        ->constructor($vars),
-        ]);
+        $container = new DI\Container();
         $container->set('RouterDataSet', [
-        'InitType' = 'Index';
-        'PaginationFrom' = 0;
-        'PaginationTo' = $Config->recordsperpage;
+        'InitType' => 'Index',
+        'PaginationFrom' => 0,
+        'PaginationTo' => $Config->recordsperpage,
+        'ConfigFile' => '',
+        'ConfigModify' => true,
+        'RequestRaw' => $RequestRaw,
           ]);
         
         // ... call $handler with $vars
