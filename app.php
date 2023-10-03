@@ -42,13 +42,12 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         $ConfigFile = 'assets-php/settings.php';
-        $container = new DI\Container();
-        $container->set(
-          'Config', \DI\create('Config', [include $ConfigFile, true])
-          );
-        $container->set(
-          'Request', \DI\create('Request', [$vars])
-          );
+        $container = new DI\Container([
+        'Config' => DI\autowire()
+        ->constructor(include $ConfigFile, true),
+        'Request' => DI\autowire()
+        ->constructor($vars),
+        ]);
         // ... call $handler with $vars
         $container->call($handler);
         //$handler($vars);
