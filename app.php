@@ -47,14 +47,13 @@ switch ($routeInfo[0]) {
         'InitType' => 'Index',
         'PaginationFrom' => 0,
         'PaginationTo' => $Config->recordsperpage,
-        'ConfigFile' => '',
+        'ConfigFile' => $ConfigFile,
         'ConfigModify' => true,
         'RequestRaw' => $RequestRaw,
           ]);
         
         // ... call $handler with $vars
         $container->call($handler);
-        //$handler($vars);
         break;
 }
 

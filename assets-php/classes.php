@@ -258,7 +258,7 @@ $containerBuilder->addDefinitions([
     'Config' => DI\autowire()
         ->constructor(
     include $RouterDataSet['ConfigFile'], 
-    $RouterDataSet[''],
+    $RouterDataSet['ConfigModify'],
         ),
     'Request' => DI\autowire()
         ->constructor($RouterDataSet['RequestRaw']),
@@ -272,10 +272,7 @@ $Config->PPaginationFrom = 0;
 $Config->PPaginationTo = 0;
 $container->call(['Init', 'Loader']);
 
-$sitemaps = $container->call(['', get(
-  $Config, 
-  $Init, 
-  );
+$sitemaps = $container->call(['generateSiteMap', 'get']);
 /*
 return [
   'sitemap' => [status, response]
@@ -286,21 +283,15 @@ return [
 if (!$Init->Data->IsEmpty) {
 /* app instance */
 
-$App->SetChatFile(
-  $Config, 
-  $Request, 
-  $Init,
-  $App,
-  $db,
-  );
-
+$container->call(['App', 'SetChatFile']);
+print 'okay';
 }
 /* 
 $App\NPaginationFrom
 $App\NPaginationTo
 now available 
 */
-print 'okay';
+
 }  
 }
 
