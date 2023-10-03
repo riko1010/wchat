@@ -1,6 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
-use Laminas\Config\Config as Config;
+
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
