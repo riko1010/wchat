@@ -2,6 +2,12 @@
 //error_reporting(0);
 require_once 'vendor/autoload.php';
 use Laminas\Config\Config as Config;
+
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
 /*
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -13,12 +19,7 @@ $whoops->register();
 $ConfigFile = 'assets-php/settings.php';
 require 'assets-php/classes.php';
 
-use App\Controller\BlogController;
-use Symfony\Component\Routing\Generator\UrlGenerator;
-use Symfony\Component\Routing\Matcher\UrlMatcher;
-use Symfony\Component\Routing\RequestContext;
-use Symfony\Component\Routing\Route;
-use Symfony\Component\Routing\RouteCollection;
+
 
 $route = new Route('/blog/{slug}', ['_controller' => BlogController::class]);
 $routes = new RouteCollection();
