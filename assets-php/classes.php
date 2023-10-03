@@ -253,6 +253,9 @@ public function RouteIndex(
   ) {
     
 var_dump($container->get('RouterDataSet'));
+$Config->InitType = 'Index';
+        $Config->PaginationFrom = 0;
+        $Config->PaginationTo = $Config->recordsperpage;
 $Config->PPaginationFrom = 0;
 $Config->PPaginationTo = 0;
 $Init->Loader(

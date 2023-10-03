@@ -48,10 +48,12 @@ switch ($routeInfo[0]) {
         'Request' => DI\autowire()
         ->constructor($vars),
         ]);
-        $container->set('RouterDataSet') = [];
-        $Config->InitType = 'Index';
-        $Config->PaginationFrom = 0;
-        $Config->PaginationTo = $Config->recordsperpage;
+        $container->set('RouterDataSet', [
+        'InitType' = 'Index';
+        'PaginationFrom' = 0;
+        'PaginationTo' = $Config->recordsperpage;
+          ]);
+        
         // ... call $handler with $vars
         $container->call($handler);
         //$handler($vars);
