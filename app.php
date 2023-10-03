@@ -35,6 +35,7 @@ switch ($routeInfo[0]) {
         $ConfigFile = 'assets-php/settings.php';
         $Config = new Config (include $ConfigFile, true);
         $container = new DI\Container();
+        $container->set('MyInterface', \DI\create('MyClass'));
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         /* Request Handler */
