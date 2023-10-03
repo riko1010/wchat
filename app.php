@@ -2,13 +2,8 @@
 require_once 'vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-   // $r->addRoute('GET', '/[/{paginationfrom:\d+}[-{paginationto:\d+}]]', ['Controller', 'RouteIndex']);
-    $r->addGroup('/', function (RouteCollector $r) {
-    $r->addRoute('GET', '{queryarg}', ['Controller', 'RouteIndex']);
-    $r->addRoute('GET', '/do-another-thing', 'handler');
-    $r->addRoute('GET', '/do-something-else', 'handler');
-});
-
+   $r->addRoute('GET', '/{queryarg}', ['Controller', 'RouteIndex']);
+// /[/{paginationfrom:\d+}[-{paginationto:\d+}]]'
 });
 
 // Fetch method and URI from somewhere
