@@ -255,15 +255,17 @@ public function RouteIndex(
 $RouterDataSet = $container->get('RouterDataSet');
 $containerBuilder->addDefinitions([
     'Config' => DI\autowire()
-        ->constructor(include $RouterDataSet['ConfigFile'], 
-        true),
+        ->constructor(
+    include $RouterDataSet['ConfigFile'], 
+    $RouterDataSet[''],
+        ),
     'Request' => DI\autowire()
-        ->constructor($RequestRaw),
+        ->constructor($RouterDataSet['RequestRaw']),
 ]);
 
-$Config->InitType = 'Index';
-        $Config->PaginationFrom = 0;
-        $Config->PaginationTo = $Config->recordsperpage;
+$Config->InitType = $RouterDataSet['InitType'];
+$Config->PaginationFrom = $RouterDataSet['PaginationFrom'];
+$Config->PaginationTo = $Config->recordsperpage;
 $Config->PPaginationFrom = 0;
 $Config->PPaginationTo = 0;
 $Init->Loader(
