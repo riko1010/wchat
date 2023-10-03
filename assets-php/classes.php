@@ -235,6 +235,10 @@ $this->Data = $RequestData;
   
 }
 
+class Controller {
+  
+}
+
 class Init {
   
 public $Data;
