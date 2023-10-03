@@ -253,6 +253,7 @@ public function RouteIndex(
   ) {
     
 $RouterDataSet = $container->get('RouterDataSet');
+$builder = new \DI\ContainerBuilder();
 $containerBuilder->addDefinitions([
     'Config' => DI\autowire()
         ->constructor(
@@ -262,19 +263,16 @@ $containerBuilder->addDefinitions([
     'Request' => DI\autowire()
         ->constructor($RouterDataSet['RequestRaw']),
 ]);
+$container = $builder->build();
 
 $Config->InitType = $RouterDataSet['InitType'];
 $Config->PaginationFrom = $RouterDataSet['PaginationFrom'];
 $Config->PaginationTo = $Config->recordsperpage;
 $Config->PPaginationFrom = 0;
 $Config->PPaginationTo = 0;
-$Init->Loader(
-  $Config, 
-  $db, 
-  $Request, 
-  );
+$container->call(['Init', 'Loader']);
 
-$sitemaps = $sitemap->get(
+$sitemaps = $container->call(['', get(
   $Config, 
   $Init, 
   );
