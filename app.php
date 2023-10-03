@@ -3,6 +3,9 @@ require_once 'vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    $r->addRoute('GET', '/{queryarg}', ['Controller', 'RouteIndex']);
+   $r->addRoute('GET', '/{queryarg}/', ['Controller', 'RouteIndex']);
+   
+   
 // /[/{paginationfrom:\d+}[-{paginationto:\d+}]]'
 });
 
