@@ -255,23 +255,23 @@ public function RouteIndex(
 $RouterDataSet = $container->get('RouterDataSet');
 $builder = new \DI\ContainerBuilder();
 $containerBuilder->addDefinitions([
-    'Config' => DI\autowire()
-        ->constructor(
-    include $RouterDataSet['ConfigFile'], 
-    $RouterDataSet['ConfigModify'],
-        ),
-    'Request' => DI\autowire()
-        ->constructor($RouterDataSet['RequestRaw']),
+'Config' => DI\autowire()
+    ->constructor(
+include $RouterDataSet['ConfigFile'], 
+$RouterDataSet['ConfigModify'],
+    ),
+'Request' => DI\autowire()
+    ->constructor($RouterDataSet['RequestRaw']),
 ]);
 $container = $builder->build();
 
 $Config->InitType = $RouterDataSet['InitType'];
 $Config->PaginationFrom = $RouterDataSet['PaginationFrom'];
-$Config->PaginationTo = $Config->recordsperpage;
+$Config->PaginationTo = $RouterDataSet['PaginationTo'];
 $Config->PPaginationFrom = 0;
 $Config->PPaginationTo = 0;
-$container->call(['Init', 'Loader']);
 
+$container->call(['Init', 'Loader']);
 $sitemaps = $container->call(['generateSiteMap', 'get']);
 /*
 return [
@@ -281,16 +281,9 @@ return [
 */
 
 if (!$Init->Data->IsEmpty) {
-/* app instance */
-
 $container->call(['App', 'SetChatFile']);
 print 'okay';
 }
-/* 
-$App\NPaginationFrom
-$App\NPaginationTo
-now available 
-*/
 
 }  
 }

@@ -46,7 +46,7 @@ switch ($routeInfo[0]) {
         $container->set('RouterDataSet', [
         'InitType' => 'Index',
         'PaginationFrom' => 0,
-        'PaginationTo' => $Config->recordsperpage,
+        'PaginationTo' => 100,
         'ConfigFile' => $ConfigFile,
         'ConfigModify' => true,
         'RequestRaw' => $RequestRaw,
