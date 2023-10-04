@@ -242,6 +242,8 @@ class Config extends Laminas\Config\Config {
 class Controller {
 
 public function Route(ContainerInterface $container,) {
+$currentURL = null;
+$totalrecords = null;  
 $RouterDataSet = $container->get('RouterDataSet');
 
 $container->set(
