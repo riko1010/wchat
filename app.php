@@ -51,7 +51,6 @@ switch ($routeInfo[0]) {
         'ConfigModify' => true,
         'RequestRaw' => $RequestRaw,
           ]);
-        
         // ... call $handler with $vars
         $container->call($handler);
         break;

@@ -244,6 +244,7 @@ class Controller {
 public function __construct(ContainerInterface $container,) {
 $RouterDataSet = $container->get('RouterDataSet');
 var_dump($RouterDataSet);
+exit;
 $builder = new \DI\ContainerBuilder();
 $builder->addDefinitions([
 'Config' => DI\autowire()
