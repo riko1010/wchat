@@ -1,5 +1,5 @@
 # Readme Guide
-0.0.3-0.0.4-dev
+0.0.3-0.0.5-dev
 
 ## Install
 config in assets-php/settings.php
