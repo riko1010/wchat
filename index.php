@@ -125,11 +125,10 @@ div(class="modal fade" id="sitemapModal" tabindex="-1" aria-labelledby="sitemapM
     div(class="modal-content")
       div(class="modal-header")
         h1(class="modal-title fs-5" id="sitemapModalLabel")Sitemap
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+        button(type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close")
+      div(class="modal-body")
 
-<ul class="list-group list-group-flush">
+ul(class="list-group list-group-flush")
 <?php if (isset($sitemaps->files)) {
   foreach ($sitemaps->files as $sitemap) {
     if ($sitemap['exists'] == false) {
@@ -462,7 +461,6 @@ print "</nav>";
           ',' .
           $Config->NPaginationTo ?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
     </footer>
-  
 <script>
 dev = true;
  /* archive.org modifies js, jwuery, functions are available, classes do not seem available, suggestgroupchat will ot utlize classes until solution found */<?php if (
@@ -503,4 +501,52 @@ try {
   isr.recordsperpage = PromiseResponse.nrecordsperpage;
   
   isr.FetchDataSuccessHandler(PromiseResponse);
-  $(isr.loadercontainer).addClass("hidden
+  $(isr.loadercontainer).addClass("hidden");
+  }, function(PromiseResponse){
+  /* failed request, enable scene event listener */
+  $(isr.loadercontainer).addClass("hidden");
+  scene.enabled(true);
+  scene.update();  
+  });
+} catch(e) {
+  $(isr.loadercontainer).addClass("hidden");
+  scene.enabled(true);
+  scene.update();  
+}
+
+});
+
+});
+<?php } ?>
+/* headjs loads, on ready -> */
+head(function() {
+  /* make links clickable */
+  autolinks('.mEl');
+  /* lightbox for images, docs, iframes */ 
+  const lightbox = GLightbox({
+    touchNavigation: true,
+    loop: true,
+    autoplayVideos: true,
+    selector: '.g',
+    closeOnOutsideClick: true,
+    preload: true
+});
+
+  $(".cID").on('contextmenu', function(){
+      // show menu to copy chat or auto copy chat id then notify... 
+    });
+
+});
+
+
+// load scripts by assigning a label for them
+head.js(
+{bootstrapjs: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"},
+{glightbox: "https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"},
+{videojs:"https://cdn.jsdelivr.net/npm/video.js@8.3.0/dist/video.min.js"},
+{anchorme:"https://cdn.jsdelivr.net/npm/anchorme@3.0.5/dist/browser/anchorme.min.js"}
+);
+
+		</script>
+</body>
+</html>  
