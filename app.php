@@ -12,10 +12,10 @@ $whoops->register();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    
-   $r->addRoute('GET', '/{queryarg}/{paginationfrom:\d+}-{paginationto:\d+}', ['Controller', 'RouteIndex']);
-   $r->addRoute('GET', '/{queryarg}/{paginationfrom:\d+}[-]', ['Controller', 'RouteIndex']);
+   $r->addRoute('GET', '/{queryarg}/{paginationfrom:\d+}-{paginationto:\d+}', ['Controller']);
+   $r->addRoute('GET', '/{queryarg}/{paginationfrom:\d+}[-]', ['Controller']);
    
-   $r->addRoute('GET', '/{queryarg}[/]', ['Controller', 'RouteIndex']);
+   $r->addRoute('GET', '/{queryarg}[/]', ['Controller']);
    
 });
 
