@@ -252,7 +252,7 @@ $RouterDataSet['ConfigModify'],
     ));
 $container->set('Request', DI\autowire()
     ->constructor($RouterDataSet['RequestRaw']),);
-//$container->call([$this::class, 'RouteIndex']);
+$container->call([$this::class, 'RouteIndex']);
 }
 
 public function RouteIndex(
