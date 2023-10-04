@@ -243,19 +243,15 @@ class Controller {
 
 public function __construct(ContainerInterface $container,) {
 $RouterDataSet = $container->get('RouterDataSet');
-var_dump($RouterDataSet);
-exit;
-$builder = new \DI\ContainerBuilder();
-$builder->addDefinitions([
-'Config' => DI\autowire()
+
+$container->set(
+'Config', DI\autowire()
     ->constructor(
 include $RouterDataSet['ConfigFile'], 
 $RouterDataSet['ConfigModify'],
-    ),
-'Request' => DI\autowire()
-    ->constructor($RouterDataSet['RequestRaw']),
-]);
-$container = $builder->build();
+    ));
+$container->set('Request', DI\autowire()
+    ->constructor($RouterDataSet['RequestRaw']),);
 $container->call([$this::class, 'RouteIndex']);
 }
 
