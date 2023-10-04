@@ -245,7 +245,7 @@ public function __construct(ContainerInterface $container,) {
 $RouterDataSet = $container->get('RouterDataSet');
 
 
-$container->call([$this::class, 'RouteIndex']);
+//$container->call([$this::class, 'RouteIndex']);
 }
 
 public function RouteIndex(
