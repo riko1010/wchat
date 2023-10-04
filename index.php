@@ -71,13 +71,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 body
 <!-- Google Tag Manager (noscript) -->
   noscript
-    iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-MH4G76CM" height="0" width="0" style="display:none;visibility:hidden")>
-
+    iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-MH4G76CM" height="0" width="0" style="display:none;visibility:hidden")
 header(class="brand")
-      <!-- select -->
   select(style="" class="form-select form-control searchselect")
-<?= $App->Menu($Init) ?>           
-
+    <?= $App->Menu($Init) ?>           
 main(class='container h-100')
   <?php if ($Init->Data->IsEmpty) { ?>
   div(class="row")
@@ -91,24 +88,17 @@ section
   h3(class='chat-title'>WhatsApp Chat with <?= $App->Name ?>')
   div class='row p-1 spotlight-group' id='whatsappimages'>
 <?= $processLines->ProcessAndPrint($Config, $App) ?>
-
 paginationnav(id="ArchivedNav")
-  <?= $App->PaginationNav($Config, $App) ?>)
-
+  <?= $App->PaginationNav($Config, $App) ?>
   div(id="loader")
   div(class="loader hidden d-flex justify-content-center")
   <img src="icons/loader.gif" alt="Loading">
-<?php }
-/* end chat list */
-?>
 
-<!-- hidden nav, may show on noscript -->    
 nav(hidden)
 foreach ($Init->Data->IsEmpty as $link) {
   print '<a href="' . $link['url'] . '">' . $link['url'] . '</a> <br />';
 }
 
-<!-- Modal -->
 div(class="modal fade" id="sitemapModal" tabindex="-1" aria-labelledby="sitemapModalLabel" aria-hidden="true")
   div(class="modal-dialog modal-dialog-centered modal-dialog-scrollable")
     div(class="modal-content")
