@@ -120,11 +120,11 @@ foreach ($Init->Data->IsEmpty as $link) {
 }
 
 <!-- Modal -->
-div class="modal fade" id="sitemapModal" tabindex="-1" aria-labelledby="sitemapModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="sitemapModalLabel">Sitemap</h1>
+div(class="modal fade" id="sitemapModal" tabindex="-1" aria-labelledby="sitemapModalLabel" aria-hidden="true")
+  div(class="modal-dialog modal-dialog-centered modal-dialog-scrollable")
+    div(class="modal-content")
+      div(class="modal-header")
+        h1(class="modal-title fs-5" id="sitemapModalLabel")Sitemap
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -503,52 +503,4 @@ try {
   isr.recordsperpage = PromiseResponse.nrecordsperpage;
   
   isr.FetchDataSuccessHandler(PromiseResponse);
-  $(isr.loadercontainer).addClass("hidden");
-  }, function(PromiseResponse){
-  /* failed request, enable scene event listener */
-  $(isr.loadercontainer).addClass("hidden");
-  scene.enabled(true);
-  scene.update();  
-  });
-} catch(e) {
-  $(isr.loadercontainer).addClass("hidden");
-  scene.enabled(true);
-  scene.update();  
-}
-
-});
-
-});
-<?php } ?>
-/* headjs loads, on ready -> */
-head(function() {
-  /* make links clickable */
-  autolinks('.mEl');
-  /* lightbox for images, docs, iframes */ 
-  const lightbox = GLightbox({
-    touchNavigation: true,
-    loop: true,
-    autoplayVideos: true,
-    selector: '.g',
-    closeOnOutsideClick: true,
-    preload: true
-});
-
-  $(".cID").on('contextmenu', function(){
-      // show menu to copy chat or auto copy chat id then notify... 
-    });
-
-});
-
-
-// load scripts by assigning a label for them
-head.js(
-{bootstrapjs: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"},
-{glightbox: "https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"},
-{videojs:"https://cdn.jsdelivr.net/npm/video.js@8.3.0/dist/video.min.js"},
-{anchorme:"https://cdn.jsdelivr.net/npm/anchorme@3.0.5/dist/browser/anchorme.min.js"}
-);
-
-		</script>
-</body>
-</html>
+  $(isr.loadercontainer).addClass("hidden
