@@ -36,28 +36,18 @@ head
 <meta property="og:image" content="<?= $Config->og->image ?>" />
 style    
   include https://fonts.googleapis.com/icon?family=Material+Icons
-
   include https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
-
   include css/main.css
-  
   include https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css
-
-    include https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css
-    
+  include https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css
   include https://cdn.jsdelivr.net/npm/video.js@8.3.0/dist/video-js.min.css
-
   include https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css
 
 Script
   include https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js" integrity="sha512-8Nk/zoTKjNixnM15wXjpF26KR4Ln87cc5Yllc5xP54wwbcKnljAAn2JP+tYAS8+4e7s/XK8XTiDH0Ltw2fmoBQ==
-
   include https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js
-
   include https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js
-
   include https://cdn.jsdelivr.net/npm/scrollmagic@2.0.8/scrollmagic/minified/ScrollMagic.min.js
-
   include assets-js/classes.js
   
 :javascript
@@ -80,9 +70,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 body
 <!-- Google Tag Manager (noscript) -->
-noscript
-  iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-MH4G76CM"
-height="0" width="0" style="display:none;visibility:hidden")>
+  noscript
+    iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-MH4G76CM" height="0" width="0" style="display:none;visibility:hidden")>
 
 header(class="brand")
       <!-- select -->
@@ -145,44 +134,33 @@ ul(class="list-group list-group-flush")
   ? getFilesize($sitemap['stats']['size'], 'human')
   : '' ?>
     </div>
-    <span class="badge bg-success rounded-pill">
-<?= isset($sitemap['stats'])
-  ? date('M d, Y', $sitemap['stats']['mtime'])
-  : '' ?>
-    </span>
-  </a>  
+    span(class="badge bg-success rounded-pill")
+    <?= isset($sitemap['stats'])
+      ? date('M d, Y', $sitemap['stats']['mtime'])
+      : '' ?>
 <?php
   }
 } ?>
-  <span class="link-body-emphasis list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+    span(class="link-body-emphasis list-group-item list-group-item-action d-flex justify-content-between align-items-start")
 
-    <div class="ms-2 me-auto">
+    div(class="ms-2 me-auto")
 
-      <div class="fw-bold">
+      div(class="fw-bold")
       <?= $sitemaps->sitemap->status ? 'OK' : 'ERROR' ?>
-        </div>
+        
 <?= $sitemaps->sitemap->response ?>
-    </div>
-    <span class="badge bg-success rounded-pill">
-<?= date('M d, Y h:i:sa', time()) ?>
-    </span>
-  </span>  
+    
+      span(class="badge bg-success rounded-pill")
+      <?= date('M d, Y h:i:sa', time()) ?>
 
-</ul>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+      div(class="modal-footer")
+        button(type="button" class="btn btn-secondary" data-bs-dismiss="modal")Close
 
-    <footer>
+    footer
       <?= $App->eof ?:
         $Config->NPaginationFrom .
           ',' .
           $Config->NPaginationTo ?> <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal">sitemap</a> | from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam on Github</a>
-    </footer>
   
 <script>
 dev = true;
