@@ -16,6 +16,11 @@ $totalrecords = null;
 /*  load whatsapp backup file by ?backupfile=1
 BASE KEY = 1, NOT 0 */
 ?>
+html
+head
+body
+header
+select
 <!DOCTYPE html>
 
 <html lang="en">
