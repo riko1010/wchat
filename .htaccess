@@ -1,0 +1,12 @@
+# DISABLE DIRECTORY INDEXES
+#Options -Indexes
+#RewriteOptions inherit
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.*) index.php?$1 [QSA]
+RewriteRule ^(.*?)$ index.php [QSA]
+#AuthType Basic
+#AuthName "Access to the dev site"
+#AuthUserFile .htpasswd
+#Require valid-user

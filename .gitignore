@@ -1,0 +1,7 @@
+.well-known/
+autodelete/
+error_log
+data/
+conversations/
+old-conversations/
+old-conversations

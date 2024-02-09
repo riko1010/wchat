@@ -1,0 +1,9 @@
+# pip install -r requirements.txt --target pymodules
+# python -m pip install -r requirements.txt --target pymodules
+# rm pymodules -r if necessary
+# mkdir pymodules then install above
+# python3 path reasonably
+# filetype requests bin folder overwrite shared by wayback and others
+waybackpy
+filetype
+SimpleSQLite
