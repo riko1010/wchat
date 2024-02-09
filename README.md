@@ -1,5 +1,5 @@
 # Readme Guide
-0.0.3-0.0.5-dev
+0.0.3-0.0.6-dev
 
 #Mods
 processlines $Date wrsp in try/catch block
@@ -23,19 +23,18 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 - python handles archiving with pypi/waybackpy
 - python handles screnshot of video loaded using a webvideo player then screenshot using a browserscreenshot service.
 
-## feature list
--  \+,_ removal in international numbers or any url path
--  multiple chat files in one folder (naming conflict resolution by filename.{int}.txt )
+## FEATURE LIST
+-  \+,_ removal in international numbers on any url path
+-  multiple chat files in one folder ( i.e file.1.txt, file.2.txt )
 -  attachment identifiers (images,doc,media)
 -  sitemap generation (xml) on conversations folder modification through dropbox webhook
--  archive through archive.org spn (pypi/waybackpy), sitemap generation trigges archive, links are from sitemap.csv(updated) ( takes 6 mins each url when throttled ) - sitemap.csv maintains archived links to avoid duplication.
+-  archive through archive.org spn (spn@archive.org) mail(returns links via email)
 -  extensionless file fix (filename.) through unzip.py on webhook notice of folder change from dropbox, and, php, on requesting chatfile
 -  pyscripts in python , .htaccess enables cgiexec in python
--  api for pagination in basedir/api
+-  search
 -  sqlite for db, db & tables are created on init, updated on directory modification
   
-## todo
--  join multi line conversation into 1 line
+## TODO
 -  unreachable python urls will fail silently
 - url, archive.org url, permanent shortlink
 -  generate sitemap.xml, through unzip.py
@@ -43,3 +42,4 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 -  python singleton ? maxtime exec independent of singleton
 -  external services removal for local rendering, google docs viewer, others
 -  centralize config btw php and python
+-  database choice, mysql or sqlite
