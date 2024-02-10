@@ -283,7 +283,8 @@ $PrevPaginationStatus = (
   ($Config->PaginationFrom == 0) ? 
   'disabled' : ''
   );
-  $_SESSION['statusconsole'] = var_export($this->Paginateable, true);
+$_SESSION['statusconsole'] .= 'Paginatable'.var_export($this->Paginateable, true).PHP_EOL;
+
 $NextPaginationStatus = (
   ($this->Paginateable === false) ?
     'disabled' : ''
