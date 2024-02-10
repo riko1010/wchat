@@ -283,6 +283,7 @@ $PrevPaginationStatus = (
   ($Config->PaginationFrom == 0) ? 
   'disabled' : ''
   );
+  $_SESSION['statusconsole'] = var_export($this->Paginateable, true);
 $NextPaginationStatus = (
   ($this->Paginateable === false) ?
     'disabled' : ''
