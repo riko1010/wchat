@@ -158,6 +158,7 @@ $this->Paginateable = true;
 }
 /* return pointer to $from */
 $sfd->seek($from);
+$_SESSION['statusconsole'] .= 'Paginatable';
 
 do {
   $B = $sfd->current();
