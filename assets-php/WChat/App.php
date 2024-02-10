@@ -318,6 +318,7 @@ $PaginationStep = ($Config->recordsperpage < $this->SelectedChatFile['linescount
 //lines count
 //records per page
 //249/100 rounded down = 3.
+$_SESSION["statusconsole"] .= 'ps'.$PaginationStep;
 $PaginationListR = range(0, $this->SelectedChatFile['linescount'], $PaginationStep
   );
 
