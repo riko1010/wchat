@@ -286,19 +286,22 @@ $PaginationListR = range(0, $this->SelectedChatFile['linescount'], (
   $Config->recordsperpage : $this->SelectedChatFile['linescount']
   )
   );
+  
 if ($Config->recordsperpage >= $this->SelectedChatFile['linescount'] ) {
   $this->Paginateable = false;
 }
+var_dump($Config);
+exit;
 
 $CurrentPagination = floor(
   ($Config->PaginationFrom / $Config->recordsperpage + 1));
+  
 $PrevPaginationStatus = (
-  ($Config->PaginationFrom == 0) ? 
+  $Config->PaginationFrom == 0 ? 
   'disabled' : ''
   );
-
 $NextPaginationStatus = (
-  ($this->Paginateable === false) ?
+  $this->Paginateable === false ?
     'disabled' : ''
     );
 
