@@ -147,6 +147,18 @@ $TerminationType = 'notPaginateable';
 $this->Paginateable = true;
 }
 
+/* check next pagination viability */
+/* point to $to+1 */
+$sfd->seek($to + 1);
+/* check if valid */
+if (!$sfd->valid()) {
+$this->Paginateable = false;  
+$TerminationType = 'notPaginateable';
+} else {
+$this->Paginateable = true;
+}
+$sfd->seek($from);
+
 do {
   $B = $sfd->current();
   yield $B;
