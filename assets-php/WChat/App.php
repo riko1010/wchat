@@ -304,13 +304,18 @@ $PaginationListR = range(0, $this->SelectedChatFile['linescount'], (
   )
   );
 
-$PaginationList = array_map(
+$PaginationList = (
+  $Config->recordsperpage <= $this->SelectedChatFile['linescount'] ?
+    [] 
+    : 
+    array_map(
     fn($CPaginationList) =>
      ['label' => floor(($CPaginationList / $Config->recordsperpage) + 1), 'href'=> \pj(
   $Config->SiteUrl,
   $this->SelectedChatFile['search'],
   $CPaginationList)]
-    , $PaginationListR);
+    , $PaginationListR)
+    );
 
 return (object) [
   'current' => $CurrentPagination,
