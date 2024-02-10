@@ -153,10 +153,10 @@ $sfd->seek($to + 1);
 /* check if valid */
 if (!$sfd->valid()) {
 $this->Paginateable = false;  
-$TerminationType = 'notPaginateable';
 } else {
 $this->Paginateable = true;
 }
+/* return pointer to $from */
 $sfd->seek($from);
 
 do {
@@ -284,7 +284,7 @@ $PrevPaginationStatus = (
   'disabled' : ''
   );
 $NextPaginationStatus = (
-  ($this->Paginateable == false) ?
+  ($this->Paginateable === false) ?
     'disabled' : ''
     );
 
