@@ -282,12 +282,12 @@ $Config = $c->get("WChat\Config");
 //records per page
 //249/100 rounded down = 3.
 $PaginationListR = range(0, $this->SelectedChatFile['linescount'], (
-  $Config->recordsperpage <= $this->SelectedChatFile['linescount'] ? 
-  ($Config->recordsperpage : $this->SelectedChatFile['linescount']
+  $Config->recordsperpage >= $this->SelectedChatFile['linescount'] ? 
+  $Config->recordsperpage : $this->SelectedChatFile['linescount']
   )
   );
-if ($Config->recordsperpage <= $this->SelectedChatFile['linescount'] ) {
-  $this->Paginateable == false;
+if ($Config->recordsperpage >= $this->SelectedChatFile['linescount'] ) {
+  $this->Paginateable = false;
 }
 
 $CurrentPagination = floor(
