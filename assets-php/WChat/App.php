@@ -277,6 +277,19 @@ public function PaginationNav(
   \Psr\Container\ContainerInterface $c,
   ){
 $Config = $c->get("WChat\Config");
+
+//lines count
+//records per page
+//249/100 rounded down = 3.
+$PaginationListR = range(0, $this->SelectedChatFile['linescount'], (
+  $Config->recordsperpage <= $this->SelectedChatFile['linescount'] ? 
+  ($Config->recordsperpage : $this->SelectedChatFile['linescount']
+  )
+  );
+if ($Config->recordsperpage <= $this->SelectedChatFile['linescount'] ) {
+  $this->Paginateable == false;
+}
+
 $CurrentPagination = floor(
   ($Config->PaginationFrom / $Config->recordsperpage + 1));
 $PrevPaginationStatus = (
@@ -310,14 +323,7 @@ $LastPaginationHref = \pj(
   $this->SelectedChatFile['search'],
   ($this->SelectedChatFile['linescount'] - $Config->recordsperpage));
 
-//lines count
-//records per page
-//249/100 rounded down = 3.
-$PaginationListR = range(0, $this->SelectedChatFile['linescount'], (
-  $Config->recordsperpage <= $this->SelectedChatFile['linescount'] ? 
-  $Config->recordsperpage : $this->SelectedChatFile['linescount']
-  )
-  );
+
 
 $PaginationList = (
   $Config->recordsperpage <= $this->SelectedChatFile['linescount'] ?
