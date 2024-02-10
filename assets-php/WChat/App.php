@@ -158,9 +158,7 @@ $this->Paginateable = true;
 }
 /* return pointer to $from */
 $sfd->seek($from);
-$_SESSION['statusconsole'] .= 'Paginatable';
-var_dump($_SESSION['statusconsole'] );
-exit;
+
 do {
   $B = $sfd->current();
   yield $B;
