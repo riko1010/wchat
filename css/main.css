@@ -519,7 +519,7 @@ div.searchchatsresults .gc {
   display:none!important;
 }
 /* end searchchatsresults */
-mark{
-    background-color: orange!important;
+div.searchchatsresults mark{
+    background-color: yellow!important;
     color: black!important;
 }
