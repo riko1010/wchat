@@ -520,6 +520,6 @@ div.searchchatsresults .gc {
 }
 /* end searchchatsresults */
 mark{
-    background: orange!important;
+    background-color: orange!important;
     color: black!important;
 }
