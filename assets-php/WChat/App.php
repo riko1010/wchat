@@ -71,7 +71,7 @@ $this->Selected = 0;
 
 }
 
-if ($App->NoSelected && $Config->InitType == 'API') return 'Chat ID not found. ';
+if ($this->NoSelected && $Config->InitType == 'API') return 'Chat ID not found. ';
 
 $this->SelectedChatFile = $Init->Data->Data[$this->Selected];
 $this->SelectedId = $this->SelectedChatFile['id'];
@@ -133,7 +133,7 @@ $filearray = [];
 $B = null;
 $holdB = null;
 $TerminationType = 'done';
-/* literal newline, alt is htmlspecialchars_decode of phug render, allowing br, to render as html,*/
+
 $P = '/[0-3]?[0-9]\/[0-3]?[0-9]\/(?:[0-9]{2})?[0-9]{2},/';
 $from = $ofrom = $Config->PaginationFrom;
 /* fixed from */
@@ -159,7 +159,8 @@ $this->Paginateable = true;
 /* return pointer to $from */
 $sfd->seek($from);
 $_SESSION['statusconsole'] .= 'Paginatable';
-
+var_dump($_SESSION['statusconsole'] );
+exit;
 do {
   $B = $sfd->current();
   yield $B;
