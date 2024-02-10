@@ -298,7 +298,11 @@ $LastPaginationHref = \pj(
 //lines count
 //records per page
 //249/100 rounded down = 3.
-$PaginationListR = range(0, $this->SelectedChatFile['linescount'], $Config->recordsperpage);
+$PaginationListR = range(0, $this->SelectedChatFile['linescount'], (
+  $Config->recordsperpage <= $this->SelectedChatFile['linescount'] ? 
+  $Config->recordsperpage : $this->SelectedChatFile['linescount']
+  )
+  );
 
 $PaginationList = array_map(
     fn($CPaginationList) =>
