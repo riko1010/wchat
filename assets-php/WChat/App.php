@@ -313,7 +313,7 @@ $LastPaginationHref = \pj(
   $this->SelectedChatFile['search'],
   ($this->SelectedChatFile['linescount'] - $Config->recordsperpage));
 
-$PaginationStep = ($Config->recordsperpage <= $this->SelectedChatFile['linescount'] ? 
+$PaginationStep = ($Config->recordsperpage < $this->SelectedChatFile['linescount'] ? 
   $Config->recordsperpage : $this->SelectedChatFile['linescount']);
 //lines count
 //records per page
