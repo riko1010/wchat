@@ -31,7 +31,7 @@ devlog('no match found');
 } else {
 devlog('matches found');  
 $('.searchchatsresults').html(SearchAjaxResponse);  
-devlog('matches found');
+$('.searchchatsresults').mark(needle , null);
 }
 $('.searchchatsbox-loadingicon').addClass('hidden');  
 $('.searchchatsbox-searchicon').removeClass('hidden'); 
