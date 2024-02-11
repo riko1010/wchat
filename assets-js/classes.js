@@ -32,11 +32,14 @@ $('.searchchatsbox-searchicon').addClass('hidden');
 searchchats.always(function(SearchAjaxResponse) {
 devlog('request finished');  
 if (SearchAjaxResponse == '') {
-if (!more)  {
-$('.searchchatsresults').text('no match found.');  
-} else {
-$('.searchchatsshowmore').slideUp();  
-}
+  if (!more)  {
+  $('.searchchatsresults').text('no match found.');  
+  } else {
+  /* hide showmore */
+  $('.searchchatsshowmore').slideUp(); 
+  /* append no more results */
+  $('.searchchatsresults').append('<span class="d-flex justify-content-center">no more results</span>');  
+  }
 devlog('no match found');
 /* hide showmore */
 $('.searchchatsshowmore').slideUp();
