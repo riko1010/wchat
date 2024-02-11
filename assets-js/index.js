@@ -264,7 +264,7 @@ window.addEventListener('load', function () {
 	if (el !== null) {
 	  devlog('hash'+window.location.hash);
 	  devlog('scrolling to '+el);
-		el.scrollIntoView({ block: "start", inline: "nearest", behavior: 'auto' });
+		el.scrollIntoView({ block: "center", inline: "nearest", behavior: 'auto' });
 	}
 }, false);
 
