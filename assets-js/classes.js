@@ -32,19 +32,23 @@ $('.searchchatsbox-searchicon').addClass('hidden');
 searchchats.always(function(SearchAjaxResponse) {
 devlog('request finished');  
 if (SearchAjaxResponse == '') {
+if (!more)  {
 $('.searchchatsresults').text('no match found.');  
+} else {
+$('.searchchatsshowmore').slideUp();  
+}
 devlog('no match found');
 /* hide showmore */
 $('.searchchatsshowmore').slideUp();
 } else {
 devlog('matches found');  
-if (!more) {
-/* insert search result into div */
-$('.searchchatsresults').html(SearchAjaxResponse);  
-} else {
-/* append search result to div */
-$('.searchchatsresults').append(SearchAjaxResponse);    
-}
+  if (!more) {
+  /* insert search result into div */
+  $('.searchchatsresults').html(SearchAjaxResponse);  
+  } else {
+  /* append search result to div */
+  $('.searchchatsresults').append(SearchAjaxResponse);    
+  }
 /* highlight search term */
 $('.searchchatsresults .mEl').mark(needle , null);
 /* show showmore */

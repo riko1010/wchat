@@ -167,7 +167,9 @@ $(document).ready(function () {
     e.preventDefault();
     /* add ConfigRecordsPerPage to SPaginationFrom */
     SPaginationFrom = SPaginationFrom + ConfigRecordsPerPage;
-    // search
+    // search - showmore
+    /* searchchats input value */
+    searchchatstriggernewval = $('.searchchatsbox').val();
     SearchChats(
       APIUrl, 
       AppSelectedId, 
