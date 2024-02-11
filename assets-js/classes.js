@@ -1,5 +1,11 @@
 
-function SearchChats(url, queryarg, paginationfrom, needle, more = ''){
+function SearchChats(
+  url, 
+  queryarg, 
+  paginationfrom, 
+  needle, 
+  more = false
+  ){
 devlog('SearchChats()');  
 /* abort previous request */
 try {
@@ -32,8 +38,13 @@ devlog('no match found');
 $('.searchchatsshowmore').slideUp();
 } else {
 devlog('matches found');  
+if (!more) {
 /* insert search result into div */
 $('.searchchatsresults').html(SearchAjaxResponse);  
+} else {
+/* append search result to div */
+$('.searchchatsresults').append(SearchAjaxResponse);    
+}
 /* highlight search term */
 $('.searchchatsresults .mEl').mark(needle , null);
 /* show showmore */

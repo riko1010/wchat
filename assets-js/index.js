@@ -162,7 +162,8 @@ $(document).ready(function () {
   });
   
   /* .showmore onclick */
-  $('.showmore').on('click', function(){
+  $('.showmore').on('click', function(e){
+    e.preventDefault();
     /* add ConfigRecordsPerPage to SPaginationFrom */
     SPaginationFrom = SPaginationFrom + ConfigRecordsPerPage;
     // search
@@ -171,7 +172,7 @@ $(document).ready(function () {
       AppSelectedId, 
       SPaginationFrom, 
       searchchatstriggernewval,
-      'more',
+      true,
       );
   });
   /* show navicons, hide searchbox and searchresults */
