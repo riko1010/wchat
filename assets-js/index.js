@@ -143,6 +143,7 @@ $(document).ready(function () {
     searchchatstriggernewval = searchchatstriggernewval.slice(0, 5);
     $('.searchchatstrigger').html('<u>'+searchchatstriggernewval+'..</u>');
     $('.searchchatsresults').text('Searching..');
+    /* default is searching entire file from 0 with pagination of 100 lines */
     if (SelectedPaginationFrom = 'entirechatfile') {
      SPaginationFrom = 0;
     } else {
