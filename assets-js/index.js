@@ -143,11 +143,16 @@ $(document).ready(function () {
     searchchatstriggernewval = searchchatstriggernewval.slice(0, 5);
     $('.searchchatstrigger').html('<u>'+searchchatstriggernewval+'..</u>');
     $('.searchchatsresults').text('Searching..');
+    if (SelectedPaginationFrom) {
+     SPaginationFrom = AppPaginationFrom;
+    } else {
+     SPaginationFrom = AppPaginationFrom;
+    }
     // search
     SearchChats(
       APIUrl, 
       AppSelectedId, 
-      AppPaginationFrom, 
+      SPaginationFrom, 
       searchchatstriggernewval,
       );
       
