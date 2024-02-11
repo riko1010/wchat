@@ -28,6 +28,8 @@ devlog('request finished');
 if (SearchAjaxResponse == '') {
 $('.searchchatsresults').text('no match found.');  
 devlog('no match found');
+/* hide showmore */
+$('.searchchatsshowmore').slideUp();
 } else {
 devlog('matches found');  
 /* insert search result into div */
