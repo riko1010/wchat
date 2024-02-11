@@ -44,3 +44,8 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 -  external services removal for local rendering, google docs viewer, others
 -  centralize config btw php and python
 -  database choice, mysql or sqlite
+
+#Restructuring
+the current architecture syncs from dropbox public folders, which is convenient but every sync deletes the existing chatfiles. the plan is to store the conversations in database which would help easier search and other planned features.
+ideally the chatfiles can be uploaded manually and saved to db with an option to overwrite.
+the new architecture has benefits for public deployment.
