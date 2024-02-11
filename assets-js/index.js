@@ -259,6 +259,8 @@ window.addEventListener('load', function () {
 	var el = document.querySelector(window.location.hash);
 	if (el !== null) {
 	  devlog($(el).text());
+	  devlog(el);
+	  devlog('hash'+window.location.hash);
 	  devlog('scrolling to '+el);
 		el.scrollIntoView({ behavior: 'auto' });
 	}
