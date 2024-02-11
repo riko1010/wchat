@@ -1,5 +1,5 @@
 # Readme Guide
-0.0.3-0.0.6-dev
+0.0.3-0.0.7-dev
 
 #Mods
 processlines $Date wrsp in try/catch block
@@ -24,9 +24,10 @@ python config in python/archive.py , python/unzip.py - will centralize config bt
 - python handles screnshot of video loaded using a webvideo player then screenshot using a browserscreenshot service.
 
 ## FEATURE LIST
+- search, will be easier when chatfiles are exported to db
 -  \+,_ removal in international numbers on any url path
 -  multiple chat files in one folder ( i.e file.1.txt, file.2.txt )
--  attachment identifiers (images,doc,media)
+-  attachment identifiers and renderers (images,doc,media)
 -  sitemap generation (xml) on conversations folder modification through dropbox webhook
 -  archive through archive.org spn (spn@archive.org) mail(returns links via email)
 -  extensionless file fix (filename.) through unzip.py on webhook notice of folder change from dropbox, and, php, on requesting chatfile
