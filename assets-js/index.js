@@ -119,7 +119,6 @@ $(document).ready(function () {
   $('.searchchats').on('click', function(){
   $('.navicons').slideUp();
   $('.searchchats-container, header-search').slideDown();
-  $('.searchchatsshowmore').removeClass('hidden');
   $('.searchchatsbox').focus();
   });
   
@@ -186,7 +185,6 @@ $(document).ready(function () {
   /* show navicons, hide searchbox and searchresults */
     $('.chat-container, .wchatlogo, select .searchselect').on('click', function(){
     $('.searchchats-container, header-search').slideUp(); 
-    $('.searchchatsshowmore').addClass('hidden');
     $('.navicons').slideDown();   
     });
   

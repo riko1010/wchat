@@ -55,7 +55,7 @@ devlog('matches found');
 /* highlight search term */
 $('.searchchatsresults .mEl').mark(needle , null);
 /* show showmore */
-$('.searchchatsshowmore').slideDown();
+$('.searchchatsshowmore').removeClass('hidden');
 }
 $('.searchchatsbox-loadingicon').addClass('hidden');  
 $('.searchchatsbox-searchicon').removeClass('hidden'); 
