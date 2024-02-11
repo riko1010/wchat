@@ -12,7 +12,7 @@
 
 html,
 body {
-    scroll-padding-top: 30px; /* set to the height of your header 65px */
+    scroll-padding-top: 80px; /* set to the height of your header 65px */
 }
 
 @media (min-width: 576px) {
