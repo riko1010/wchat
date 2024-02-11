@@ -120,7 +120,7 @@ $(document).ready(function () {
   
   /* searchchatsbox on search (keyup) */
   $('.searchchatsbox').on('keyup', function(){
-    var searchchatstriggernewval = $('.searchchatsbox').val();
+    searchchatstriggernewval = $('.searchchatsbox').val();
     /* hide showmore */
     $('.searchchatsshowmore').slideUp();
     
@@ -163,6 +163,7 @@ $(document).ready(function () {
   
   /* .showmore onclick */
   $('.showmore').on('click', function(e){
+    devlog('showmore');
     e.preventDefault();
     /* add ConfigRecordsPerPage to SPaginationFrom */
     SPaginationFrom = SPaginationFrom + ConfigRecordsPerPage;
