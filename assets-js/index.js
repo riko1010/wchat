@@ -249,13 +249,17 @@ var headroom  = new Headroom(myElement, options);
 headroom.init();
 });
 
-//scroll to hash - natural scroll to has fails
+//scroll to hash - natural scroll to fails
 window.addEventListener('load', function () {
+  devlog('scrolltohash');
 	if (window.location.hash == '') {
+	  devlog('no hash');
 		return false;
 	}
 	var el = document.querySelector(window.location.hash);
 	if (el !== null) {
+	  devlog($(el).text());
+	  devlog('scrolling to '+el);
 		el.scrollIntoView({ behavior: 'auto' });
 	}
 }, false);
