@@ -122,6 +122,8 @@ $(document).ready(function () {
   $('.searchchatsbox').on('keyup', function(){
     
     var searchchatstriggernewval = $('.searchchatsbox').val();
+    /* hide showmore */
+    $('.searchchatsshowmore').slideUp();
     
     if (searchchatstriggernewval == ''){
       devlog('search input empty');
