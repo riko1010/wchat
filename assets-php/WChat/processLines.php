@@ -74,7 +74,7 @@ foreach ($c->call(['WChat\\App', 'ChatFileGenerator']) as $line) {
   }
   /* temporarily non empty lines will assume the number of preceeding empty lines, chatfiles should be fixed to contain no empty lines */
   if ($line == null) {
-    /* increment should fix line numberings */
+    /* increment before continue fixes line numberings */
     $from++; 
     continue;
   }
