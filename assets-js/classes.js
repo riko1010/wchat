@@ -35,7 +35,7 @@ devlog('matches found');
 /* insert search result into div */
 $('.searchchatsresults').html(SearchAjaxResponse);  
 /* highlight search term */
-$('.searchchatsresults').mark(needle , null);
+$('.searchchatsresults .mEl').mark(needle , null);
 /* show showmore */
 $('.searchchatsshowmore').slideDown();
 }
