@@ -97,7 +97,11 @@ $(document).ready(function () {
     $('.chat-container').css({
             'margin-top' : $('#header').outerHeight() + 'px'
         });
-    
+  /* set body scroll padding top to header height */
+  $('body').css({
+            'scroll-padding-top' : $('#header').outerHeight() + 'px'
+        });
+  
     /* .cID click handler, 
   siteurl/roundtolowest{ConfigRecordsPerPage}(cID)/#cID
   */
