@@ -143,8 +143,8 @@ $(document).ready(function () {
     searchchatstriggernewval = searchchatstriggernewval.slice(0, 5);
     $('.searchchatstrigger').html('<u>'+searchchatstriggernewval+'..</u>');
     $('.searchchatsresults').text('Searching..');
-    if (SelectedPaginationFrom) {
-     SPaginationFrom = AppPaginationFrom;
+    if (SelectedPaginationFrom = 'entirechatfile') {
+     SPaginationFrom = 0;
     } else {
      SPaginationFrom = AppPaginationFrom;
     }
