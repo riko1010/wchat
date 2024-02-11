@@ -111,16 +111,15 @@ $(document).ready(function () {
     window.location.href = searchchatsresultsURI;
   });
   
-  //searchchatsbox
-  /* hide navicons, show searchbox and searchresults */
+  /* .searchchats on click, hide navicons, show searchbox and searchresults */
   $('.searchchats').on('click', function(){
   $('.navicons').slideUp();
   $('.searchchats-container, .searchchatsresults').slideDown();
   $('.searchchatsbox').focus();
   });
-  /* searchchatsbox on keyup */
+  
+  /* searchchatsbox on search (keyup) */
   $('.searchchatsbox').on('keyup', function(){
-    
     var searchchatstriggernewval = $('.searchchatsbox').val();
     /* hide showmore */
     $('.searchchatsshowmore').slideUp();
@@ -160,6 +159,20 @@ $(document).ready(function () {
       );
       
     }
+  });
+  
+  /* .showmore onclick */
+  $('.showmore').on('click', function(){
+    /* add ConfigRecordsPerPage to SPaginationFrom */
+    SPaginationFrom = SPaginationFrom + ConfigRecordsPerPage;
+    // search
+    SearchChats(
+      APIUrl, 
+      AppSelectedId, 
+      SPaginationFrom, 
+      searchchatstriggernewval,
+      'more',
+      );
   });
   /* show navicons, hide searchbox and searchresults */
     $('.chat-container, .wchatlogo, select .searchselect').on('click', function(){

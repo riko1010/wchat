@@ -1,5 +1,5 @@
 
-function SearchChats(url, queryarg, paginationfrom, needle){
+function SearchChats(url, queryarg, paginationfrom, needle, more = ''){
 devlog('SearchChats()');  
 /* abort previous request */
 try {
