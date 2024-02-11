@@ -99,10 +99,10 @@ $(document).ready(function () {
         });
     
     /* .cID click handler, 
-  siteurl/roundtolowest100(cID)/#cID
+  siteurl/roundtolowest{ConfigRecordsPerPage}(cID)/#cID
   */
   $('.searchchatsresults').on('click', '.cID', function(){
-    var searchchatsresultsFrom = Math.floor($(this).attr('cid') / 100) * 100;
+    var searchchatsresultsFrom = Math.floor($(this).attr('cid') / ConfigRecordsPerPage) * ConfigRecordsPerPage;
     var searchchatsresultsHash = '#' + $(this).attr('id');
     searchchatsresultsURI = BasePageURI 
     + '/' 
