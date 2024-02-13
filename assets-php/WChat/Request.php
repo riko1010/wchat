@@ -2,6 +2,7 @@
 namespace WChat;
 class Request
 {
+  private $StatusConsole;
   private $Data;
   private $Writeable;
 
