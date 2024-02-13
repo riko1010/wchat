@@ -157,7 +157,7 @@ public object $Data;
   
   $PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false;
   
-  if ($CurrentMTime == $PrevMTime){
+  if ($CurrentMTime === $PrevMTime){
   return (object) [
       'status' => false,
       'response' => 'FileSystem is not modified'
