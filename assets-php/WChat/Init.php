@@ -32,8 +32,11 @@ public object $Data;
       'ColumnValuesArray' => ['id' => 1], ]);
    /* append config */ 
     $AppendConfig();
-    if (($c->call([$this, 'CheckFileSystemModification']))->status !== false) {
-      $_SESSION['statusconsole'][] = 'File system modified';
+    
+    $CheckFileSystemModification = $c->call([$this, 'CheckFileSystemModification']);
+    $_SESSION['statusconsole'][] = $CheckFileSystemModification->response;
+    
+    if ($CheckFileSystemModification->status !== false) {
       $UpdateDBFromFileSystem = $c->call([$this, 'UpdateDBFromFileSystem']);
        if (!$UpdateDBFromFileSystem->status)
        {
@@ -43,8 +46,6 @@ public object $Data;
        $this->UpdateSitemap = true;
       /* reappend updated config */
       $AppendConfig();
-    } else {
-      $_SESSION['statusconsole'][] = 'File system was not modified';
     }
     
     if ($Config->InitType == 'API') {
