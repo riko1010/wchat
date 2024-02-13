@@ -2,7 +2,7 @@
 error_reporting(0);
 session_name('wchat.space');
 session_start();
-$_SESSION['statusconsole'] = '';
+$_SESSION['statusconsole'] = [];
 require_once 'vendor/autoload.php';
 require 'assets-php/Functions.php';
 use Psr\Container\ContainerInterface;
