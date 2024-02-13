@@ -164,14 +164,13 @@ public object $Data;
   if ($CurrentMTime == $PrevMTime){
   return (object) [
       'status' => false,
-      'response' => 'FileSystem is not modified'
+      'response' => 'FileSystem is not modified:'.$PrevMTime.'-'.$CurrentMTime,
       ];   
-  $_SESSION['statusconsole'][] =  'FileSystem is not modified. '.$PrevMTime.'-'.$CurrentMTime;      
+    
   } else {
-  $_SESSION['statusconsole'][] = 'FileSystem is modified. '.$PrevMTime.'-'.$CurrentMTime;  
   return (object) [
       'status' => true,
-      'response' => 'FileSystem is modified',
+      'response' => 'FileSystem is modified:'.$PrevMTime.'-'.$CurrentMTime,
       'PrevMTime' => $PrevMTime,
       'CurrentMTime' => $CurrentMTime,
       ];     
