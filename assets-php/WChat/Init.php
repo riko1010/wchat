@@ -33,7 +33,7 @@ public object $Data;
    /* append config */ 
     $AppendConfig();
     if (($c->call([$this, 'CheckFileSystemModification']))->status !== false) {
-      $_SESSION['statusconsole'] = ['File system modified'];
+      $_SESSION['statusconsole'][] = 'File system modified';
       $UpdateDBFromFileSystem = $c->call([$this, 'UpdateDBFromFileSystem']);
        if (!$UpdateDBFromFileSystem->status)
        {
@@ -163,9 +163,9 @@ public object $Data;
       'status' => false,
       'response' => 'FileSystem is not modified'
       ];   
-  $_SESSION['statusconsole'] = [ 'FileSystem is not modified. '.$PrevMTime.'-'.$CurrentMTime];      
+  $_SESSION['statusconsole'][] =  'FileSystem is not modified. '.$PrevMTime.'-'.$CurrentMTime;      
   } else {
-  $_SESSION['statusconsole'] = ['FileSystem is modified. '.$PrevMTime.'-'.$CurrentMTime];  
+  $_SESSION['statusconsole'][] = 'FileSystem is modified. '.$PrevMTime.'-'.$CurrentMTime;  
   return (object) [
       'status' => true,
       'response' => 'FileSystem is modified',
@@ -382,8 +382,8 @@ $MailUrlList = $c->call([$this, 'MailUrlList'], [
       $urlList, ]);
 $MailUrlListResponse = $MailUrlList->response;
 /* add to statusconsole */
-$_SESSION['statusconsole'] = ['Archive new links status: '.
-$MailUrlListResponse];
+$_SESSION['statusconsole'][] = 'Archive new links status: '.
+$MailUrlListResponse;
 } catch (\Exception|\Throwable $e) {  
   
 }
@@ -434,12 +434,12 @@ $mail->AltBody = $urlList;
 //send the message, check for errors
 /* hopefully mail is sent as a batch, iteration of each address is a reliable approach*/
 if (!$mail->send()) {
-  $_SESSION['statusconsole'] = ['Mailer Error: '.$mail->ErrorInfo];
+  $_SESSION['statusconsole'][] = 'Mailer Error: '.$mail->ErrorInfo;
   Throw new \Exception ('Mailer Error: ' . $mail->ErrorInfo);
 } else {
   $response = 'New links sent to archive.org'.PHP_EOL.
               $urlList.PHP_EOL;
-  $_SESSION['statusconsole'] = [$response];            
+  $_SESSION['statusconsole'][] = $response;            
 }  
 
 } catch (\Exception|\Throwable $e) {  
