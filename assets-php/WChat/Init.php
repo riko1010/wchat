@@ -1,7 +1,7 @@
 <?php
 namespace WChat;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+use \PHPMailer\PHPMailer\PHPMailer;
+use \PHPMailer\PHPMailer\Exception;
 class Init {
 public $UpdateSitemap = false;
 public object $Data;
