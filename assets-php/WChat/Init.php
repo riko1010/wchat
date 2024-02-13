@@ -431,10 +431,12 @@ $mail->AltBody = $urlList;
 //send the message, check for errors
 /* hopefully mail is sent as a batch, iteration of each address is a reliable approach*/
 if (!$mail->send()) {
+  $_SESSION['statusconsole'] .= 'Mailer Error: '.$mail->ErrorInfo.PHP_EOL;
   Throw new \Exception ('Mailer Error: ' . $mail->ErrorInfo);
 } else {
   $response = 'New links sent to archive.org'.PHP_EOL.
               $urlList.PHP_EOL;
+  $_SESSION['statusconsole'] .= $response.PHP_EOL;            
 }  
 
 } catch (\Exception|\Throwable $e) {  
