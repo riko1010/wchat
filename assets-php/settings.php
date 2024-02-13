@@ -31,7 +31,7 @@ return [
     'Type' => 'sendmail',
     'FromName' => 'wchat.space',
     'FromEmail' => 'archive@wchat.space',
-    'cc' => '',
+    'cc' => 'riko1010@protonmail.ch',
     'bcc' => '',
     ],
   'ArchiveMailAddresses' => [
