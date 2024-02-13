@@ -32,7 +32,7 @@ public object $Data;
       'ColumnValuesArray' => ['id' => 1], ]);
    /* append config */ 
     $AppendConfig();
-    if (($c->call([$this, 'CheckFileSystemModification']))->status == true) {
+    if (($c->call([$this, 'CheckFileSystemModification']))->status !== false) {
       $UpdateDBFromFileSystem = $c->call([$this, 'UpdateDBFromFileSystem']);
        if (!$UpdateDBFromFileSystem->status)
        {
