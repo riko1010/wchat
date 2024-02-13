@@ -33,6 +33,7 @@ public object $Data;
    /* append config */ 
     $AppendConfig();
     if (($c->call([$this, 'CheckFileSystemModification']))->status !== false) {
+      $_SESSION['statusconsole'] = ['File system modified'];
       $UpdateDBFromFileSystem = $c->call([$this, 'UpdateDBFromFileSystem']);
        if (!$UpdateDBFromFileSystem->status)
        {
