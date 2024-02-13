@@ -44,6 +44,8 @@ public object $Data;
       $AppendConfig();
     }
     
+    $_SESSION['statusconsole'] .= 'UpdateDBFromFileSystem:'.var_export($UpdateDBFromFileSystem, true).PHP_EOL;
+    
     if ($Config->InitType == 'API') {
     $this->Data = $c->call([$this, 'API']);
     } else {
@@ -233,7 +235,7 @@ $UpdateAppData = $db->InsertOrUpdate(
     ],
     [ 'foldername' => $Config->cfFolder ]
   );
-  $_SESSION['statusconsole'] .= 'CF hash:' .$cfFoldermtimeorhash.PHP_EOL;
+  
   if (!$UpdateAppData->status) {
     Throw new \Exception ($UpdateAppData->response);
   }
