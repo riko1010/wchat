@@ -7,7 +7,6 @@ public function RouteIndex(
   ) {
 /* instantiation, ordered */
 $Config = $c->get('WChat\Config');
-$Request = $c->get('WChat\Request');
 $Init = $c->get('WChat\Init');
 $sitemap = $c->get('WChat\generateSiteMap');
 $App = $c->get('WChat\App');
@@ -28,7 +27,6 @@ $function = new \Twig\TwigFunction('screenshot', function ($screenshotapi, $page
 $twig->addFunction($function);
 
 print $twig->render('index.twig', [
-    'Request' => $Request,
     'App' => $App,
     'Config' => $Config,
     'Init' => $Init,

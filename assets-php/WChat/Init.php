@@ -162,9 +162,9 @@ public object $Data;
       'status' => false,
       'response' => 'FileSystem is not modified'
       ];   
-  $_SESSION['statusconsole'] .= 'FileSystem is not modified. '.$PrevMTime.'-'.$CurrentMTime.PHP_EOL;      
+  $_SESSION['statusconsole'] = [ 'FileSystem is not modified. '.$PrevMTime.'-'.$CurrentMTime];      
   } else {
-  $_SESSION['statusconsole'] .= 'FileSystem is modified. '.$PrevMTime.'-'.$CurrentMTime.PHP_EOL;  
+  $_SESSION['statusconsole'] = ['FileSystem is modified. '.$PrevMTime.'-'.$CurrentMTime];  
   return (object) [
       'status' => true,
       'response' => 'FileSystem is modified',
@@ -244,7 +244,6 @@ $UpdateAppData = $db->InsertOrUpdate(
         'response' => 'Insert or Update failed:'.$e->getMessage()
         ]; 
   }
-$_SESSION['statusconsole'] .= 'UpdateAppData:'.var_export($UpdateAppData, true).PHP_EOL;  
 /* reinit Init\index */  
 return (object) [
       'status' => true,
@@ -382,8 +381,8 @@ $MailUrlList = $c->call([$this, 'MailUrlList'], [
       $urlList, ]);
 $MailUrlListResponse = $MailUrlList->response;
 /* add to statusconsole */
-$_SESSION['statusconsole'] .= 'Archive new links status: '.
-$MailUrlListResponse.PHP_EOL;
+$_SESSION['statusconsole'] = ['Archive new links status: '.
+$MailUrlListResponse];
 } catch (\Exception|\Throwable $e) {  
   
 }
@@ -434,12 +433,12 @@ $mail->AltBody = $urlList;
 //send the message, check for errors
 /* hopefully mail is sent as a batch, iteration of each address is a reliable approach*/
 if (!$mail->send()) {
-  $_SESSION['statusconsole'] .= 'Mailer Error: '.$mail->ErrorInfo.PHP_EOL;
+  $_SESSION['statusconsole'] = ['Mailer Error: '.$mail->ErrorInfo];
   Throw new \Exception ('Mailer Error: ' . $mail->ErrorInfo);
 } else {
   $response = 'New links sent to archive.org'.PHP_EOL.
               $urlList.PHP_EOL;
-  $_SESSION['statusconsole'] .= $response.PHP_EOL;            
+  $_SESSION['statusconsole'] = [$response];            
 }  
 
 } catch (\Exception|\Throwable $e) {  

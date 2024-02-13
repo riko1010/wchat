@@ -248,7 +248,11 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
   <label for="statusconsole" class="form-label">Status console</label>
   <textarea class="statusconsole form-control col-12" id="statusconsole" rows="3">{{date()|date('M d, Y h:i:sa') }} {{sitemap.FilesandStatus.sitemap.status ? 'OK' : 'ERROR' }}
 {{sitemap.FilesandStatus.sitemap.response }}
-{{session.statusconsole}}</textarea>
+
+{% for message in session.statusconsole %}
+{% message %} \n
+{% endfor %}
+</textarea>
 </div>
   </span>  
  
