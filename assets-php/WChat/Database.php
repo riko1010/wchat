@@ -73,7 +73,9 @@ public function InsertOrUpdate(
   $UpdateWhereArray,
   $Target = 'insertorupdate',
   ){
-/* Targets = insertorupdate|insert|update */  
+/* Targets = insertorupdate|insert|update
+simplify logic asap
+*/  
 $Target = strtolower($Target);
 $TType = null;
 if ($Target == 'insertorupdate' || $Target == 'update') {
