@@ -31,11 +31,10 @@ return [
     'Type' => 'sendmail',
     'FromName' => 'wchat.space',
     'FromEmail' => 'archive@wchat.space',
-    'cc' => 'wadja.africa@gmail.com',
+    'cc' => '',
     'bcc' => '',
     ],
   'ArchiveMailAddresses' => [
-  /*  'spn@archive.org', */
-    'wadja.africa@gmail.com',
+  'spn@archive.org',
   ],
 ];
