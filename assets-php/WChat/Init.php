@@ -43,6 +43,8 @@ public object $Data;
        $this->UpdateSitemap = true;
       /* reappend updated config */
       $AppendConfig();
+    } else {
+      $_SESSION['statusconsole'][] = 'File system was not modified';
     }
     
     if ($Config->InitType == 'API') {
