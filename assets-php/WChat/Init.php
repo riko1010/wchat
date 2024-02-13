@@ -44,8 +44,6 @@ public object $Data;
       $AppendConfig();
     }
     
-    $_SESSION['statusconsole'] .= 'UpdateDBFromFileSystem:'.var_export($UpdateDBFromFileSystem, true).PHP_EOL;
-    
     if ($Config->InitType == 'API') {
     $this->Data = $c->call([$this, 'API']);
     } else {
@@ -245,6 +243,7 @@ $UpdateAppData = $db->InsertOrUpdate(
         'response' => 'Insert or Update failed:'.$e->getMessage()
         ]; 
   }
+$_SESSION['statusconsole'] .= 'UpdateAppData:'.var_export($UpdateAppData, true).PHP_EOL;  
 /* reinit Init\index */  
 return (object) [
       'status' => true,
