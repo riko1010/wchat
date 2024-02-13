@@ -90,7 +90,7 @@ $InsertOrUpdate->set($ColumnValuesArray);
 }
 }
 
-if (($Target == 'insertorupdate' && $TType != 'update') || $Target == 'insert'){
+if (($Target == 'insertorupdate' && $TType !== 'update') || $Target == 'insert'){
 $InsertOrUpdate = $this->sql->insert($Table);  
 $InsertOrUpdate->values($ColumnValuesArray);  
 }
