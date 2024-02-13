@@ -162,6 +162,7 @@ public object $Data;
       'status' => false,
       'response' => 'FileSystem is not modified'
       ];   
+  $_SESSION['statusconsole'] .= 'FileSystem is not modified. '.$PrevMTime.'-'.$CurrentMTime.PHP_EOL;      
   } else {
   $_SESSION['statusconsole'] .= 'FileSystem is modified. '.$PrevMTime.'-'.$CurrentMTime.PHP_EOL;  
   return (object) [
