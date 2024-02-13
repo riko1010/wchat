@@ -163,7 +163,7 @@ public object $Data;
       'response' => 'FileSystem is not modified'
       ];   
   } else {
-  $_SESSION['statusconsole'] .= 'FileSystem is modified. '.$PrevMTime.'-'.var_export($CurrentMTime, true).PHP_EOL;  
+  $_SESSION['statusconsole'] .= 'FileSystem is modified. '.$PrevMTime.'-'.$CurrentMTime.PHP_EOL;  
   return (object) [
       'status' => true,
       'response' => 'FileSystem is modified',
@@ -233,7 +233,7 @@ $UpdateAppData = $db->InsertOrUpdate(
     ],
     [ 'foldername' => $Config->cfFolder ]
   );
-  
+  $_SESSION['statusconsole'] .= 'CF hash:' .$cfFoldermtimeorhash.PHP_EOL;
   if (!$UpdateAppData->status) {
     Throw new \Exception ($UpdateAppData->response);
   }
