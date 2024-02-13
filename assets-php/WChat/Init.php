@@ -157,13 +157,13 @@ public object $Data;
   
   $PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false;
   
-  if ($CurrentMTime === $PrevMTime){
+  if ($CurrentMTime == $PrevMTime){
   return (object) [
       'status' => false,
       'response' => 'FileSystem is not modified'
       ];   
   } else {
-  $_SESSION['statusconsole'] .= 'FileSystem is modified. '.$PrevMTime.'-'.$CurrentMTime.PHP_EOL;  
+  $_SESSION['statusconsole'] .= 'FileSystem is modified. '.$PrevMTime.'-'.var_export($CurrentMTime, true).PHP_EOL;  
   return (object) [
       'status' => true,
       'response' => 'FileSystem is modified',
