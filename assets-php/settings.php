@@ -31,10 +31,10 @@ return [
     'Type' => 'sendmail',
     'FromName' => 'wchat.space',
     'FromEmail' => 'archive@wchat.space',
-    'cc' => 'riko1010@protonmail.ch',
+    'cc' => '',
     'bcc' => '',
     ],
   'ArchiveMailAddresses' => [
-  'spn@archive.org',
+ /* 'spn@archive.org', */
   ],
 ];
