@@ -75,4 +75,12 @@ class Request
       }
     }
   }
+  
+  public function SetStatusConsole($message) {
+    $this->StatusConsole[] = $message;
+  }
+  
+  public function GetStatusConsole() {
+    return $this->StatusConsole;
+  }
 }
