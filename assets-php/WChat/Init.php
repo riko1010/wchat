@@ -156,7 +156,7 @@ public object $Data;
   public function CheckFileSystemModification(
     Config $Config,
     ){
-  clearstatcache();
+  clearstatcache(true, $Config->cfFolder);
   $CurrentMTime = filemtime($Config->cfFolder);
   
   $PrevMTime = ($Config->AppData->mtimeorhash ?? false ) ? $Config->AppData->mtimeorhash : false;
