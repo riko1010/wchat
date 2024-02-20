@@ -142,18 +142,10 @@ $.ajaxQ = (function(){
 
 })();
 
-function getBackgroundColor(stringInput) {
-    const h = [...stringInput].reduce((acc, char) => {
-        return char.charCodeAt(0) + ((acc << 5) - acc);
-    }, 0);
-    const s = 95, l = 35 / 100;
-    const a = s * Math.min(l, 1 - l) / 100;
-    const f = n => {
-        const k = (n + h / 30) % 12;
-        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-        return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
-    };
-    return `#${f(0)}${f(8)}${f(4)}`;
+function colorize(str) {
+    for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
+    color = Math.floor(Math.abs((Math.sin(hash) * 10000) % 1 * 16777216)).toString(16);
+    return '#' + Array(6 - color.length + 1).join('0') + color;
 }
 
 function getBackgroundColorworks(stringInput) {
