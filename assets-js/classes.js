@@ -148,13 +148,6 @@ function colorize(str) {
     return '#' + Array(6 - color.length + 1).join('0') + color;
 }
 
-function getBackgroundColorworks(stringInput) {
-    let stringUniqueHash = [...stringInput].reduce((acc, char) => {
-        return char.charCodeAt(0) + ((acc << 5) - acc);
-    }, 0);
-    return `hsl(${stringUniqueHash % 360}, 95%, 35%)`;
-}
-
 function devlog(str){
   if (dev == true)  console.log(str);
 }
