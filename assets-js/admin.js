@@ -92,7 +92,7 @@ function AdminLogin(email,password) {
       /* list json response */
       jQuery.each(jsondata.chatfiles, function(i, item){
       devlog(item.name);  
-      $('.chatfileslist').append('<div class="d-flex list-group-item list-group-item-action "><div class="d-inline">djdbd</div><div class="d-inline w-100" aria-current="true"> <div class="d-flex w-100 justify-content-between"> <h5 class="mb-1">'+item.name+'</h5> <small>'+item.dateadded+'</small> </div><p class="mb-1">'+item.dirname+'</p><small> <input type="email" class="AdminChatfileLink form-control" value="'+item.url+'" readonly></small></div></div>');
+      $('.chatfileslist').append('<div class="d-flex list-group-item list-group-item-action "><div class="d-inline"><i class="fa-solid fa-circle-user" style="color: #e6eaed;font-size:2em;"></i></div><div class="d-inline w-100" aria-current="true"> <div class="d-flex w-100 justify-content-between"> <h5 class="mb-1">'+item.name+'</h5> <small>'+item.dateadded+'</small> </div><p class="mb-1">'+item.dirname+'</p><small> <input type="email" class="AdminChatfileLink form-control" value="'+item.url+'" readonly></small></div></div>');
     
       });
       /* hide signin form, show admin container */
