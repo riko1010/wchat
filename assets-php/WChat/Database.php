@@ -114,12 +114,21 @@ return (object) [
     ];
 }
 
-public function Select($Table, array|string $Order = null){
-$selectone = $this->sql->select();
-$selectone->from($Table);
-if (null != $Order) $selectone->order($Order);
+public function Select(
+  $Table, 
+  $SelectWhereArray, 
+  array|string $Order = null
+  ){
+$selectall = $this->sql->select();
+$selectall->from($Table);
+if ($SelectWhereArray != null) {
+$selectall->where($SelectWhereArray);
+}
+if (null != $Order) {
+  $selectall->order($Order);
+}
 try {
-$statement = $this->sql->prepareStatementForSqlObject($selectone);
+$statement = $this->sql->prepareStatementForSqlObject($selectall);
 $results = $statement->execute();
 } catch (\Exception|\Throwable $e) {
   return (object) [

@@ -100,7 +100,7 @@ public object $Data;
   
   $db = $c->get('WChat\Database');
   
-  $ChatFilesDataExecute = $db->Select('chatfiles', ['dirname ASC', 'bfc ASC']);
+  $ChatFilesDataExecute = $db->Select('chatfiles', '', ['dirname ASC', 'bfc ASC']);
   $ChatFilesDataSelectType = 'all';
   $ChatFilesData = $ChatFilesDataExecute->status ?
   \BenTools\IterableFunctions\iterable_to_array($ChatFilesDataExecute->response)

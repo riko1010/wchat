@@ -57,13 +57,13 @@ head(function () {
     devlog('failed: page link copy to clipboard');
   });
   //copy conversation link
-   var clipboard = new ClipboardJS(".copycidlink", {
+   var clipboard2 = new ClipboardJS(".copycidlink", {
     text: function (trigger) {
       conversationurl= CurrentUrl +'#'+ trigger.getAttribute('cid');
       return conversationurl;
     },
   });
-  clipboard.on("success", function (e) {
+  clipboard2.on("success", function (e) {
     //toast copied.
     jSuites.notification({
       title: "Conversation Link Copied",
@@ -72,13 +72,35 @@ head(function () {
     });
     devlog('conversation link copied to clipboard');
   });
-  clipboard.on("error", function (e) {
+  clipboard2.on("error", function (e) {
     //toast or link popup in modal
     devlog('failed: conversation link copy to clipboard');
   });
   
-   //chat not found notice. default loaded
-  if (AppNoSelected && !IndexSelected) {
+  //copy admin chatfile link
+   var clipboard3 = new ClipboardJS(".AdminChatfileLink", {
+      container: document.getElementById('adminModal'),
+      text: function (trigger) {
+      adminchatfilelink = trigger.getAttribute('value');
+      devlog(adminchatfilelink);
+      return adminchatfilelink;
+    },
+  });
+  clipboard3.on("success", function (e) {
+    //toast copied.
+    jSuites.notification({
+      title: "Chat File Link Copied",
+      message: "Chat File Link Copied to clipboard.",
+      timeout: 5000,
+    });
+    devlog('chat file link copied to clipboard');
+  });
+  clipboard3.on("error", function (e) {
+    //toast or link popup in modal
+    devlog('failed: chat file link was not copied to clipboard');
+  });
+   /* chat not found notice. default loaded, default gives not found notice, will fix asap*/
+  if (AppNoSelected && IndexSelected == false) {
     jSuites.notification({
       title: "Chat not found",
       message: "Requested chat was not found. Loaded default.",
@@ -228,7 +250,7 @@ $(document).ready(function () {
    $(document).on('shown.bs.tooltip', function (e) {
       setTimeout(function () {
         $(e.target).tooltip('hide');
-      }, 5000);
+      }, 2000);
    });
 
   // show menu to copy chat or auto copy chat id then notify...

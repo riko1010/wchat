@@ -2,12 +2,14 @@
 /* removed pyarchiveurl
 adding mail/mail archive config */
 return [
-  'whatsappchatsURI' => 'https://wchat.space',
-  'SiteUrl' => 'https://wchat.space',
-  'APIUrl' => 'https://wchat.space/api/', 
+  'whatsappchatsURI' => 'https://dev.wchat.space',
+  'SiteUrl' => 'https://dev.wchat.space',
+  'APIUrl' => 'https://dev.wchat.space/api/', 
+  'ADMINUrl' => 'https://dev.wchat.space/admin/', 
+  'IFRAMESUrl' => 'https://dev.wchat.space/iframes/', 
   'PaginationFrom' => 0,
   'recordsperpage' => 100,
-  'unzippyURI' => 'https://wchat.space/python/rununzip.py',
+  'unzippyURI' => 'https://dev.wchat.space/python/rununzip.py',
   'dropboxfolderuriaszip' =>
     'https://www.dropbox.com/sh/bw5ze45z2essn97/AADWfIO9D7riaye8WwI9mDyNa?dl=1',
   'dropboxfolderuriaszipheader' =>
@@ -18,19 +20,19 @@ return [
   'videoPlayerPoster' => 'images/videoposter.png',
   'docViewer' => 'https://docs.google.com/viewer?url=%s&embedded=true',
   'og' => [
-    'image' => 'https://wchat.space/images/ogimage.jpg',
+    'image' => 'https://dev.wchat.space/images/ogimage.jpg',
     'contenttype' => 'chat',
   ],
   'cfFilespattern' => '/WhatsApp Chat with\s(?P<name>.*?)((\.\d)?.txt)/i',
   'sitemapxml' => 'sitemap.xml',
   'robotstxt' => 'robots.txt',
   'baseDir' => dirname(__DIR__),
-  'sqlitedb' => '/home/badlnykl/assets-intranet' . '/' . 'db.sqlite',
+  'sqlitedb' => '/home/badlnykl/assets-intranet' . '/' . 'db-dev.sqlite',
   'SuggestGroupChat' => true,
   'Mail' => [
     'Type' => 'sendmail',
-    'FromName' => 'wchat.space',
-    'FromEmail' => 'archive@wchat.space',
+    'FromName' => 'dev.wchat.space',
+    'FromEmail' => 'archive@dev.wchat.space',
     'cc' => '',
     'bcc' => '',
     ],

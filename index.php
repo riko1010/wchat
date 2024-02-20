@@ -1,8 +1,9 @@
 <?php
-error_reporting(0);
-session_name('wchat.space');
+//error_reporting(0);
+session_name('wchat');
 session_start();
 $_SESSION['statusconsole'] = [];
+//$_SESSION['test'] = 'test';
 require_once 'vendor/autoload.php';
 require 'assets-php/Functions.php';
 use Psr\Container\ContainerInterface;
@@ -22,6 +23,10 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 $Dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+   $r->addRoute(['POST', 'GET'], '/iframes[/]', ['WChat\Controller', 'RouteIFRAMES']);
+   
+   $r->addRoute('POST', '/admin[/]', ['WChat\Controller', 'RouteADMIN']);
+   
    $r->addRoute('GET', '/api[/]', ['WChat\Controller', 'RouteAPI']);
    
    $r->addRoute('GET', '/{queryarg}/{paginationfrom:\d+}[/]', ['WChat\Controller', 'RouteIndex']);
