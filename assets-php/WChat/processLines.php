@@ -317,7 +317,7 @@ div.cID(id="c{$counterfilearray}" cid="{$counterfilearray}")
               div
                span.mEl !{$message}
            span(class="col time fw-light" class=$recipient ? "zml" : "bg-wa")
-            i(class="bx bxs-message-square-dots bx-tada-hover autohideicons annotation" style="color:;")
+            i(class="bx bxs-message-square-dots bx-tada-hover autohideicons annotation" style="color:;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight")
             i(class="bx bx-link bx-tada-hover copycidlink autohideicons" type="copycidlink" cid="c{$counterfilearray}" style="color:;")
             span(class="datetimeraw col hidden") #{$datetimeraw}
             span(class="timeraw") #{$time}
