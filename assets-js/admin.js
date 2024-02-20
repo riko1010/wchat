@@ -43,7 +43,7 @@ $('body').on('change', '#chatfilearchive', function(){
 var fileExtension = ['zip'];
 if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
   $('.uploadchatfilearchive').prop('disabled', true);    
-  $('.chatfilearchivenotice').text("Only these formats are allowed : "+fileExtension.join(', '));
+  $('.chatfilearchivenotice').html('<span color="red">Only these formats are allowed: '+fileExtension.join(', ')+'</span>');
         } else {
   $('.uploadchatfilearchive').prop('disabled', false);       
   $('.chatfilearchivenotice').text($(this).val());        
