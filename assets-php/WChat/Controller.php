@@ -136,12 +136,15 @@ $ChatFilesQueryData = $ChatFilesQuery->status ?
   \BenTools\IterableFunctions\iterable_to_array($ChatFilesQuery->response) 
   : 
   [];
-/* login successful, return email, chatfiles */
+/* login successful, fetch successful, return email, chatfiles */
 print json_encode(['status' => 'success', 'response' => $AdminLoginQueryData[0]['email'], 'chatfiles' => $ChatFilesQueryData]);
-} else {
+exit;
+}
+
+
   /* login failed */
 print json_encode(['status' => 'error', 'response' => 'Email or Password is incorrect.']);
-}
+
 /*
 $Init = $c->get('WChat\Init');
 $App = $c->get('WChat\App');
