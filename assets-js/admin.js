@@ -83,23 +83,25 @@ window.onmessage = function(e) {
   $(".annotation-submit").on('click', function (e) {
     e.preventDefault();
     devlog('update annotation request');
+    annotationUpdateInput = $('#annotation-update-input').val;
     AdminLogoutRequest = $.ajax({
       method: "POST",
       url: ADMINUrl,
       data: {
        updateannotation: 'yes',
-       annotation: 
+       annotation: annotationUpdateInput,
         },
       dataType: "html",
     }).always(function (data) {
        try {
-        jsonlogoutdata = $.parseJSON(data);
+        jsondata = $.parseJSON(data);
        } catch(e) {
          devlog('invalid response');
-         $('#LogoutFormUnknownErrorStatus').removeClass('hidden');
          return false;
         }
-      LoggedIn = false;
+       if (jsondata.status == 'success') {
+         
+       }
       $('#LogoutFormStatus').removeClass('hidden');
       $('.form-signin').removeClass('hidden');
       $('.admincontainer').addClass('hidden');  

@@ -86,6 +86,7 @@ if (isset($RequestPost->uploadchatfile) && !empty($RequestPost->uploadchatfile))
   exit;
 }
 
+/* login */
 if (empty($RequestPost->email) || empty($RequestPost->password)) { print json_encode(['status' => 'error', 'response' => 'Email or Password is empty.']);
   exit;
 }
@@ -93,6 +94,7 @@ if (empty($RequestPost->email) || empty($RequestPost->password)) { print json_en
 $Request->email = $RequestPost->email;
 $Request->password = $RequestPost->password;
 
+/* if logged in */
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
  /* logged in */
   $AdminLoginQuery = $db->SelectOne(
@@ -109,18 +111,19 @@ $AdminLoginQuery = $db->SelectOne(
   ]
   );
 }
-/* iterable to array */
+/* login, fetch data, iterable to array */
 $AdminLoginQueryData = $AdminLoginQuery->status ? 
   \BenTools\IterableFunctions\iterable_to_array($AdminLoginQuery->response)
   : 
   [];
 
 if (!empty($AdminLoginQueryData)) {
-/* logged in */
+/* assign session data, logged in */
 $_SESSION['loggedin'] = true;
 $_SESSION['users_id'] = $AdminLoginQueryData[0]['id'];
 $_SESSION['email'] = $AdminLoginQueryData[0]['email'];
 
+/* get users chatfiles */
 $ChatFilesQuery = $db->Select(
   'chatfiles',
   [
