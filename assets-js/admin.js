@@ -78,3 +78,30 @@ window.onmessage = function(e) {
     $('.annotation-body').removeClass('hidden');
     $('.annotation-body-edit').addClass('hidden');
   });
+  
+  /* add or update annotations */
+  $(".annotation-submit").on('click', function (e) {
+    e.preventDefault();
+    devlog('update annotation request');
+    AdminLogoutRequest = $.ajax({
+      method: "POST",
+      url: ADMINUrl,
+      data: {
+       updateannotation: 'yes',
+       annotation: 
+        },
+      dataType: "html",
+    }).always(function (data) {
+       try {
+        jsonlogoutdata = $.parseJSON(data);
+       } catch(e) {
+         devlog('invalid response');
+         $('#LogoutFormUnknownErrorStatus').removeClass('hidden');
+         return false;
+        }
+      LoggedIn = false;
+      $('#LogoutFormStatus').removeClass('hidden');
+      $('.form-signin').removeClass('hidden');
+      $('.admincontainer').addClass('hidden');  
+    });
+  });

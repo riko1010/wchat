@@ -358,10 +358,10 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 {{ App.SelectedChatFile['annotation'] }}
   </div>
   <div class="annotation-body-edit offcanvas-body hidden">
-    <textarea class="form-control mb-1">
+    <textarea id="annotation-update-input" name="annotation" class="form-control mb-1">
 {{ App.SelectedChatFile['annotation'] }}
     </textarea>
-     <button class="login btn btn-outline-success py-2" type="submit">Save</button>
+     <button class="annotation-submit login btn btn-outline-success py-2" type="button">Save</button>
        <button class="annotation-cancel btn btn-outline-danger py-2" type="button">Cancel</button>
   </div>
 </div>
