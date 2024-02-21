@@ -75,7 +75,7 @@ window.onmessage = function(e) {
   });
   /* cancel edit */
   $('.annotation-close').on('click', function(){
-    $('#AnnotationUpdateSuccess').addClass('hidden');
+    $('.AnnotationNotices').addClass('hidden');
     $('.annotation-body').removeClass('hidden');
     $('.annotation-body-edit').addClass('hidden');
   });
@@ -110,6 +110,7 @@ dataType: "html",
    $('#AnnotationUpdateSuccess').removeClass('hidden');
  } else {
    devlog('update failed');
+   $('#AnnotationUpdateSuccess').removeClass('hidden');
  }
 
     });

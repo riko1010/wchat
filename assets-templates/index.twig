@@ -362,8 +362,11 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 </div>
   </div>
   <div class="annotation-body-edit offcanvas-body hidden">
-     <div id="AnnotationUpdateFailed" class="AnnotationNotices alert alert-danger" role="alert">Annotation update failed.</div>
-    <div id="AnnotationUpdateSuccess" class="AnnotationNotices alert alert-success " role="alert">Annotation updated.
+     <div id="AnnotationUpdateFailed" class="AnnotationNotices alert alert-danger hidden" role="alert">
+       Annotation update failed.
+       </div>
+    <div id="AnnotationUpdateSuccess" class="AnnotationNotices alert alert-success hidden" role="alert">
+      Annotation updated.
     </div>
     <textarea id="annotation-update-input" name="annotation" class="form-control mb-1">{{~ App.SelectedChatFile['annotation'] ~}}
     </textarea>
