@@ -100,8 +100,8 @@ $InsertOrUpdate = $db->InsertOrUpdate(
         'status' => 'error',
         'response' => 'Update failed:'.$e->getMessage()
         ]); 
+  exit;      
   }
-
 
 }
 
