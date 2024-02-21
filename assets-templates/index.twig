@@ -355,13 +355,19 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="annotation-body offcanvas-body">
+    <div class="annotation-content"></div>
+    <div id="AnnotationUpdateFailed" class="AnnotationNotices alert alert-danger hidden" role="alert">
+    <div id="AnnotationUpdateSuccess" class="AnnotationNotices alert alert-success hidden" role="alert">  
+  Email or Password incorrect.
+    </div>
 {{ App.SelectedChatFile['annotation'] }}
+</div>
   </div>
   <div class="annotation-body-edit offcanvas-body hidden">
     <textarea id="annotation-update-input" name="annotation" class="form-control mb-1">{{~ App.SelectedChatFile['annotation'] ~}}
     </textarea>
      <button class="annotation-submit login btn btn-outline-success py-2" type="button">Save</button>
-       <button class="annotation-cancel btn btn-outline-danger py-2" type="button">Cancel</button>
+       <button class="annotation-cancel btn btn-outline-danger py-2" type="button">Close</button>
   </div>
 </div>
 

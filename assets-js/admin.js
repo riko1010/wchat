@@ -105,8 +105,8 @@ window.onmessage = function(e) {
        if (jsondata.status == 'success') {
          devlog('update successful');
          /* close annotation form*/
-         $('.annotation-cancel').trigger('click');
-         $('.annotation-body').html(jsondata.response);
+         $('.annotation-content').html(jsondata.response);
+         $('#AnnotationUpdateSuccess').removeClass('hidden');
        } else {
          devlog('update failed');
        }
