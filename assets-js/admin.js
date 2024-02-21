@@ -99,10 +99,14 @@ window.onmessage = function(e) {
          devlog(e);
          console.log(data);
          devlog('invalid response');
+         
          return false;
         }
        if (jsondata.status == 'success') {
          devlog('update successful');
+         /* close annotation form*/
+         $('.annotation-cancel').trigger('click');
+         $('.annotation-body').html(jsondata.response);
        } else {
          devlog('update failed');
        }
