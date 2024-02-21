@@ -96,10 +96,10 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     Throw new \Exception ($InsertOrUpdate->response);
   }
 } catch (\Exception|\Throwable $e) {
-  return (object) [
+  return json_encode( [
         'status' => 'error',
         'response' => 'Update failed:'.$e->getMessage()
-        ]; 
+        ]); 
   }
 
 
