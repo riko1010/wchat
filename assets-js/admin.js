@@ -86,7 +86,7 @@ window.onmessage = function(e) {
     annotationUpdateInput = $('#annotation-update-input').val;
     AdminLogoutRequest = $.ajax({
       method: "POST",
-      url: ADMINUrl,
+      url: ANNOTATIONUrl,
       data: {
        updateannotation: 'yes',
        annotation: annotationUpdateInput,
@@ -101,9 +101,9 @@ window.onmessage = function(e) {
         }
        if (jsondata.status == 'success') {
          
+       } else {
+         
        }
-      $('#LogoutFormStatus').removeClass('hidden');
-      $('.form-signin').removeClass('hidden');
-      $('.admincontainer').addClass('hidden');  
+      
     });
   });

@@ -74,6 +74,15 @@ $db = $c->get('WChat\Database');
 $RequestPost = new \WChat\Request($_POST, true);
 $Config->InitType = 'ANNOTATION';
 
+/* if request pattern is incorrect */
+if (!isset($RequestPost->updateannotation) || $RequestPost->updateannotation !== 'yes') {
+  $_SESSION = [];
+  print json_encode(['status' => 'error', 'response' => 'error']);
+  exit;
+}
+
+
+
 }
 
 public function RouteADMIN(
