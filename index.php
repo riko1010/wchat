@@ -23,7 +23,7 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 $Dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-   $r->addRoute(['POST', 'GET'], '/iframes[/]', ['WChat\Controller', 'RouteANNOTATION']);
+   $r->addRoute(['POST', 'GET'], '/annotation[/]', ['WChat\Controller', 'RouteANNOTATION']);
    
    $r->addRoute(['POST', 'GET'], '/iframes[/]', ['WChat\Controller', 'RouteIFRAMES']);
    

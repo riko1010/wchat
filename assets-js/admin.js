@@ -83,7 +83,7 @@ window.onmessage = function(e) {
   $(".annotation-submit").on('click', function (e) {
     e.preventDefault();
     devlog('update annotation request');
-    annotationUpdateInput = $('#annotation-update-input').val;
+    annotationUpdateInput = $('#annotation-update-input').val();
     AdminLogoutRequest = $.ajax({
       method: "POST",
       url: ANNOTATIONUrl,
@@ -100,9 +100,9 @@ window.onmessage = function(e) {
          return false;
         }
        if (jsondata.status == 'success') {
-         
+         devlog('update successful');
        } else {
-         
+         devlog('update failed');
        }
       
     });

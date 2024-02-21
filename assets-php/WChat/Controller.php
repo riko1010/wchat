@@ -75,8 +75,7 @@ $RequestPost = new \WChat\Request($_POST, true);
 $Config->InitType = 'ANNOTATION';
 
 /* if request pattern is incorrect */
-if (!isset($RequestPost->updateannotation) || $RequestPost->updateannotation !== 'yes') {
-  $_SESSION = [];
+if (!isset($RequestPost->updateannotation) || $RequestPost->updateannotation !== 'yes' || !isset($RequestPost->annotation) || empty($RequestPost->annotation)) {
   print json_encode(['status' => 'error', 'response' => 'error']);
   exit;
 }
@@ -87,7 +86,10 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     [
     'annotation' => $RequestPost->annotation,
     ],
-    [ 'users_id' => $_SESSION['users_id'] ]
+    [ 
+    'users_id' => $_SESSION['users_id'] 
+    ],
+    'update'
   );
   
   if (!$InsertOrUpdate->status) {
@@ -96,7 +98,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
 } catch (\Exception|\Throwable $e) {
   return (object) [
         'status' => 'error',
-        'response' => 'Insert or Update failed:'.$e->getMessage()
+        'response' => 'Update failed:'.$e->getMessage()
         ]; 
   }
 
