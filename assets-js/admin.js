@@ -19,7 +19,7 @@ $(".logout").on('click', function (e) {
          $('#LogoutFormUnknownErrorStatus').removeClass('hidden');
          return false;
         }
-      
+      LoggedIn = false;
       $('#LogoutFormStatus').removeClass('hidden');
       $('.form-signin').removeClass('hidden');
       $('.admincontainer').addClass('hidden');  
