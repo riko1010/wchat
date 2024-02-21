@@ -81,6 +81,24 @@ if (!isset($RequestPost->updateannotation) || $RequestPost->updateannotation !==
   exit;
 }
 
+try {
+$InsertOrUpdate = $db->InsertOrUpdate(
+    'chatfiles',
+    [
+    'annotation' => $RequestPost->annotation,
+    ],
+    [ 'users_id' => $_SESSION['users_id'] ]
+  );
+  
+  if (!$InsertOrUpdate->status) {
+    Throw new \Exception ($InsertOrUpdate->response);
+  }
+} catch (\Exception|\Throwable $e) {
+  return (object) [
+        'status' => 'error',
+        'response' => 'Insert or Update failed:'.$e->getMessage()
+        ]; 
+  }
 
 
 }
