@@ -175,7 +175,7 @@ if ($messagelinetype == 'unformatted'){
 $template .= '
 component unformattedchatline
   div(class="row justify-content-center m-1")
-   div(class="col-9 rounded alert justify-content-center")
+   div(class="col-9 rounded walert justify-content-center")
     .chat !{$message}
 ';
 }
@@ -295,7 +295,7 @@ div.cID(id="c{$counterfilearray}" cid="{$counterfilearray}")
    div(class="row justify-content-center"): strong(class="col-auto zml chat rounded text-secondary p-1 dategroups") #{$date}
   if $type == "notification"
    div(class="row justify-content-center m-1")
-    div(class="col-10 rounded alert justify-content-center text-center p-1")
+    div(class="col-10 rounded walert justify-content-center text-center p-1")
       small.chat(class="justify-content-center") !{$message}
   elseif $type == "chat"
     div(class=$recipient ? "justify-content-start" : "justify-content-end" class="row m-1")
