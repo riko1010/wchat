@@ -96,6 +96,8 @@ window.onmessage = function(e) {
        try {
         jsondata = $.parseJSON(data);
        } catch(e) {
+         devlog(e);
+         console.log(data);
          devlog('invalid response');
          return false;
         }
