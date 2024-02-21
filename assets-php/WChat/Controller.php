@@ -76,7 +76,7 @@ $Config->InitType = 'ANNOTATION';
 
 /* if request pattern is incorrect */
 if (!isset($RequestPost->updateannotation) || $RequestPost->updateannotation !== 'yes' || !isset($RequestPost->annotation) || empty($RequestPost->annotation)) {
-  print json_encode(['status' => 'error', 'response' => 'error']);
+  print json_encode(['status' => 'error', 'response' => 'error - empty fields']);
   exit;
 }
 
@@ -94,9 +94,16 @@ $InsertOrUpdate = $db->InsertOrUpdate(
   
   if (!$InsertOrUpdate->status) {
     Throw new \Exception ($InsertOrUpdate->response);
+  } else {
+    print json_encode([
+        'status' => 'success',
+        'response' => 'Annotation updated'
+        ]); 
+        exit;
   }
+  
 } catch (\Exception|\Throwable $e) {
-  return json_encode( [
+  print json_encode([
         'status' => 'error',
         'response' => 'Update failed:'.$e->getMessage()
         ]); 
