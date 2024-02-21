@@ -110,7 +110,7 @@ dataType: "html",
    $('#AnnotationUpdateSuccess').removeClass('hidden');
  } else {
    devlog('update failed');
-   $('#AnnotationUpdateSuccess').removeClass('hidden');
+   $('#AnnotationUpdateFailed').removeClass('hidden');
  }
 
     });

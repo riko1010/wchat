@@ -97,7 +97,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
   } else {
     print json_encode([
         'status' => 'success',
-        'response' => 'Annotation updated'
+        'response' => $RequestPost->annotation,
         ]); 
         exit;
   }
