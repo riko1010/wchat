@@ -57,3 +57,19 @@ window.onmessage = function(e) {
 };
 /* end dom ready */
 });
+
+  /* annotations show edit */
+  $('.annotation-body').on('click', function(){
+    if (!LoggedIn) {
+    $('.annotation-body').removeClass('hidden');
+    $('.annotation-body-edit').addClass('hidden');  
+    return false;  
+    }
+    $('.annotation-body').addClass('hidden');
+    $('.annotation-body-edit').removeClass('hidden');
+  });
+  /* cancel edit */
+  $('.annotation-cancel').on('click', function(){
+    $('.annotation-body').removeClass('hidden');
+    $('.annotation-body-edit').addClass('hidden');
+  });

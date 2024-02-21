@@ -100,17 +100,6 @@ head(function () {
     devlog('failed: chat file link was not copied to clipboard');
   });
   
-  /* annotations show edit */
-  $('.annotation-body').on('click', function(){
-    $('.annotation-body').addClass('hidden');
-    $('.annotation-body-edit').removeClass('hidden');
-  });
-  /* cancel edit */
-  $('.annotation-cancel').on('click', function(){
-    $('.annotation-body').removeClass('hidden');
-    $('.annotation-body-edit').addClass('hidden');
-  });
-  
    /* chat not found notice. default loaded, default gives not found notice, will fix asap*/
   if (AppNoSelected && IndexSelected == false) {
     jSuites.notification({
