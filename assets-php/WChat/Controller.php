@@ -63,6 +63,19 @@ $c->call(['WChat\processLines', 'ProcessSearchAndPrint']);
 
 }
 
+
+public function RouteANNOTATION(
+  \Psr\Container\ContainerInterface $c,  
+  ) {
+/* instantiation, ordered */
+$Config = $c->get('WChat\Config');
+$Request = $c->get('WChat\Request');
+$db = $c->get('WChat\Database');
+$RequestPost = new \WChat\Request($_POST, true);
+$Config->InitType = 'ANNOTATION';
+
+}
+
 public function RouteADMIN(
   \Psr\Container\ContainerInterface $c,  
   ) {

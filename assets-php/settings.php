@@ -7,6 +7,7 @@ return [
   'APIUrl' => 'https://dev.wchat.space/api/', 
   'ADMINUrl' => 'https://dev.wchat.space/admin/', 
   'IFRAMESUrl' => 'https://dev.wchat.space/iframes/', 
+  'ANNOTATIONUrl' => 'https://dev.wchat.space/annotation/', 
   'PaginationFrom' => 0,
   'recordsperpage' => 100,
   'unzippyURI' => 'https://dev.wchat.space/python/rununzip.py',
