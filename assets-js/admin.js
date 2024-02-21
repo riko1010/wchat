@@ -63,7 +63,12 @@ window.onmessage = function(e) {
     if (!LoggedIn) {
     $('.annotation-body').removeClass('hidden');
     $('.annotation-body-edit').addClass('hidden');  
+    devlog('not logged in');
+    devlog(LoggedIn);
     return false;  
+    } else {
+      devlog('LoggedIn');
+      devlog(LoggedIn);
     }
     $('.annotation-body').addClass('hidden');
     $('.annotation-body-edit').removeClass('hidden');
