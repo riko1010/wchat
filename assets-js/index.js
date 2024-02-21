@@ -102,10 +102,8 @@ head(function () {
   
   /* annotations */
   $('.annotation-body').on('click', function(){
-    $(this).attr('contenteditable','true');
-  });
-  $('.annotation-body').on('blur', function(){
-    $(this).attr('contenteditable','false');
+    $('.annotation-body').addClass('hidden');
+    $('.annotation-body-edit').removeClass('hidden');
   });
   
    /* chat not found notice. default loaded, default gives not found notice, will fix asap*/
