@@ -74,42 +74,43 @@ window.onmessage = function(e) {
     $('.annotation-body-edit').removeClass('hidden');
   });
   /* cancel edit */
-  $('.annotation-cancel').on('click', function(){
+  $('.annotation-close').on('click', function(){
+    $('#AnnotationUpdateSuccess').addClass('hidden');
     $('.annotation-body').removeClass('hidden');
     $('.annotation-body-edit').addClass('hidden');
   });
   
   /* add or update annotations */
-  $(".annotation-submit").on('click', function (e) {
-    e.preventDefault();
-    devlog('update annotation request');
-    annotationUpdateInput = $('#annotation-update-input').val();
-    AdminLogoutRequest = $.ajax({
-      method: "POST",
-      url: ANNOTATIONUrl,
-      data: {
-       updateannotation: 'yes',
-       annotation: annotationUpdateInput,
-        },
-      dataType: "html",
-    }).always(function (data) {
-       try {
-        jsondata = $.parseJSON(data);
-       } catch(e) {
-         devlog(e);
-         console.log(data);
-         devlog('invalid response');
-         
-         return false;
-        }
-       if (jsondata.status == 'success') {
-         devlog('update successful');
-         /* close annotation form*/
-         $('.annotation-content').html(jsondata.response);
-         $('#AnnotationUpdateSuccess').removeClass('hidden');
-       } else {
-         devlog('update failed');
-       }
-      
+$(".annotation-submit").on('click', function (e) {
+e.preventDefault();
+devlog('update annotation request');
+annotationUpdateInput = $('#annotation-update-input').val();
+AdminLogoutRequest = $.ajax({
+method: "POST",
+url: ANNOTATIONUrl,
+data: {
+ updateannotation: 'yes',
+ annotation: annotationUpdateInput,
+  },
+dataType: "html",
+}).always(function (data) {
+ try {
+  jsondata = $.parseJSON(data);
+ } catch(e) {
+   devlog(e);
+   console.log(data);
+   devlog('invalid response');
+   
+   return false;
+  }
+ if (jsondata.status == 'success') {
+   devlog('update successful');
+   /* close annotation form*/
+   $('.annotation-content').html(jsondata.response);
+   $('#AnnotationUpdateSuccess').removeClass('hidden');
+ } else {
+   devlog('update failed');
+ }
+
     });
   });
