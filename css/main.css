@@ -503,7 +503,8 @@ color:#fff!important;
 }
 
 .annotation-edit {
-  bottom:0;
+  position: absolute;
+  bottom:5px;
 }
 
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
