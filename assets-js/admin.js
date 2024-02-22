@@ -59,7 +59,7 @@ window.onmessage = function(e) {
 });
 
   /* annotations show edit */
-  $('.annotation-body').on('click', function(){
+  $('.annotation-edit').on('click', function(){
     if (!LoggedIn) {
     $('.annotation-body').removeClass('hidden');
     $('.annotation-body-edit').addClass('hidden');  
