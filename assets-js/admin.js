@@ -65,6 +65,16 @@ window.onmessage = function(e) {
     $('.annotation-body-edit').addClass('hidden');  
     devlog('not logged in');
     devlog(LoggedIn);
+    notie.confirm({
+  text: 'Sign in to edit annotations.',
+  cancelCallback: function () {
+    notie.alert({ type: 3, text: 'Aw, why not? :(', time: 2 })
+  },
+  submitCallback: function () {
+    notie.alert({ type: 1, text: 'Good choice! :D', time: 2 })
+  }
+});
+
     return false;  
     } else {
       devlog('LoggedIn');
