@@ -67,11 +67,13 @@ window.onmessage = function(e) {
     devlog(LoggedIn);
     notie.confirm({
   text: 'Sign in to edit annotations.',
+  submitText: 'Login', // optional, default = 'OK'
+  cancelText: 'Cancel', // optional, default = 'Cancel'
+  position: 'bottom', // optional, default = 'top', enum: ['top', 'bottom']
   cancelCallback: function () {
-    notie.alert({ type: 3, text: 'Aw, why not? :(', time: 2 })
   },
   submitCallback: function () {
-    notie.alert({ type: 1, text: 'Good choice! :D', time: 2 })
+    
   }
 });
 
