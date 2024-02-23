@@ -73,7 +73,7 @@ window.onmessage = function(e) {
   cancelCallback: function () {
   },
   submitCallback: function () {
-    
+    $('.admintrigger').trigger('click');
   }
 });
 
