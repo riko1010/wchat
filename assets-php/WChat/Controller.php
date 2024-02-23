@@ -93,6 +93,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
     ],
     [ 
     'id' => $RequestPost->annotationid,
+    'users_id' => $_SESSION['users_id'],
     ],
     'update'
   );
