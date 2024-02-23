@@ -65,7 +65,8 @@ window.onmessage = function(e) {
     $('.annotation-body-edit').addClass('hidden');  
     devlog('not logged in');
     devlog(LoggedIn);
-    
+    /* close annotations , open confirm dialog */
+    $('.closeAnnotationsRight').trigger('click');
     notie.confirm({
   text: 'Sign in to edit annotations.',
   submitText: 'Login', // optional, default = 'OK'
@@ -77,7 +78,7 @@ window.onmessage = function(e) {
     $('.admintrigger').trigger('click');
   }
 });
-$('.notie-overlay').trigger('focus');
+
 
     return false;  
     } else {
