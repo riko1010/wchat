@@ -101,12 +101,14 @@ $(".annotation-submit").on('click', function (e) {
 e.preventDefault();
 devlog('update annotation request');
 annotationUpdateInput = $('#annotation-update-input').val();
+annotationUpdateId = $('#annotation-update-id').val(); 
 AdminLogoutRequest = $.ajax({
 method: "POST",
 url: ANNOTATIONUrl,
 data: {
  updateannotation: 'yes',
  annotation: annotationUpdateInput,
+ annotationid: annotationUpdateId,
   },
 dataType: "html",
 }).always(function (data) {
