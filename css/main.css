@@ -502,6 +502,9 @@ color:#fff!important;
   border-top-right-radius: 0;
 }
 
+#annotation-update-input {
+  height:80%;
+}
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
   position: relative;
