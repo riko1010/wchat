@@ -75,7 +75,12 @@ $RequestPost = new \WChat\Request($_POST, true);
 $Config->InitType = 'ANNOTATION';
 
 /* if request pattern is incorrect */
-if (!isset($RequestPost->updateannotation) || $RequestPost->updateannotation !== 'yes' || !isset($RequestPost->annotation) || empty($RequestPost->annotation)) {
+if (
+  !isset($RequestPost->updateannotation) ||
+  $RequestPost->updateannotation !== 'yes' || 
+  empty($RequestPost->annotation) || 
+  $_SESSION['users_id'] == null
+  ) {
   print json_encode(['status' => 'error', 'response' => 'error - empty fields']);
   exit;
 }
