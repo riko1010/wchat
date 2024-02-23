@@ -75,6 +75,7 @@ window.onmessage = function(e) {
   cancelCallback: function () {
   },
   submitCallback: function () {
+    /* trigger click on admintrigger to show admin */
     $('.admintrigger').trigger('click');
   }
 });
