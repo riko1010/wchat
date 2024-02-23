@@ -141,7 +141,8 @@ if (empty($RequestPost->email) || empty($RequestPost->password)) { print json_en
 }
 
 $Request->email = $RequestPost->email;
-$Request->password = $RequestPost->password;
+/* all user inputs are sanitized. special chars in password reasonably gets escaped/stripped using raw post data */
+$Request->password = $_POST['password'];
 
 /* if logged in */
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
