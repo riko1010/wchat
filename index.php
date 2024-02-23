@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 session_name('wchat');
 session_start();
 $_SESSION['statusconsole'] = [];
