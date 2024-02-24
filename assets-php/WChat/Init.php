@@ -346,6 +346,8 @@ try {
     $SanitizeRawData = new \Elegant\Sanitizer\Sanitizer($data, $filters);
     $SanitizeRawData = $SanitizeRawData->sanitize();
     $RawData = $SanitizeRawData;
+/* temporary retainment if annotations */
+$annotation = $PrevRecord['annotation'];
 
   $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
