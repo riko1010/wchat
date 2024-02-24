@@ -501,9 +501,11 @@ color:#fff!important;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
 #annotation-update-input {
   height:80%;
+}
+.annotation-content {
+  white-space: pre-wrap;
 }
 #AnnotationsRight {
   height:50vh!important;
