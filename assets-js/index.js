@@ -59,6 +59,7 @@ head(function () {
     });
     devlog('failed: page link copy to clipboard');
   });
+  /* end copy page link at top menu, will switch to data attr*/
   
   /* copy individual conversation link - will switch to data attr asap */
    var clipboard2 = new ClipboardJS(".copycidlink", {
@@ -102,27 +103,29 @@ $(document).ready(function () {
   $('#header').css({
       'position' : 'fixed'
     });  
-  /* chat-container top margin, header is sticky on load, changes to fixed and add top margin of calculated header height to chat-container */ 
-    $('.chat-container').css({
-            'margin-top' : $('#header').outerHeight() + 'px'
-        });
-  /* set body scroll padding top to header height */
-  $('body').css({
-            'scroll-padding-top' : $('#header').outerHeight() + 'px'
-        });
+    
+/* chat-container top margin, header is sticky on load, changes to fixed and add top margin of calculated header height to chat-container */ 
+$('.chat-container').css({
+'margin-top' : $('#header').outerHeight() + 'px'
+});
   
-    /* .cID click handler, 
-  siteurl/roundtolowest{ConfigRecordsPerPage}(cID)/#cID
-  */
-  $('.searchchatsresults').on('click', '.cID', function(){
-    var searchchatsresultsFrom = Math.floor($(this).attr('cid') / ConfigRecordsPerPage) * ConfigRecordsPerPage;
-    var searchchatsresultsHash = '#' + $(this).attr('id');
-    searchchatsresultsURI = BasePageURI 
-    + '/' 
-    + searchchatsresultsFrom 
-    + searchchatsresultsHash;
-    window.location.href = searchchatsresultsURI;
-  });
+/* set body scroll padding top to header height */
+$('body').css({
+'scroll-padding-top' : $('#header').outerHeight() + 'px'
+});
+  
+/* .cID click handler, 
+siteurl/roundtolowest{ConfigRecordsPerPage}(cID)/#cID
+*/
+$('.searchchatsresults').on('click', '.cID', function(){
+var searchchatsresultsFrom = Math.floor($(this).attr('cid') / ConfigRecordsPerPage) * ConfigRecordsPerPage;
+var searchchatsresultsHash = '#' + $(this).attr('id');
+searchchatsresultsURI = BasePageURI 
++ '/' 
++ searchchatsresultsFrom 
++ searchchatsresultsHash;
+window.location.href = searchchatsresultsURI;
+});
   
   /* .searchchats on click, hide navicons, show searchbox and searchresults */
   $('.searchchats').on('click', function(){
