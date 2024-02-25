@@ -143,7 +143,7 @@ head(function () {
 $(".annotation-submit").on('click', function (e) {
 e.preventDefault();
 devlog('update annotation request');
-annotationUpdateInput = $('#annotation-update-input').val();
+annotationUpdateInput = tinymce.get('annotation-update-input').getContent();
 annotationUpdateId = $('#annotation-update-id').val(); 
 AdminLogoutRequest = $.ajax({
 method: "POST",
