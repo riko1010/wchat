@@ -188,14 +188,6 @@ $('.searchchatsbox').focus();
   //suggest group chat
   }
 
-var options = {
-    offset: 80,
-};
-var myElement = document.querySelector("header");
-// construct an instance of Headroom, passing the element
-var headroom  = new Headroom(myElement, options);
-// initialise
-headroom.init();
 });
 
 //scroll to hash - natural scroll to fails
@@ -213,15 +205,3 @@ window.addEventListener('load', function () {
 	}
 }, false);
 
-// Google Tag Manager
-(function (w, d, s, l, i) {
-  w[l] = w[l] || [];
-  w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-  var f = d.getElementsByTagName(s)[0],
-    j = d.createElement(s),
-    dl = l != "dataLayer" ? "&l=" + l : "";
-  j.async = true;
-  j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-  f.parentNode.insertBefore(j, f);
-})(window, document, "script", "dataLayer", "GTM-MH4G76CM");
-// End Google Tag Manager
