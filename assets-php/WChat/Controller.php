@@ -88,6 +88,11 @@ if (
 try {
 $RawAnnotation = $_POST['annotation'];
 
+$config = \HTMLPurifier_Config::createDefault();
+$config->set('CSS.AllowedProperties', '');
+$purifier = new \HTMLPurifier($config);
+$clean_html = $purifier->purify($RawAnnotation);
+print $clean_html;
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
