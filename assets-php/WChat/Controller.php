@@ -87,6 +87,12 @@ if (
 
 try {
 $RawAnnotation = $_POST['annotation'];
+require_once '/path/to/HTMLPurifier.auto.php';
+
+$config = \HTMLPurifier_Config::createDefault();
+$purifier = new \HTMLPurifier($config);
+$clean_html = $purifier->purify($RawAnnotation);
+
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
