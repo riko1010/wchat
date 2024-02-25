@@ -1,4 +1,9 @@
 $(document).ready(function(){
+/* tinymce */
+tinymce.init({
+        selector: '#annotation-update-input'
+      });
+      
 /* logout */
 $(".logout").on('click', function (e) {
     e.preventDefault();
