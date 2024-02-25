@@ -298,6 +298,7 @@ $dirname = $cl['dirname'];
 $groupchat = $cl['groupchat'];
 $sync = 1;
 $archivedurl = '';
+$annotation = '';
 //$synctime = time();
 
 try {
@@ -317,6 +318,7 @@ $PrevRecord = count($PrevRecords) > 0 ? $PrevRecords[0] : [];
   $sync = $PrevRecord['sync']; 
   $archivedurl = $PrevRecord['archivedurl'];
   $linescount = $PrevRecord['linescount'];
+  $annotation = $PrevRecord['annotation'];
   } else {
   /* changes, compute line count 
   compile url list for mailing to archive.org */
@@ -349,7 +351,7 @@ try {
     $SanitizeRawData = $SanitizeRawData->sanitize();
     $RawData = $SanitizeRawData;
 /* temporary retainment of annotations, temporary assignment of chatfiles to users_id (1)*/
-$annotation = $PrevRecord['annotation'];
+
 $users_id = 1;
 var_dump($PrevRecord);
 exit;
