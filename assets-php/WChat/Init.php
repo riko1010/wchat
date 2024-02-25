@@ -222,7 +222,7 @@ $MergeDropAndUpdateDb = $c->call([$this, 'MergeDropAndUpdateDb'], [
 if (!$MergeDropAndUpdateDb->status) {
   return (object) [
       'status' => false,
-      'response' => 'Cannot update DB from Filesystem'.$MergeDropAndUpdateDb->response
+      'response' => 'Cannot update DB from Filesystem - '.$MergeDropAndUpdateDb->response
       ]; 
 } 
 /* update Appdata folder with conversation hash */
