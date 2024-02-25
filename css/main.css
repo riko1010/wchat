@@ -513,6 +513,9 @@ color:#fff!important;
 a.autolinked {
   word-break: break-all!important;
 }
+.trumbowyg-editor {
+  max-height: 80%!important;
+}
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
   position: relative;
