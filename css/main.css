@@ -510,6 +510,9 @@ color:#fff!important;
 #AnnotationsRight {
   height:50vh!important;
 }
+a.autolinked {
+  word-break: break-all!important;
+}
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
   position: relative;
