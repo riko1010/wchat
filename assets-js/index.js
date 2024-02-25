@@ -182,23 +182,25 @@ SearchChats(
 });
 /* end searchchatsbox on search (keyup) */
   
-  /* .showmore onclick */
-  $('.showmore').on('click', function(e){
-    devlog('showmore');
-    e.preventDefault();
-    /* add ConfigRecordsPerPage to SPaginationFrom */
-    SPaginationFrom = SPaginationFrom + ConfigRecordsPerPage;
-    // search - showmore
-    /* searchchats input value */
-    searchchatstriggernewval = $('.searchchatsbox').val();
-    SearchChats(
-      APIUrl, 
-      AppSelectedId, 
-      SPaginationFrom, 
-      searchchatstriggernewval,
-      true,
-      );
-  });
+/* search .showmore onclick */
+$('.showmore').on('click', function(e){
+devlog('showmore');
+e.preventDefault();
+/* add ConfigRecordsPerPage to SPaginationFrom */
+SPaginationFrom = SPaginationFrom + ConfigRecordsPerPage;
+// search - showmore
+/* searchchats input value */
+searchchatstriggernewval = $('.searchchatsbox').val();
+SearchChats(
+  APIUrl, 
+  AppSelectedId, 
+  SPaginationFrom, 
+  searchchatstriggernewval,
+  true,
+  );
+});
+/* search .showmore onclick */
+  
   /* show navicons, hide searchbox and searchresults */
     $('.chat-container, .wchatlogo, select .searchselect').on('click', function(){
     $('.searchchats-container, header-search').slideUp(); 
