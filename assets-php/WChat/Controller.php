@@ -259,5 +259,38 @@ if (isset($RequestR->uploadchatfile) && !empty($RequestR->uploadchatfile)) {
 
 }
 
+
+public function RouteSEARCH(
+  \Psr\Container\ContainerInterface $c,  
+  ) {
+/* instantiation, ordered, some classes are unecessary for file upload */
+$Config = $c->get('WChat\Config');
+$Request = $c->get('WChat\Request');
+$db = $c->get('WChat\Database');
+
+$Init = $c->get('WChat\Init');
+$sitemap = $c->get('WChat\generateSiteMap');
+$App = $c->get('WChat\App');
+
+$RequestR = new \WChat\Request($_REQUEST, true);
+$Config->InitType = 'SEARCH';
+
+$loader = new \Twig\Loader\FilesystemLoader(pj($Config->baseDir, 'assets-templates'));
+/* idk why caching was disabled */
+//'cache' => pj($Config->baseDir, '/assets-templates/cache'),
+$twig = new \Twig\Environment($loader, [
+  'cache' => false,
+]);
+
+print $twig->render('search.twig', [
+    'App' => $App,
+    'Config' => $Config,
+    'session' => $_SESSION,
+    'container' => $c,
+  ]);
+  
+
+}
+
 }
 ?>
