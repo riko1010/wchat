@@ -109,14 +109,15 @@ $('#header').css({
 $('.chat-container').css({
 'margin-top' : $('#header').outerHeight() + 'px'
 });
-  
+/* end chat-container header */
+
 /* set body scroll padding top to header height */
 $('body').css({
 'scroll-padding-top' : $('#header').outerHeight() + 'px'
 });
-  
-/* .cID click handler, 
-siteurl/roundtolowest{ConfigRecordsPerPage}(cID)/#cID
+/* end set body scroll padding top to header height */
+
+/* conversation .cID click handler, siteurl/roundtolowest{ConfigRecordsPerPage}(cID)/#cID
 */
 $('.searchchatsresults').on('click', '.cID', function(){
 var searchchatsresultsFrom = Math.floor($(this).attr('cid') / ConfigRecordsPerPage) * ConfigRecordsPerPage;
@@ -127,56 +128,59 @@ searchchatsresultsURI = BasePageURI
 + searchchatsresultsHash;
 window.location.href = searchchatsresultsURI;
 });
+/* end conversation .cID click handler */
+
+/* .searchchats on click, hide navicons, show searchbox and searchresults */
+$('.searchchats').on('click', function(){
+$('.navicons').slideUp();
+$('.searchchats-container, header-search').slideDown();
+$('.searchchatsbox').focus();
+});
+/* end .searchchats on click, */
   
-  /* .searchchats on click, hide navicons, show searchbox and searchresults */
-  $('.searchchats').on('click', function(){
-  $('.navicons').slideUp();
-  $('.searchchats-container, header-search').slideDown();
-  $('.searchchatsbox').focus();
-  });
+/* searchchatsbox on search (keyup) */
+$('.searchchatsbox').on('keyup', function(){
+searchchatstriggernewval = $('.searchchatsbox').val();
+/* hide showmore */
+$('.searchchatsshowmore').slideUp();
+
+if (searchchatstriggernewval == ''){
+  devlog('search input empty');
+  /* abort previous request */
+  try {
+    searchchats.abort();
+    devlog('searchchats aborted');
+  } catch(e) {
+    devlog('searchchats was not aborted');
+  }
+  /* set trigger to default */
+  $('.searchchatstrigger').text('Search..');  
+  $('.searchchatsresults').text('Enter keywords to search.');
+  /* set loading, search icons to default*/
+  $('.searchchatsbox-loadingicon').addClass('hidden');  
+  $('.searchchatsbox-searchicon').removeClass('hidden');  
+  devlog('no search keyword entered');
+} else {
+searchchatstriggernewval = searchchatstriggernewval.slice(0, 5);
+$('.searchchatstrigger').html('<u>'+searchchatstriggernewval+'..</u>');
+$('.searchchatsresults').text('Searching..');
+/* default is searching entire file from 0 with pagination of 100 lines */
+if (SelectedPaginationFrom = 'entirechatfile') {
+ SPaginationFrom = 0;
+} else {
+ SPaginationFrom = AppPaginationFrom;
+}
+// search
+SearchChats(
+  APIUrl, 
+  AppSelectedId, 
+  SPaginationFrom, 
+  searchchatstriggernewval,
+  );
   
-  /* searchchatsbox on search (keyup) */
-  $('.searchchatsbox').on('keyup', function(){
-    searchchatstriggernewval = $('.searchchatsbox').val();
-    /* hide showmore */
-    $('.searchchatsshowmore').slideUp();
-    
-    if (searchchatstriggernewval == ''){
-      devlog('search input empty');
-      /* abort previous request */
-      try {
-        searchchats.abort();
-        devlog('searchchats aborted');
-      } catch(e) {
-        devlog('searchchats was not aborted');
-      }
-      /* set trigger to default */
-      $('.searchchatstrigger').text('Search..');  
-      $('.searchchatsresults').text('Enter keywords to search.');
-      /* set loading, search icons to default*/
-      $('.searchchatsbox-loadingicon').addClass('hidden');  
-      $('.searchchatsbox-searchicon').removeClass('hidden');  
-      devlog('no search keyword entered');
-    } else {
-    searchchatstriggernewval = searchchatstriggernewval.slice(0, 5);
-    $('.searchchatstrigger').html('<u>'+searchchatstriggernewval+'..</u>');
-    $('.searchchatsresults').text('Searching..');
-    /* default is searching entire file from 0 with pagination of 100 lines */
-    if (SelectedPaginationFrom = 'entirechatfile') {
-     SPaginationFrom = 0;
-    } else {
-     SPaginationFrom = AppPaginationFrom;
-    }
-    // search
-    SearchChats(
-      APIUrl, 
-      AppSelectedId, 
-      SPaginationFrom, 
-      searchchatstriggernewval,
-      );
-      
-    }
-  });
+}
+});
+/* end searchchatsbox on search (keyup) */
   
   /* .showmore onclick */
   $('.showmore').on('click', function(e){
