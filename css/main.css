@@ -505,7 +505,7 @@ color:#fff!important;
   height:80%;
 }
 .annotation-content {
-//  white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 #AnnotationsRight {
   height:50vh!important;
