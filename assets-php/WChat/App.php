@@ -65,7 +65,7 @@ $ras = ($ras == null ?
 } else {
 /* ChatFilesData array index, default to first item in array, 0 
 $this->NoSelected should be true but index is a selection of the index chat, unless index offers something else which is reasonable for a social platform. */ 
-$this->NoSelected = true;
+$this->NoSelected = false;
 $this->IndexSelected = true;
 $this->Selected = 0;
 
