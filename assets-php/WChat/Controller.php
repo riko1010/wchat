@@ -86,10 +86,11 @@ if (
 }
 
 try {
+$RawAnnotation = $_POST['annotation'];
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
-    'annotation' => $RequestPost->annotation,
+    'annotation' => $RawAnnotation,
     ],
     [ 
     'id' => $RequestPost->annotationid,
