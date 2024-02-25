@@ -45,25 +45,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->  
 <main class="col d-flex justify-content-center">
   
- <div class="container" style="margin-top: 200px;">
+ <div class="container" id="container" style="margin-top: 200px;">
    
    
    
-     <div class="form-floating hidden">
-      <input type="text" class="form-control" id="SearchIndex" placeholder="Search" required>
+     <div class="form-floating">
+      <input type="text" class="form-control search" id="SearchIndex" placeholder="Search" required>
       <label for="floatingSearch">Search</label>
     </div>
     
-      <div class="list-group list-group-flush searchindex row">
+      <div class="list-group list-group-flush searchindex row list">
   {% for link in Init.Data.Data %}
  
-  <a href="{{~link.url~}}" class="list-group-item list-group-item-action col-9 col-sm-9" aria-current="true">
+  <li>
+    <a href="{{~link.url~}}" class="list-group-item list-group-item-action col-9 col-sm-9" aria-current="true">
     <div class="d-flex justify-content-between">
       <strong class="mb-1">{{~link.name~}}</strong>
       <small>{{~link.dateadded|date("m/d/Y")~}}</small>
     </div>
     <p class="mb-1">{{~link.dirname~}}</p>
   </a>
+  </li>
   {% endfor %} 
   
 </div>
@@ -78,14 +80,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js" integrity="sha512-93wYgwrIFL+b+P3RvYxi/WUFRXXUDSLCT2JQk9zhVGXuS2mHl2axj6d+R6pP+gcU5isMHRj1u0oYE/mWyt/RjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 dev = true;
-$(document).ready(funcrion(){
+$(document).ready(function(){
 var userList = new List('container');
 });
 </script>
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/index.js']) }}" referrerpolicy="no-referrer"></script>  
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/admin.js']) }}" referrerpolicy="no-referrer"></script>  		
 
 </body>
 </html>  
