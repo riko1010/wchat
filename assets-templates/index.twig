@@ -376,8 +376,8 @@ Annotation
     <div id="AnnotationUpdateSuccess" class="AnnotationNotices alert alert-success hidden" role="alert">
       Annotation updated.
     </div>
-    <div id="annotation-update-input" name="annotation" class="form-control mb-1">{{~ App.SelectedChatFile['annotation'] ~}}
-    </div>
+    <textarea id="annotation-update-input" name="annotation" class="form-control mb-1">{{~ App.SelectedChatFile['annotation'] ~}}
+    </textarea>
     <input id="annotation-update-id" name="annotationid" type="hidden" value="{{~ App.SelectedId ~}}"/>
      <button class="annotation-submit login btn btn-outline-success py-2" type="button">Save</button>
        <button class="annotation-close btn btn-outline-danger py-2" type="button">Close</button>
