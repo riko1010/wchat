@@ -89,7 +89,7 @@ try {
 $RawAnnotation = $_POST['annotation'];
 /* sanitize using HTMLPurifier */
 $config = \HTMLPurifier_Config::createDefault();
-/* remove css properties to prevent malicious */
+/* remove css properties to prevent malicious annotations */
 $config->set('CSS.AllowedProperties', '');
 $purifier = new \HTMLPurifier($config);
 $RawAnnotation = $purifier->purify($RawAnnotation);
