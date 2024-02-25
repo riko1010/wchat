@@ -82,17 +82,17 @@ head(function () {
   });
   /* end copy conversation link */
   
-  
-  
    /* chat not found notice. default loaded, default gives not found notice, will fix asap*/
    devlog(AppNoSelected);
    devlog(IndexSelected);
-  if (AppNoSelected == true && IndexSelected !== true) {
+  if (!IndexSelected) {
+  if (AppNoSelected) {
     jSuites.notification({
       title: "Chat not found",
       message: "Requested chat was not found. Loaded default.",
       timeout: 5000,
     });
+   }
   }
 });
 
