@@ -54,21 +54,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="floatingSearch">Search</label>
     </div>
     
-      <div class="list-group list-group-flush searchindex row list">
+      <ul class="list-group list-group-flush searchindex row list">
   {% for link in Init.Data.Data %}
  
-  <li>
+  <ol>
     <a href="{{~link.url~}}" class="list-group-item list-group-item-action col-9 col-sm-9" aria-current="true">
     <div class="d-flex justify-content-between">
-      <strong class="mb-1">{{~link.name~}}</strong>
+      <strong class="mb-1 name">{{~link.name~}}</strong>
       <small>{{~link.dateadded|date("m/d/Y")~}}</small>
     </div>
     <p class="mb-1">{{~link.dirname~}}</p>
   </a>
-  </li>
+  </ol>
   {% endfor %} 
   
-</div>
+<ul
 
 <div class="logosearchindex col w-100">
    <img class="" style="height:100px;width:200px;" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
@@ -81,7 +81,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 dev = true;
 $(document).ready(function(){
-var userList = new List('container');
+var options = {
+  valueNames: [ 'name' ]
+};  
+var userList = new List('container', options);
 });
 </script>
 
