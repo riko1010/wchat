@@ -88,17 +88,10 @@ if (
 try {
 $RawAnnotation = $_POST['annotation'];
 
-$RawAnnotation = '<b style="color:#000;"></b>';
-$config = \HTMLPurifier_Config::createDefault();
-//$config->set('CSS.AllowedProperties', null);
-$purifier = new \HTMLPurifier($config);
-$clean_html = $purifier->purify($RawAnnotation);
-$_SESSION['statusconsole'][] = 'cleanhtml'. $clean_html;
-
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
-    'annotation' => $clean_html,
+    'annotation' => $RawAnnotation,
     ],
     [ 
     'id' => $RequestPost->annotationid,

@@ -23,6 +23,15 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
+$RawAnnotation = '<b style="color:blue;">skdjs</b>';
+$config = \HTMLPurifier_Config::createDefault();
+$config->set('CSS.AllowedProperties', '');
+$purifier = new \HTMLPurifier($config);
+$clean_html = $purifier->purify($RawAnnotation);
+print $clean_html;
+
+exit;
+
 $Dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    $r->addRoute(['POST', 'GET'], '/annotation[/]', ['WChat\Controller', 'RouteANNOTATION']);
    
