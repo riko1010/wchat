@@ -21,10 +21,15 @@ head.js(
 
 /* headjs loads, on ready -> */
 head(function () {
-  /* make links clickable */
+  /* tinymce */
+  tinymce.init({
+        selector: '#annotation-update-input'
+      });
+      
+  /* make links clickable, overflow does nkt wrap - fix asap */
   autolinks(".mEl");
 
-  /* lightbox for images, docs, iframes */
+  /* lightbox for images, docs, iframes, current lightbox does not close when clicking overlay */
   const lightbox = GLightbox({
     touchNavigation: true,
     loop: true,
@@ -34,7 +39,7 @@ head(function () {
     preload: true,
   });
 
-  //copy page link
+  /* copy page link at top menu, will switch to data attr*/
   var clipboard = new ClipboardJS(".copypagelink", {
     text: function (trigger) {
       return window.location.href;
@@ -58,7 +63,8 @@ head(function () {
     });
     devlog('failed: page link copy to clipboard');
   });
-  //copy conversation link
+  
+  /* copy individual conversation link - will switch to data attr asap */
    var clipboard2 = new ClipboardJS(".copycidlink", {
     text: function (trigger) {
       conversationurl= CurrentUrl +'#'+ trigger.getAttribute('cid');
@@ -78,8 +84,9 @@ head(function () {
     //toast or link popup in modal
     devlog('failed: conversation link copy to clipboard');
   });
+  /* end copy conversation link */
   
-  //copy admin chatfile link
+  /* copy admin chatfile link */
    var clipboard3 = new ClipboardJS(".AdminChatfileLink", {
       container: document.getElementById('adminModal'),
       text: function (trigger) {
