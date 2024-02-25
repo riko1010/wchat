@@ -526,6 +526,11 @@ a.autolinked {
 .searchindex * {
   color:#000;
 }
+
+.logosearchindex {
+  position: sticky;
+  top:5px;
+}
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
   position: relative;
