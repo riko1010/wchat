@@ -523,6 +523,9 @@ a.autolinked {
   height: 80%;
 }
 
+.searchindex * {
+  color:#000;
+}
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
   position: relative;
