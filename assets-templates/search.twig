@@ -46,19 +46,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main class="col d-flex justify-content-center">
   
  <div class="container" style="margin-top: 100px;">
-    
+   
+   <img src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
+   
     <input type="text" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl " id="" placeholder="Search">
     
       <div class="list-group list-group-flush searchindex row">
   {% for link in Init.Data.Data %}
  
   <a href="{{~link.url~}}" class="list-group-item list-group-item-action col-9 col-sm-9" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
+    <div class="d-flex justify-content-between">
       <strong class="mb-1">{{~link.name~}}</strong>
       <small>{{~link.dateadded|date("m/d/Y")~}}</small>
     </div>
-    <p class="mb-1">{{~link.name~}}</p>
-    <small>{{~link.url~}}</small>
+    <p class="mb-1">{{~link.dirname~}}</p>
   </a>
   {% endfor %} 
   
