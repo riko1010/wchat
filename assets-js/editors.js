@@ -3,7 +3,7 @@
 head(function () {
   
 /*  wysiwyg editor */
-const quill = new Quill('#annotation-update-input', {
+quill = new Quill('#annotation-update-input', {
     theme: 'snow'
   });
 /* end wysiwyg editor */   
