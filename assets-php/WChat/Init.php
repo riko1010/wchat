@@ -367,8 +367,9 @@ $users_id = 1;
     'mtimeorhash' => $mtimeorhash,
     'archivedurl' => $archivedurl,
     'linescount' => $linescount,
+    'users_id' => $users_id,
     'annotation' => $annotation,
-    'users_id' => $users_id
+    
     ],
     [ 'filepath' => $filepath ]
   );
