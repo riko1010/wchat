@@ -514,8 +514,8 @@ a.autolinked {
   word-break: break-all!important;
 }
 .trumbowyg-editor {
-  max-height: 400px!important;
-  height: 400px;
+  //max-height: 400px!important;
+  //height: 400px;
 }
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
