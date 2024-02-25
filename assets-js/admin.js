@@ -134,7 +134,7 @@ e.preventDefault();
 devlog('update annotation request');
 annotationUpdateInput = tinymce.get('annotation-update-input').getContent();
 
-annotationUpdateId = $('#annotation-update-id').val(); 
+annotationUpdateId = $('#annotation-update-input').trumbowyg('html');
 AdminLogoutRequest = $.ajax({
 method: "POST",
 url: ANNOTATIONUrl,
