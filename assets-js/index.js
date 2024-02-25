@@ -85,7 +85,7 @@ head(function () {
   
   
    /* chat not found notice. default loaded, default gives not found notice, will fix asap*/
-  if (AppNoSelected && IndexSelected == false) {
+  if (AppNoSelected && IndexSelected !== false) {
     jSuites.notification({
       title: "Chat not found",
       message: "Requested chat was not found. Loaded default.",
