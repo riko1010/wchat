@@ -287,6 +287,7 @@ print $twig->render('search.twig', [
     'Config' => $Config,
     'session' => $_SESSION,
     'container' => $c,
+    'Init' => $Init
   ]);
   
 
