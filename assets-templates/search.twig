@@ -54,11 +54,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  
   <a href="{{~link.url~}}" class="list-group-item list-group-item-action col-9 col-sm-9" aria-current="true">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{~link.name~}}</h5>
-      <small>{{~link.dateadded~}}</small>
+      <strong class="mb-1">{{~link.name~}}</strong>
+      <small>{{~link.dateadded|date("m/d/Y")~}}</small>
     </div>
     <p class="mb-1">{{~link.name~}}</p>
-    <small>{{~link.name~}}</small>
+    <small>{{~link.url~}}</small>
   </a>
   {% endfor %} 
   
