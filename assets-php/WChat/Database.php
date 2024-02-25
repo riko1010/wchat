@@ -41,7 +41,7 @@ $sql = "CREATE TABLE IF NOT EXISTS 'chatfiles' (
   'linescount' INTEGER NULL,
   'mtimeorhash' TEXT NOT NULL,
   'users_id' INTEGER NULL,
-  'dateadded' INT NOT NULL default (strftime('%s','now')),
+  'dateadded' INT NOT NULL default current_timestamp,
   'annotation' INTEGER NULL
   )";
 
