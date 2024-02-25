@@ -93,7 +93,7 @@ $config = \HTMLPurifier_Config::createDefault();
 //$config->set('CSS.AllowedProperties', null);
 $purifier = new \HTMLPurifier($config);
 $clean_html = $purifier->purify($RawAnnotation);
-print $clean_html;
+$_SESSION['statusconsole'][] = 'cleanhtml'. $clean_html;
 
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',

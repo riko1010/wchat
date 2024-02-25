@@ -3,6 +3,7 @@
 session_name('wchat');
 session_start();
 $_SESSION['statusconsole'] = [];
+/* $_SESSION['statusconsole'][] = newval; */
 //$_SESSION['test'] = 'test';
 require_once 'vendor/autoload.php';
 require 'assets-php/Functions.php';
