@@ -45,44 +45,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->  
 
 
-  {% if session.loggedin == true %}
-  <div class=" col-12 w-auto">
-  <span>Upload chat file archive</span>
- <form id="UploadChatFile" enctype="multipart/form-data">
-  
-   <div class="form-floating">
-      <input name="foldername" type="text" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" id="FolderName" placeholder="Folder Name" required>
-      <label for="floatingInput">Folder Name</label>
-    </div>
-    
-   <div class="mb-2 input-group">
-  <input name="chatfile" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" type="file" accept="application/zip" id="chatfilearchive">
-  <button class="uploadchatfilearchive btn btn-outline-secondary" type="submit" id="uploadchatfilearchive" disabled>Upload</button>
-</div>
-</form>
-<span class="chatfilearchivenotice">only .zip allowed</span>
-</div>
-{% endif %}
-
-{% if session.loggedin == false %}
-<div>You are not signed in. 
-<a class="iframeSignin" href="">Sign In</a>
-</div>
-{% endif %}
-
 <script>
 dev = true;
-
-/* notify parent of loggedin being false */
-{% if session.loggedin == false %}
-$(document).ready(function(){
-  /* notify on click */
-  $('.iframeSignin').on('click', function(e){
-  e.preventDefault();
-  window.top.postMessage('notloggedin', '*');  
-  });
-});
-{% endif %}
 </script>
 
 <script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/index.js']) }}" referrerpolicy="no-referrer"></script>  

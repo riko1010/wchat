@@ -39,7 +39,7 @@ $Dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    
    $r->addRoute('GET', '/{queryarg:.+}', ['WChat\Controller', 'RouteIndex']);
    
-   $r->addRoute('POST', '/', ['WChat\Controller', 'RouteSEARCH']);
+   $r->addRoute('GET', '/', ['WChat\Controller', 'RouteSEARCH']);
 });
 
 // Fetch method and URI from somewhere
