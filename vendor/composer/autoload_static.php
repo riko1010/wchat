@@ -21,6 +21,7 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '15ccd68fa44f09908130a99637706dd7' => __DIR__ . '/..' . '/bentools/iterable-functions/src/iterable-functions.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
     );
@@ -353,6 +354,16 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'H' => 
+        array (
+            'HTMLPurifier' => 
+            array (
+                0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
+            ),
+        ),
+    );
+
     public static $fallbackDirsPsr0 = array (
         0 => __DIR__ . '/..' . '/phug/phug/src/Phug/Phug',
     );
@@ -382,6 +393,7 @@ class ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177::$prefixesPsr0;
             $loader->fallbackDirsPsr0 = ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177::$fallbackDirsPsr0;
             $loader->classMap = ComposerStaticInite73a3f5c973a80eed91fa7ff0def3177::$classMap;
 
