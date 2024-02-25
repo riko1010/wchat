@@ -84,8 +84,8 @@ head(function () {
   /* end copy conversation link */
   
    /* chat not found notice. default loaded, default gives not found notice, will fix asap*/
-   devlog(AppNoSelected);
-   devlog(IndexSelected);
+   devlog('appnoselected'+AppNoSelected);
+   devlog('indexselected'+IndexSelected);
   if (!IndexSelected) {
   if (AppNoSelected) {
     jSuites.notification({

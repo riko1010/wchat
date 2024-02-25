@@ -54,7 +54,7 @@ if ($Request->queryarg != null) {
 $ras = \ras($Request->queryarg, array_column($Init->Data->Data, 'search'));
 
 /* ras for id field if not found */
-$ras = ($ras == null ? 
+$ras = ($ras === null ? 
 \ras($Request->queryarg, array_column($Init->Data->Data, 'id')) : $ras );
   (($ras === false) ? 
   ([ $this->CheckLegacy, $this->NoSelected, $this->Selected ] = [ true, true, 0 ]) : 
