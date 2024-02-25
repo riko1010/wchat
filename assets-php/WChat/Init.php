@@ -35,8 +35,6 @@ public object $Data;
     
     $CheckFileSystemModification = $c->call([$this, 'CheckFileSystemModification']);
     $_SESSION['statusconsole'][] = $CheckFileSystemModification->response;
-    /* temp */
-    $UpdateDBFromFileSystem = $c->call([$this, 'UpdateDBFromFileSystem']);
     
     if ($CheckFileSystemModification->status !== false) {
       $UpdateDBFromFileSystem = $c->call([$this, 'UpdateDBFromFileSystem']);
@@ -313,7 +311,7 @@ $PrevRecord = count($PrevRecords) > 0 ? $PrevRecords[0] : [];
   if ( $PrevRecord['mtimeorhash'] == $mtimeorhash 
   && $PrevRecord['url'] == $url
      ) {
-  /* no changes, dont compute archivedurl, sync, linecount */
+  /* no changes, dont compute archivedurl, sync, linecount , annotation */
   $archivedurl = $PrevRecord['archivedurl']; 
   $sync = $PrevRecord['sync']; 
   $archivedurl = $PrevRecord['archivedurl'];
@@ -350,11 +348,8 @@ try {
     $SanitizeRawData = new \Elegant\Sanitizer\Sanitizer($data, $filters);
     $SanitizeRawData = $SanitizeRawData->sanitize();
     $RawData = $SanitizeRawData;
-/* temporary retainment of annotations, temporary assignment of chatfiles to users_id (1)*/
-
+/* temporary assignment of chatfiles to users_id (1)*/
 $users_id = 1;
-var_dump($PrevRecord);
-exit;
 
   $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
