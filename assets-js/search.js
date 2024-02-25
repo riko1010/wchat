@@ -90,5 +90,5 @@ $('.searchchatsbox').focus();
     });
 
 
-/* end document.ready */    
+/* end dom ready */    
 });
