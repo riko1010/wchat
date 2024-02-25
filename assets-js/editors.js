@@ -3,6 +3,8 @@
 head(function () {
 /*  wysiwyg editor */
 $('#annotation-update-input').trumbowyg({
-  autogrow: false
+  autogrow: false,
+  autogrowOnEnter: false,
+  height: '400px'
 });
 });
