@@ -47,15 +47,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
  <div class="container" id="container" style="margin-top: 200px;">
    
-   
-   
-     
-    
-      <div class="list-group list-group-flush searchindex row list">
+      <div class="list-group list-group-flush searchindex row ">
   {% for link in Init.Data.Data %}
  
   
-    <a href="{{~link.url~}}" class="list-group-item list-group-item-action col-12 col-sm-12" aria-current="true">
+    <a href="{{~link.url~}}" class="list-group-item col-12 col-sm-12" aria-current="true">
     <div class="d-flex justify-content-between">
       <strong class="mb-1 name">{{~link.name~}}</strong>
       <small>{{~link.dateadded|date("m/d/Y")~}}</small>
@@ -66,7 +62,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   {% endfor %} 
   
 
-<div class="logosearchindex col w-100">
+<div class="logosearchindex col col-9">
    <img class="" style="height:100px;width:200px;" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
    <div class="form-floating">
       <input type="text" class="form-control search" id="SearchIndex" placeholder="Search" required>
@@ -75,9 +71,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    </div>
    
 </div>
-
+</div>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js" integrity="sha512-93wYgwrIFL+b+P3RvYxi/WUFRXXUDSLCT2JQk9zhVGXuS2mHl2axj6d+R6pP+gcU5isMHRj1u0oYE/mWyt/RjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script>
 dev = true;
 
