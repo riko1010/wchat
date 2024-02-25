@@ -45,7 +45,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->  
 <main class="col d-flex justify-content-center">
   
- <div class="container" id="container" style="margin-top: 200px;">
+ <div class="container" id="container" style="margin-top: 300px;">
    
       <div class="list-group list-group-flush searchindex row ">
   {% for link in Init.Data.Data %}
@@ -62,9 +62,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   {% endfor %} 
   
 
-<div class="logosearchindex col col-9">
+<div class="logosearchindex col col-12">
    <img class="" style="height:100px;width:200px;" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
-   <div class="form-floating">
+   <div class="form-floating col-9">
       <input type="text" class="form-control search" id="SearchIndex" placeholder="Search" required>
       <label for="floatingSearch">Search</label>
     </div>
