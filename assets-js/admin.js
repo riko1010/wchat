@@ -63,12 +63,6 @@ window.onmessage = function(e) {
 /* headjs loads, on ready -> */
 head(function () {
 
-/*  wysiwyg editor */
-const quill = new Quill('#annotation-update-input', {
-    theme: 'snow'
-  });
-/* end wysiwyg editor */      
-
 /* copy admin chatfile link */
    var clipboard3 = new ClipboardJS(".AdminChatfileLink", {
       container: document.getElementById('adminModal'),
