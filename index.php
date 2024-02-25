@@ -24,7 +24,6 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 $Dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-   $r->addRoute(['POST', 'GET'], '/', ['WChat\Controller', 'RouteSEARCH']);
    
    $r->addRoute(['POST', 'GET'], '/annotation[/]', ['WChat\Controller', 'RouteANNOTATION']);
    
@@ -38,7 +37,9 @@ $Dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    
    $r->addRoute('GET', '/{queryarg}[/]', ['WChat\Controller', 'RouteIndex']);
    
-   $r->addRoute('GET', '/[{queryarg:.+}]', ['WChat\Controller', 'RouteIndex']);
+   $r->addRoute('GET', '/{queryarg:.+}', ['WChat\Controller', 'RouteIndex']);
+   
+   $r->addRoute('POST', '/', ['WChat\Controller', 'RouteSEARCH']);
 });
 
 // Fetch method and URI from somewhere
