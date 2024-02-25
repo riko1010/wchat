@@ -39,7 +39,10 @@ $sql = "CREATE TABLE IF NOT EXISTS 'chatfiles' (
   'url' TEXT NOT NULL, 
   'archivedurl' TEXT NULL, 
   'linescount' INTEGER NULL,
-  'mtimeorhash' TEXT NOT NULL
+  'mtimeorhash' TEXT NOT NULL,
+  'users_id' INTEGER NULL,
+  'dateadded' DATETIME NULL,
+  'annotation' INTEGER NULL
   )";
 
 $statement = $this->adapter->query($sql);
@@ -65,6 +68,14 @@ $sql = "CREATE TABLE IF NOT EXISTS 'AppLog' (
 $statement = $this->adapter->query($sql);
 $statement->execute();
 
+$sql = "CREATE TABLE IF NOT EXISTS 'users
+  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+  'email' TEXT NOT NULL,
+  'password' TEXT NOT NULL
+  )";
+
+$statement = $this->adapter->query($sql);
+$statement->execute();
 } 
 
 public function InsertOrUpdate(
