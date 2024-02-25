@@ -75,5 +75,20 @@ SearchChats(
 });
 /* end search .showmore onclick */
 
-  
+/* .searchchats on click, hide navicons, show searchbox and searchresults */
+$('.searchchats').on('click', function(){
+$('.navicons').slideUp();
+$('.searchchats-container, header-search').slideDown();
+$('.searchchatsbox').focus();
+});
+/* end .searchchats on click, */
+ 
+  /* show navicons, hide searchbox and searchresults */
+    $('.chat-container, .wchatlogo, select .searchselect').on('click', function(){
+    $('.searchchats-container, header-search').slideUp(); 
+    $('.navicons').slideDown();   
+    });
+
+
+/* end document.ready */    
 });

@@ -99,40 +99,12 @@ head(function () {
 
 $(document).ready(function () {
 
-/* change header position to fixed on load */
-$('#header').css({
-  'position' : 'fixed'
-});  
-/* end change header position to fixed on load */
-
-/* chat-container top margin, header is sticky on load, changes to fixed and add top margin of calculated header height to chat-container */ 
-$('.chat-container').css({
-'margin-top' : $('#header').outerHeight() + 'px'
-});
-/* end chat-container header */
-
 /* set body scroll padding top to header height */
 $('body').css({
 'scroll-padding-top' : $('#header').outerHeight() + 'px'
 });
 /* end set body scroll padding top to header height */
 
-
-
-/* .searchchats on click, hide navicons, show searchbox and searchresults */
-$('.searchchats').on('click', function(){
-$('.navicons').slideUp();
-$('.searchchats-container, header-search').slideDown();
-$('.searchchatsbox').focus();
-});
-/* end .searchchats on click, */
- 
-  /* show navicons, hide searchbox and searchresults */
-    $('.chat-container, .wchatlogo, select .searchselect').on('click', function(){
-    $('.searchchats-container, header-search').slideUp(); 
-    $('.navicons').slideDown();   
-    });
-  
   /* setup select2 chafiles search */
   $(".searchselect").select2( {
     theme: 'bootstrap-5'
