@@ -36,6 +36,8 @@ public object $Data;
     $CheckFileSystemModification = $c->call([$this, 'CheckFileSystemModification']);
     $_SESSION['statusconsole'][] = $CheckFileSystemModification->response;
     
+    $UpdateDBFromFileSystem = $c->call([$this, 'UpdateDBFromFileSystem']);
+    
     if ($CheckFileSystemModification->status !== false) {
       $UpdateDBFromFileSystem = $c->call([$this, 'UpdateDBFromFileSystem']);
        if (!$UpdateDBFromFileSystem->status)
@@ -349,6 +351,8 @@ try {
 /* temporary retainment of annotations, temporary assignment of chatfiles to users_id (1)*/
 $annotation = $PrevRecord['annotation'];
 $users_id = 1;
+var_dump($PrevRecord);
+exit;
 
   $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
