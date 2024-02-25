@@ -48,6 +48,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <div class="container" id="container" style="margin-top: 200px;">
    
    
+   
+     <div class="form-floating">
+      <input type="text" class="form-control search" id="SearchIndex" placeholder="Search" required>
+      <label for="floatingSearch">Search</label>
+    </div>
+    
       <ul class="list-group list-group-flush searchindex row list">
   {% for link in Init.Data.Data %}
  
@@ -66,10 +72,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="logosearchindex col w-100">
    <img class="" style="height:100px;width:200px;" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
-   <div class="form-floating col-9">
-      <input type="text" class="form-control search" id="SearchIndex" placeholder="Search" required>
-      <label for="floatingSearch">Search</label>
-    </div>
    </div>
    
 </div>
