@@ -49,13 +49,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     <input type="text" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl " id="" placeholder="Search">
     
-      <div class="list-group">
+      <div class="list-group searchindex">
   {% for link in Init.Data.Data %}
  
-  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+  <a href="#" style="color:#000;" class="list-group-item list-group-item-action" aria-current="true">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small>3 days ago</small>
+      <h5 class="mb-1">{{~link.name~}}</h5>
+      <small>{{~link.dateadded~}}</small>
     </div>
     <p class="mb-1">Some placeholder content in a paragraph.</p>
     <small>And some small print.</small>
