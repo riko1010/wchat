@@ -132,9 +132,9 @@ head(function () {
 $(".annotation-submit").on('click', function (e) {
 e.preventDefault();
 devlog('update annotation request');
-annotationUpdateInput = tinymce.get('annotation-update-input').getContent();
+annotationUpdateInput = $('#annotation-update-input').trumbowyg('html');
 
-annotationUpdateId = $('#annotation-update-input').trumbowyg('html');
+annotationUpdateId = $('#annotation-update-id').val(); 
 AdminLogoutRequest = $.ajax({
 method: "POST",
 url: ANNOTATIONUrl,
