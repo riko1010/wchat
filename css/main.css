@@ -528,8 +528,9 @@ a.autolinked {
 }
 
 .logosearchindex {
-  position: sticky;
+  position: fixed!important;
   top:5px;
+  z-index:999999;
 }
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
