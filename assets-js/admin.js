@@ -1,7 +1,5 @@
 $(document).ready(function(){
-/* tinymce */
 
-      
 /* logout */
 $(".logout").on('click', function (e) {
     e.preventDefault();
@@ -67,7 +65,13 @@ head(function () {
 
 /* tinymce wysiwyg editor */
   tinymce.init({
-        selector: '#annotation-update-input'
+        selector: '#annotation-update-input',
+        menubar: 'edit view insert format',
+        plugins: [
+  'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+  'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+  'media', 'table', 'emoticons', 'template', 'help'
+],
       });
 /* end tinymce wysiwyg editor */      
 /* copy admin chatfile link */
