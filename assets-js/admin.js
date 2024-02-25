@@ -132,7 +132,8 @@ head(function () {
 $(".annotation-submit").on('click', function (e) {
 e.preventDefault();
 devlog('update annotation request');
-annotationUpdateInput = tinymce.get('annotation-update-input').getContent();
+annotationUpdateInput = quill.getSemanticHTML();
+/* quill.root.innerHTML */
 annotationUpdateId = $('#annotation-update-id').val(); 
 AdminLogoutRequest = $.ajax({
 method: "POST",
