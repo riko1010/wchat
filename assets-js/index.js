@@ -16,7 +16,6 @@ head.js(
   { jsuites: "https://cdn.jsdelivr.net/npm/jsuites@5.0.27/dist/jsuites.min.js" },
   { notie: "https://cdn.jsdelivr.net/npm/notie@4.3.1/dist/notie.min.js" },
   { markjs: "https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js" },
-  { quill: "https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js" },
   { tinymce: "https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js" }
 );
 

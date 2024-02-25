@@ -3,9 +3,9 @@
 head(function () {
   
 /*  wysiwyg editor */
-quill = new Quill('#annotation-update-input', {
-    theme: 'snow'
-  });
+tinymce.init({
+  selector: '#annotation-update-input'
+});  
 /* end wysiwyg editor */   
 
 
