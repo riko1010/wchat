@@ -529,8 +529,9 @@ a.autolinked {
 
 .logosearchindex {
   position: fixed!important;
-  top:5px;
-  z-index:999999;
+  top:200px!important;
+  background-color: #fff;
+  
 }
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
