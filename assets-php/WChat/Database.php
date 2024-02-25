@@ -68,7 +68,7 @@ $sql = "CREATE TABLE IF NOT EXISTS 'AppLog' (
 $statement = $this->adapter->query($sql);
 $statement->execute();
 
-$sql = "CREATE TABLE IF NOT EXISTS 'users
+$sql = "CREATE TABLE IF NOT EXISTS 'users' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
   'email' TEXT NOT NULL,
   'password' TEXT NOT NULL

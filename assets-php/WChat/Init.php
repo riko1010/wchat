@@ -347,7 +347,7 @@ try {
     $SanitizeRawData = $SanitizeRawData->sanitize();
     $RawData = $SanitizeRawData;
 /* temporary retainment of annotations, temporary assignment of chatfiles to users_id (1)*/
-$annotation = @$PrevRecord['annotation'];
+$annotation = $PrevRecord['annotation'];
 $users_id = 1;
 
   $InsertOrUpdate = $db->InsertOrUpdate(
