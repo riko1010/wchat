@@ -87,12 +87,11 @@ if (
 
 try {
 $RawAnnotation = $_POST['annotation'];
-
 $config = \HTMLPurifier_Config::createDefault();
 $config->set('CSS.AllowedProperties', '');
 $purifier = new \HTMLPurifier($config);
-$clean_html = $purifier->purify($RawAnnotation);
-print $clean_html;
+$RawAnnotation = $purifier->purify($RawAnnotation);
+
 $InsertOrUpdate = $db->InsertOrUpdate(
     'chatfiles',
     [
@@ -110,7 +109,7 @@ $InsertOrUpdate = $db->InsertOrUpdate(
   } else {
     print json_encode([
         'status' => 'success',
-        'response' => $RequestPost->annotation,
+        'response' => $RawAnnotation,
         ]); 
         exit;
   }
