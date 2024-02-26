@@ -81,8 +81,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  </select>   
 
  <div class="row header-toolbar pt-2">
-  <div style="background : url('{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}'); background-size: contain;background-repeat: no-repeat; background-origin: content-box;" class="col-4 text-start wchatlogo">
+  
+    <div class="col-4 text-start wchatlogo"><img src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}">
   </div> 
+  
   <div class="col-8 container text-end">
   <div class="col-12">
   <div style="display:none;" class="searchchats-container">
