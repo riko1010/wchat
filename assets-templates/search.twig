@@ -49,7 +49,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    
       <div class="list-group list-group-flush searchindex row ">
   {% for link in Init.Data.Data %}
- 
   
     <a href="{{~link.url~}}" class="list-group-item col-12 col-sm-12" aria-current="true">
     <div class="d-flex justify-content-between">
@@ -63,10 +62,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
 
 <div class="logosearchindex col col-12">
-  <form>
+  <form method="get" action="">
    <img class="" style="height:100px;width:200px;" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
    <div class="form-floating col-9">
-      <input type="text" class="form-control search" id="SearchIndex" placeholder="Search" required>
+      <input type="text" name="search" class="form-control search" id="SearchIndex" placeholder="Search" required>
       <label for="floatingSearch">Search</label>
     </div>
     </form>
