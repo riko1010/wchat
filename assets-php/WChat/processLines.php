@@ -96,6 +96,7 @@ public function processline(
   ){ 
 $Config = $c->get('WChat\Config');
 $App = $c->get('WChat\App');
+$db = $c->get('WChat\Database');
 $string = $line;
 
 $pattern = '/(?P<time>.*?,+.*?)-(?P<sender>.*?):(?P<message>.*)/is';               
@@ -126,15 +127,16 @@ if(isset($messagelinetype)){
 
 $recipient = ($App->GroupChat ? true : ( (strtolower($sender) == strtolower($App->SelectedChatFile['name'])) ? true : false));
 
+if (empty($App->SelectedChatFile['sender']) && strtolower($sender) !== strtolower($App->SelectedChatFile['name'])) {
 $UpdateAppData = $db->InsertOrUpdate(
     'chatfiles',
     [
-    'sender' => $Config->cfFolder
+    'sender' => $sender
     ],
     [ 'id' => $App->SelectedChatFile['id']],
-    
+    'update'
   );
-
+}
 
 if ($recipient == true) {
   $Config->SuggestGroupChat = false;
