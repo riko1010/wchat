@@ -53,10 +53,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     <a href="{{~link.url~}}" class="list-group-item col-12 col-sm-12" aria-current="true">
     <div class="d-flex justify-content-between">
-      <strong class="mb-1 name">{{~link.name~}} / {{~link.sender~}}</strong>
+      <strong class="mb-1 name">{{~link.name~}} </strong>
       <small>{{~link.dateadded|date("m/d/Y")~}}</small>
     </div>
-    <p class="mb-1">{{~link.dirname~}}</p>
+    <p class="mb-1">and {{link.sender}}</p>
   </a>
   {% endif %}
   {% endfor %} 
