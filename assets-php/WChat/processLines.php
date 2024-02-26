@@ -104,9 +104,7 @@ $messagelinetype = 'chat';
 $DateTimeRaw = trim($matches['time']);
 $sender = trim($matches['sender']);
 $message = trim($matches['message']);
-if(!empty($sender) && !empty($App->Name) && $sender !== $App->Name){
-$_SESSION['statusconsole'][] = $sender;
-}
+
 } else {
 $pattern = '/(?P<time>.*?,.*?)-(?P<message>.*)/is';
 if (preg_match($pattern, $string, $matches)) {
