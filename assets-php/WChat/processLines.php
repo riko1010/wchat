@@ -126,6 +126,16 @@ if(isset($messagelinetype)){
 
 $recipient = ($App->GroupChat ? true : ( (strtolower($sender) == strtolower($App->SelectedChatFile['name'])) ? true : false));
 
+$UpdateAppData = $db->InsertOrUpdate(
+    'chatfiles',
+    [
+    'sender' => $Config->cfFolder
+    ],
+    [ 'id' => $App->SelectedChatFile['id']],
+    
+  );
+
+
 if ($recipient == true) {
   $Config->SuggestGroupChat = false;
 }
