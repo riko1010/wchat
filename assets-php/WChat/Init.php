@@ -322,6 +322,7 @@ $PrevRecord = count($PrevRecords) > 0 ? $PrevRecords[0] : [];
   compile url list for mailing to archive.org */
   $linescount = $this->LinesCount($cl['filepath']);  
   $urlList .= $url.PHP_EOL;
+  $annotation = $PrevRecord['annotation'];
   }
  } else {
   /* if no previous records, compute these , intensive operations */
