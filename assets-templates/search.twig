@@ -64,7 +64,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </strong>
       <small>{{~link.dateadded|date("m/d/Y")~}}</small>
     </div>
-    <p class="mb-1">{{link.annotation|striptags}}
+    <p class="mb-1">{{link.annotation|striptags|slice(0,20)}}
+    </p>
+    <p class="mb-1">WhatsApp Chat
     </p>
   </a>
   {% endif %}
