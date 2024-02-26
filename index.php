@@ -18,11 +18,12 @@ use function BenTools\IterableFunctions\iterable_to_array as iter_to_array;
 
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
+/* 
 use Whoops\Run;
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
-
+*/
 $Dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    
    $r->addRoute(['POST', 'GET'], '/annotation[/]', ['WChat\Controller', 'RouteANNOTATION']);
