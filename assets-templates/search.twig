@@ -51,7 +51,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   {% for link in Init.Data.Data %}
   {% if RequestR.search|lower in link.name|lower or RequestR.search|lower in link.dirname|lower%}
     
-    <a href="{{~link.url~}}" class="list-group-item col-12 col-sm-12" aria-current="true">
+    <a href="{{~link.url~}}" class="list-group-item col-12 col-sm-12 searchindexitems" aria-current="true">
     <div class="d-flex justify-content-between">
   <strong class="mb-1 name">{{link.name}} and
     {% if link.sender == '' %}
