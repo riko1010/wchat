@@ -64,7 +64,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </strong>
       <small>{{~link.dateadded|date("m/d/Y")~}}</small>
     </div>
-    <p class="mb-1">{{link.annotation|slice(0,20)}}
+    <p class="mb-1">{{link.annotation|striptags}}
     </p>
   </a>
   {% endif %}
