@@ -126,7 +126,7 @@ if(isset($messagelinetype)){
 
 $recipient = ($App->GroupChat ? true : ( (strtolower($sender) == strtolower($App->SelectedChatFile['name'])) ? true : false));
 
-$_SESSION['statusconsole'] = $sender;
+$_SESSION['statusconsole'] = 'sender';
 
 if ($recipient == true) {
   $Config->SuggestGroupChat = false;
