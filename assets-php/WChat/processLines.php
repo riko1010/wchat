@@ -126,7 +126,7 @@ $sender = ''; /* unformatted */
 if(isset($messagelinetype)){
 
 $recipient = ($App->GroupChat ? true : ( (strtolower($sender) == strtolower($App->SelectedChatFile['name'])) ? true : false));
-
+/* update sender in db, alt is manual input by user */
 if (empty($App->SelectedChatFile['sender']) && strtolower($sender) !== strtolower($App->SelectedChatFile['name'])) {
 $UpdateAppData = $db->InsertOrUpdate(
     'chatfiles',
