@@ -56,11 +56,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <strong class="mb-1 name">{{~link.name~}} </strong>
       <small>{{~link.dateadded|date("m/d/Y")~}}</small>
     </div>
-    <p class="mb-1">and 
+    <p class="mb-1">{{link.name}} and 
     {% if link.sender == '' %}
     you
     {% endif %}
-    {{link.sender}}</p>
+    {% if link.sender != '' %}
+    {{link.sender}}
+    {% endif %}
+    </p>
   </a>
   {% endif %}
   {% endfor %} 
