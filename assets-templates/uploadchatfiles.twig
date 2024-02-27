@@ -62,6 +62,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </form>
 <span class="chatfilearchivenotice">only .zip allowed</span>
 
+
 </div>
 {% endif %}
 
@@ -82,17 +83,7 @@ $(document).ready(function(){
   window.top.postMessage('notloggedin', '*');  
   });
   {% endif %}
-  // Dropzone has been added as a global variable.
-  const dropzone = new Dropzone("div.my-dropzone", { 
-    url: "/file/post",
-    previewsContainer: ".dropzone-preview",
-    init: function() {
-                this.hiddenFileInput.setAttribute("webkitdirectory", true);
-            },
-  }
-  );
 
-  
  /* uploadchatfilearchive */
   
   
