@@ -51,12 +51,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <form id="UploadChatFile" enctype="multipart/form-data">
   
    <div class="form-floating">
-      <input name="foldername" type="text" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" id="FolderName" placeholder="Folder Name" webkitdirectory multiple required>
+      <input name="foldername" type="text" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" id="FolderName" placeholder="Folder Name" required>
       <label for="floatingInput">Folder Name</label>
     </div>
     
    <div class="mb-2 input-group">
-  <input name="chatfile" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" type="file" accept="application/zip" id="chatfilearchive">
+  <input name="chatfile" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" type="file" accept="application/zip" id="chatfilearchive" webkitdirectory multiple>
   <button class="uploadchatfilearchive btn btn-outline-secondary" type="submit" id="uploadchatfilearchive" disabled>Upload</button>
 </div>
 </form>
