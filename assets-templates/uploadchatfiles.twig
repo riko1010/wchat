@@ -29,8 +29,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js" integrity="sha512-8Nk/zoTKjNixnM15wXjpF26KR4Ln87cc5Yllc5xP54wwbcKnljAAn2JP+tYAS8+4e7s/XK8XTiDH0Ltw2fmoBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/classes.js']) }}" referrerpolicy="no-referrer"></script>  
-
 <script src="https://cdn.jsdelivr.net/npm/dropzone@6.0.0-beta.2/dist/dropzone-min.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/dropzone@6.0.0-beta.2/dist/dropzone.min.css" rel="stylesheet">
@@ -114,10 +112,6 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
 });
 {% endif %}
 </script>
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/index.js']) }}" referrerpolicy="no-referrer"></script>  
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/admin.js']) }}" referrerpolicy="no-referrer"></script>  		
 
 </body>
 </html>  
