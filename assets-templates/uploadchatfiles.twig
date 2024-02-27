@@ -65,6 +65,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 </form>
 <span class="chatfilearchivenotice">only .zip allowed</span>
+
+<div class="my-dropzone"></div>
+
 </div>
 {% endif %}
 
@@ -85,6 +88,10 @@ $(document).ready(function(){
   e.preventDefault();
   window.top.postMessage('notloggedin', '*');  
   });
+  
+  // Dropzone has been added as a global variable.
+  const dropzone = new Dropzone("div.my-dropzone", { url: "/file/post" });
+
 });
 {% endif %}
 </script>
