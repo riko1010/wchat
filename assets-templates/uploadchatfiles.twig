@@ -75,16 +75,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 dev = true;
-
-/* notify parent of loggedin being false */
-{% if session.loggedin == false %}
 $(document).ready(function(){
+  /* notify parent of loggedin being false */
+{% if session.loggedin == false %}
   /* notify on click */
   $('.iframeSignin').on('click', function(e){
   e.preventDefault();
   window.top.postMessage('notloggedin', '*');  
   });
-  
+  {% endif %}
   // Dropzone has been added as a global variable.
   const dropzone = new Dropzone("div.my-dropzone", { 
     url: "/file/post",
@@ -111,7 +110,7 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
 });  
 
 });
-{% endif %}
+
 </script>
 
 </body>
