@@ -261,9 +261,9 @@ if (empty($_SESSION['users_id'])) {
 if (!empty($RequestR->chatfilearchive)) {
   print json_encode(['status' => 'success', 'response' => 'file upload.']);
   
- print $_FILES["fileToUpload"]["name"];
- print $_FILES["fileToUpload"]["tmp_name"];
-  
+ print $_FILES["chatfilearchive"]["name"];
+ print $_FILES["chatfilearchive"]["tmp_name"];
+ exit;
   
   
   $zip_file = '/path/to/file.zip'; // I wan to get stream a CSV files
