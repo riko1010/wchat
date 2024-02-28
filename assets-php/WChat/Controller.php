@@ -277,14 +277,10 @@ $badfiletypes = [];
 $foldername = $_POST['foldername'];
 $altfoldername = $foldername.'-'.time();
 if (!is_dir(\pj($Config->baseDir, 'test', $foldername))) {
-  $foldername = mkdir(\pj($Config->baseDir,'test',$foldername;
-  
-  if (!is_dir(\pj($Config->baseDir,'test', $altfoldername)) {
-  $foldername = \pj($Config->baseDir,'test',$altfoldername);
+  $foldername = \pj($Config->baseDir,'test',$foldername);
   mkdir($foldername);
-  } else {
-  }
-} else {
+} elseif (!is_dir(\pj($Config->baseDir,'test', $altfoldername)) {
+  $foldername = \pj($Config->baseDir,'test',$altfoldername);
   mkdir($foldername);
 }
 for ($i = 0; $i < $zip->numFiles; $i++) {
