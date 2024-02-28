@@ -282,7 +282,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     if ($extension !== 'png') {
     // I want to handle csv files
         $stream = $zip->getStream($name); // No stream index access before PHP 8.2
-        $zip->deleteName($name);
+        $zip->extractTo($Config->baseDir, $name);
         print 'deleted'.$name.$stream.'<br/>';
         // Starting PHP 8.2 $zip->getStreamIndex() or $zip->getStreamName()
         // Do stuff with $stream
