@@ -1,13 +1,13 @@
 
 $(document).ready(function(){
   /* notify parent of loggedin being false */
-{% if session.loggedin == false %}
+if (SessionLoggedIn === false) {
   /* notify on sign in click */
   $('.iframeSignin').on('click', function(e){
   e.preventDefault();
   window.top.postMessage('notloggedin', '*');  
   });
-  {% endif %}
+}
 
 /* uploadchatfilearchive */
   
