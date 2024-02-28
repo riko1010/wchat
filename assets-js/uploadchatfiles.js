@@ -14,9 +14,8 @@ if (SessionLoggedIn === false) {
 /* selected file validation */  
 $('body').on('change', '#chatfilearchive', function(e){
   /* allowed extensions */
-var fileExtension = ['zip', 'tar.gz'];
-devlog($(this).val().split('.').pop().toLowerCase());
-if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == 1) {
+var fileExtension = ['zip', 'gz', '7z', 'rar'];
+if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
   $('.uploadchatfilearchive').prop('disabled', true);    
   $('.chatfilearchivenotice').html('<span style="color:red;">Only these formats are allowed: '+fileExtension.join(', ')+'</span>');
         } else {
