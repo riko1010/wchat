@@ -303,6 +303,8 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     break;
     default: $badfiletypes[] = 'bad file type:'.$name.' '.$extension;
     }
+    print 'extracted '.$name;
+    print '<br/>';
 }
 
 var_dump($badfiletypes);
