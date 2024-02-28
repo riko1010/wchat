@@ -22,7 +22,7 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
   var selectedfilename = e.target.files[0].name;
   selectedfilename = selectedfilename.split('.');
   $('.uploadchatfilearchive').prop('disabled', false);       
-  $('#FolderName').text(selectedfilename);  
+  $('#FolderName').val(selectedfilename);  
         }
 });  
 
