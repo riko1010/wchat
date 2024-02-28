@@ -277,13 +277,14 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
 // Check file by file
     $name = $zip->getNameIndex($i);
     // Retrieve entry name
+    /* detect mime type and extention with a good library asap */
     $extension = pathinfo($name, PATHINFO_EXTENSION);
     switch ($extension) {
     // This match arm:
     case 'png':
     case 'doc': $zip->extractTo($Config->baseDir.'/test', $name);
     break;
-    default: $badfiletypes[] = $name.' '.$extension;
+    default: $badfiletypes[] = 'bad file type:'.$name.' '.$extension;
     }
 }
   
