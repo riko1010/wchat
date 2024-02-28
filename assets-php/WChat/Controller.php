@@ -279,14 +279,24 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     // Retrieve entry name
     /* detect mime type and extention with a good library asap */
     $extension = pathinfo($name, PATHINFO_EXTENSION);
+    $badfiletypes = [];
     switch ($extension) {
     // This match arm:
+    case 'txt':
     case 'png':
-    case 'doc': $zip->extractTo($Config->baseDir.'/test', $name);
+    case 'jpg':
+    case 'gif':  
+    case 'opus':
+    case 'mp4':  
+    case 'pdf':  
+    case 'doc': 
+    case 'docx': $zip->extractTo($Config->baseDir.'/test', $name);
     break;
     default: $badfiletypes[] = 'bad file type:'.$name.' '.$extension;
     }
 }
+
+var_dump($badfiletypes);
   
   exit;
 }
