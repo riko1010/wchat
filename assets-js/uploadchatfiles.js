@@ -14,15 +14,15 @@ if (SessionLoggedIn === false) {
 /* selected file validation */  
 $('body').on('change', '#chatfilearchive', function(e){
   /* allowed extensions */
-var fileExtension = ['zip'];
+var fileExtension = ['zip', 'tar.gz'];
 if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
   $('.uploadchatfilearchive').prop('disabled', true);    
   $('.chatfilearchivenotice').html('<span style="color:red;">Only these formats are allowed: '+fileExtension.join(', ')+'</span>');
         } else {
-  let selectedfilename = e.target.files[0].name;
-  devlog(e.target.files[0]);
+  var selectedfilename = e.target.files[0].name;
+  selectedfilename = selectedfilename.split('.');
   $('.uploadchatfilearchive').prop('disabled', false);       
-  $('.chatfilearchivenotice').text(selectedfilename);  
+  $('#FolderName').text(selectedfilename);  
         }
 });  
 
