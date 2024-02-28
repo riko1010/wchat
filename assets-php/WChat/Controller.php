@@ -279,7 +279,7 @@ $altfoldername = $foldername.'-'.time();
 if (!is_dir(\pj($Config->baseDir, 'test', $foldername))) {
   $foldername = \pj($Config->baseDir,'test',$foldername);
   mkdir($foldername);
-} elseif (!is_dir(\pj($Config->baseDir,'test', $altfoldername)) {
+} elseif (!is_dir(\pj($Config->baseDir,'test', $altfoldername))) {
   $foldername = \pj($Config->baseDir,'test',$altfoldername);
   mkdir($foldername);
 }
@@ -299,7 +299,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     case 'mp4':  
     case 'pdf':  
     case 'doc': 
-    case 'docx': $zip->extractTo($Config->baseDir.'/test', $name);
+    case 'docx': $zip->extractTo(\pj($foldername, $name));
     break;
     default: $badfiletypes[] = 'bad file type:'.$name.' '.$extension;
     }
