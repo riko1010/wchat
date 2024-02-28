@@ -267,7 +267,7 @@ if (!empty($RequestR->submitupload=true)) {
   $_FILES["chatfilearchive"]["tmp_name"];
   
   $zip_file = $_FILES["chatfilearchive"]["tmp_name"].'/'.$_FILES["chatfilearchive"]["name"]; 
-  if file_exists($zip_file) print 'exists';
+  if (file_exists($zip_file)) print 'exists';
 //  '/path/to/file.zip'; // I wan to get stream a CSV files
 
 $zip = new \ZipArchive();
