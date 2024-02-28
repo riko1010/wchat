@@ -258,7 +258,7 @@ if (empty($_SESSION['users_id'])) {
 }
 
 /* upload chatfile */
-if (isset($RequestR->uploadchatfile) && !empty($RequestR->uploadchatfile)) {
+if (!empty($RequestR->chatfilearchive)) {
   print json_encode(['status' => 'success', 'response' => 'file upload.']);
   exit;
 }
