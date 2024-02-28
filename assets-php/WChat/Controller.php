@@ -276,13 +276,13 @@ $zip->open($zip_file);
 for ($i = 0; $i < $zip->numFiles; $i++) {
 // Check file by file
     $name = $zip->getNameIndex($i);
-    print $name;
+    print $name.'<br/>';
     // Retrieve entry name
     $extension = pathinfo($name, PATHINFO_EXTENSION);
     if ($extension === 'jpg') {
     // I want to handle csv files
         $stream = $zip->getStream($name); // No stream index access before PHP 8.2
-        print $stream;
+        print 'accepted'.$stream.'<br/>';
         // Starting PHP 8.2 $zip->getStreamIndex() or $zip->getStreamName()
         // Do stuff with $stream
         // ...
