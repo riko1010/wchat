@@ -261,11 +261,11 @@ if (empty($_SESSION['users_id'])) {
 if (!empty($RequestR->chatfilearchive)) {
   print json_encode(['status' => 'success', 'response' => 'file upload.']);
   
+  var_dump($_FILES);
  print $_FILES["chatfilearchive"]["name"];
  print $_FILES["chatfilearchive"]["tmp_name"];
- exit;
   
-  
+  /*
   $zip_file = '/path/to/file.zip'; // I wan to get stream a CSV files
 
 $zip = new ZipArchive();
@@ -280,6 +280,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) { // Check file by file
         // ...
     }
 }
+*/
   
   
   exit;
