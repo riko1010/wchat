@@ -30,12 +30,12 @@ $(".logout").on('click', function (e) {
 /* login */
   $(".adminlogin").submit(function (e) {
     e.preventDefault();
-    $('.loginfields').attr('disabled', 'disabled');
+    $('.loginfields').prop('disabled', true);
     AdminLogin(
       $("#AdminEmail").val(),
       $("#AdminPassword").val(),
     );
-    $('.loginfields').attr('disabled', 'false');
+    $('.loginfields').prop('disabled', false);
   });
 
 /* listen for loggedin status */
