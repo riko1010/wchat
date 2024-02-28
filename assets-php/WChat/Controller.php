@@ -289,7 +289,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
         // ...
     }
 }
-$zip->close();
+//$zip->close();
   //end
   
   $zip = new \ZipArchive();
@@ -299,7 +299,7 @@ $zip->close();
     $name = $zip->getNameIndex($i);
     print $name.'<br/>';
   }
-  
+ // $zip->close();
   
   
   exit;
