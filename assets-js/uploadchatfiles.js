@@ -26,4 +26,11 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
         }
 });  
 
+});(e) {
+  $('#FolderName').val('Enter folder name');  
+  }
+  
+        }
+});  
+
 });
