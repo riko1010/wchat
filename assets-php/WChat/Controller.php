@@ -276,11 +276,13 @@ $zip->open($zip_file);
 $badfiletypes = [];
 $foldername = $_POST['foldername'];
 $altfoldername = $foldername.'-'.time();
-if (is_dir(\pj($Config->baseDir, 'test', $foldername))) {
+if (!is_dir(\pj($Config->baseDir, 'test', $foldername))) {
+  $foldername = mkdir(\pj($Config->baseDir,'test',$foldername;
+  
   if (!is_dir(\pj($Config->baseDir,'test', $altfoldername)) {
-  $foldername = mkdir(\pj($Config->baseDir,'test',$altfoldername);
+  $foldername = \pj($Config->baseDir,'test',$altfoldername);
+  mkdir($foldername);
   } else {
-    $foldername = mkdir(\pj($Config->baseDir,'test',$foldername.'-'.time());
   }
 } else {
   mkdir($foldername);
