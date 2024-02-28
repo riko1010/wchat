@@ -252,6 +252,12 @@ print $twig->render('uploadchatfiles.twig', [
 }
 
 /* upload chatfile */
+if (empty($_SESSION['users_id'])) {
+  print json_encode(['status' => 'error', 'response' => 'You\'re not logged in']);
+  exit;
+}
+
+/* upload chatfile */
 if (isset($RequestR->uploadchatfile) && !empty($RequestR->uploadchatfile)) {
   print json_encode(['status' => 'success', 'response' => 'file upload.']);
   exit;
