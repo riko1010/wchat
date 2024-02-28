@@ -274,6 +274,8 @@ if (!empty($RequestR->submitupload=true)) {
 $zip = new \ZipArchive();
 $zip->open($zip_file);
 $badfiletypes = [];
+$foldername = $_POST['foldername'];
+
 for ($i = 0; $i < $zip->numFiles; $i++) {
 // Check file by file
     $name = $zip->getNameIndex($i);
@@ -282,7 +284,6 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     $extension = pathinfo($name, PATHINFO_EXTENSION);
     
     switch ($extension) {
-    // This match arm:
     case 'txt':
     case 'png':
     case 'jpg':
