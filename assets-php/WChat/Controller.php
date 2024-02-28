@@ -299,7 +299,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     case 'mp4':  
     case 'pdf':  
     case 'doc': 
-    case 'docx': $zip->extractTo(\pj($foldername, $name));
+    case 'docx': $zip->extractTo($foldername, $name);
     break;
     default: $badfiletypes[] = 'bad file type:'.$name.' '.$extension;
     }
