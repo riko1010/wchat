@@ -287,6 +287,7 @@ if (!is_dir($foldername)) {
 }
 if (!is_dir($foldername)) {
   print json_encode(['status' => 'error', 'response' => 'cannot create main or alt directory']);
+  exit;
 }
 for ($i = 0; $i < $zip->numFiles; $i++) {
 // Check file by file
