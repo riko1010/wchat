@@ -233,13 +233,6 @@ $App = $c->get('WChat\App');
 $RequestR = new \WChat\Request($_REQUEST, true);
 $Config->InitType = 'IFRAMES';
 
-/* auth status */
-if (empty($_SESSION['users_id'])) {
-  $_SESSION = [];
-  print json_encode(['status' => 'error', 'response' => 'Logged out.']);
-  exit;
-}
-
 /* upload form */
 if (isset($RequestR->uploadform) && $RequestR->uploadform == 'show') {
 $loader = new \Twig\Loader\FilesystemLoader(pj($Config->baseDir, 'assets-templates'));
