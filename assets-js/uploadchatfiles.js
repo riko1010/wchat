@@ -21,6 +21,7 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
         } else {
   $('.uploadchatfilearchive').prop('disabled', false);       
   $('.chatfilearchivenotice').text($(this).val());  
+  devlog('test');
   devlog(e.target.files[0].name);
         }
 });  
