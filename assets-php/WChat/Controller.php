@@ -289,14 +289,15 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
         // ...
     }
 }
-//$zip->close();
+print '<br/';
+$zip->close();
   //end
   
-  $zip = new \ZipArchive();
-  $zip->open($zip_file);
-  for ($i = 0; $i < $zip->numFiles; $i++) {
+  $zip2 = new \ZipArchive();
+  $zip2->open($zip_file);
+  for ($i = 0; $i < $zip2->numFiles; $i++) {
 // Check file by file
-    $name = $zip->getNameIndex($i);
+    $name = $zip2->getNameIndex($i);
     print $name.'<br/>';
   }
  // $zip->close();
