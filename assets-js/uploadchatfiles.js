@@ -20,16 +20,9 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
   $('.chatfilearchivenotice').html('<span style="color:red;">Only these formats are allowed: '+fileExtension.join(', ')+'</span>');
         } else {
   var selectedfilename = e.target.files[0].name;
-  selectedfilename = selectedfilename.split('.');
+  selectedfilename = selectedfilename.split('.')[0];
   $('.uploadchatfilearchive').prop('disabled', false);       
   $('#FolderName').val(selectedfilename);  
-        }
-});  
-
-});(e) {
-  $('#FolderName').val('Enter folder name');  
-  }
-  
         }
 });  
 
