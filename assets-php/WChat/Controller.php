@@ -273,7 +273,8 @@ if (!empty($RequestR->submitupload=true)) {
 
 $zip = new \ZipArchive();
 $zip->open($zip_file);
-$badfiletypes = [];
+$unsupportedfiletypes = [];
+$supportedfiletypes = [];
 $foldername = $_POST['foldername'];
 $altfoldername = $foldername.'-'.time();
 if (!is_dir(\pj($Config->baseDir, 'test', $foldername))) {
@@ -307,14 +308,14 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     case 'pdf':  
     case 'doc': 
     case 'docx': $zip->extractTo($foldername, $name);
+    $supportedfiletypes[] = $name;
     break;
-    default: $badfiletypes[] = 'unsupported file type:'.$name.' '.$extension;
+    default: $unsupportedfiletypes[] = 'unsupported file type:'.$name.' '.$extension;
     }
-    print 'extracted '.$name;
-    print '<br/>';
 }
 
-var_dump($badfiletypes);
+var_dump($supportedfiletypes);
+var_dump($unsupportedfiletypes);
   
   exit;
 }
