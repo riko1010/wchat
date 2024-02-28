@@ -19,10 +19,9 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
   $('.uploadchatfilearchive').prop('disabled', true);    
   $('.chatfilearchivenotice').html('<span style="color:red;">Only these formats are allowed: '+fileExtension.join(', ')+'</span>');
         } else {
+  let selectedfilename = e.target.files[0].name        
   $('.uploadchatfilearchive').prop('disabled', false);       
-  $('.chatfilearchivenotice').text($(this).val());  
-  devlog('test');
-  devlog(e.target.files[0].name);
+  $('.chatfilearchivenotice').text(selectedfilename);  
         }
 });  
 
