@@ -279,16 +279,28 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     print $name.'<br/>';
     // Retrieve entry name
     $extension = pathinfo($name, PATHINFO_EXTENSION);
-    if ($extension === 'png') {
+    if ($extension !== 'png') {
     // I want to handle csv files
         $stream = $zip->getStream($name); // No stream index access before PHP 8.2
-        print 'accepted'.$name.$stream.'<br/>';
+        $zip->deleteName($name);
+        print 'deleted'.$name.$stream.'<br/>';
         // Starting PHP 8.2 $zip->getStreamIndex() or $zip->getStreamName()
         // Do stuff with $stream
         // ...
     }
 }
+$zip->close();
   //end
+  
+  $zip = new \ZipArchive();
+  $zip->open($zip_file);
+  for ($i = 0; $i < $zip->numFiles; $i++) {
+// Check file by file
+    $name = $zip->getNameIndex($i);
+    print $name.'<br/>';
+  }
+  
+  
   
   exit;
 }
