@@ -31,13 +31,13 @@ $(".logout").on('click', function (e) {
   $(".adminlogin").submit(function (e) {
     e.preventDefault();
     /* disable all fields on request */
-    $('.loginfields').prop('disabled', true);
+    $('.loginfields').attr('disabled', true);
     AdminLogin(
       $("#AdminEmail").val(),
       $("#AdminPassword").val(),
     );
     /* enable fields when done */
-    $('.loginfields').prop('disabled', false);
+    $('.loginfields').attr('disabled', false);
   });
 
 /* listen for loggedin status */
