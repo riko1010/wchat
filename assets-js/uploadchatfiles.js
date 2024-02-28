@@ -1,3 +1,14 @@
+
+$(document).ready(function(){
+  /* notify parent of loggedin being false */
+{% if session.loggedin == false %}
+  /* notify on sign in click */
+  $('.iframeSignin').on('click', function(e){
+  e.preventDefault();
+  window.top.postMessage('notloggedin', '*');  
+  });
+  {% endif %}
+
 /* uploadchatfilearchive */
   
 /* selected file validation */  
@@ -12,3 +23,5 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
   $('.chatfilearchivenotice').text($(this).val());        
         }
 });  
+
+});

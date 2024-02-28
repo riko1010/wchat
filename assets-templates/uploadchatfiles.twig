@@ -72,22 +72,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 {% endif %}
 
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/devmode.js']) }}" referrerpolicy="no-referrer"></script>  	
+
 <script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/uploadchatfiles.js']) }}" referrerpolicy="no-referrer"></script>  	
 
 <script>
 dev = true;
-$(document).ready(function(){
-  /* notify parent of loggedin being false */
-{% if session.loggedin == false %}
-  /* notify on sign in click */
-  $('.iframeSignin').on('click', function(e){
-  e.preventDefault();
-  window.top.postMessage('notloggedin', '*');  
-  });
-  {% endif %}
-
-
-});
 
 </script>
 
