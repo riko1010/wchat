@@ -280,19 +280,10 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     $extension = pathinfo($name, PATHINFO_EXTENSION);
     $result = match ($extension) {
     // This match arm:
-    'png', 'docx' => $zip->extractTo($Config->baseDir.'/test', $name),
-    }
+    'png', 'doc' => $zip->extractTo($Config->baseDir.'/test', $name),
+    default => print('no match'.$extention),
+    };
 }
-  
-  $zip2 = new \ZipArchive();
-  $zip2->open($zip_file);
-  for ($i = 0; $i < $zip2->numFiles; $i++) {
-// Check file by file
-    $name = $zip2->getNameIndex($i);
-    print $name.'<br/>';
-  }
- // $zip->close();
-  
   
   exit;
 }
