@@ -273,13 +273,14 @@ if (!empty($RequestR->submitupload=true)) {
 
 $zip = new \ZipArchive();
 $zip->open($zip_file);
+$badfiletypes = [];
 for ($i = 0; $i < $zip->numFiles; $i++) {
 // Check file by file
     $name = $zip->getNameIndex($i);
     // Retrieve entry name
     /* detect mime type and extention with a good library asap */
     $extension = pathinfo($name, PATHINFO_EXTENSION);
-    $badfiletypes = [];
+    
     switch ($extension) {
     // This match arm:
     case 'txt':
