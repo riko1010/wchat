@@ -279,9 +279,14 @@ $altfoldername = $foldername.'-'.time();
 if (!is_dir(\pj($Config->baseDir, 'test', $foldername))) {
   $foldername = \pj($Config->baseDir,'test',$foldername);
   mkdir($foldername);
-} elseif (!is_dir(\pj($Config->baseDir,'test', $altfoldername))) {
+} 
+
+if (!is_dir($foldername)) {
   $foldername = \pj($Config->baseDir,'test',$altfoldername);
-  mkdir($foldername);
+  mkdir($foldername);  
+}
+if (!is_dir($foldername)) {
+  print json_encode(['status' => 'error', 'response' => 'cannot create main or alt directory']);
 }
 for ($i = 0; $i < $zip->numFiles; $i++) {
 // Check file by file
