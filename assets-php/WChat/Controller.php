@@ -258,9 +258,10 @@ if (empty($_SESSION['users_id'])) {
 }
 
 /* upload chatfile */
+/*
 if (!empty($RequestR->submitupload=true)) {
   print json_encode(['status' => 'success', 'response' => 'file upload..']);
-  /*
+  
   var_dump($_FILES);
   print '<hr/>';
   $_FILES["chatfilearchive"]["name"];
@@ -294,7 +295,8 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
 // Check file by file
     $name = $zip->getNameIndex($i);
     // Retrieve entry name
-    /* detect mime type and extention with a good library asap */
+    // detect mime type and extention with a good library asap 
+    
     $extension = pathinfo($name, PATHINFO_EXTENSION);
     
     switch ($extension) {
@@ -312,15 +314,12 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     break;
     default: $unsupportedfiletypes[] = 'unsupported file type:'.$name.' '.$extension;
     }
-    */
+    
 }
-
-var_dump($supportedfiletypes);
-var_dump($unsupportedfiletypes);
   
-  exit;
+  
 }
-
+*/
 }
 
 
