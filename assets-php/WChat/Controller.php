@@ -276,7 +276,6 @@ $zip->open($zip_file);
 for ($i = 0; $i < $zip->numFiles; $i++) {
 // Check file by file
     $name = $zip->getNameIndex($i);
-    print $name.'<br/>';
     // Retrieve entry name
     $extension = pathinfo($name, PATHINFO_EXTENSION);
     if ($extension !== 'png') {
