@@ -260,7 +260,7 @@ if (empty($_SESSION['users_id'])) {
 /* upload chatfile */
 if (!empty($RequestR->submitupload=true)) {
   print json_encode(['status' => 'success', 'response' => 'file upload..']);
-  
+  /*
   var_dump($_FILES);
   print '<hr/>';
   $_FILES["chatfilearchive"]["name"];
@@ -312,6 +312,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     break;
     default: $unsupportedfiletypes[] = 'unsupported file type:'.$name.' '.$extension;
     }
+    */
 }
 
 var_dump($supportedfiletypes);
