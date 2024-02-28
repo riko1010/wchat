@@ -56,7 +56,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     
    <div class="mb-2 input-group">
-  <input name="chatfile" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" type="file" accept="application/zip" id="chatfilearchive" mozdirectory directory="directory" multiple webkitdirectory="webkitdirectory" webkitrelativepath>
+  <input name="chatfile" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" type="file" accept="application/zip" id="chatfilearchive">
   <button class="uploadchatfilearchive btn btn-outline-secondary" type="submit" id="uploadchatfilearchive" disabled>Upload</button>
 </div>
 </form>
@@ -89,6 +89,7 @@ $(document).ready(function(){
   
 /* selected file validation */  
 $('body').on('change', '#chatfilearchive', function(){
+  /* allowed extensions */
 var fileExtension = ['zip'];
 if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
   $('.uploadchatfilearchive').prop('disabled', true);    
