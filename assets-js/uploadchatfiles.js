@@ -19,10 +19,15 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
   $('.uploadchatfilearchive').prop('disabled', true);    
   $('.chatfilearchivenotice').html('<span style="color:red;">Only these formats are allowed: '+fileExtension.join(', ')+'</span>');
         } else {
+  try {
   var selectedfilename = e.target.files[0].name;
-  selectedfilename = selectedfilename.split('.')[0];
+  selectedfilename = selectedfilename.split('.');
   $('.uploadchatfilearchive').prop('disabled', false);       
-  $('#FolderName').val(selectedfilename);  
+  $('#FolderName').val(selectedfilename[0]);  
+  } catch(e) {
+  $('#FolderName').val('Enter folder name');  
+  }
+  
         }
 });  
 
