@@ -278,19 +278,11 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     $name = $zip->getNameIndex($i);
     // Retrieve entry name
     $extension = pathinfo($name, PATHINFO_EXTENSION);
-    if ($extension !== 'png') {
-    // I want to handle csv files
-        $stream = $zip->getStream($name); // No stream index access before PHP 8.2
-        $zip->extractTo($Config->baseDir.'/test', $name);
-        print 'extracted'.$name.$stream.'<br/>';
-        // Starting PHP 8.2 $zip->getStreamIndex() or $zip->getStreamName()
-        // Do stuff with $stream
-        // ...
+    $result = match ($extension) {
+    // This match arm:
+    'png', 'docx' => $zip->extractTo($Config->baseDir.'/test', $name),
     }
 }
-print '<br/';
-//$zip->close();
-  //end
   
   $zip2 = new \ZipArchive();
   $zip2->open($zip_file);
