@@ -48,7 +48,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   {% if session.loggedin == true %}
   <div class=" col-12 w-auto">
   <span>Upload chat file archive</span>
- <form id="UploadChatFile" enctype="multipart/form-data" action="?submitupload" method="POST">
+ <form id="UploadChatFile" enctype="multipart/form-data" action="?submitupload=true" method="POST">
     
    <div class="mb-2 input-group">
   <input name="chatfilearchive" class="form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl" type="file" accept="application/zip" id="chatfilearchive">
