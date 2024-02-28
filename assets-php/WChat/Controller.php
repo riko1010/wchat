@@ -300,6 +300,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     case 'txt':
     case 'png':
     case 'jpg':
+    case 'jpeg':
     case 'gif':  
     case 'opus':
     case 'mp4':  
@@ -307,7 +308,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     case 'doc': 
     case 'docx': $zip->extractTo($foldername, $name);
     break;
-    default: $badfiletypes[] = 'bad file type:'.$name.' '.$extension;
+    default: $badfiletypes[] = 'unsupported file type:'.$name.' '.$extension;
     }
     print 'extracted '.$name;
     print '<br/>';
