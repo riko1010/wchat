@@ -204,7 +204,7 @@ dataType: "html",
    devlog('update failed');
    annotationstatustext = 'Annotation update failed';
  }
- const bsOffcanvas = new bootstrap.Offcanvas('#AnnotationsRight');
+ var bsOffcanvas = new bootstrap.Offcanvas('#AnnotationsRight');
  bsOffcanvas.hide();
  notie.confirm({
   text: annotationstatustext,
