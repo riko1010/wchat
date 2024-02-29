@@ -28,7 +28,7 @@ if (searchchatstriggernewval == ''){
     devlog('searchchats was not aborted');
   }
   /* set trigger to default */
-  $('.searchchatstrigger').text('Search..');  
+  $('.searchchatstrigger').text('');  
   $('.searchchatsresults').text('Enter keywords to search.');
   /* set loading, search icons to default*/
   $('.searchchatsbox-loadingicon').addClass('hidden');  
