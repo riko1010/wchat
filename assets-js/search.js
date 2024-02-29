@@ -103,7 +103,9 @@ if (searchchatstriggernewval == ''){
   devlog('no search keyword entered');
 } else {
 searchchatstriggernewval = searchchatstriggernewval.slice(0, 5);
+/* managing real estate
 $('.searchchatstrigger').html('<u>'+searchchatstriggernewval+'..</u>');
+*/
 $('.searchchatsresults').text('Searching..');
 /* default is searching entire file from 0 with pagination of 100 lines */
 if (SelectedPaginationFrom = 'entirechatfile') {
