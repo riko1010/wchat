@@ -215,7 +215,7 @@ dataType: "html",
   $('.annotation-close').trigger('click');
   },
   submitCallback: function () {
-  bootstrap.Offcanvas.getInstance(document.getElementById("details")).show();
+  bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).hide();
   }
 });
 
