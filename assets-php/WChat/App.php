@@ -52,10 +52,12 @@ $Init = $c->get('WChat\Init');
 if ($Request->queryarg != null) {
 /* recursive array search case , ras for search field */
 $ras = \ras($Request->queryarg, array_column($Init->Data->Data, 'search'));
-
+print '-'; 
+var_dump($Init->Data->Data);
 /* ras for id field if not found */
 $ras = ($ras === null ? 
 \ras($Request->queryarg, array_column($Init->Data->Data, 'id')) : $ras );
+
   (($ras === false) ? 
   ([ $this->CheckLegacy, $this->NoSelected, $this->Selected ] = [ true, true, 0 ]) : 
       ([ $this->NoSelected, $this->Selected ] = [ false, $ras ]) );
