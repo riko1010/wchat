@@ -216,7 +216,7 @@ dataType: "html",
   $('.annotation-close').trigger('click');
   },
   submitCallback: function () {
-    
+  bsOffcanvas.show();  
   }
 });
 
