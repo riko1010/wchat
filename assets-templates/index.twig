@@ -398,7 +398,9 @@ Annotation
 <script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/devmode.js']) }}" referrerpolicy="no-referrer"></script>  	    
 
 <script>
-$('#ArchivedNav').clone().append('#topArchivedNav');
+//paginationavcontainer ArchivedNav
+toppagnavclone = $('.paginationavcontainer').clone();
+$('#topArchivedNav').html(toppagnavclone);
 
  /* archive.org modifies js, jquery, functions are available, classes do not seem available, suggestgroupchat will not utilize classes until solution found, group chat is nice as default but will decide later */
 LoggedIn = false;
@@ -412,8 +414,9 @@ IFRAMESUrl = '{{Config.IFRAMESUrl }}';
 ANNOTATIONUrl = '{{Config.ANNOTATIONUrl }}';
 AppPaginationFrom = '{{Config.PaginationFrom }}';
 AppPaginateable = '{{ App.Paginateable }}';
+AppSelect{ App.Paginateable }}';
 AppSelectedId = '{{ App.SelectedId }}';
-ConfigSuggestGroupChat = '{{ Config.SuggestGroupCgestGroupChat }}';
+ConfigSuggestGroupChat = '{{ Config.SuggestGroupChat }}';
 ConfigRecordsPerPage = '{{ Config.recordsperpage }}';
 CommentIcons = true;
 CurrentUrl = new URL(window.location.href);
