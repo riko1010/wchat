@@ -55,8 +55,8 @@ $Request->needle = $RequestGet->needle;
 $Init = $c->get('WChat\Init');
 $App = $c->get('WChat\App');
 /* groupchat displays both sender names by default, prior to search styling similar to whatsapp styling */
-$App->GroupChat = true;
-var_dump($App);
+//$App->GroupChat = true;
+
 if ($App->NoSelected) exit('Chat ID not found. ');
 
 $c->call(['WChat\processLines', 'ProcessSearchAndPrint']);
