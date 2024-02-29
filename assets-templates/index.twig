@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>{{ App.PageTitle }}</title>
+
+<!-- opengraph -->
+<meta property="og:title" content="{{ App.PageTitle }}" />
+<meta property="og:type" content="{{Config.og.contenttype }}" />
+<meta property="og:url" content="{{currentURL }}" />
+<meta property="og:image" content="{{Config.og.image }}" />
+    
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="{{ container.call(['WChat\\Init', 'addurl'], ['css/main.css']) }}">
+  
+<link href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<link href="https://cdn.jsdelivr.net/npm/video.js@8.3.0/dist/video-js.min.css" rel="stylesheet">
+
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<link href="https://cdn.jsdelivr.net/npm/jsuites@5.0.27/dist/jsuites.min.css
+" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+<link href="
+https://cdn.jsdelivr.net/npm/notie@4.3.1/dist/notie.min.css
+" rel="stylesheet">
+
+<link href="
+https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css
+" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js" integrity="sha512-8Nk/zoTKjNixnM15wXjpF26KR4Ln87cc5Yllc5xP54wwbcKnljAAn2JP+tYAS8+4e7s/XK8XTiDH0Ltw2fmoBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://unpkg.com/headroom.js"></script>
+
+
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/classes.js']) }}" referrerpolicy="no-referrer"></script>  
+
+
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
+
+
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MH4G76CM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->  
+<main class="d-flex justify-content-center">
+<header id="header" class="w-100 container-xxl brand">
+ 
+
+ <div class="row header-toolbar pt-2">
+  
+    <div class="col-4 text-start wchatlogo">
+      <a href="./">
+      <img class="wchatlogo-img" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}">
+      </a>
+  </div> 
+  
+  <div class="col-8 container text-end">
+  <div class="col-12">
+  <div style="display:none;" class="searchchats-container">
+  <div class="d-flex flex-row position-relative">
+    
+    <button class="btn btn-outline-success border-0 position-absolute start-0" type="submit">
+        <i class="searchchatsbox-searchicon fa fa-search"></i>
+        <i class="searchchatsbox-loadingicon hidden fa-solid fa-circle-notch fa-spin"></i>
+        
+    </button>
+    
+    <input type="search" class="form-control form-control-sm searchchatsbox ps-5" id="example-search-input" placeholder="Search {{ App.Name }}" autocomplete="off">
+
+    
+    
+</div>
+</div>
+  </div>
+  
+  
+  
+  
+  <div class="navicons">
+   <div class="d-inline-block end-0" data-bs-trigger="hover" data-bs-toggle="tooltip" data-bs-title="Admin" data-bs-placement="bottom">
+    <span data-bs-toggle="modal" data-bs-target="#adminModal">
+    <i class="fa-solid fa-gears text-dark icons-dsize"></i>
+    <span class="admintrigger"></span>
+    </span>
+    </div>
+    
+  <div class="d-inline-block searchchats chat-title-triggers end-0" data-bs-trigger="hover" data-bs-toggle="tooltip" data-bs-title="Search.." data-bs-placement="bottom">
+    <i class="fa-solid fa-search text-dark icons-dsize"></i>
+    <span class="searchchatstrigger"></span>
+    </div>
+  <div class="d-inline-block" data-bs-trigger="hover" data-bs-toggle="tooltip" data-bs-title="Sitemap" data-bs-placement="bottom">
+    <a href="sitemap.xml" data-bs-toggle="modal" data-bs-target="#sitemapModal" class="link-dark">
+        <i class="fa-solid fa-sitemap icons-dsize"></i>
+    </a> 
+    </div>
+    <div class="d-inline-block copypagelink chat-title-triggers end-0" data-bs-trigger="hover" data-bs-toggle="tooltip" data-bs-title="Copy Page Link" data-bs-placement="bottom">
+    <i class="fa-solid fa-link icons-dsize text-dark"></i>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="mt-2">
+     <!-- select -->
+<select class="form-select form-control form-control-sm form-control-md form-control-lg form-control-xl form-control-xxl searchselect">
+{{ container.call(['WChat\\App', 'Menu'])|raw }}           
+ </select>   
+ </div>
+ 
+ 
+ <div id="topArchivedNav" class="mt-1"></div>
+ 
+ <hr style="position:absolute;bottom:0;width: 90%; color:#075e54;"/>
+ 
+ 
+  
+    </header>
+</main>
+
+    <main class='container-xxl h-100'>
+<!-- no backupfile found -->
+<!--  may provide archive.org or other archive -->
+{% if Init.Data.IsEmpty == true %}
+<div class="row">
+<div class="col card">
+cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
+</div>
+</div>
+{% endif %}
+
+<!--  start chat list if backupfile present -->
+{% if not Init.Data.IsEmpty %}
+<section class="chat-container">
+  <div class="container-xxl chat-header">
+  <div class="row chat-title"> 
+  <div class="col-auto h-100 h3">
+  <i class="fa-solid fa-circle-user chat-title-triggers chat-title-avartar" style="color: #e6eaed;font-size:2em;"></i>
+  </div>
+  <div class="col"><h3 class="start-0">
+  {{ App.Name }}</h3></div>
+  </div>
+  </div>
+<div class='row p-1 spotlight-group Lines' id='whatsappimages'>
+{{ container.call(['WChat\\processLines', 'ProcessAndPrint'])|e }}
+</div>
+
+</section>
+
+{% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
+<paginationav id="ArchivedNav" class="container" style="height:80px;">
+  <nav aria-label="..." class="paginationavcontainer ">
+    <ul class="pagination justify-content-center text-secondary-emphasis small">
+      <li class="col-auto page-item {{ PaginationNav.prev.status }}">
+        <a href="{{ PaginationNav.prev.first }}" class="text-secondary-emphasis page-link">First</a>
+      </li>
+      <li class="col-auto page-item {{ PaginationNav.next.status }}">
+        <a href="{{ PaginationNav.next.last }}" class="text-secondary-emphasis page-link">Last</a>
+      </li>
+      <li class="col-auto page-item text-center" aria-current="page">&nbsp;
+    </li>
+      <li class="col-auto page-item {{ PaginationNav.prev.status }}">
+        <a href="{{ PaginationNav.prev.href }}" class="text-secondary-emphasis page-link">Prev</a>
+      </li>
+     
+    <li class="col-auto page-item text-center dropdown" aria-current="page">
+    <span class="text-secondary-emphasis page-link">
+    <a class="nav-link text-secondary-emphasis dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ PaginationNav.current }}</a>
+    <ul class="dropdown-menu">
+      {% for pagination in PaginationNav.paginationlist %}
+      <li><a class="text-secondary-emphasis dropdown-item {% if PaginationNav.current == pagination.label %} active {% endif %}" href="{{ pagination.href }}">{{ pagination.label }}</a></li>
+      {% endfor %}
+    </ul>
+    </span>  
+    </li>
+    
+      <li class="col-auto page-item text-end {{ PaginationNav.next.status }}">
+        <a href="{{ PaginationNav.next.href }}" class="text-secondary-emphasis page-link">Next</a>
+      </li>
+    </ul>
+  </nav>
+</paginationav>
+
+
+{% endif %}
+    </main>
+<!-- hidden nav, may show on noscript -->    
+<nav hidden>
+{% for link in Init.Data.Data %}
+ <a href="{{link.url}}">{{link.url}}</a> <br />
+{% endfor %}
+</nav>
+<!-- end hidden nav -->
+
+<!-- Modal -->
+<div class="modal fade" id="sitemapModal" tabindex="-1" aria-labelledby="sitemapModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg modal-xl modal-fullscreen-lg-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="sitemapModalLabel">Sitemap</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+<ul class="list-group list-group-flush">
+{% if sitemap.FilesandStatus.sitemap.status == true %}
+  {% for sitemap in sitemap.FilesandStatus.files %}
+    {% if sitemap['exists'] == true %}
+  <a href="{{sitemap['rpath'] }}" class="link-body-emphasis list-group-item list-group-item-action d-flex justify-content-between align-items-start" target="_blank">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">
+      {{sitemap['filename'] }}
+        </div>
+{{ sitemap['stats'] ? getFilesize(sitemap['stats']['size'], 'human')
+  : '' }}
+    </div>
+    <span class="badge bg-success rounded-pill">
+{{ sitemap['stats'] ? sitemap['stats']['mtime']|date('M d, Y') : '' }}
+    </span>
+  </a>  
+    {% endif %}
+  {% endfor %}
+{% endif %}
+ 
+   <span class="link-body-emphasis list-group-item list-group-item-action d-flex justify-content-between align-items-start row">
+     <div class="col-12">
+  <label for="statusconsole" class="form-label">Status console</label>
+  <textarea class="statusconsole form-control col-12" id="statusconsole" rows="3">{{date()|date('M d, Y h:i:sa') }} {{sitemap.FilesandStatus.sitemap.status ? 'OK' : 'ERROR' }}
+{{sitemap.FilesandStatus.sitemap.response }}
+{% for message in session.statusconsole %}
+{{ message }} &#13;
+{% endfor %}
+</textarea>
+</div>
+  </span>  
+ 
+
+</ul>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg modal-xl modal-fullscreen-lg-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="adminModalLabel">Administration</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- signin -->   
+
+<main class="form-signin w-100 m-auto">
+  <form id="adminlogin" class="adminlogin">
+    <img class="mb-4" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}" alt="" width="100" height="auto">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div id="LoginFormStatus" class="LoginNotices alert alert-danger hidden" role="alert">
+  Email or Password incorrect.
+    </div>
+    
+    <div id="LoginFormUnknownErrorStatus" class="LoginNotices alert alert-danger hidden" role="alert">
+  An unknown error occured.
+    </div>
+    
+    <div id="LogoutFormStatus" class="LoginNotices alert alert-success hidden" role="alert">
+  You are Logged-out.
+    </div>
+
+    <div class="form-floating">
+      <input type="email" class="loginfields form-control" id="AdminEmail" placeholder="name@example.com" required>
+      <label for="floatingInput">Email address</label>
+    </div>
+     <div class="form-floating">
+      <input type="password" class="loginfields form-control" id="AdminPassword" placeholder="Password" required>
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="form-check text-start my-3">
+      <input class="loginfields form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Remember me
+      </label>
+    </div>
+    <button class="loginfields login btn btn-outline-success w-100 py-2" type="submit">Login</button>
+    <p class="mt-5 mb-3 text-body-secondary">wchat.space</p>
+  </form>
+</main>
+<!-- end signin -->
+
+<!-- admin -->
+<admin class="admincontainer hidden">
+<div><a class="logout" href="">Logout</a></div>
+
+<div id="LogoutFormUnknownErrorStatus" class="alert alert-danger hidden" role="alert">
+  An unknown error occured.
+    </div>
+
+<div class="container w-100 h-auto">
+  <iframe style="height:250px;" class="w-100" id="uploadiframe" src="" title="Upload"></iframe>
+</div>
+<hr/>
+<div class="chatfileslist list-group list-group-flush">
+  
+</div>
+
+<!-- end admin -->
+</admin>
+      </div>
+      <div class="hidden modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="AnnotationsRight" aria-labelledby="AnnotationsRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="AnnotationsRightLabel">{{ App.Name }}</h5><button class="annotation-edit btn btn-outline-success" type="button">Edit</button>
+    <button type="button" class="btn-close closeAnnotationsRight" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="annotation-body offcanvas-body">
+    
+<small class="font-monospace">
+Annotation
+</small>
+<div class="annotation-content">
+{{ App.SelectedChatFile['annotation']|raw }}
+</div>
+
+  </div>
+  <div class="annotation-body-edit offcanvas-body hidden">
+     
+    <div id="annotation-update-input" name="annotation" class="mb-1">
+    {{~ App.SelectedChatFile['annotation']|raw ~}}
+    </div>
+    <input id="annotation-update-id" name="annotationid" type="hidden" value="{{~ App.SelectedId ~}}"/>
+     <button class="annotation-submit login btn btn-outline-success py-2" type="button">Save</button>
+       <button class="annotation-close btn btn-outline-danger py-2" type="button">Close</button>
+  </div>
+</div>
+
+    <footer>
+    <a href="https://wchat.space">wchat.space</a> | forked from <a target="_blank" href="https://github.com/itxshakil/Whatsapp-backup-Viewer">Shakil Alam</a>
+    </footer>
+    
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/devmode.js']) }}" referrerpolicy="no-referrer"></script>  	    
+
+<script>
+$(document).ready(function(){
+//paginationavcontainer ArchivedNav
+toppagnavclone = $('.paginationavcontainer').clone();
+$('#topArchivedNav').html(toppagnavclone);
+});
+ /* archive.org modifies js, jquery, functions are available, classes do not seem available, suggestgroupchat will not utilize classes until solution found, group chat is nice as default but will decide later */
+LoggedIn = false;
+AppNoSelected = '{{App.NoSelected }}';
+IndexSelected = '{{ App.IndexSelected }}';
+RealAppPageURI = '{{ App.RealPageURI }}';
+ConfigSiteUrl = '{{Config.SiteUrl }}';
+APIUrl = '{{Config.APIUrl }}';
+ADMINUrl = '{{Config.ADMINUrl }}';
+IFRAMESUrl = '{{Config.IFRAMESUrl }}';
+ANNOTATIONUrl = '{{Config.ANNOTATIONUrl }}';
+AppPaginationFrom = '{{Config.PaginationFrom }}';
+AppPaginateable = '{{ App.Paginateable }}';
+AppSelectedId = '{{ App.SelectedId }}';
+ConfigSuggestGroupChat = '{{ Config.SuggestGroupChat }}';
+ConfigRecordsPerPage = '{{ Config.recordsperpage }}';
+CommentIcons = true;
+CurrentUrl = new URL(window.location.href);
+CurrentUrl.hash = '';
+BasePageURI =  '{{ App.BasePageURI }}';
+SelectedPaginationFrom = 'entirechatfile';
+
+
+  {% if session.loggedin == true %}
+$(document).ready(function(){  
+  /* submit form , clear dummy data after submit*/
+  $('#AdminEmail').val('{{session.email}}');
+   AdminLogin(
+     '{{session.email}}',
+     '{{session.email}}'
+     );
+});
+{% endif %} 
+</script>
+
+<!-- /* headjs requires */ -->
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/headjsrequires.js']) }}" referrerpolicy="no-referrer"></script> 
+
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/index.js']) }}" referrerpolicy="no-referrer"></script>  
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/admin.js']) }}" referrerpolicy="no-referrer"></script>  		
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/search.js']) }}" referrerpolicy="no-referrer"></script>  
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/header.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/editors.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/googletags.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/copy.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/annotation.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/tooltips.js']) }}" referrerpolicy="no-referrer"></script> 
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/select.js']) }}" referrerpolicy="no-referrer"></script> 
+
+</body>
+</html>  
