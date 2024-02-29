@@ -138,6 +138,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  </select>   
  </div>
  
+ 
+ <div id="topArchivedNav"></div>
+ 
  <hr style="position:absolute;bottom:0;width: 90%; color:#075e54;"/>
  
  <header-search style="display:none;">
@@ -395,6 +398,10 @@ Annotation
 <script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/devmode.js']) }}" referrerpolicy="no-referrer"></script>  	    
 
 <script>
+$(document).ready(function(){
+$('#ArchivedNav').clone().appendTo('#topArchivedNav');
+});
+
  /* archive.org modifies js, jquery, functions are available, classes do not seem available, suggestgroupchat will not utilize classes until solution found, group chat is nice as default but will decide later */
 LoggedIn = false;
 AppNoSelected = '{{App.NoSelected }}';
