@@ -202,7 +202,7 @@ dataType: "html",
     annotationstatustext = 'Annotation Updated';
  } else {
    devlog('update failed');
-   $('#AnnotationUpdateFailed').removeClass('hidden');
+   annotationstatustext = 'Annotation update failed';
  }
  
  notie.confirm({
@@ -211,6 +211,7 @@ dataType: "html",
   cancelText: 'Done', // optional, default = 'Cancel'
   position: 'bottom', // optional, default = 'top', enum: ['top', 'bottom']
   cancelCallback: function () {
+  $('.annotation-close').trigger('click');
   },
   submitCallback: function () {
     
