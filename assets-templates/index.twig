@@ -141,6 +141,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  
  <div id="topArchivedNav">
    {% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
+   {{ PaginationNav.prev.first }}
  </div>
  
  <hr style="position:absolute;bottom:0;width: 90%; color:#075e54;"/>
