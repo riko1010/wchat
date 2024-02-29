@@ -194,8 +194,8 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 </section>
 
 {% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
-<paginationav id="ArchivedNav" class="container">
-  <nav style="background-color:red;" aria-label="..." class="paginationavcontainer ">
+<paginationav id="ArchivedNav" class="container" style="height:80px;">
+  <nav aria-label="..." class="paginationavcontainer ">
     <ul class="pagination justify-content-center text-secondary-emphasis small">
       <li class="col-auto page-item {{ PaginationNav.prev.status }}">
         <a href="{{ PaginationNav.prev.first }}" class="text-secondary-emphasis page-link">First</a>
@@ -398,7 +398,7 @@ Annotation
 <script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/devmode.js']) }}" referrerpolicy="no-referrer"></script>  	    
 
 <script>
-
+$('').clone().append();
 
  /* archive.org modifies js, jquery, functions are available, classes do not seem available, suggestgroupchat will not utilize classes until solution found, group chat is nice as default but will decide later */
 LoggedIn = false;
