@@ -19,7 +19,7 @@ body {
   html {
     font-size: 1.5rem;
   }
-  .wchatlogo-img {
+  .icons-dsize, .wchatlogo-img {
     height: 25px;
   }
 }
@@ -28,7 +28,7 @@ body {
   html {
     font-size: 2rem;
   }
-  .wchatlogo-img {
+  .icons-dsize, .wchatlogo-img {
     height: 50px;
   }
 }
@@ -37,7 +37,7 @@ body {
   html {
     font-size: 2.5rem;
   }
-  .wchatlogo-img {
+  .icons-dsize, .wchatlogo-img {
     height: 50px;
   }
 }
@@ -46,7 +46,7 @@ body {
   html {
     font-size: 3rem;
   }
-  .wchatlogo-img {
+  .icons-dsize, .wchatlogo-img {
     height: 50px;
   }
 }
@@ -55,7 +55,7 @@ body {
   html {
     font-size: 3.5rem;
   }
-  .wchatlogo-img {
+  .icons-dsize, .wchatlogo-img {
     height: 100px;
   }
 }
