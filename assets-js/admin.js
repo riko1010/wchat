@@ -204,7 +204,7 @@ dataType: "html",
    devlog('update failed');
    annotationstatustext = 'Annotation update failed';
  }
- bootstrap.Offcanvas.getInstance(document.getElementById("details")).hide();
+ bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).hide();
  notie.confirm({
   text: annotationstatustext,
   submitText: 'Continue editing', // optional, default = 'OK'
