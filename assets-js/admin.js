@@ -131,8 +131,6 @@ head(function () {
   });
 /* end copy admin chatfile link */
 
-/* end headjs */  
-});  
   
   /* annotations show edit */
   $('.annotation-edit').on('click', function(){
@@ -215,9 +213,12 @@ dataType: "html",
   $('.annotation-close').trigger('click');
   },
   submitCallback: function () {
-  bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).hide();
+  bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).show();
   }
 });
 
     });
   });
+  
+/* end headjs */  
+});    
