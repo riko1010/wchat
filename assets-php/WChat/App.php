@@ -293,7 +293,7 @@ $NextPaginationStatus = (
   $this->Paginateable === false ?
     'disabled' : ''
     );
-
+settype($Config->PPaginationFrom, 'string');
 $PrevPaginationHref = \pj(
   $Config->SiteUrl,
   $this->SelectedChatFile['search'],
