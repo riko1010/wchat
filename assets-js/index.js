@@ -25,16 +25,6 @@ head(function () {
   /* make links clickable, overflow does nkt wrap - fix asap */
   autolinks(".mEl");
 
-  /* lightbox for images, docs, iframes, current lightbox does not close when clicking overlay */
-  const lightbox = GLightbox({
-    touchNavigation: true,
-    loop: true,
-    autoplayVideos: true,
-    selector: ".g",
-    closeOnOutsideClick: true,
-    preload: true,
-  });
-
   /* copy page link at top menu, will switch to data attr*/
   var clipboard = new ClipboardJS(".copypagelink", {
     text: function (trigger) {
