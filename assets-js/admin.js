@@ -193,14 +193,23 @@ dataType: "html",
   jsondata = $.parseJSON(data);
  } catch(e) {
    devlog('invalid response');
-   
    return false;
   }
  if (jsondata.status == 'success') {
    devlog('update successful');
    /* close annotation form*/
    $('.annotation-content').html(jsondata.response);
-   $('#AnnotationUpdateSuccess').removeClass('hidden');
+    notie.confirm({
+  text: 'Annotation updated..',
+  submitText: 'Continue editing', // optional, default = 'OK'
+  cancelText: 'Done', // optional, default = 'Cancel'
+  position: 'bottom', // optional, default = 'top', enum: ['top', 'bottom']
+  cancelCallback: function () {
+  },
+  submitCallback: function () {
+    
+  }
+});
  } else {
    devlog('update failed');
    $('#AnnotationUpdateFailed').removeClass('hidden');
