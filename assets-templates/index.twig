@@ -160,39 +160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="" class="showmore d-flex justify-content-center">more</a>
 </div>
 </header-search>
-  
-    </header>
-</main>
-
-    <main class='container-xxl h-100'>
-<!-- no backupfile found -->
-<!--  may provide archive.org or other archive -->
-{% if Init.Data.IsEmpty == true %}
-<div class="row">
-<div class="col card">
-cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
-</div>
-</div>
-{% endif %}
-
-<!--  start chat list if backupfile present -->
-{% if not Init.Data.IsEmpty %}
-<section class="chat-container">
-  <div class="container-xxl chat-header">
-  <div class="row chat-title"> 
-  <div class="col-auto h-100 h3">
-  <i class="fa-solid fa-circle-user chat-title-triggers chat-title-avartar" style="color: #e6eaed;font-size:2em;"></i>
-  </div>
-  <div class="col"><h3 class="start-0">
-  {{ App.Name }}</h3></div>
-  </div>
-  </div>
-<div class='row p-1 spotlight-group Lines' id='whatsappimages'>
-{{ container.call(['WChat\\processLines', 'ProcessAndPrint'])|e }}
-</div>
-
-</section>
-{% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
+  {% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
 <paginationav id="ArchivedNav" class="container">
   <nav aria-label="..." class="paginationavcontainer row">
     <ul class="pagination justify-content-center text-secondary-emphasis small">
@@ -225,6 +193,38 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
     </ul>
   </nav>
 </paginationav>
+
+    </header>
+</main>
+
+    <main class='container-xxl h-100'>
+<!-- no backupfile found -->
+<!--  may provide archive.org or other archive -->
+{% if Init.Data.IsEmpty == true %}
+<div class="row">
+<div class="col card">
+cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
+</div>
+</div>
+{% endif %}
+
+<!--  start chat list if backupfile present -->
+{% if not Init.Data.IsEmpty %}
+<section class="chat-container">
+  <div class="container-xxl chat-header">
+  <div class="row chat-title"> 
+  <div class="col-auto h-100 h3">
+  <i class="fa-solid fa-circle-user chat-title-triggers chat-title-avartar" style="color: #e6eaed;font-size:2em;"></i>
+  </div>
+  <div class="col"><h3 class="start-0">
+  {{ App.Name }}</h3></div>
+  </div>
+  </div>
+<div class='row p-1 spotlight-group Lines' id='whatsappimages'>
+{{ container.call(['WChat\\processLines', 'ProcessAndPrint'])|e }}
+</div>
+
+</section>
 
 
 {% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
