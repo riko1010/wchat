@@ -553,6 +553,9 @@ a.autolinked {
 .searchindexitems:hover {
   background-color: #e0e0e0;
 }
+.navicons > div { 
+  margin-right:5px;
+}
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
   position: relative;
