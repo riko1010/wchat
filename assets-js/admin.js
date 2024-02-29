@@ -202,6 +202,7 @@ dataType: "html",
    devlog('update failed');
    annotationstatustext = 'Annotation update failed';
  }
+ /* hide offcanvas to show notification with a lower zindex */
  bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).hide();
  notie.confirm({
   text: annotationstatustext,
@@ -217,8 +218,9 @@ dataType: "html",
   },
   submitCallback: function () {
   /* show offcanvas */
-  /* trigger edit for assurance */
+  /* toggle edit for view */
   $('.annotation-edit').trigger('click'); 
+  /* show offcanvas */
   bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).show();
   }
 });
