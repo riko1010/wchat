@@ -406,4 +406,50 @@ ANNOTATIONUrl = '{{Config.ANNOTATIONUrl }}';
 AppPaginationFrom = '{{Config.PaginationFrom }}';
 AppPaginateable = '{{ App.Paginateable }}';
 AppSelectedId = '{{ App.SelectedId }}';
-ConfigSuggestGroupChat = '{{ Config.SuggestGroupChat }}'
+ConfigSuggestGroupChat = '{{ Config.SuggestGroupChat }}';
+ConfigRecordsPerPage = '{{ Config.recordsperpage }}';
+CommentIcons = true;
+CurrentUrl = new URL(window.location.href);
+CurrentUrl.hash = '';
+BasePageURI =  '{{ App.BasePageURI }}';
+SelectedPaginationFrom = 'entirechatfile';
+
+
+  {% if session.loggedin == true %}
+$(document).ready(function(){  
+  /* submit form , clear dummy data after submit*/
+  $('#AdminEmail').val('{{session.email}}');
+   AdminLogin(
+     '{{session.email}}',
+     '{{session.email}}'
+     );
+});
+{% endif %} 
+</script>
+
+/* headjs requires */
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/headjsrequires.js']) }}" referrerpolicy="no-referrer"></script> 
+
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/index.js']) }}" referrerpolicy="no-referrer"></script>  
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/admin.js']) }}" referrerpolicy="no-referrer"></script>  		
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/search.js']) }}" referrerpolicy="no-referrer"></script>  
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/header.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/editors.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/googletags.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/copy.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/annotation.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/tooltips.js']) }}" referrerpolicy="no-referrer"></script> 
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/select.js']) }}" referrerpolicy="no-referrer"></script> 
+
+</body>
+</html>  
