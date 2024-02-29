@@ -209,7 +209,7 @@ dataType: "html",
   cancelText: 'Done', // optional, default = 'Cancel'
   position: 'bottom', // optional, default = 'top', enum: ['top', 'bottom']
   cancelCallback: function () {
-  
+  /* close edit input */
   $('.annotation-close').trigger('click');
   },
   submitCallback: function () {
@@ -221,5 +221,4 @@ dataType: "html",
   });
   
 /* end headjs */  
-});    nd headjs */  
 });    
