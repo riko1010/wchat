@@ -199,8 +199,14 @@ dataType: "html",
    devlog('update successful');
    /* close annotation form*/
    $('.annotation-content').html(jsondata.response);
-    notie.confirm({
-  text: 'Annotation updated..',
+    annotationstatustext = 'Annotation Updated';
+ } else {
+   devlog('update failed');
+   $('#AnnotationUpdateFailed').removeClass('hidden');
+ }
+ 
+ notie.confirm({
+  text: annotationstatustext,
   submitText: 'Continue editing', // optional, default = 'OK'
   cancelText: 'Done', // optional, default = 'Cancel'
   position: 'bottom', // optional, default = 'top', enum: ['top', 'bottom']
@@ -210,10 +216,6 @@ dataType: "html",
     
   }
 });
- } else {
-   devlog('update failed');
-   $('#AnnotationUpdateFailed').removeClass('hidden');
- }
 
     });
   });
