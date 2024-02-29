@@ -1,3 +1,70 @@
+/* functions */
+function SearchChats(
+  url, 
+  queryarg, 
+  paginationfrom, 
+  needle, 
+  more = false
+  ){
+devlog('SearchChats()');  
+/* abort previous request */
+try {
+        searchchats.abort();
+        devlog('previous request aborted');
+      } catch(e) {
+        devlog('previous request was not aborted or not running');
+      }
+$('.searchchatsbox-loadingicon').removeClass('hidden');  
+$('.searchchatsbox-searchicon').addClass('hidden');   
+
+ /* request */    
+ searchchats = $.ajax({
+        method: "GET",
+        url: url,
+        data: {
+          queryarg: queryarg,
+          paginationfrom: paginationfrom,
+          needle: needle,
+        },
+        dataType: 'html'
+});
+
+searchchats.always(function(SearchAjaxResponse) {
+devlog('request finished');  
+if (SearchAjaxResponse == '') {
+  if (!more)  {
+  $('.searchchatsresults').text('no match found.');  
+  } else {
+  /* hide showmore */
+  $('.searchchatsshowmore').addClass('hidden');
+  /* append no more results */
+  $('.searchchatsresults').append('<span class="d-flex justify-content-center">no more results</span>');  
+  }
+devlog('no match found');
+/* hide showmore */
+$('.searchchatsshowmore').addClass('hidden');
+} else {
+devlog('matches found');  
+  if (!more) {
+  /* insert search result into div */
+  $('.searchchatsresults').html(SearchAjaxResponse);  
+  } else {
+  /* append search result to div */
+  $('.searchchatsresults').append(SearchAjaxResponse);    
+  }
+/* highlight search term */
+$('.searchchatsresults .mEl').mark(needle , null);
+/* show showmore */
+$('.searchchatsshowmore').removeClass('hidden');
+}
+$('.searchchatsbox-loadingicon').addClass('hidden');  
+$('.searchchatsbox-searchicon').removeClass('hidden'); 
+});
+
+}
+
+/* end functions */
+
 $(document).ready(function(){
 /* conversation .cID click handler, siteurl/roundtolowest{ConfigRecordsPerPage}(cID)/#cID
 */
