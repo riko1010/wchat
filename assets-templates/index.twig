@@ -192,6 +192,39 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 </div>
 
 </section>
+{% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
+<paginationav id="ArchivedNav" class="container">
+  <nav aria-label="..." class="paginationavcontainer row">
+    <ul class="pagination justify-content-center text-secondary-emphasis small">
+      <li class="col-auto page-item {{ PaginationNav.prev.status }}">
+        <a href="{{ PaginationNav.prev.first }}" class="text-secondary-emphasis page-link">First</a>
+      </li>
+      <li class="col-auto page-item {{ PaginationNav.next.status }}">
+        <a href="{{ PaginationNav.next.last }}" class="text-secondary-emphasis page-link">Last</a>
+      </li>
+      <li class="col-auto page-item text-center" aria-current="page">&nbsp;
+    </li>
+      <li class="col-auto page-item {{ PaginationNav.prev.status }}">
+        <a href="{{ PaginationNav.prev.href }}" class="text-secondary-emphasis page-link">Prev</a>
+      </li>
+     
+    <li class="col-auto page-item text-center dropdown" aria-current="page">
+    <span class="text-secondary-emphasis page-link">
+    <a class="nav-link text-secondary-emphasis dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ PaginationNav.current }}</a>
+    <ul class="dropdown-menu">
+      {% for pagination in PaginationNav.paginationlist %}
+      <li><a class="text-secondary-emphasis dropdown-item {% if PaginationNav.current == pagination.label %} active {% endif %}" href="{{ pagination.href }}">{{ pagination.label }}</a></li>
+      {% endfor %}
+    </ul>
+    </span>  
+    </li>
+    
+      <li class="col-auto page-item text-end {{ PaginationNav.next.status }}">
+        <a href="{{ PaginationNav.next.href }}" class="text-secondary-emphasis page-link">Next</a>
+      </li>
+    </ul>
+  </nav>
+</paginationav>
 
 
 {% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
@@ -415,4 +448,48 @@ AppPaginateable = '{{ App.Paginateable }}';
 AppSelectedId = '{{ App.SelectedId }}';
 ConfigSuggestGroupChat = '{{ Config.SuggestGroupChat }}';
 ConfigRecordsPerPage = '{{ Config.recordsperpage }}';
-Comment
+CommentIcons = true;
+CurrentUrl = new URL(window.location.href);
+CurrentUrl.hash = '';
+BasePageURI =  '{{ App.BasePageURI }}';
+SelectedPaginationFrom = 'entirechatfile';
+
+
+  {% if session.loggedin == true %}
+$(document).ready(function(){  
+  /* submit form , clear dummy data after submit*/
+  $('#AdminEmail').val('{{session.email}}');
+   AdminLogin(
+     '{{session.email}}',
+     '{{session.email}}'
+     );
+});
+{% endif %} 
+</script>
+
+<!-- /* headjs requires */ -->
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/headjsrequires.js']) }}" referrerpolicy="no-referrer"></script> 
+
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/index.js']) }}" referrerpolicy="no-referrer"></script>  
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/admin.js']) }}" referrerpolicy="no-referrer"></script>  		
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/search.js']) }}" referrerpolicy="no-referrer"></script>  
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/header.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/editors.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/googletags.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/copy.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/annotation.js']) }}" referrerpolicy="no-referrer"></script>  	
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/tooltips.js']) }}" referrerpolicy="no-referrer"></script> 
+
+<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/select.js']) }}" referrerpolicy="no-referrer"></script> 
+
+</body>
+</html>  
