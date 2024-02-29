@@ -1,4 +1,4 @@
-
+ {% set ProcessAndPrint = container.call(['WChat\\processLines', 'Process']) %} 
 <!DOCTYPE html>
 
 <html lang="en">
@@ -188,8 +188,9 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
   </div>
   </div>
 <div class='row p-1 spotlight-group Lines' id='whatsappimages'>
- {% set ProcessAndPrint = container.call(['WChat\\processLines', 'Process']) %} 
-{{ ProcessAndPrint|e }}
+{% for pap in ProcessAndPrint|e %}
+{{ pap|raw }}
+{% endfor %}
 </div>
 
 </section>
