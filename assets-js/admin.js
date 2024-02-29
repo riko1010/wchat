@@ -216,6 +216,9 @@ dataType: "html",
   bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).show();
   },
   submitCallback: function () {
+  /* show offcanvas */
+  /* trigger edit for assurance */
+  $('.annotation-edit').trigger('click'); 
   bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).show();
   }
 });
