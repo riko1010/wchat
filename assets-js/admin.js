@@ -204,13 +204,15 @@ dataType: "html",
    devlog('update failed');
    annotationstatustext = 'Annotation update failed';
  }
- 
+ const bsOffcanvas = new bootstrap.Offcanvas('#AnnotationsRight');
+ bsOffcanvas.hide();
  notie.confirm({
   text: annotationstatustext,
   submitText: 'Continue editing', // optional, default = 'OK'
   cancelText: 'Done', // optional, default = 'Cancel'
   position: 'bottom', // optional, default = 'top', enum: ['top', 'bottom']
   cancelCallback: function () {
+  
   $('.annotation-close').trigger('click');
   },
   submitCallback: function () {
