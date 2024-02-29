@@ -297,7 +297,7 @@ $NextPaginationStatus = (
 $PrevPaginationHref = \pj(
   $Config->SiteUrl,
   $this->SelectedChatFile['search'],
-  $Config->PPaginationFrom,
+  ($Config->PPaginationFrom ?? ''),
   );
 $FirstPaginationHref = \pj(
   $Config->SiteUrl,
