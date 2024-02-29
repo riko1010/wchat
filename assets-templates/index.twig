@@ -194,8 +194,8 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 </section>
 
 {% set PaginationNav = container.call(['WChat\\App', 'PaginationNav']) %}
-<paginationav style="background-color:red;" id="ArchivedNav" class="container">
-  <nav aria-label="..." class="paginationavcontainer row">
+<paginationav id="ArchivedNav" class="container">
+  <nav style="background-color:red;" aria-label="..." class="paginationavcontainer ">
     <ul class="pagination justify-content-center text-secondary-emphasis small">
       <li class="col-auto page-item {{ PaginationNav.prev.status }}">
         <a href="{{ PaginationNav.prev.first }}" class="text-secondary-emphasis page-link">First</a>
