@@ -52,7 +52,7 @@ $Init = $c->get('WChat\Init');
 if ($Request->queryarg != null) {
 /* recursive array search case , ras for search field */
 $ras = \ras($Request->queryarg, array_column($Init->Data->Data, 'search'));
-var_dump($ras);
+
 /* ras for id field if not found */
 $ras = ($ras === null ? 
 \ras($Request->queryarg, array_column($Init->Data->Data, 'id')) : $ras );
