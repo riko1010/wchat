@@ -210,7 +210,10 @@ dataType: "html",
   position: 'bottom', // optional, default = 'top', enum: ['top', 'bottom']
   cancelCallback: function () {
   /* close edit input */
+  /* click close form to show display el */
   $('.annotation-close').trigger('click');
+  /* show offcanvas */
+  bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).show();
   },
   submitCallback: function () {
   bootstrap.Offcanvas.getInstance(document.getElementById("AnnotationsRight")).show();
