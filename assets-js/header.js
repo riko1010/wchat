@@ -1,4 +1,11 @@
 $(document).ready(function(){
+  
+/* set body scroll padding top to header height */
+$('body').css({
+'scroll-padding-top' : $('#header').outerHeight() + 'px'
+});
+/* end set body scroll padding top to header height */
+  
 /* headroom */
   var options = {
     offset: 80,

@@ -21,13 +21,6 @@ head(function () {
 
 $(document).ready(function () {
 
-/* set body scroll padding top to header height */
-$('body').css({
-'scroll-padding-top' : $('#header').outerHeight() + 'px'
-});
-/* end set body scroll padding top to header height */
-
- 
   //show comment icons on scroll,click
   if (CommentIcons) {
   LinesCommentIcons = "hide";
@@ -62,18 +55,5 @@ $('body').css({
 
 });
 
-//scroll to hash - natural scroll to fails
-window.addEventListener('load', function () {
-  devlog('scrolltohash');
-	if (window.location.hash == '') {
-	  devlog('no hash');
-		return false;
-	}
-	var el = document.querySelector(window.location.hash);
-	if (el !== null) {
-	  devlog('hash'+window.location.hash);
-	  devlog('scrolling to '+el);
-		el.scrollIntoView({ block: "center", inline: "nearest", behavior: 'auto' });
-	}
-}, false);
+
 
