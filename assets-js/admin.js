@@ -204,8 +204,7 @@ dataType: "html",
    devlog('update failed');
    annotationstatustext = 'Annotation update failed';
  }
- bsOffcanvas = new bootstrap.Offcanvas('#AnnotationsRight');
- bsOffcanvas.hide();
+ bootstrap.Offcanvas.getInstance(document.getElementById("details")).hide();
  notie.confirm({
   text: annotationstatustext,
   submitText: 'Continue editing', // optional, default = 'OK'
@@ -216,7 +215,7 @@ dataType: "html",
   $('.annotation-close').trigger('click');
   },
   submitCallback: function () {
-  bsOffcanvas.show();  
+  bootstrap.Offcanvas.getInstance(document.getElementById("details")).show();
   }
 });
 
