@@ -11,7 +11,7 @@ head(function () {
     closeOnOutsideClick: true,
     preload: true,
   });
-  $('.g').on('click', function(e){
+  $('.g .pagelink').on('click', function(e){
     e.preventDefault();
   });
   
