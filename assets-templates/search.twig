@@ -43,7 +43,7 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MH4G76CM"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->  
-<main class="col d-flex justify-content-center">
+<main class="row d-flex justify-content-center">
 
 <div class="logosearchindex col col-12 container">
   <form method="get" action="">
@@ -56,9 +56,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </form>
    </div>
   
- <div class="container col col-12" id="container" style="">
+ <div class="container col col-12" id="" style="">
    
-      <div class="list-group list-group-flush searchindex col-12">
+      <div class="list-group list-group-flush searchindex col-9">
   {% for link in Init.Data.Data %}
   {% if RequestR.search|lower in link.name|lower or RequestR.search|lower in link.dirname|lower%}
     
