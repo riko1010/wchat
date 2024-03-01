@@ -544,9 +544,9 @@ a.autolinked {
 
 .logosearchindex {
   position: sticky;
-  top:100px;
+  top:200px;
   background-color: #fff;
-  
+  z-index:99999;
 }
 
 .searchindexitems:hover {
