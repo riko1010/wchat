@@ -2,6 +2,7 @@
 head(function () {
   
   /* lightbox for images, docs, iframes, current lightbox does not close when clicking overlay */
+  devlog('lightbox init');
   const lightbox = GLightbox({
     touchNavigation: true,
     loop: true,
