@@ -44,8 +44,19 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->  
 <main class="col d-flex justify-content-center">
+
+<div class="logosearchindex col col-12 container">
+  <form method="get" action="">
+   <img class="" style="height:100px;width:200px;" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
+   <a href="./">[show all]</a>
+   <div class="form-floating">
+      <input type="text" name="search" class="form-control search" id="SearchIndex" placeholder="Search" required>
+      <label for="floatingSearch">Search</label>
+    </div>
+    </form>
+   </div>
   
- <div class="container col col-12" id="container" style="margin-top: 300px;">
+ <div class="container col col-12" id="container" style="">
    
       <div class="list-group list-group-flush searchindex col-12">
   {% for link in Init.Data.Data %}
@@ -73,16 +84,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   {% endfor %} 
   
 
-<div class="logosearchindex col col-12 container">
-  <form method="get" action="">
-   <img class="" style="height:100px;width:200px;" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
-   <a href="./">[show all]</a>
-   <div class="form-floating">
-      <input type="text" name="search" class="form-control search" id="SearchIndex" placeholder="Search" required>
-      <label for="floatingSearch">Search</label>
-    </div>
-    </form>
-   </div>
+
    
 </div>
 </div>
