@@ -45,9 +45,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->  
 <main class="col d-flex justify-content-center">
   
- <div class="container col" id="container" style="margin-top: 300px;">
+ <div class="container col col-12" id="container" style="margin-top: 300px;">
    
-      <div class="list-group list-group-flush searchindex row ">
+      <div class="list-group list-group-flush searchindex col-12">
   {% for link in Init.Data.Data %}
   {% if RequestR.search|lower in link.name|lower or RequestR.search|lower in link.dirname|lower%}
     
@@ -77,7 +77,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <form method="get" action="">
    <img class="" style="height:100px;width:200px;" src="{{ container.call(['WChat\\Init', 'addurl'], ['images/default-monochrome-black.svg']) }}"/>
    <a href="./">[show all]</a>
-   <div class="form-floating col-9">
+   <div class="form-floating col-12">
       <input type="text" name="search" class="form-control search" id="SearchIndex" placeholder="Search" required>
       <label for="floatingSearch">Search</label>
     </div>
