@@ -10,5 +10,8 @@ head(function () {
     closeOnOutsideClick: true,
     preload: true,
   });
+  $('.g').on('click', function(e){
+    e.preventDefault();
+  });
   
 });
