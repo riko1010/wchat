@@ -1,6 +1,6 @@
-/* headjs */
-/* headjs loads, on ready -> */
-head(function () {
+
+/*  loads, on ready -> */
+$(document).ready(function () {
 
   /* annotations show edit */
   $('.annotation-edit').on('click', function(){
@@ -98,5 +98,5 @@ dataType: "html",
     });
   });
   
-/* end headjs */  
+/* end  */  
 });    

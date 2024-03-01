@@ -1,6 +1,6 @@
 
-/* headjs loads, on ready -> */
-head(function () {
+/*  loads, on ready -> */
+$(document).ready(function () {
 
   /* make links clickable, overflow does nkt wrap - fix asap */
   autolinks(".mEl");

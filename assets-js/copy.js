@@ -1,7 +1,7 @@
 
-/* headjs */
-/* headjs loads, on ready -> */
-head(function () {
+/*  */
+/*  loads, on ready -> */
+$(document).ready(function () {
   
   /* copy admin chatfile link */
    var clipboard3 = new ClipboardJS(".AdminChatfileLink", {
