@@ -546,6 +546,7 @@ a.autolinked {
   position: sticky;
   position: -webkit-sticky; /* Safari */
   top:0;
+  margin-top: 200px;
   background-color: #fff;
   z-index:99999;
 }
