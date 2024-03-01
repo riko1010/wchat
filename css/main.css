@@ -544,7 +544,7 @@ a.autolinked {
 
 .logosearchindex {
   position: sticky;
-  padding-top:100px;
+  top:100px;
   background-color: #fff;
   
 }
