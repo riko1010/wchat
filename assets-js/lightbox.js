@@ -11,8 +11,5 @@ $(document).ready(function (e) {
     closeOnOutsideClick: true,
     preload: true,
   });
-  $('.g .pagelink').on('click', function(e){
-    e.preventDefault();
-  });
   
 });
