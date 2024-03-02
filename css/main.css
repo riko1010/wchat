@@ -560,13 +560,13 @@ a.autolinked {
   margin-left: 10px;
 }
 .offcanvas-size-xl {
-    --bs-offcanvas-width: min(95vw, 600px) !important;
+    --bs-offcanvas-width: 80% !important;
 }
 .offcanvas-size-xxl {
-    --bs-offcanvas-width: min(95vw, 90vw) !important;
+    --bs-offcanvas-width: 80% !important;
 }
 .offcanvas-size-md { /* add Responsivenes to default offcanvas */
-    --bs-offcanvas-width: min(95vw, 400px) !important;
+    --bs-offcanvas-width: 80% !important;
 }
 .offcanvas-size-sm {
     --bs-offcanvas-width: min(95vw, 250px) !important;
