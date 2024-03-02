@@ -43,7 +43,7 @@ if (SearchAjaxResponse == '') {
   $('.searchchatsresults').append('<span class="d-flex justify-content-center">no more results</span>');  
   }
 devlog('no match found');
-/* hide showmore */
+/* hide showmore and container */
 $('.searchchatsshowmore').addClass('hidden');
 } else {
 devlog('matches found');  
@@ -131,6 +131,8 @@ SearchChats(
 $('.showmore').on('click', function(e){
 devlog('showmore');
 e.preventDefault();
+ $('.showmore').addClass('hidden');
+ $('.showmore-loadingicon').removeClass('hidden');
 /* add ConfigRecordsPerPage to SPaginationFrom */
 SPaginationFrom = Number(SPaginationFrom) + Number(ConfigRecordsPerPage);
 // search - showmore
@@ -143,6 +145,13 @@ SearchChats(
   searchchatstriggernewval,
   true,
   );
+  
+  if () {
+    
+  } else {
+ $('.showmore').removeClass('hidden');
+ $('.showmore-loadingicon').addClass('hidden');
+  }
 });
 /* end search .showmore onclick */
 
