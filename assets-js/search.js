@@ -14,7 +14,7 @@ try {
       } catch(e) {
         devlog('previous request was not aborted or not running');
       }
-$('.searchchatsbox-loadingicon').removeClass('hidden');  
+$('.showmore-loadingicon').removeClass('hidden');  
 $('.searchchatsbox-searchicon').addClass('hidden');   
 
  /* request */    
@@ -32,6 +32,7 @@ $('.searchchatsbox-searchicon').addClass('hidden');
 searchchats.always(function(SearchAjaxResponse) {
 devlog('request finished');  
 if (SearchAjaxResponse == '') {
+  nomore = true;
   if (!more)  {
   $('.searchchatsresults').text('no match found.');  
   /* return pointer to previous value for re-query */
@@ -150,8 +151,9 @@ SearchChats(
   true,
   );
   
-  if () {
-    
+  if (nomore) {
+ $('.showmore').addClass('hidden');
+ $('.showmore-loadingicon').addClass('hidden'); 
   } else {
  $('.showmore').removeClass('hidden');
  $('.showmore-loadingicon').addClass('hidden');
