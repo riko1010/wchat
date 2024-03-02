@@ -14,7 +14,8 @@ try {
       } catch(e) {
         devlog('previous request was not aborted or not running');
       }
-$('.showmore-loadingicon').removeClass('hidden');  
+$('.showmore-loadingicon').removeClass('hidden');       
+$('.searchchatsbox-loadingicon').removeClass('hidden');  
 $('.searchchatsbox-searchicon').addClass('hidden');   
 
  /* request */    
@@ -56,7 +57,7 @@ devlog('matches found');
   } else {
   /* append search result to div */
   $('.searchchatsresults').append(SearchAjaxResponse);    
-  $('.showmore').addClass('hidden');
+  $('.showmore').removeClass('hidden');
    $('.showmore-loadingicon').addClass('hidden');
   }
 /* highlight search term */
