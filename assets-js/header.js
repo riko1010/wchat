@@ -8,7 +8,6 @@ $('body').css({
   
 /* headroom */
   var options = {
-    offset: 80,
     tolerance : {
         up : 300,
         down : 300
