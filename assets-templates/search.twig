@@ -45,8 +45,9 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->  
 <main class="row d-flex justify-content-center">
-{% if RequestR['offcanvas'] != 'true' %}  
+{% if RequestR.offcanvas != 'true' %}  
 <div class="logotoppadding">
+  {{RequestR.offcanvas}}
 </div>
 {% endif %}
 <div class="logosearchindex col col-12 container d-flex justify-content-center">
