@@ -10,7 +10,7 @@ $('body').css({
   var options = {
     tolerance : {
         up : 300,
-        down : 300
+        down : 0
     }
 };
 var myElement = document.querySelector("header");
