@@ -130,7 +130,7 @@ $('.showmore').on('click', function(e){
 devlog('showmore');
 e.preventDefault();
 /* add ConfigRecordsPerPage to SPaginationFrom */
-SPaginationFrom = SPaginationFrom + ConfigRecordsPerPage;
+SPaginationFrom = Number(SPaginationFrom) + Number(ConfigRecordsPerPage);
 // search - showmore
 /* searchchats input value */
 searchchatstriggernewval = $('.searchchatsbox').val();
