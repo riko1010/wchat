@@ -31,10 +31,10 @@
 
 <script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/classes.js']) }}" referrerpolicy="no-referrer"></script>  
 
- <!--
+ 
 <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 <script>eruda.init();</script>
--->
+
 
 <base target="_parent">
 </head>
@@ -45,10 +45,10 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->  
 <main class="row d-flex justify-content-center">
-  
+{% if RequestR['offcanvas'] != 'true' %}  
 <div class="logotoppadding">
 </div>
-
+{% endif %}
 <div class="logosearchindex col col-12 container d-flex justify-content-center">
   <div class="col-9">
   <form method="get" action="">
