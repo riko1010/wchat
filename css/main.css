@@ -541,12 +541,13 @@ a.autolinked {
 .searchindex * {
   color:#000;
 }
-
+.logotoppadding {
+  height: 200px;
+}
 .logosearchindex {
   position: sticky;
   position: -webkit-sticky; /* Safari */
   top:0;
-  margin-top: 200px;
   background-color: #fff;
   z-index:99999;
 }
