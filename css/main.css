@@ -560,16 +560,16 @@ a.autolinked {
   margin-left: 10px;
 }
 .offcanvas-size-xl {
-    --bs-offcanvas-width: 80% !important;
+    --bs-offcanvas-width: min(95vw, 960px) !important;
 }
 .offcanvas-size-xxl {
-    --bs-offcanvas-width: 80% !important;
+    --bs-offcanvas-width: min(95vw, 1120px) !important;
 }
 .offcanvas-size-md { /* add Responsivenes to default offcanvas */
-    --bs-offcanvas-width: 80% !important;
+    --bs-offcanvas-width: min(95vw, 600px) !important;
 }
 .offcanvas-size-sm {
-    --bs-offcanvas-width: min(95vw, 250px) !important;
+    --bs-offcanvas-width: min(95vw, 480px) !important;
 }
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
