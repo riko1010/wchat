@@ -355,7 +355,7 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
   </div>
 </div>
 
-<div class="offcanvas offcanvas-start" style="" tabindex="-1" id="IndexLeft" aria-labelledby="IndexLeftLabel">
+<div class="offcanvas offcanvas-start" style="width:70%;" tabindex="-1" id="IndexLeft" aria-labelledby="IndexLeftLabel">
   <div class="offcanvas-header">
     <button type="button" class="btn-close closeIndexLeft" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
@@ -416,74 +416,4 @@ RealAppPageURI = '{{ App.RealPageURI }}';
 ConfigSiteUrl = '{{Config.SiteUrl }}';
 APIUrl = '{{Config.APIUrl }}';
 ADMINUrl = '{{Config.ADMINUrl }}';
-IFRAMESUrl = '{{Config.IFRAMESUrl }}';
-ANNOTATIONUrl = '{{Config.ANNOTATIONUrl }}';
-AppPaginationFrom = '{{Config.PaginationFrom }}';
-AppPaginateable = '{{ App.Paginateable }}';
-AppSelectedId = '{{ App.SelectedId }}';
-ConfigSuggestGroupChat = '{{ Config.SuggestGroupChat }}';
-ConfigRecordsPerPage = '{{ Config.recordsperpage }}';
-CommentIcons = true;
-CurrentUrl = new URL(window.location.href);
-CurrentUrl.hash = '';
-BasePageURI =  '{{ App.BasePageURI }}';
-SelectedPaginationFrom = 'entirechatfile';
-
-
-  {% if session.loggedin == true %}
-$(document).ready(function(){  
-  /* submit form , clear dummy data after submit*/
-  $('#AdminEmail').val('{{session.email}}');
-   AdminLogin(
-     '{{session.email}}',
-     '{{session.email}}'
-     );
-});
-{% endif %} 
-</script>
-
-<!-- /* requires */ -->
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js" referrerpolicy="no-referrer"></script> 
-
-<script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js" referrerpolicy="no-referrer"></script> 
-
-<script src="https://cdn.jsdelivr.net/npm/video.js@8.3.0/dist/video.min.js" referrerpolicy="no-referrer"></script> 
-
-<script src="https://cdn.jsdelivr.net/npm/anchorme@3.0.5/dist/browser/anchorme.min.js" referrerpolicy="no-referrer"></script> 
-
-<script src="https://cdn.jsdelivr.net/npm/jsuites@5.0.27/dist/jsuites.min.js" referrerpolicy="no-referrer"></script> 
-
-<script src="https://cdn.jsdelivr.net/npm/notie@4.3.1/dist/notie.min.js" referrerpolicy="no-referrer"></script> 
-
-<script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js" referrerpolicy="no-referrer"></script> 
-
-<script src="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/trumbowyg.min.js" referrerpolicy="no-referrer"></script> 
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/devmode.js']) }}" referrerpolicy="no-referrer"></script>  	   
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/index.js']) }}" referrerpolicy="no-referrer"></script>  
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/admin.js']) }}" referrerpolicy="no-referrer"></script>  		
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/search.js']) }}" referrerpolicy="no-referrer"></script>  
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/header.js']) }}" referrerpolicy="no-referrer"></script>  	
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/editors.js']) }}" referrerpolicy="no-referrer"></script>  	
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/googletags.js']) }}" referrerpolicy="no-referrer"></script>  	
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/copy.js']) }}" referrerpolicy="no-referrer"></script>  	
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/annotation.js']) }}" referrerpolicy="no-referrer"></script>  	
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/tooltips.js']) }}" referrerpolicy="no-referrer"></script> 
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/select.js']) }}" referrerpolicy="no-referrer"></script> 
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/lightbox.js']) }}" referrerpolicy="no-referrer"></script> 
-
-<script src="{{ container.call(['WChat\\Init', 'addurl'], ['assets-js/scrolltohash.js']) }}" referrerpolicy="no-referrer"></script> 
-
-</body>
-</html>  
+IFRAMESUrl = 
