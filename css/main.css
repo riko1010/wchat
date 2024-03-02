@@ -1,7 +1,7 @@
 :root {
   --success: #25d366;
   --cream: #ece5dd;
-  --headersize: 350px;
+  --headersize: 58px;
 }
 * {
   margin: 0;
@@ -12,7 +12,7 @@
 
 html,
 body {
-    scroll-padding-top: 350px; /* set to the height of your header 65px, also setting dynamically with js at index.js  */
+    scroll-padding-top: 80px; /* set to the height of your header 65px, also setting dynamically with js at index.js  */
 }
 
 @media (min-width: 576px) {

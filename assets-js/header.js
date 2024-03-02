@@ -8,11 +8,11 @@ $('body').css({
   
 /* headroom */
   var options = {
-    offset: 350,
+    offset: 80,
     tolerance : {
-        up : 20,
-        down : 0
-    },
+        up : 300,
+        down : 300
+    }
 };
 var myElement = document.querySelector("header");
 // construct an instance of Headroom, passing the element
