@@ -34,6 +34,7 @@ devlog('request finished');
 if (SearchAjaxResponse == '') {
   if (!more)  {
   $('.searchchatsresults').text('no match found.');  
+  /* return pointer to previous value for re-query */
   SPaginationFrom = Number(SPaginationFrom) - Number(ConfigRecordsPerPage);
   } else {
   /* hide showmore */
