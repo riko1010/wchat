@@ -23,7 +23,7 @@ body {
     height: 25px;
   }
   .offcanvas-size {
-    100%;
+    width:100%;
   }
 }
 
@@ -34,6 +34,9 @@ body {
   .icons-dsize, .wchatlogo-img {
     height: 50px;
   }
+  .offcanvas-size {
+    width:80%;
+  }
 }
 
 @media (min-width: 992px) {
@@ -42,6 +45,9 @@ body {
   }
   .icons-dsize, .wchatlogo-img {
     height: 50px;
+  }
+  .offcanvas-size {
+    width:80%;
   }
 }
 
@@ -52,6 +58,9 @@ body {
   .icons-dsize, .wchatlogo-img {
     height: 50px;
   }
+  .offcanvas-size {
+    width:80%;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -60,6 +69,9 @@ body {
   }
   .icons-dsize, .wchatlogo-img {
     height: 100px;
+  }
+  .offcanvas-size {
+    width:80%;
   }
 }
 
