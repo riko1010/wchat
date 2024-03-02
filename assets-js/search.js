@@ -149,14 +149,17 @@ $('.searchchats').on('click', function(){
 $('.navicons').slideUp();
 $('.searchchats-container, header-search').slideDown();
 $('.searchchatsbox').focus();
+$('.searchchatsresults').removeClass('hidden');
 });
 /* end .searchchats on click, */
  
   /* show navicons, hide searchbox and searchresults */
     $('.chat-container, .wchatlogo, select .searchselect').on('click', function(){
-    $('.searchchats-container, header-search').slideUp(); 
+      $('.searchchatsresults').addClass('hidden');
+      $('.searchchats-container, header-search').slideUp(); 
+  
     $('.navicons').slideDown();  
-    $('.searchchatsresults').addClass('hidden');
+    
     });
 
 
