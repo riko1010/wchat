@@ -559,18 +559,7 @@ a.autolinked {
   margin-right: 5px;
   margin-left: 10px;
 }
-.offcanvas-size-xl {
-    --bs-offcanvas-width: 80%!important;
-}
-.offcanvas-size-xxl {
-    --bs-offcanvas-width: 80%!important;
-}
-.offcanvas-size-md { /* add Responsivenes to default offcanvas */
-    --bs-offcanvas-width: 80%!important;
-}
-.offcanvas-size-sm {
-    --bs-offcanvas-width: 80%!important;
-}
+
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
   position: relative;
