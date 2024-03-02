@@ -357,29 +357,18 @@ cannot display chat files at this time - <a href="" class="reloadpage">retry</a>
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="IndexLeft" aria-labelledby="IndexLeftLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="IndexLeftLabel">{{ App.Name }}</h5><button class="annotation-edit btn btn-outline-success" type="button">Edit</button>
+    <button class="annotation-edit btn btn-outline-success" type="button">Edit</button>
     <button type="button" class="btn-close closeIndexLeft" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="annotation-body offcanvas-body">
     
-<small class="font-monospace">
-Annotation
-</small>
-<div class="annotation-content" style="">
+<div class="annotation-content" style="height:100%;width:100%;">
 <iframe style="width:100%;height:100%;" src="{{Config.SiteUrl}}" title="YouTube video" allowfullscreen></iframe>
 
 </div>
 
   </div>
-  <div class="annotation-body-edit offcanvas-body hidden">
-     
-    <div id="annotation-update-input" name="annotation" class="mb-1">
-    {{~ App.SelectedChatFile['annotation']|raw ~}}
-    </div>
-    <input id="annotation-update-id" name="annotationid" type="hidden" value="{{~ App.SelectedId ~}}"/>
-     <button class="annotation-submit login btn btn-outline-success py-2" type="button">Save</button>
-       <button class="annotation-close btn btn-outline-danger py-2" type="button">Close</button>
-  </div>
+  
 </div>
 
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="AnnotationsRight" aria-labelledby="AnnotationsRightLabel">
