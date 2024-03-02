@@ -10,8 +10,8 @@ $('body').css({
   var options = {
     offset : 0,
     tolerance : {
-        up : 0,
-        down : 80
+        up : 80,
+        down : 0
     }
 };
 var myElement = document.querySelector("header");
