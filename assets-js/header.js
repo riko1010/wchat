@@ -8,7 +8,7 @@ $('body').css({
   
 /* headroom */
   var options = {
-    offset : 0,
+    offset : 80,
     tolerance : 80,
 };
 var myElement = document.querySelector("header");
