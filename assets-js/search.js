@@ -154,8 +154,9 @@ $('.searchchatsbox').focus();
  
   /* show navicons, hide searchbox and searchresults */
     $('.chat-container, .wchatlogo, select .searchselect').on('click', function(){
-    $('.searchchats-container, header-search, .searchchatsresults').slideUp(); 
-    $('.navicons').slideDown();   
+    $('.searchchats-container, header-search').slideUp(); 
+    $('.navicons').slideDown();  
+    $('.searchchatsresults').addClass('hidden');
     });
 
 
