@@ -9,6 +9,10 @@ $('body').css({
 /* headroom */
   var options = {
     offset: 350,
+    tolerance : {
+        up : 20,
+        down : 0
+    },
 };
 var myElement = document.querySelector("header");
 // construct an instance of Headroom, passing the element
