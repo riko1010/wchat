@@ -22,8 +22,8 @@ body {
   .icons-dsize, .wchatlogo-img {
     height: 25px;
   }
-  .offcanvas-size {
-    width:100%;
+  .offcanvas-widthsize {
+    width:100%!important;
   }
 }
 
@@ -34,8 +34,8 @@ body {
   .icons-dsize, .wchatlogo-img {
     height: 50px;
   }
-  .offcanvas-size {
-    width:80%;
+  .offcanvas-widthsize {
+    width:80%!important;
   }
 }
 
@@ -46,8 +46,8 @@ body {
   .icons-dsize, .wchatlogo-img {
     height: 50px;
   }
-  .offcanvas-size {
-    width:80%;
+  .offcanvas-widthsize {
+    width:80%!important;
   }
 }
 
@@ -58,8 +58,8 @@ body {
   .icons-dsize, .wchatlogo-img {
     height: 50px;
   }
-  .offcanvas-size {
-    width:80%;
+  .offcanvas-widthsize {
+    width:80%!important;
   }
 }
 
@@ -70,8 +70,8 @@ body {
   .icons-dsize, .wchatlogo-img {
     height: 100px;
   }
-  .offcanvas-size {
-    width:80%;
+  .offcanvas-widthsize {
+    width:80%!important;
   }
 }
 
