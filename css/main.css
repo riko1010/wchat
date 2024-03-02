@@ -22,6 +22,9 @@ body {
   .icons-dsize, .wchatlogo-img {
     height: 25px;
   }
+  .offcanvas-size {
+    100%;
+  }
 }
 
 @media (min-width: 768px) {
