@@ -50,9 +50,13 @@ devlog('matches found');
   if (!more) {
   /* insert search result into div */
   $('.searchchatsresults').html(SearchAjaxResponse);  
+  $('.showmore').removeClass('hidden');
+ $('.showmore-loadingicon').addClass('hidden');
   } else {
   /* append search result to div */
   $('.searchchatsresults').append(SearchAjaxResponse);    
+  $('.showmore').addClass('hidden');
+   $('.showmore-loadingicon').addClass('hidden');
   }
 /* highlight search term */
 $('.searchchatsresults .mEl').mark(needle , null);
