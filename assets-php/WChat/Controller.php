@@ -26,7 +26,7 @@ $function = new \Twig\TwigFunction('screenshot', function ($screenshotapi, $page
 });
 $twig->addFunction($function);
 
-print $twig->render('index.twig', [
+print $twig->render('chatfile.twig', [
     'App' => $App,
     'Config' => $Config,
     'Init' => $Init,
@@ -323,7 +323,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
 }
 
 
-public function RouteSEARCH(
+public function RouteDASHBOARD(
   \Psr\Container\ContainerInterface $c,  
   ) {
 /* instantiation, ordered, some classes are unecessary for file upload */
@@ -345,7 +345,7 @@ $twig = new \Twig\Environment($loader, [
   'cache' => false,
 ]);
 
-print $twig->render('search.twig', [
+print $twig->render('dashboard.twig', [
     'App' => $App,
     'Config' => $Config,
     'session' => $_SESSION,
