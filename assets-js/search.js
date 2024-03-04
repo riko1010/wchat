@@ -16,7 +16,6 @@ try {
       }
 $('.showmore-loadingicon').removeClass('hidden');       
 $('.searchchatsbox-loadingicon').removeClass('hidden');  
-$('.searchchatsbox-searchicon').addClass('hidden');   
 
  /* request */    
  searchchats = $.ajax({
@@ -66,7 +65,6 @@ $('.searchchatsresults .mEl').mark(needle , null);
 $('.searchchatsshowmore').removeClass('hidden');
 }
 $('.searchchatsbox-loadingicon').addClass('hidden');  
-$('.searchchatsbox-searchicon').removeClass('hidden'); 
 });
 
 }
@@ -107,7 +105,6 @@ if (searchchatstriggernewval == ''){
   $('.searchchatsresults').text('Enter keywords to search.');
   /* set loading, search icons to default*/
   $('.searchchatsbox-loadingicon').addClass('hidden');  
-  $('.searchchatsbox-searchicon').removeClass('hidden');  
   devlog('no search keyword entered');
 } else {
 searchchatstriggernewval = searchchatstriggernewval.slice(0, 5);
