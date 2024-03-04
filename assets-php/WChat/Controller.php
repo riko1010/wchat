@@ -2,7 +2,7 @@
 namespace WChat;
 class Controller {
 
-public function RouteIndex(
+public function RouteCHATFILE(
   \Psr\Container\ContainerInterface $c,  
   ) {
 /* instantiation, ordered */

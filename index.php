@@ -34,11 +34,11 @@ $Dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
    
    $r->addRoute('GET', '/api[/]', ['WChat\Controller', 'RouteAPI']);
    
-   $r->addRoute('GET', '/{queryarg}/{paginationfrom:\d+}[/]', ['WChat\Controller', 'RouteIndex']);
+   $r->addRoute('GET', '/{queryarg}/{paginationfrom:\d+}[/]', ['WChat\Controller', 'RouteCHATFILE']);
    
-   $r->addRoute('GET', '/{queryarg}[/]', ['WChat\Controller', 'RouteIndex']);
+   $r->addRoute('GET', '/{queryarg}[/]', ['WChat\Controller', 'RouteCHATFILE']);
    
-   $r->addRoute('GET', '/{queryarg:.+}', ['WChat\Controller', 'RouteIndex']);
+   $r->addRoute('GET', '/{queryarg:.+}', ['WChat\Controller', 'RouteCHATFILE']);
    
    $r->addRoute('GET', '/', ['WChat\Controller', 'RouteDASHBOARD']);
 });
