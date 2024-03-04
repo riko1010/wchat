@@ -8,7 +8,7 @@ $('body').css({
   
 /* headroom */
   var options = {
-    offset : 80,
+    offset: 80,
 };
 var myElement = document.querySelector("header");
 // construct an instance of Headroom, passing the element
