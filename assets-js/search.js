@@ -47,6 +47,7 @@ devlog('no match found');
 /* hide showmore and container */
 $('.searchchatsshowmore').addClass('hidden');
 } else {
+nomore = false;  
 devlog('matches found');  
   if (!more) {
   /* insert search result into div */
@@ -162,7 +163,7 @@ SearchChats(
 /* .searchchats on click, hide navicons, show searchbox and searchresults */
 $('.searchchats').on('click', function(){
 $('.navicons').slideUp();
-$('.searchchats-container, header-search').slideDown();
+$('.searchchats-container', 'header-search').slideDown();
 $('.searchchatsbox').focus();
 $('.searchchatsresults').removeClass('hidden');
 });
