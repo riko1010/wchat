@@ -98,7 +98,7 @@ header {
   margin-bottom: 0.5rem;
   position: sticky;
   top: 0;
-  z-index: 4;
+  z-index: 99999;
 }
 header h1 {
   letter-spacing: 0.1rem;
