@@ -616,4 +616,6 @@ div.searchchatsresults .gc {
 div.searchchatsresults mark{
     background-color: yellow!important;
     color: black!important;
+    margin:0;
+    padding:0;
 }
