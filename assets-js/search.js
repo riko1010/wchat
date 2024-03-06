@@ -171,7 +171,7 @@ $('.searchchatsresults').removeClass('hidden');
 /* end .searchchats on click, */
  
   /* show navicons, hide searchbox and searchresults */
-    $('.chat-container', '.wchatlogo', 'select .searchselect').on('click', function(){
+    $('.chat-container, .wchatlogo, select .searchselect').on('click', function(){
       $('.searchchatsresults').addClass('hidden');
       $('.searchchatsshowmore').addClass('hidden');
       $('.searchchats-container').slideUp();
