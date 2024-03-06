@@ -613,6 +613,9 @@ div.searchchatsresults .gc {
   display:none!important;
 }
 /* end searchchatsresults */
+div.searchchatsresults .zm .sender {
+  display:block!important;
+}
 div.searchchatsresults mark{
     background-color: yellow!important;
     color: black!important;
