@@ -85,7 +85,11 @@ a {
   text-decoration: none;
   color: #34b7f1 !important;
 }
-#header {
+.main-header {
+  position: sticky;
+  top:0;
+}
+header {
   padding: 1.2rem 0.5rem;
  /* text-align: center;*/
   color: var(--cream);
@@ -93,8 +97,7 @@ a {
   box-shadow: 0 2px 10px 0 rgba(0,0,0, 0.1);
   margin-bottom: 0.5rem;
   position: sticky;
-  position: -webkit-sticky; /* Safari */
-  top: 0px;
+  top: 0;
   z-index: 4;
 }
 header h1 {
