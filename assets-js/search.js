@@ -163,7 +163,8 @@ SearchChats(
 /* .searchchats on click, hide navicons, show searchbox and searchresults */
 $('.searchchats').on('click', function(){
 $('.navicons').slideUp();
-$('.searchchats-container', 'header-search').slideDown();
+$('.searchchats-container').slideDown();
+$('header-search').slideDown();
 $('.searchchatsbox').focus();
 $('.searchchatsresults').removeClass('hidden');
 });
