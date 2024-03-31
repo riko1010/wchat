@@ -24,6 +24,7 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
   selectedfilename = selectedfilename.split('.zip');
   $('.uploadchatfilearchive').prop('disabled', false);       
   $('#FolderName').val(selectedfilename[0]);  
+  $('.chatfilearchivenotice').html('<span style="color:red;"></span>');
   } catch(e) {
   $('#FolderName').val('Enter folder name');  
   }
