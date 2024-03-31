@@ -27,7 +27,6 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
   $('#FolderName').val(selectedfilename[0]);  
   $('.chatfilearchivenotice').html('');
   } catch(e) {
-  $('#FolderName').val('Enter folder name');  
   }
   
         }
