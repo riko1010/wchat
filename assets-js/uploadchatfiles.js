@@ -32,4 +32,9 @@ if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1
         }
 });  
 
+$('.uploadchatfilearchive').on('click', function(){
+  $('#UploadChatFile').submit();
+});
+
+
 });
