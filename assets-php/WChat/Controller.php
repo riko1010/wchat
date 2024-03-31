@@ -262,13 +262,12 @@ if (empty($_SESSION['users_id'])) {
 if (isset($RequestR->submitupload) && $RequestR->submitupload == 'true') {
   print json_encode(['status' => 'success', 'response' => 'file upload..']);
   
-  var_dump($_FILES);
   print '<hr/>';
   $_FILES["chatfilearchive"]["name"];
   $_FILES["chatfilearchive"]["tmp_name"];
   
   $zip_file = $_FILES["chatfilearchive"]["tmp_name"];
-  if (file_exists($zip_file)) print 'exists';
+  if (!file_exists($zip_file)) print 'file was not uploaded.';
 //  '/path/to/file.zip'; 
 // I wan to get stream a CSV files
 
