@@ -258,8 +258,8 @@ if (empty($_SESSION['users_id'])) {
 }
 
 /* upload chatfile */
-/*
-if (!empty($RequestR->submitupload=true)) {
+
+if (isset($RequestR->submitupload) && $RequestR->submitupload == 'true') {
   print json_encode(['status' => 'success', 'response' => 'file upload..']);
   
   var_dump($_FILES);
@@ -319,7 +319,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
   
   
 }
-*/
+
 }
 
 
