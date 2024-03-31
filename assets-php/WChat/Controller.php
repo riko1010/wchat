@@ -319,12 +319,12 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
 }
 print 'uploaded files<br/>';
 foreach ($supportedfiletypes as $supportedfiles) {
- print $supportedfiles.PHP_EOL;
+ print $supportedfiles.'<br/>';
 }
 
 print 'unsupported files<br/>';
 foreach ($unsupportedfiletypes as $unsupportedfiles) {
-  print $unsupportedfiles.PHP_EOL;
+  print $unsupportedfiles.'<br/>';;
 }
   
   
