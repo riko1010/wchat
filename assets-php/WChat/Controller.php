@@ -276,7 +276,7 @@ $zip->open($zip_file);
 $unsupportedfiletypes = [];
 $supportedfiletypes = [];
 $foldername = $_POST['foldername'];
-$altfoldername = $foldername.'-'.time();
+$altfoldername = $foldername.''.time();
 if (!is_dir(\pj($Config->baseDir, 'test', $foldername))) {
   $foldername = \pj($Config->baseDir,'test',$foldername);
   mkdir($foldername);
