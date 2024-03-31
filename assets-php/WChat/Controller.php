@@ -298,7 +298,7 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     // detect mime type and extention with a good library asap 
     
     $extension = pathinfo($name, PATHINFO_EXTENSION);
-    
+    /* accepting extensionless files */
     switch ($extension) {
     case 'txt':
     case 'png':
@@ -316,6 +316,15 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     default: $unsupportedfiletypes[] = 'unsupported file type:'.$name.' '.$extension;
     }
     
+}
+print 'uploaded files<br/>';
+foreach ($supportedfiletypes as $supportedfiles) {
+ print $supportedfiles.PHP_EOL;
+}
+
+print 'unsupported files<br/>';
+foreach ($unsupportedfiletypes as $unsupportedfiles) {
+  print $unsupportedfiles.PHP_EOL;
 }
   
   
