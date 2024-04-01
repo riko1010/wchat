@@ -31,7 +31,8 @@ cp = ap(wd, conversations_path)
 tsp = ap(wd, triggersitemappath)
 cfap = chatfileattachmemtpattern
 cfcp = chatfileconversationpattern
-       
+
+#unzip functions removed. only fixes chatfiles.       
 
 #parse directory recursively for txt files. fix whatsapp chat files with extensionless attachments, rename extensionless attachments by guessing mime with filetype
 try:
