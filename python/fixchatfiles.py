@@ -5,7 +5,7 @@ from pymodules.filetype import filetype
 from includes.classes import ap, pj, uritoencode
 from pathlib import Path
 
-logging.basicConfig(filename='logs/unzip.log', filemode='w', level=logging.DEBUG, format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(filename='logs/fixchatfiles.log', filemode='w', level=logging.DEBUG, format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 # specify the zip file path 
 wd = '../'
 incd = 'includes'
@@ -44,7 +44,7 @@ else:
   gpy.close
 
 #parse directory recursively for mp4 files
-# unzip.py fetch screenshot of video from https://screenia.best then save as filename.ext.png
+# fixchatfiles.py fetch screenshot of video from https://screenia.best then save as filename.ext.png
 try:
   fpy = open(pj(incd, incScreenshot))
   exec(fpy.read())
