@@ -317,12 +317,13 @@ $client = new \Curl\Client();
 // returns standardized Response object no matter what
 $response = $client->get(\pj($Config->SiteUrl,'python/runfixchatfiles.py'));
 $status = $response->status;
-print '<br/>';
+
 if ($status == '200') {
   print 'Chat files fixed';
 } else {
   print 'Chat files were not fixed';
 }
+print '<hr/>';
 }
 }
 
