@@ -31,44 +31,8 @@ cp = ap(wd, conversations_path)
 tsp = ap(wd, triggersitemappath)
 cfap = chatfileattachmemtpattern
 cfcp = chatfileconversationpattern
-
-# create a ZipFile object
-try:
-  #check if zip file exists
-  if not os.path.exists(fp):
-    raise Exception(f'{fp} does not exist')
-  zfp = zipfile.ZipFile(fp, 'r')
-# extract all the contents
-  zfp.extractall(cp)
-except:
-  logging.exception('zip extraction error')
-  sys.exit(1)
-else:
-  zfp.close()
-  logging.info('zip extraction done')
        
-# create trigger or sitemap generation trigger file
-try:
-  ftsp = open(tsp, "w")
-except:
-  logging.exception('sitemap trigger file creation error')
-else:
-  ftsp.close
-  logging.info('sitemap trigger file created')
-  
-#delete file 
-#check if exists
-try:
-  if not os.path.exists(fp):
-    raise Exception(f'unzipped file {fp} does not exist')
-  os.remove(fp)
-#deletefolder
-  shutil.rmtree(wp)
-except:
-  logging.exception('error deleting files')
-else:
-  logging.info('files & waste folder deleted')
-  
+
 #parse directory recursively for txt files. fix whatsapp chat files with extensionless attachments, rename extensionless attachments by guessing mime with filetype
 try:
   gpy = open(pj(incd, incChatfiles))
