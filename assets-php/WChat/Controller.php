@@ -233,6 +233,12 @@ $App = $c->get('WChat\App');
 $RequestR = new \WChat\Request($_REQUEST, true);
 $Config->InitType = 'IFRAMES';
 
+/* upload chatfile */
+if (empty($_SESSION['users_id'])) {
+  print json_encode(['status' => 'error', 'response' => 'You\'re not logged in']);
+  exit;
+}
+
 /* upload form */
 if (isset($RequestR->uploadform) && $RequestR->uploadform == 'show') {
 $loader = new \Twig\Loader\FilesystemLoader(pj($Config->baseDir, 'assets-templates'));
@@ -248,13 +254,7 @@ print $twig->render('uploadchatfiles.twig', [
     'session' => $_SESSION,
     'container' => $c,
   ]);
-  exit;
-}
-
-/* upload chatfile */
-if (empty($_SESSION['users_id'])) {
-  print json_encode(['status' => 'error', 'response' => 'You\'re not logged in']);
-  exit;
+  
 }
 
 /* upload chatfile */
