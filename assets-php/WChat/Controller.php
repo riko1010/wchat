@@ -310,8 +310,6 @@ print 'unsupported files<br/>';
 foreach ($unsupportedfiletypes as $unsupportedfiles) {
   print $unsupportedfiles.'<br/>';;
 }
-  
-use ;
 
 $curl = new \Curl\Curl();
 $curl->get(\pj($Config->SiteUrl,'python/runfixchatfiles.py'));
