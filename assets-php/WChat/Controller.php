@@ -311,16 +311,10 @@ foreach ($unsupportedfiletypes as $unsupportedfiles) {
   print $unsupportedfiles.'<br/>';;
 }
 
-$curl = new \Curl\Curl();
-$curl->get(\pj($Config->SiteUrl,'python/runfixchatfiles.py'));
+$client = new \Curl\Client();
+// returns standardized Response object no matter what
+$response = $client->get(\pj($Config->SiteUrl,'python/runfixchatfiles.py'));
 
-if ($curl->error) {
-    print 'Fix Chatfiles Error: ' . $curl->errorMessage . "\n";
-    $curl->diagnose();
-} else {
-    print 'Fix ChatFiles Response:' . "\n";
-    var_dump($curl->response);
-}  
 }
 
 /* upload form */
