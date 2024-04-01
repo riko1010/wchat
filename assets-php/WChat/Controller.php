@@ -242,6 +242,8 @@ if (empty($_SESSION['users_id'])) {
 /* upload chatfile */
 
 if (isset($RequestR->submitupload) && $RequestR->submitupload == 'true') {
+  if (isset($_FILES["chatfilearchive"]) && file_exists($_FILES["chatfilearchive"]["tmp_name"])) 
+  {
   print json_encode(['status' => 'success', 'response' => 'file upload done']);
   
   print '<hr/>';
@@ -249,7 +251,6 @@ if (isset($RequestR->submitupload) && $RequestR->submitupload == 'true') {
   $_FILES["chatfilearchive"]["tmp_name"];
   
   $zip_file = $_FILES["chatfilearchive"]["tmp_name"];
-  if (!file_exists($zip_file)) print 'file was not uploaded.';
 //  '/path/to/file.zip'; 
 // I wan to get stream a CSV files
 
@@ -315,7 +316,14 @@ foreach ($unsupportedfiletypes as $unsupportedfiles) {
 $client = new \Curl\Client();
 // returns standardized Response object no matter what
 $response = $client->get(\pj($Config->SiteUrl,'python/runfixchatfiles.py'));
-
+$status = $response->status;
+print '<br/>';
+if ($status == '200') {
+  print 'Chat files fixed';
+} else {
+  print 'Chat files were not fixed';
+}
+}
 }
 
 /* upload form */
