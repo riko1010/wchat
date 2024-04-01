@@ -242,7 +242,7 @@ if (empty($_SESSION['users_id'])) {
 /* upload chatfile */
 
 if (isset($RequestR->submitupload) && $RequestR->submitupload == 'true') {
-  print json_encode(['status' => 'success', 'response' => 'file upload successful']);
+  print json_encode(['status' => 'success', 'response' => 'file upload done']);
   
   print '<hr/>';
   $_FILES["chatfilearchive"]["name"];
@@ -263,7 +263,7 @@ if (!is_dir(\pj($Config->baseDir, 'test', $foldername))) {
   $foldername = \pj($Config->baseDir,'test',$foldername);
   mkdir($foldername);
 } 
-
+/* if folder exists, alt folder name*/
 if (!is_dir($foldername)) {
   $foldername = \pj($Config->baseDir,'test',$altfoldername);
   mkdir($foldername);  
