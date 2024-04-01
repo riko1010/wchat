@@ -257,15 +257,18 @@ $zip = new \ZipArchive();
 $zip->open($zip_file);
 $unsupportedfiletypes = [];
 $supportedfiletypes = [];
+$targetfolder = $Config->cfFolder;
 $foldername = $_POST['foldername'];
 $altfoldername = $foldername.''.time();
-if (!is_dir(\pj($Config->baseDir, 'test', $foldername))) {
-  $foldername = \pj($Config->baseDir,'test',$foldername);
+if (!is_dir(\pj($Config->baseDir, $targetfolder, $foldername))) {
+  $foldername = \pj($Config->baseDir,
+  $targetfolder
+  ,$foldername);
   mkdir($foldername);
 } 
 /* if folder exists, alt folder name*/
 if (!is_dir($foldername)) {
-  $foldername = \pj($Config->baseDir,'test',$altfoldername);
+  $foldername = \pj($Config->baseDir, $targetfolder ,$altfoldername);
   mkdir($foldername);  
 }
 if (!is_dir($foldername)) {
