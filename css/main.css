@@ -574,6 +574,9 @@ a.autolinked {
   margin-right: 5px;
   margin-left: 10px;
 }
+#uploadiframe {
+  height: 300px;
+}
 /* searchchatsresults - temporarily reusing response from search api, will return structured response for search asap */
 .searchchatsresults .cID {
   position: relative;
