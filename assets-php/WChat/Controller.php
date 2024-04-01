@@ -239,28 +239,10 @@ if (empty($_SESSION['users_id'])) {
   exit;
 }
 
-/* upload form */
-if (isset($RequestR->uploadform) && $RequestR->uploadform == 'show') {
-$loader = new \Twig\Loader\FilesystemLoader(pj($Config->baseDir, 'assets-templates'));
-/* idk why caching was disabled */
-//'cache' => pj($Config->baseDir, '/assets-templates/cache'),
-$twig = new \Twig\Environment($loader, [
-  'cache' => false,
-]);
-
-print $twig->render('uploadchatfiles.twig', [
-    'App' => $App,
-    'Config' => $Config,
-    'session' => $_SESSION,
-    'container' => $c,
-  ]);
-  
-}
-
 /* upload chatfile */
 
 if (isset($RequestR->submitupload) && $RequestR->submitupload == 'true') {
-  print json_encode(['status' => 'success', 'response' => 'file upload..']);
+  print json_encode(['status' => 'success', 'response' => 'file upload successful']);
   
   print '<hr/>';
   $_FILES["chatfilearchive"]["name"];
@@ -326,6 +308,24 @@ foreach ($unsupportedfiletypes as $unsupportedfiles) {
   print $unsupportedfiles.'<br/>';;
 }
   
+  
+}
+
+/* upload form */
+if (isset($RequestR->uploadform) && $RequestR->uploadform == 'show') {
+$loader = new \Twig\Loader\FilesystemLoader(pj($Config->baseDir, 'assets-templates'));
+/* idk why caching was disabled */
+//'cache' => pj($Config->baseDir, '/assets-templates/cache'),
+$twig = new \Twig\Environment($loader, [
+  'cache' => false,
+]);
+
+print $twig->render('uploadchatfiles.twig', [
+    'App' => $App,
+    'Config' => $Config,
+    'session' => $_SESSION,
+    'container' => $c,
+  ]);
   
 }
 
