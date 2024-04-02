@@ -32,7 +32,7 @@ for cd, _, files in os.walk( cp ):
           logging.info('File extension guessed: %s' % kind.extension)
           anname = aname+kind.extension
           logging.info('Renaming from: %s' % ap(cd, aname))
-          logging.info('Renaming to: %s' % ap(cd, aanname))
+          logging.info('Renaming to: %s' % ap(cd, anname))
           os.rename(ap(cd, aname), ap(cd, anname))
           logging.info('Renaming done')
           fline.replace(aname, anname)
