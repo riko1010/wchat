@@ -37,6 +37,7 @@ for cd, _, files in os.walk( cp ):
           logging.info('Renaming done')
           logging.info('%s' % fline)
           fline = fline.replace(aname, anname)
+          logging.info('%s' % fline)
         except:
           logging.exception('exception:')
         fline = fline.rstrip()
