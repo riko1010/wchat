@@ -294,6 +294,8 @@ for ($i = 0; $i < $zip->numFiles; $i++) {
     case 'mp4':  
     case 'pdf':  
     case 'doc': 
+    case 'aac':
+    case 'vcf':
     case '':
     case 'docx': $zip->extractTo($foldername, $name);
     $supportedfiletypes[] = $name;
